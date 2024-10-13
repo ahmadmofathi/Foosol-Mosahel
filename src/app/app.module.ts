@@ -7,6 +7,8 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentComponent } from './components/payment/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     SignupFormComponent,
     LoginFormComponent,
     HomeComponent,
-    SignUpComponent
+    SignUpComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

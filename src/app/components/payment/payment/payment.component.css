@@ -1,5 +1,5 @@
 
-  .background-container {
+.background-container {
     position: relative; /* Position context for child elements */
     width: 1500px; /* Full width of the screen */
     height: 800px; /* Set a smaller height */
@@ -107,3 +107,65 @@
   border-radius:10px;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
 }
+
+.stepper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+  }
+  
+  .step {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    position: relative;
+  }
+  
+  .step span {
+    display: block;
+  }
+  
+  .step.completed {
+    background-color: #6D4E1F; /* Green for completed steps */
+  }
+  
+  .step.active {
+    background-color: #6D4E1F; /* Blue for active step */
+    width: 70px; /* Larger size for active step */
+    height: 70px;
+    font-size: 24px; /* Larger font size for active step */
+  }
+  
+  .line {
+    width: 100px;
+    height: 4px;
+    background-color: #6D4E1F;
+  }
+
+  .line2 {
+    width: 100px;
+    height: 4px;
+    background-color: #e0e0e0;
+  }
+  
+  .line.completed {
+    background-color: #6D4E1F; /* Green line for completed step */
+  }
+
+  .remain{
+    color:#6D4E1F;
+  }
+  
+
+.label {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #6D4E1F;
+  }

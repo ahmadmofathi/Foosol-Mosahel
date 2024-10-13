@@ -5,6 +5,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PaymentComponent } from './components/payment/payment/payment.component';
+import { ApprovPaymentComponent } from './components/payment/approv-payment/approv-payment.component';
 
 const routes: Routes = [
   {path:'signup', component:SignupFormComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:'login',component:LoginFormComponent},
   {path:'home',component:HomeComponent},
   {path:'payment',component:PaymentComponent},
+  {path:'approve',component:ApprovPaymentComponent},
   {path:'',component:SignupFormComponent},
   {path:'**',component:SignupFormComponent}
 ];

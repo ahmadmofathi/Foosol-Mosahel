@@ -5,10 +5,23 @@
     alt="Background Image"
   />
   <div class="overlay"></div>
-
+  
   <div class="custom-form">
     <div class="my-form">
       <div class="form-group">
+        <div class="stepper">
+          <div class="step active">
+            <span>1</span>
+          </div>
+          <div class="line2"></div>
+          <div class="step">
+            <span class="remain">2</span>
+          </div>
+          <div class="line2"></div>
+          <div class="step">
+            <span class="remain">3</span>
+          </div>
+        </div>
         <h4 class="text-end">المنطقه</h4>
         <div class="select-container" dir="rtl">
           <select
@@ -16,48 +29,61 @@
             class="form-select form-select-lg mb-3"
             dir="rtl"
           >
-            <option selected>افتح القائمة</option>
+            <option selected disabled> قم باختيار المنطقه</option>
             <!-- Arabic placeholder -->
-            <option value="1">واحد</option>
+            <option value="1">منطقة الرياض</option>
             <!-- Arabic options -->
-            <option value="2">اثنين</option>
-            <option value="3">ثلاثة</option>
+            <option value="2">منطقة مكة المكرمة</option>
+            <option value="3">منطقة الشرقية</option>
+            <option value="4">منطقة المدينة</option>
           </select>
         </div>
 
         <h4 class="text-end">المرحلة</h4>
-        <div class="row">
+        <div class="row stage">
           <div class="col-md-3 custom-box mx-2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault1"
-            />
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault1">
               المرحلة الثانوية
             </label>
           </div>
 
           <div class="col-md-3 custom-box mx-2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault2"
-            />
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault2">
               المرحلة المتوسطة
             </label>
           </div>
 
           <div class="col-md-3 custom-box mx-2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
               المرحلة الإبتدائية
             </label>
@@ -66,72 +92,96 @@
 
         <h4 class="text-end mt-3">الصف</h4>
 
-        <div class="row">
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault1"
-            />
+        <div class="row classes">
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault1">
               السادس الابتدائئ
             </label>
           </div>
 
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault2"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault2">
               الخامس الابتدائئ
             </label>
           </div>
 
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
               الرابع الابتدائئ
             </label>
           </div>
 
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
               الثالث الابتدائئ
             </label>
           </div>
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
               الثاني الابتدائئ
             </label>
           </div>
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
               الاول الابتدائئ
             </label>
@@ -141,72 +191,96 @@
 
         <h4 class="text-end mt-3">المواد</h4>
 
-        <div class="row">
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault1"
-            />
+        <div class="row materials">
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault1">
                الرياضيات
             </label>
           </div>
 
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault2"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault2">
                الفلسفه
             </label>
           </div>
 
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
                اللغه الانجليزيه
             </label>
           </div>
 
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
                الاحياء
             </label>
           </div>
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
 الدراسات الاجتماعيه         
    </label>
           </div>
-          <div class="col-md-2 custom-box2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+          <div class="col-md-1 custom-box2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
              اللغه العربيه
             </label>
@@ -215,38 +289,50 @@
 
         <h4 class="text-end mt-3">مده الاشتراك</h4>
 
-        <div class="row">
+        <div class="row duration">
           <div class="col-md-3 custom-box mx-2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault1"
-            />
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault1">
               الفصل الدراسي الثالث
             </label>
           </div>
 
           <div class="col-md-3 custom-box mx-2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault2"
-            />
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault2">
               الفصل الدراسي الثاني
             </label>
           </div>
 
           <div class="col-md-3 custom-box mx-2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault3"
-            />
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                />  
+              </div>
+            </div>
             <label class="form-check-label" for="flexCheckDefault3">
                الفصل الدراسي الاول
             </label>

@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './components/payment/payment/payment.component';
+import { ApprovPaymentComponent } from './components/payment/approv-payment/approv-payment.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PaymentComponent } from './components/payment/payment/payment.component
     LoginFormComponent,
     HomeComponent,
     SignUpComponent,
-    PaymentComponent
+    PaymentComponent,
+    ApprovPaymentComponent
   ],
   imports: [
     BrowserModule,

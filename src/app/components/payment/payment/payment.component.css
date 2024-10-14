@@ -1,38 +1,26 @@
-
 .background-container {
-    position: relative; /* Position context for child elements */
-    width: 1500px; /* Full width of the screen */
-    height: 800px; /* Set a smaller height */
-    display: flex; /* For centering the form */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    overflow: hidden; /* Prevent scrolling within this container */
-  }
-  
-  .background-image {
-    position: absolute; /* Position the image absolutely */
-    top: 50%; /* Center the image vertically */
-    left: 50%; /* Center the image horizontally */
-     /* Maintain aspect ratio */
-    height: 100%; /* Make the height of the image equal to the container's height */
-    min-width: 100%; /* Ensure the image takes at least the full width */
-    transform: translate(-50%, -50%); /* Center the image using transform */
-    object-fit: contain; /* Ensure the entire image is visible */
-    z-index: 0; /* Below the overlay */
-    overflow: hidden;
-  }
-  
-  .overlay {
-    position: absolute; /* Overlay positioned absolutely */
-    top: 0;
-    left: 0;
-    width: 110%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-    z-index: 1; /* Ensure the overlay is above the background */
-  }
-  
-  .top-left {
+  position: relative; /* Position context for child elements */
+  min-height: 100vh; /* Set a smaller height */
+  display: flex; /* For centering the form */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  overflow: hidden; /* Prevent scrolling within this container */
+  background-image: url('../../../../assets/images/back.jpg');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size:contain;
+  padding: 50px;
+}
+
+.overlay {
+  position: absolute; /* Overlay positioned absolutely */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+  z-index: 1; /* Ensure the overlay is above the background */
+}
+
+.top-left {
   position: absolute; /* Position it at the top left */
   top: 20px; /* Adjust as necessary */
   left: 20px; /* Adjust as necessary */
@@ -173,8 +161,10 @@
   font-size: 14px;
   color: #6D4E1F;
 }
-  .payment-methods{
+.payment-methods{
     justify-content: center;
+   /* align-items: center; /* Center vertically */
+
 }
 .vissa-input{
   margin-top: 10px;

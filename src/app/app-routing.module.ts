@@ -6,6 +6,8 @@ import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PaymentComponent } from './components/payment/payment/payment.component';
 import { ApprovPaymentComponent } from './components/payment/approv-payment/approv-payment.component';
+import { TeacherDashComponent } from './components/teacherDash/teacher-dash/teacher-dash.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
   {path:'signup', component:SignupFormComponent},
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'payment',component:PaymentComponent},
   {path:'approve',component:ApprovPaymentComponent},
+  {path:'teacherDash',component:TeacherDashComponent},
+  {path:'settings',component:SettingsComponent},
   {path:'',component:SignupFormComponent},
   {path:'**',component:SignupFormComponent}
 ];

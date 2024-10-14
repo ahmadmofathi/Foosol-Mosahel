@@ -199,3 +199,23 @@
 .form-check-input{
   border-color: black;
 }
+
+.payment{
+    margin-top:10px;
+}
+.payment-tool {
+    background-color:#ffffff;
+    color:#000;
+    border-radius:20px;
+    padding: 20px;
+    text-align: center;
+    float: right; 
+}
+.payment-total-information {
+    background-color:#ffffff;
+    color:#000;
+    border-radius:10px;
+    padding: 10px;
+    text-align: center;
+    float: left; 
+}

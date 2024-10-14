@@ -1,0 +1,144 @@
+/* Full screen gray background */
+.full-screen-container {
+    background-color: #f0f0f0; /* Light gray background */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* White card styling for table */
+  .table-card {
+    background-color: #fff; /* White background for the table */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for card effect */
+    padding: 20px; /* Padding around the table */
+    width: 100%;
+    max-width: 600px; /* Set a max-width for the table card */
+  }
+  
+  /* Header styling */
+  .table-header .header-cell {
+    background-color: #fff; /* Blue background for header */
+    color: #455672;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  /* Data Rows */
+  .table-row {
+    margin-top: 10px; /* Add some space between rows */
+  }
+  
+  .data-cell {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #dee2e6; /* Light border for table cells */
+    border-radius: 5px; /* Rounded corners for cells */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add 3px spacing between the cells */
+.row .col-6 {
+    padding: 3px;
+    height: 60px; /* Adjust the height as needed */
+}
+
+
+  .arabic-text {
+    font-family: 'Amiri', serif; /* Adjust to your selected font */
+    font-size: 13px; /* Customize size */
+    color: #000; /* Text color */
+    text-align: center; /* Center text */
+    margin: 5px 0; /* Margin for spacing */
+}
+
+.centerText{
+
+    text-align: center; /* Center text */
+    margin: 5px 0; /* Margin for spacing */
+}
+
+/* Switch Container Styling */
+.switch-container  {
+    display: inline-block;
+    position: relative;
+    width: 70px;
+    height: 30px;
+
+  }
+  
+  /* Hide the default checkbox */
+  .switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Switch Label (The actual switch background) */
+  .switch-label {
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  
+  /* Switch Handle (The circular knob) */
+  .switch-handle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    transition: left 0.3s;
+    z-index: 1;
+  }
+  
+  /* Text inside the switch */
+  .switch-text {
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+  
+  .on-text {
+    left: 12px;
+  }
+  
+  .off-text {
+    right: 12px;
+  }
+  
+  /* When the switch is checked, move the handle and change the background */
+  .switch-input:checked + .switch-label {
+    background-color: #4CAF50;
+  }
+  
+  .switch-input:checked + .switch-label .switch-handle {
+    left: 46px; /* Move the handle to the right */
+  }
+  
+  /* Hide the "Off" text when checked */
+  .switch-input:checked + .switch-label .off-text {
+    display: none;
+  }
+  
+  /* Hide the "On" text when not checked */
+  .switch-input:not(:checked) + .switch-label .on-text {
+    display: none;
+  }
+  

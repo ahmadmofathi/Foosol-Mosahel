@@ -10,6 +10,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './components/payment/payment/payment.component';
 import { ApprovPaymentComponent } from './components/payment/approv-payment/approv-payment.component';
+import { TeacherDashComponent } from './components/teacherDash/teacher-dash/teacher-dash.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ApprovPaymentComponent } from './components/payment/approv-payment/appr
     HomeComponent,
     SignUpComponent,
     PaymentComponent,
-    ApprovPaymentComponent
+    ApprovPaymentComponent,
+    TeacherDashComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,193 @@
+
+
+  /* Container */
+  .teacher-board-container {
+    /* padding: 15px; */
+    height: 90%; /* Adjust the height so the page is not full-screen */
+    max-width: 60%; /* Bootstrap's container will keep it responsive */
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    background-color: #001A72;
+    color: white;
+    padding: 30px;
+    margin-top: 5px;
+    border-bottom: 10px solid #fd8f38;
+  }
+
+
+/* Boxes */
+.box {
+    background-color: #F9EFBC;
+    color: black;
+    padding: 30px;
+    
+    text-align: center;
+    border-radius: 10px; /* Rounded corners for better aesthetics */
+    margin: 0 10px; /* Space between boxes */
+    border: 6px solid #918B73;
+  }
+  
+  .left-box, .right-box {
+    flex: 1; /* Equal width for left and right boxes */
+  }
+  
+  .center-box {
+    flex: 2; /* Double width for the center box */
+    border: 6px solid #fd8f38;
+  }
+  
+  /* Tool Panel */
+  .tool-panel {
+    background-color: #34495e;
+    color: black;
+    padding: 10px;
+    height: 100%;
+  }
+  
+  .tool-panel ul {
+    list-style-type: none;
+  }
+  
+  .tool-panel ul li {
+    padding: 5px 0;
+  }
+  
+  /* Writing Board */
+  .board {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .board textarea {
+    flex-grow: 1;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none; /* Disable resizing */
+  }
+  
+  /* Student List */
+  .student-list {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    padding: 15px;
+    height: 100%;
+  }
+  
+  .student-list ul {
+    list-style-type: none;
+  }
+  
+  .student-list ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .arabic-text {
+    font-family: 'Amiri', serif; /* Adjust to your selected font */
+    font-size: 24px; /* Customize size */
+    color: #000; /* Text color */
+    text-align: center; /* Center text */
+    margin: 5px 0; /* Margin for spacing */
+}
+
+.progress-container {
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    margin: 30px 0; /* Margin around the container */
+}
+
+.progress-step {
+    text-align: center; /* Center the text below each icon */
+    position: relative; /* For positioning the line */
+}
+
+.progress-icon {
+    display: flex;
+    justify-content: center; /* Center the icon */
+    align-items: center; /* Center vertically */
+}
+
+.progress-line {
+    height: 5px; /* Line height */
+    background-color: #ccc; /* Default line color */
+    flex-grow: 1; /* Allow lines to grow and fill space */
+    margin: 0 0px; /* Margin between line and icon */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Fill the line based on the current step */
+.activeLine {
+    background-color: #FEAC03; /* Highlight color for filled lines */
+}
+
+.progress-step p {
+   
+    font-size: 18px; /* Label font size */
+    color: #666; /* Label color */
+}
+
+/* Content Wrapper Styling */
+.content-wrapper {
+    background-color: #147CDC; /* Blue background */
+    padding: 50px; /* Padding around the content */
+    position: relative; /* To manage z-index */
+}
+
+/* Individual Boxes within the Content Area */
+.tool-panel,
+.board,
+.student-list {
+    background-color: #fff; /* White background for each section */
+    border-radius: 5px; /* Rounded corners for boxes */
+    padding: 15px; /* Padding inside each box */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1; /* Ensure boxes are on top of blue background */
+    height: auto; /* Allow auto height for content */
+}
+
+/* Adjust for responsiveness */
+.board {
+    height: 300px; /* Set a specific height for the board */
+}
+
+
+.search-box input {
+    border-radius: 15px; /* Rounded corners */
+    padding: 7px; /* Padding inside the input */
+    width: 80%; /* Full width */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+.search-icon {
+    position: absolute; /* Position it absolutely */
+    right: 10px; /* Distance from the right */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    background-color: #001A72; /* Button background color */
+    border-radius: 5px; /* Rounded corners for button effect */
+    padding: 6px; /* Padding inside the button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.tool-panel ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0; /* Remove padding */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack icons vertically */
+    align-items: center; /* Center icons horizontally */
+}
+
+.tool-panel li {
+    margin: 3px 0; /* Add spacing between icons */
+}

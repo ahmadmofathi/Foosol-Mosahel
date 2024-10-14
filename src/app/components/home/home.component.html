@@ -49,6 +49,7 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="toggleSec()"
                 />  
               </div>
             </div>
@@ -65,6 +66,7 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="toggleprep()"
                 />  
               </div>
             </div>
@@ -81,6 +83,7 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="togglePrimary()"
                 />  
               </div>
             </div>
@@ -90,9 +93,13 @@
           </div>
         </div>
 
-        <h4 class="text-end mt-3">الصف</h4>
 
-        <div class="row classes">
+        <h4 class="text-end mt-3" *ngIf="isHeaderShow">الصف</h4>
+
+
+<!--start primary  -->
+
+        <div class="row classes" *ngIf="isPrimaryClick">
           <div class="col-md-1 custom-box2">
             <div class="container">
               <div >
@@ -101,6 +108,8 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
                 />  
               </div>
             </div>
@@ -117,6 +126,8 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
                 />  
               </div>
             </div>
@@ -133,6 +144,8 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
                 />  
               </div>
             </div>
@@ -149,6 +162,8 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
                 />  
               </div>
             </div>
@@ -164,6 +179,8 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
                 />  
               </div>
             </div>
@@ -179,6 +196,8 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
                 />  
               </div>
             </div>
@@ -188,10 +207,141 @@
           </div>
         </div>
 
+        <!-- end primary -->
 
-        <h4 class="text-end mt-3">المواد</h4>
 
-        <div class="row materials">
+
+        <!-- start prep -->
+
+
+        <div class="row classes mt-3" *ngIf="isPrepClick">
+
+          <div class="col-md-3 custom-box mx-2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+                />  
+              </div>
+            </div>
+            <label class="form-check-label" for="flexCheckDefault1">
+             الثالث المتوسط
+            </label>
+          </div>
+
+
+          <div class="col-md-3 custom-box mx-2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
+                />  
+              </div>
+            </div>
+            <label class="form-check-label" for="flexCheckDefault1">
+             الثاني المتوسط
+            </label>
+          </div>
+
+          <div class="col-md-3 custom-box mx-2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
+                />  
+              </div>
+            </div>
+            <label class="form-check-label" for="flexCheckDefault1">
+             الاول المتوسط
+            </label>
+          </div>
+
+        </div>
+
+
+        <!-- end prep -->
+
+
+        <!-- start sec -->
+
+        <div class="row classes mt-3" *ngIf="isSecClick">
+
+          <div class="col-md-3 custom-box mx-2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
+                />  
+              </div>
+            </div>
+            <label class="form-check-label" for="flexCheckDefault1">
+             الثالث الثانوي
+            </label>
+          </div>
+
+
+          <div class="col-md-3 custom-box mx-2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
+                />  
+              </div>
+            </div>
+            <label class="form-check-label" for="flexCheckDefault1">
+             الثاني الثانوي
+            </label>
+          </div>
+
+          <div class="col-md-3 custom-box mx-2">
+            <div class="container">
+              <div >
+                <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault3"
+                (click)="toggleMatrial()"
+
+                />  
+              </div>
+            </div>
+            <label class="form-check-label" for="flexCheckDefault1">
+             الاول الثانوي
+            </label>
+          </div>
+
+        </div>
+
+        <!-- end sec -->
+
+        <h4 class="text-end mt-3" *ngIf="isHeaderMAterialShow">المواد</h4>
+
+        <div class="row materials" *ngIf="isMaterailShow">
           <div class="col-md-1 custom-box2">
             <div class="container">
               <div >
@@ -287,9 +437,9 @@
           </div>
         </div>
 
-        <h4 class="text-end mt-3">مده الاشتراك</h4>
+        <h4 class="text-end mt-3" >مده الاشتراك</h4>
 
-        <div class="row duration">
+        <div class="row duration" >
           <div class="col-md-3 custom-box mx-2">
             <div class="container">
               <div >
@@ -339,9 +489,27 @@
           </div>
         </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end" >
           <button class="btn btn-light mt-3 ">حدد طريقة الدفع</button>
           </div>
+
+          <!-- <div class="col-lg-1 col-md-1 col-sm-1">
+          </div>
+          <div class="payment-total-information col-lg-8 col-md-8 col-sm-8">
+            <div class="container">
+              <div class="row">
+                <h5 class="col-lg-4 col-md-4 col-sm-4">الإجمالي</h5>
+                <h5 class="col-lg-4 col-md-4 col-sm-4">الخصم</h5>
+                <h5 class="col-lg-4 col-md-4 col-sm-4">المجموع الكلي</h5>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <h5 class="total-price col-lg-4 col-md-4 col-sm-4">100<span>ر.س</span></h5>
+                <h5 class="discount col-lg-4 col-md-4 col-sm-4">5<span>%</span></h5>
+                <h5 class="final-price col-lg-4 col-md-4 col-sm-4">95<span>ر.س</span></h5>
+              </div>
+            </div> -->
 
       </div>
     </div>

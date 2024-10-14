@@ -8,12 +8,12 @@ import { PaymentComponent } from './components/payment/payment/payment.component
 import { ApprovPaymentComponent } from './components/payment/approv-payment/approv-payment.component';
 
 const routes: Routes = [
-  {path:'signup', component:SignupFormComponent},
+  {path:'login', component:SignupFormComponent},
   {path:'hesham',component:SignUpComponent},
-  {path:'login',component:LoginFormComponent},
+  {path:'sign-up',component:LoginFormComponent},
   {path:'home',component:HomeComponent},
-  {path:'payment',component:PaymentComponent},
-  {path:'approve',component:ApprovPaymentComponent},
+  {path:'payment', component:PaymentComponent},
+  {path:'approve', component:ApprovPaymentComponent},
   {path:'',component:SignupFormComponent},
   {path:'**',component:SignupFormComponent}
 ];

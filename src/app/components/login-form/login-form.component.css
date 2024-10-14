@@ -8315,9 +8315,9 @@
   
   /* Style the checkmark/indicator */
   .checkbox-primary {
-    color: #f35588; }
+    color: #002752; }
     .checkbox-primary input:checked ~ .checkmark:after {
-      color: #f35588; }
+      color: #002752; }
   
   .btn {
     cursor: pointer;

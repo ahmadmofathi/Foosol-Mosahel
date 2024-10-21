@@ -1,1 +1,211 @@
-<p>paper works!</p>
+<div class="background-container">
+    <div class="overlay"></div>
+  
+    <!-- Icons on the left side -->
+    <div class="icon-container left-icons">
+      <i class="fa-solid fa-house me-3"></i>
+      <i class="fa-solid fa-house"></i>
+    </div>
+  
+    <!-- Icons on the right side -->
+    <div class="icon-container right-icons" (click)="toggleMenu()">
+      <i class="fa-solid fa-house"></i>
+    </div>
+  
+    <!-- Horizontal menu that is shown or hidden based on the boolean value -->
+    <div class="horizontal-menu" *ngIf="isMenuVisible">
+      <ul>
+        <li><i class="fa-solid fa-home"></i> Home</li>
+        <li><i class="fa-solid fa-user"></i> Profile</li>
+        <li><i class="fa-solid fa-cog"></i> Settings</li>
+        <li><i class="fa-solid fa-sign-out-alt"></i> Logout</li>
+      </ul>
+    </div>
+  
+    <div class="custom-form">
+      <div class="my-form">
+        <div class="form-group">
+          <div class="container">
+            <div class="row header" style="justify-content: center; align-items: center;">
+              <div class="col-md-1">
+                <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+              </div>
+              <h3 class="col-md-11">الماده</h3>
+              
+            </div>
+          </div>
+  
+          <div class="row payment-methods">
+            <div class="col-md-1 custom-box-2">
+              <div class="container">
+                <div class="row">
+                  <i class="fa-solid fa-angle-left"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 custom-box">
+              <div class="container">
+                <div class="row">
+                  <h6>
+                    احياء
+                  </h6>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3 custom-box">
+              <div class="container">
+                <div class="row">
+                  <h6>
+                    اللغة العربية
+                  </h6>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3 custom-box">
+              <div class="container">
+                <div class="row">
+                  <h6>
+                    توحيد
+                  </h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 custom-box-2">
+              <div class="container">
+                <div class="row">
+                  <i class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="container">
+            <div class="row header" style="justify-content: center; align-items: center;">
+              <div class="col-md-1">
+                <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+              </div>
+              <h3 class="col-md-11">الصف</h3>
+              
+            </div>
+          </div>
+  
+          <div class="row payment-methods">
+            <div class="col-md-1 custom-box-2">
+              <div class="container">
+                <div class="row">
+                  <i class="fa-solid fa-angle-left"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 custom-box">
+              <div class="container">
+                <div class="row">
+                  <h6>
+                    ثالثة متوسط
+                  </h6>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3 custom-box">
+              <div class="container">
+                <div class="row">
+                  <h6>
+                    أولي متوسط
+                  </h6>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3 custom-box">
+              <div class="container">
+                <div class="row">
+                  <h6>
+                  ثانية متوسط
+                  </h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 custom-box-2">
+              <div class="container">
+                <div class="row">
+                  <i class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row header" style="justify-content: center; align-items: center;">
+              <div class="col-md-1">
+                <input type="checkbox" class="form-check-input" id="selectAll">
+                <label class="form-check-label-all" for="selectAll"><i class="fa-regular fa-circle-check"></i></label>
+              </div>
+              <h3 class="col-md-11">الفصل</h3>
+              
+            </div>
+          </div>
+  
+          <div class="row payment-methods" style="border:none">
+            <div class="col-md-1 custom-box-2">
+              <div class="container">
+                <div class="row">
+                  <i class="fa-solid fa-angle-left"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 custom-box-2">
+              <div class="container">
+                <div class="row">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="checkbox3">
+                        <label class="form-check-label-mine" for="checkbox3">
+                        3
+                    </label>
+                </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3 custom-box-2">
+              <div class="container">
+                <div class="row">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="checkbox2">
+                        <label class="form-check-label-mine" for="checkbox2">
+                            2
+                        </label>
+                    </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3 custom-box-2">
+              <div class="container">
+                <div class="row">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="checkbox1">
+                        <label class="form-check-label-mine" for="checkbox1">
+                            1
+                        </label>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 custom-box-2">
+              <div class="container">
+                <div class="row">
+                  <i class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="div-button">
+            <button class="own-btn" style="font-weight: bold;font-size: large;">إعداد ورقة عمل</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

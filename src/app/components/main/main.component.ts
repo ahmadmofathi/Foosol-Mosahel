@@ -23,3 +23,4 @@ export class MainComponent {
     this.hiddenCards[cardIndex] = true;
   }
 }
+

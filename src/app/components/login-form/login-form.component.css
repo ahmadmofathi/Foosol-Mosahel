@@ -8151,7 +8151,7 @@
     background: #f35588 !important; }
   
   .ftco-section {
-    padding: 7em 0;
+    padding: 2em 0;
     overflow-y: hidden;
   }
   
@@ -8402,4 +8402,18 @@
             text-decoration: none; /* Removes the underline, if desired */
             color: #007bff; /* Change this to the desired link color */
           }
+
+          .myHeaderDiv{
+          text-align: right important!;
+          }
           
+
+          .btn-primary3{
+            background-color: black;
+            color:white;
+          }
+
+          .btn-primary2{
+            background-color: #F0EBEB;
+            color:black;
+          }

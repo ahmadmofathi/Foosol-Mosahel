@@ -1,0 +1,331 @@
+<div class="background-container">
+  <div class="overlay"></div>
+
+  <!-- Icons on the left side -->
+  <div class="icon-container left-icons">
+    <i class="fa-solid fa-house me-3"></i>
+    <i class="fa-solid fa-house"></i>
+  </div>
+
+  <!-- Icons on the right side -->
+  <div class="icon-container right-icons" (click)="toggleMenu()">
+    <i class="fa-solid fa-house"></i>
+  </div>
+
+  <!-- Horizontal menu that is shown or hidden based on the boolean value -->
+  <div class="horizontal-menu" *ngIf="isMenuVisible">
+    <ul>
+      <li><i class="fa-solid fa-home"></i> Home</li>
+      <li><i class="fa-solid fa-user"></i> Profile</li>
+      <li><i class="fa-solid fa-cog"></i> Settings</li>
+      <li><i class="fa-solid fa-sign-out-alt"></i> Logout</li>
+    </ul>
+  </div>
+
+  <div class="custom-form">
+    <div class="my-form">
+      <div class="form-group">
+        <div class="container">
+          <div class="row header" style="justify-content: center; align-items: center;">
+            <div class="col-md-1">
+              <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+            </div>
+            <h3 class="col-md-11">الماده</h3>
+            
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 custom-box">
+            <div class="container">
+              <div class="row">
+                <h6>
+                  احياء
+                </h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box">
+            <div class="container">
+              <div class="row">
+                <h6>
+                  اللغة العربية
+                </h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box">
+            <div class="container">
+              <div class="row">
+                <h6>
+                  توحيد
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row header" style="justify-content: center; align-items: center;">
+            <div class="col-md-1">
+              <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+            </div>
+            <h3 class="col-md-11">الصف</h3>
+            
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 custom-box">
+            <div class="container">
+              <div class="row">
+                <h6>
+                  ثالثة متوسط
+                </h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box">
+            <div class="container">
+              <div class="row">
+                <h6>
+                  أولي متوسط
+                </h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box">
+            <div class="container">
+              <div class="row">
+                <h6>
+                ثانية متوسط
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row header" style="justify-content: center; align-items: center;">
+            <div class="col-md-1">
+              <i class="fa-solid fa-plus" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+            </div>
+            <h3 class="col-md-11">الفصل</h3>
+            
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <h6 class="custom-box-text">3</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <h6 class="custom-box-text">2</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <h6 class="custom-box-text">1</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row header" style="justify-content: center; align-items: center;">
+          <div class="col-md-1">
+            <div>
+              <button class="own-btn2"  data-bs-toggle="modal" data-bs-target="#Edit" width="100%">تعديل</button>
+            </div>
+          </div>
+          <h3 class="col-md-11">الدرس</h3>          
+        </div>
+
+        <div class="row payment-methods2">
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 custom-box">
+            <div class="container">
+              <div class="row ">
+                <h6>
+                  وادي الكنانة
+                </h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box-selected">
+            <div class="container">
+              <div class="row ">
+                <h6>
+                    رساله الي ابني
+                </h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box">
+            <div class="container">
+              <div class="row ">
+                <h6>
+                  وادي الكنانة
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="div-button">
+          <button class="own-btn">عرض</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div
+  class="modal fade"
+  id="Edit"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content outer-container">
+      <div class="inner-container">
+        <div class="modal-header">
+          <h1 class="modal-title" id="staticBackdropLabel">السيرة الذاتية</h1>
+          <button
+          type="button"
+          class="close closebtn"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          >
+            <img src="../../../assets/images/close.png" width="40px">
+          </button>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn custombtn ms-4">حفظ</button>
+          </div>
+
+          <div class="modal-body">
+            <div class="full-width-box custom-full-width-grid mt-3">
+          
+              <!-- 3x3 grid of cards -->
+              <div
+                class="custom-card-wrapper"
+                *ngFor="let card of cards; let cardIndex = index"
+              >
+                <div class="custom-card" [ngClass]="{'hide-card': hiddenCards[cardIndex]}">
+                  <i class="fa-solid fa-times custom-close-icon" (click)="hideCard(cardIndex)"></i>
+                  <!-- Card Content -->
+                  <div class="custom-card-body">
+                    <h5 class="custom-card-title">Card Title</h5>
+                    <!-- <p class="custom-card-text">Some description here.</p> -->
+                  </div>
+                </div>
+              </div>
+          
+            </div>
+
+            <div class="comment-box mt-4">
+                <div class="comment-header">
+                  <button class="add-comment-btn">إضافة</button>
+                  <div class="stars-rating">
+                    <span class="rating-text ms-2">تقييم الدرس</span>
+                    <span class="stars">
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </span>
+                  </div>
+                </div>
+              
+                <textarea
+                  class="comment-textarea"
+                  placeholder="قم بكتابة تعليق"
+                  rows="1"
+                ></textarea>
+              </div>
+
+              
+          </div>
+          
+     
+      </div>
+    </div>
+  </div>
+</div>

@@ -75,11 +75,12 @@
   padding: 20px; /* Adds some padding to the form */
   border-radius: 5px; /* Optional: rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for form */
+  height: auto;
  /* Fixed height */
 }
 
 .custom-form{
-  width:750px;
+  width:700px;
   
 }
 

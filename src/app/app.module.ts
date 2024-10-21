@@ -12,6 +12,13 @@ import { PaymentComponent } from './components/payment/payment/payment.component
 import { ApprovPaymentComponent } from './components/payment/approv-payment/approv-payment.component';
 import { TeacherDashComponent } from './components/teacherDash/teacher-dash/teacher-dash.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MainComponent } from './components/main/main.component';
+import { StudentComponent } from './components/student/student.component';
+import { PaperComponent } from './components/paper/paper.component';
+import { ExamComponent } from './components/exam/exam.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +30,21 @@ import { SettingsComponent } from './components/settings/settings.component';
     PaymentComponent,
     ApprovPaymentComponent,
     TeacherDashComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProfileComponent,
+    MainComponent,
+    StudentComponent,
+    PaperComponent,
+    ExamComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    CKEditorModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

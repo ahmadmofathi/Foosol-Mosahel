@@ -1,0 +1,225 @@
+<div class="background-container">
+  <div class="overlay"></div>
+
+  <div class="main-page">
+    <!-- Header -->
+    <!-- <div class="header">
+          <div class="user-profile">
+            <img src="../../../assets/images/human.png" alt="User Image" class="user-image">
+            <i class="fa fa-bell bell-icon"></i>
+          </div>
+          <div class="header-icons">
+            <i class="fa fa-cog"></i>
+            <i class="fa fa-home"></i>
+          </div>
+        </div> -->
+
+    <!-- Search and Filters -->
+    <div class="search-and-filters">
+        <div class="dropdown">
+            <button class="btn btn-filter">
+            <i class="fa-solid fa-circle-plus"></i>
+            اضف طالب
+            </button>
+            <div class="dropdown-content">
+            <a data-bs-toggle="modal" data-bs-target="#studentProfile" >أضف طالب يدوي</a>
+            <a href="#">إضافة عن طريق إكسل</a>
+            </div>
+        </div>
+
+        <div class="dropdown ms-2">
+            <button class="btn btn-filter">تصدير</button>
+            <div class="dropdown-content">
+            <a href="#">PDF</a>
+            <a href="#">Excel</a>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="بحث عن طالب" />
+            <i class="fa fa-search search-icon"></i>
+        </div>
+
+        <div class="filter-icons">
+            <button class="btn btn-filter">
+            <i class="fa-solid fa-sliders pe-2"></i>
+            فلتر
+            </button>
+        </div>
+    </div>
+    <div class="class-section-info container">
+        <div class="row class-row">
+            <div class="col-md-3 class-all m-3">
+                <div class="class-info">
+                    <div class="container">
+                        <div class="row">
+                            <span class="class-text">عدد الطلاب</span>
+                        </div>
+                        <div class="row">
+                            <span class="class-value">55</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 class-all m-3">
+                <div class="class-info">
+                    <div class="container">
+                        <div class="row">
+                            <span class="class-text">الفصل</span>
+                        </div>
+                        <div class="row">
+                            <span class="class-value">2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 class-all m-3">
+                <div class="class-info">
+                    <div class="container">
+                        <div class="row">
+                            <span class="class-text">الصف</span>
+                        </div>
+                        <div class="row">
+                            <span class="class-value">الأول الابتدائي</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Students List -->
+    <div class="students-list">
+        <div class="student" *ngFor="let student of students; let i = index">
+            
+            <div >
+            <span class="student-grade me-1">100 / 95</span><span>إجمالي النقاط</span>
+            </div>
+
+            <div class="student-info">
+        
+            <span class="student-name">{{ student.name }}</span>
+
+            <img
+            [src]="student.image"
+            alt="Student Image"
+            class="student-image"
+            (click)="toggleDropdown(i)"
+            />
+
+            <!-- Dropdown Menu -->
+            <div *ngIf="dropdownIndex === i" class="dropdown-menu show">
+            <button type="button" class="dropdown-item" disabled>
+              الملف الشخصي 
+              <i class="fa-regular fa-user"></i>
+            </button>
+            <a class="dropdown-item" href="#"> تعديل الطالب
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <a class="dropdown-item" href="#">
+                حذف الطالب
+                <i class="fa-solid fa-trash"></i>
+              </a>
+                
+              </div>
+            
+
+            <div class="student-icons">
+                <span class="badge">{{ i + 1 }}</span>
+        
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="Edit"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content outer-container">
+      <div class="inner-container">
+        <div class="modal-header">
+          <h1 class="modal-title" id="staticBackdropLabel">السيرة الذاتية</h1>
+          <button
+            type="button"
+            class="close closebtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <img src="../../../assets/images/close.png" width="40px" />
+          </button>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn custombtn ms-4">حفظ</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="full-width-box custom-full-width-grid mt-3">
+            <!-- 3x3 grid of cards -->
+          </div>
+
+          <div class="comment-box mt-4">
+            <div class="comment-header">
+              <button class="add-comment-btn">إضافة</button>
+              <div class="stars-rating">
+                <span class="rating-text ms-2">تقييم الدرس</span>
+                <span class="stars">
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                </span>
+              </div>
+            </div>
+
+            <textarea
+              class="comment-textarea"
+              placeholder="قم بكتابة تعليق"
+              rows="1"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Student Modal -->
+<div class="modal fade" id="studentProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>

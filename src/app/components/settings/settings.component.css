@@ -1,18 +1,19 @@
 /* Full screen gray background */
 .full-screen-container {
     background-color: #f0f0f0; /* Light gray background */
-    height: 100vh; /* Full viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 15px;
   }
   
   /* White card styling for table */
   .table-card {
     background-color: #fff; /* White background for the table */
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 40px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for card effect */
     padding: 20px; /* Padding around the table */
+    
     width: 100%;
     max-width: 600px; /* Set a max-width for the table card */
   }
@@ -21,7 +22,7 @@
   .table-header .header-cell {
     background-color: #fff; /* Blue background for header */
     color: #455672;
-    padding: 15px;
+    padding: 7px;
     text-align: center;
     border-radius: 5px;
   }
@@ -33,7 +34,7 @@
   
   .data-cell {
     background-color: #fff;
-    padding: 15px;
+    padding: 20px;
     border: 1px solid #dee2e6; /* Light border for table cells */
     border-radius: 5px; /* Rounded corners for cells */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
@@ -41,6 +42,11 @@
     display: grid;
     justify-content: center;
     align-items: center;
+   padding-left: 0; /* Remove left padding from cells */
+      padding-right: 0; /* Remove right padding from cells */
+      margin-left: 0; /* Remove left margin from cells */
+      margin-right: 0;
+ 
 }
 
 /* Add 3px spacing between the cells */
@@ -64,81 +70,84 @@
     margin: 5px 0; /* Margin for spacing */
 }
 
-/* Switch Container Styling */
-.switch-container  {
-    display: inline-block;
-    position: relative;
-    width: 70px;
-    height: 30px;
+.switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Adjust as needed */
+}
 
-  }
-  
-  /* Hide the default checkbox */
-  .switch-input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* Switch Label (The actual switch background) */
-  .switch-label {
-    background-color: #ccc;
-    border-radius: 34px;
-    cursor: pointer;
-    position: relative;
-    display: block;
-    height: 100%;
-    width: 100%;
-    transition: background-color 0.3s;
-  }
-  
-  /* Switch Handle (The circular knob) */
-  .switch-handle {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 30px;
-    height: 30px;
-    background-color: white;
-    border-radius: 50%;
-    transition: left 0.3s;
-    z-index: 1;
-  }
-  
-  /* Text inside the switch */
-  .switch-text {
-    font-size: 12px;
-    color: white;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 0;
-  }
-  
-  .on-text {
-    left: 12px;
-  }
-  
-  .off-text {
-    right: 12px;
-  }
-  
-  /* When the switch is checked, move the handle and change the background */
-  .switch-input:checked + .switch-label {
-    background-color: #4CAF50;
-  }
-  
-  .switch-input:checked + .switch-label .switch-handle {
-    left: 46px; /* Move the handle to the right */
-  }
-  
-  /* Hide the "Off" text when checked */
-  .switch-input:checked + .switch-label .off-text {
-    display: none;
-  }
-  
-  /* Hide the "On" text when not checked */
-  .switch-input:not(:checked) + .switch-label .on-text {
-    display: none;
-  }
-  
+.switch-input {
+  opacity: 0; /* Hide the checkbox */
+  position: absolute; /* Positioning it out of view */
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between text and handle */
+  width: 120px; /* Width of the switch */
+  height: 40px; /* Height of the switch */
+  background-color: #ccc; /* Background color */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: 5px; /* Padding around the text */
+  position: relative; /* Positioning for the handle */
+  transition: background-color 0.3s ease; /* Transition for background color */
+}
+
+.switch-handle {
+  position: absolute;
+  width: 32px; /* Width of the handle */
+  height: 32px; /* Height of the handle */
+  background-color: white; /* Handle color */
+  border-radius: 50%; /* Round handle */
+  transition: transform 0.3s ease; /* Transition for moving the handle */
+}
+
+.switch-input:checked + .switch-label {
+  background-color: #4caf50; /* Color when checked */
+}
+
+.switch-input:checked + .switch-label .switch-handle {
+  transform: translateX(80px); /* Move handle to the right when checked */
+}
+
+.switch-text {
+  display: block; /* Make text block elements */
+  color: white; /* Text color */
+}
+
+.on-text {
+  opacity: 1; /* Fully visible */
+}
+
+.off-text {
+  opacity: 0; /* Hidden by default */
+}
+
+.switch-input:checked + .switch-label .off-text {
+  opacity: 1; /* Show Off text when checked */
+}
+
+.switch-input:checked + .switch-label .on-text {
+  opacity: 0; /* Hide On text when checked */
+}
+
+
+.radio-container {
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
+.radio-container input[type="radio"] {
+  margin-right: 1px; /* Space between radio button and label */
+}
+.data-cell .form-check-input {
+  width:40px;
+  height: 20px;
+  border-radius: 20%;
+}
+.data-cell .form-check-input::before {
+  border-radius: 20%;
+}

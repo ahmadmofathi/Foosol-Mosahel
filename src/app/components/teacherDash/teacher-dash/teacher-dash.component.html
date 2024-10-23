@@ -122,7 +122,29 @@
             </button>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12 justify-content-center">
+            <button class="c_btn" (click)="fileInput.click()">
+              <img
+                  src="../../../../assets/images/img.png"
+                  class="img-fluid"
+                  alt="Pencil Icon"
+              />
+              <input type="file" #fileInput accept="image/*" (change)="addImage($event)" hidden />
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 justify-content-center">
+            <input type="color" [(ngModel)]="penColor" (change)="onPenColorChange($event)"/>
+          </div>
+        </div>
       </div>
+      <!-- <input #textInput 
+       type="text" 
+       (keydown.enter)="addText($event)" 
+       placeholder="Type here..." 
+       style="display: none; position: absolute;" /> -->
     </div>
     <!-- Writing Board 1 -->
     <div class="col-7 align-items-center">
@@ -166,8 +188,7 @@
         <button (click)="undo()">Undo</button>
         <input type="file" accept="image/*" (change)="addImage($event)" />
       </div> -->
-    
-        <!-- <input #textInput type="text" (keydown.enter)="addText($KeyboardEvent)" placeholder="Type here..." style="display: none; position: absolute;" />       -->
+        
     </div>
     <!-- Student List -->
     <div class="col-3 align-items-center">
@@ -412,10 +433,208 @@
           </div>
           <div class="row tab-row">
             <div class="col-md-12 ">
-              <div class="switcher">
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                  <label class="form-check-label" for="flexSwitchCheckChecked" style="font-size: 16px;font-weight: bold;">شاشة رقم 1</label>
+              <div class="container">
+                <div class="row" style="justify-content: center; align-items: center;">
+                  <div class="col-md-1 ">
+                    <div class="switcher">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3"style="align-items: center;justify-content: cneter; height:auto">
+                    <h5>
+                      شاشة 1
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12">
+              <div class="container-fluid">
+                <div class="row sc-set">
+                  <div class="radio-container col-2">
+                    <input type="radio" id="option4" name="options" value="option4">
+                    <label for="option4">خيــار 3</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option5" name="options" value="option5">
+                      <label for="option5">خيــار 2</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option6" name="options" value="option6">
+                      <label for="option6">خيــار 1</label>
+                  </div>
+                  <div class="check-container col-3">
+                    <label for="option8"> ثابته</label>
+                    <input type="checkbox" id="option8" name="options" value="option8">
+                  </div>
+                </div>
+                <div class="row sc-set">
+                  <div class="radio-container col-2">
+                    <input type="radio" id="option4" name="options" value="option4">
+                    <label for="option4">خيــار 4</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option5" name="options" value="option5">
+                      <label for="option5">خيــار 5</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option6" name="options" value="option6">
+                      <label for="option6">خيــار 6</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option7" name="options" value="option7">
+                      <label for="option7">خيــار 7</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="container-fluid">
+                <div class="row sc-set">
+                  <div class="radio-container col-2">
+                    <input type="radio" id="option4" name="options" value="option4">
+                    <label for="option4">خيــار 3</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option5" name="options" value="option5">
+                      <label for="option5">خيــار 2</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option6" name="options" value="option6">
+                      <label for="option6">خيــار 1</label>
+                  </div>
+                  <div class="check-container col-3">
+                    <label for="option8">متغيرة</label>
+                    <input type="checkbox" id="option8" name="options" value="option8">
+                  </div>
+                </div>
+                <div class="row sc-set">
+                  <div class="radio-container col-2">
+                    <input type="radio" id="option4" name="options" value="option4">
+                    <label for="option4">خيــار 4</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option5" name="options" value="option5">
+                      <label for="option5">خيــار 5</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option6" name="options" value="option6">
+                      <label for="option6">خيــار 6</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option7" name="options" value="option7">
+                      <label for="option7">خيــار 7</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row tab-row2">
+            <div class="col-md-12 ">
+              <div class="container">
+                <div class="row" style="justify-content: center; align-items: center;">
+                  <div class="col-md-1 ">
+                    <div class="switcher">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3"style="align-items: center;justify-content: cneter; height:auto">
+                    <h5>
+                      شاشة 2
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="container-fluid">
+                <div class="row sc-set">
+                  <div class="radio-container col-2">
+                    <input type="radio" id="option4" name="options" value="option4">
+                    <label for="option4">خيــار 3</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option5" name="options" value="option5">
+                      <label for="option5">خيــار 2</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option6" name="options" value="option6">
+                      <label for="option6">خيــار 1</label>
+                  </div>
+                  <div class="check-container col-3">
+                    <label for="option8"> ثابته</label>
+                    <input type="checkbox" id="option8" name="options" value="option8">
+                  </div>
+                </div>
+                <div class="row sc-set">
+                  <div class="radio-container col-2">
+                    <input type="radio" id="option4" name="options" value="option4">
+                    <label for="option4">خيــار 4</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option5" name="options" value="option5">
+                      <label for="option5">خيــار 5</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option6" name="options" value="option6">
+                      <label for="option6">خيــار 6</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option7" name="options" value="option7">
+                      <label for="option7">خيــار 7</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="container-fluid">
+                <div class="row sc-set">
+                  <div class="radio-container col-2">
+                    <input type="radio" id="option4" name="options" value="option4">
+                    <label for="option4">خيــار 3</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option5" name="options" value="option5">
+                      <label for="option5">خيــار 2</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option6" name="options" value="option6">
+                      <label for="option6">خيــار 1</label>
+                  </div>
+                  <div class="check-container col-3">
+                    <label for="option8">متغيرة</label>
+                    <input type="checkbox" id="option8" name="options" value="option8">
+                  </div>
+                </div>
+                <div class="row sc-set">
+                  <div class="radio-container col-2">
+                    <input type="radio" id="option4" name="options" value="option4">
+                    <label for="option4">خيــار 4</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option5" name="options" value="option5">
+                      <label for="option5">خيــار 5</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option6" name="options" value="option6">
+                      <label for="option6">خيــار 6</label>
+                  </div>
+                  <div class="radio-container col-2">
+                      <input type="radio" id="option7" name="options" value="option7">
+                      <label for="option7">خيــار 7</label>
+                  </div>
                 </div>
               </div>
             </div>

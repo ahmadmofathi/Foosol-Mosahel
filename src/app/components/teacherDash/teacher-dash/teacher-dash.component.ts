@@ -117,23 +117,21 @@ export class TeacherDashComponent  implements AfterViewInit {
     input.focus();
   }
 
-  // Add text to the canvas
   addText(event: KeyboardEvent): void {
-    const input = event.target as HTMLInputElement;
+    const input = event.target as HTMLInputElement; // Get the input element
     const value = input.value;
+
     input.style.display = 'none'; // Hide input after typing
 
     if (this.ctx && value.trim() !== '') {
-      this.ctx.fillStyle = this.penColor;
-      this.ctx.font = `${this.penSize * 10}px Arial`;
-      this.ctx.fillText(value, this.startX, this.startY);
+        this.ctx.fillStyle = this.penColor; // Use selected pen color
+        this.ctx.font = `${this.penSize * 10}px Arial`; // Set font size based on pen size
+        this.ctx.fillText(value, this.startX, this.startY); // Draw text on canvas
     }
 
     input.value = ''; // Clear input field
-    this.saveCanvasState(); // Save the canvas state after adding text
-  }
-
-  // Save canvas state
+}
+// Save canvas state
   saveCanvasState(): void {
     const canvas = this.canvasRef.nativeElement;
     const dataUrl = canvas.toDataURL();

@@ -370,12 +370,15 @@ justify-content: center;
 text-align: center;
 align-items: center;
 justify-content: center;
+border: none;
 }
 .modal-footer{
 text-align: center;
 align-items: center;
 justify-content: center;
 color: #fff;
+border: none;
+margin-top: 10px;
 }
 .modal-footer .btn {
 padding: 5px 40px 5px 40px;
@@ -394,6 +397,16 @@ text-align: center;
 align-items: center;
 justify-content: center;
 }
+.tab-row2{
+  margin-top:10px;
+  color: #000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 2px solid #D9D9D9;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  }
 .modal-body .switcher {
 justify-content: center;
 align-items: center;
@@ -404,4 +417,26 @@ display: flex;
 .form-check-input {
 width:60px;
 height: 30px;
+}
+.radio-container {
+  font-size: 12px;
+  color :#001A72;
+  align-items: center;
+  float: right;
+}
+.radio-container input{
+  margin-right: 2px;
+}
+.sc-set{
+  justify-content: space-evenly;
+}
+.check-container {
+  font-size: large;
+  font-weight: bold;
+  color :#000;
+  align-items: center;
+  float: right;
+}
+.switcher{
+  align-items: center;
 }

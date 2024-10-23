@@ -567,13 +567,12 @@ margin: 0;               /* Remove default margin */
 .comment-box {
   direction: rtl;
 }
-
-.checkbox {
+.form-check-input {
   display: none;
 }
 
 /* Styling the label to make it look like a button */
-.btn {
+.form-check-label-mine {
   display: inline-block;
   padding: 20px;
   background-color:#fff ;
@@ -588,7 +587,28 @@ margin: 0;               /* Remove default margin */
 }
 
 /* Style the button when the checkbox is checked */
-.checkbox:checked + .btn {
+.checked-item label {
+  background-color: #001A72;
+  color:#fff;
+}
+
+.form-check-label-all {
+  display: inline-block;
+  padding: 10px;
+  background-color:#fff ;
+  color: #001A72;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s;
+  font-size: large;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the button when the checkbox is checked */
+.form-check-input:checked + .form-check-label-all{
   background-color: #001A72;
   color:#fff;
 }

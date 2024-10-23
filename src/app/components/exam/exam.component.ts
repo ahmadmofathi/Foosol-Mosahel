@@ -22,5 +22,19 @@ export class ExamComponent {
   hideCard(cardIndex: number) {
     this.hiddenCards[cardIndex] = true;
   }
+  selectAll: boolean = false;
+  option1: boolean = false;
+  option2: boolean = false;
+  option3: boolean = false;
+
+  toggleSelectAll() {
+    this.option1 = this.selectAll;
+    this.option2 = this.selectAll;
+    this.option3 = this.selectAll;
+  }
+
+  updateSelectAll() {
+    this.selectAll = this.option1 && this.option2 && this.option3;
+  }
 }
 

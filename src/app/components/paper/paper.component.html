@@ -1,27 +1,29 @@
 <div class="background-container">
     <div class="overlay"></div>
-  
-    <!-- Icons on the left side -->
-    <div class="icon-container left-icons">
-      <i class="fa-solid fa-house me-3"></i>
-      <i class="fa-solid fa-house"></i>
-    </div>
-  
-    <!-- Icons on the right side -->
-    <div class="icon-container right-icons" (click)="toggleMenu()">
-      <i class="fa-solid fa-house"></i>
-    </div>
-  
-    <!-- Horizontal menu that is shown or hidden based on the boolean value -->
-    <div class="horizontal-menu" *ngIf="isMenuVisible">
-      <ul>
-        <li><i class="fa-solid fa-home"></i> Home</li>
-        <li><i class="fa-solid fa-user"></i> Profile</li>
-        <li><i class="fa-solid fa-cog"></i> Settings</li>
-        <li><i class="fa-solid fa-sign-out-alt"></i> Logout</li>
-      </ul>
-    </div>
-  
+    <nav class="navbar">
+      <div class="container">
+        <!-- Icons on the left side -->
+        <div class="icon-container left-icons">
+          <i class="fa-solid fa-house me-3"></i>
+          <i class="fa-solid fa-house"></i>
+        </div>
+      
+        <!-- Icons on the right side -->
+        <div class="icon-container right-icons" (click)="toggleMenu()">
+          <i class="fa-solid fa-house"></i>
+        </div>
+      
+        <!-- Horizontal menu that is shown or hidden based on the boolean value -->
+        <div class="horizontal-menu" *ngIf="isMenuVisible">
+          <ul>
+            <li><i class="fa-solid fa-home"></i> Home</li>
+            <li><i class="fa-solid fa-user"></i> Profile</li>
+            <li><i class="fa-solid fa-cog"></i> Settings</li>
+            <li><i class="fa-solid fa-sign-out-alt"></i> Logout</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="custom-form">
       <div class="my-form">
         <div class="form-group">
@@ -139,8 +141,8 @@
           <div class="container">
             <div class="row header" style="justify-content: center; align-items: center;">
               <div class="col-md-1">
-                <input type="checkbox" class="form-check-input" id="selectAll">
-                <label class="form-check-label-all" for="selectAll"><i class="fa-regular fa-circle-check"></i></label>
+                <input type="checkbox" class="form-check-input" id="selectAll" [(ngModel)]="selectAll" (change)="toggleSelectAll()">
+                <label class="form-check-label-all"  for="selectAll"><i class="fa-regular fa-circle-check"></i></label>
               </div>
               <h3 class="col-md-11">الفصل</h3>
               
@@ -158,12 +160,12 @@
             <div class="col-md-3 custom-box-2">
               <div class="container">
                 <div class="row">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="checkbox3">
-                        <label class="form-check-label-mine" for="checkbox3">
+                  <div class="form-check" [ngClass]="{'checked-item': option1}">
+                    <input type="checkbox" class="form-check-input" id="option1" [(ngModel)]="option1" (change)="updateSelectAll()" />
+                        <label class="form-check-label-mine" for="option1">
                         3
                     </label>
-                </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -171,9 +173,9 @@
             <div class="col-md-3 custom-box-2">
               <div class="container">
                 <div class="row">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="checkbox2">
-                        <label class="form-check-label-mine" for="checkbox2">
+                    <div class="form-check" [ngClass]="{'checked-item': option2}" >
+                        <input type="checkbox" class="form-check-input" id="option2" [(ngModel)]="option2" (change)="updateSelectAll()" />
+                        <label class="form-check-label-mine" for="option2">
                             2
                         </label>
                     </div>
@@ -184,9 +186,9 @@
             <div class="col-md-3 custom-box-2">
               <div class="container">
                 <div class="row">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="checkbox1">
-                        <label class="form-check-label-mine" for="checkbox1">
+                    <div class="form-check" [ngClass]="{'checked-item': option3}">
+                        <input type="checkbox" class="form-check-input" id="option3" [(ngModel)]="option3" (change)="updateSelectAll()" />
+                        <label class="form-check-label-mine" for="option3">
                             1
                         </label>
                     </div>

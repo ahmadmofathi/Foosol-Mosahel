@@ -19,7 +19,11 @@
     background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
     z-index: 1; /* Ensure the overlay is above the background */
   }
-  
+  .navbar {
+    position: relative;
+    z-index: 2; /* Ensure the navbar is above the overlay */
+    background: transparent; /* Transparent navbar background */
+  }
   .top-left {
     position: absolute; /* Position it at the top left */
     top: 20px; /* Adjust as necessary */
@@ -588,7 +592,7 @@ margin: 0;               /* Remove default margin */
 }
 
 /* Style the button when the checkbox is checked */
-.form-check-input:checked + .form-check-label-mine{
+.checked-item label {
   background-color: #001A72;
   color:#fff;
 }

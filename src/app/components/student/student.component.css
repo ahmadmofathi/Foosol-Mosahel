@@ -397,7 +397,7 @@ margin: 0;               /* Remove default margin */
 .full-width-box {
   min-width: 100%; /* Take full width of modal body */
   background-color: #F1E8BF; /* Background color */
-  border-radius: 20px;
+  border-radius: 30px;
   padding:20px 30px;
   align-items: center;
   border: none;
@@ -758,4 +758,127 @@ margin: 0;               /* Remove default margin */
   
   .dropdown-item:hover {
     background-color: #f1f1f1;
+  }
+
+
+  
+  .modal-body ,.modal-footer ,.modal-header {
+    border: none; /* Removes the border */
+  }
+
+  .modal-header h1{
+    text-align: center !important;
+    font-size: large;
+  }
+  .modal-header {
+    display: flex; /* or block */
+    justify-content: center; /* Center horizontally if using flex */
+  }    
+
+
+  /* Modal Close Button Styles */
+.modal .close {
+position: absolute;
+top: 10px; /* Adjust as needed */
+right: 10px; /* Adjust as needed */
+background-color: #BC1010;  /* Red background */
+border-radius: 50%;      /* Make it circular */
+color: white;            /* White color for the icon */
+font-size: 40px;  
+font-weight: bolder;       /* Adjust size as needed */
+width: 32px;             /* Width of the circle */
+height: 32px;            /* Height of the circle */
+display: flex;
+justify-content: center;
+align-items: center;
+border: none;            /* Remove any default border */
+outline: none;           /* Remove outline on focus */
+}
+
+.modal .close span {
+margin: 0;               /* Remove default margin */
+}
+
+
+.form-control {
+  border: none;
+  background-color: #CEC7B7;
+  box-shadow: none;
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Rounded corners for inputs */
+.form-control.rounded-pill {
+  border-radius: 50px;
+}
+
+/* Save Button Styles */
+.btn-save {
+  background-color: #fcd200;
+  color: black;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+}
+
+/* Country Flag Styling */
+.country-flag {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+
+label{
+  text-align: right important!;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  }
+
+  form {
+    direction: rtl; /* Ensures the form is right-to-left */
+  }
+
+  input#phone {
+    flex-grow: 1; /* Makes the input grow to take up available space */
+  }
+  
+  .form-control[style*="width: 110px"] {
+    width: 110px !important; /* Ensures the width for the flag and code container */
+  }
+
+
+  .custombtn{
+    background-color:#F1E8BF ;
+    color:black;
+    font-weight: bold;
+  }
+
+
+  .user-img-container {
+    position: relative;
+    background-color: #03556B; /* Circle background color */
+    border-radius: 50%;
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    margin: 0 auto;
+  }
+  
+  .lineclass{
+    border-bottom: 3px solid #03556B;
+    padding: 25px;
+
+  }
+  /* User Image */
+  .user-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
   }

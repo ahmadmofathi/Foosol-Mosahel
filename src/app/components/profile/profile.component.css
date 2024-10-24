@@ -141,6 +141,14 @@
     min-width:150px;
 }
 
+.custombtnTable {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  min-width:90%;
+
+}
+
 .custombtn2 {
     background-color: #377398;
     color: #FFF4BE;

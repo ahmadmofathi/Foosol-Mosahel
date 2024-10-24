@@ -11,8 +11,12 @@
 
   <!-- next to Nav -->
   <div class="nextnavbar w-100">
-    <div class="insideNextNav"></div>
+    <div class="insideNextNav">
+      <img src="../../../assets/images/teacher.svg" alt="Teacher" class="teacher-img"> 
+      <h2 class="teacher-name">م / علي سعود</h2>
+    </div>
   </div>
+  
 
   <!-- Content Area -->
 
@@ -193,7 +197,7 @@
               <button
                 class="btn btnCont"
                 data-bs-toggle="modal"
-                data-bs-target="#paper"
+                data-bs-target="#TecherPaper"
               >
                 أوراق العمل
               </button>
@@ -662,13 +666,13 @@
             />
           </div>
 
-          <!-- <ckeditor
+          <ckeditor
             [editor]="Editor"
             [(ngModel)]="editorData"
             [config]="editorConfig"
             (ready)="onReady($event)"
             class="custom-ckeditor"
-          ></ckeditor> -->
+          ></ckeditor>
         </div>
         <div class="modal-footer">
           <button class="btn custombtn ms-4">حفظ</button>
@@ -764,7 +768,7 @@
 
 <!-- Class schedule Modal -->
 <div
-  class="modal fade"
+  class="modal fade modal-xl"
   id="Classes"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
@@ -774,7 +778,7 @@
 >
   <div class="modal-dialog">
     <div class="modal-content outer-container">
-      <div class="inner-container">
+      <div class="inner-container ">
         <div class="modal-header">
           <h1 class="modal-title" id="staticBackdropLabel">جدول الحصص</h1>
 
@@ -788,32 +792,32 @@
           </button>
         </div>
 
+     
+
         <div class="modal-body">
           <div class="content-container3 d-flex w-100">
+
+       
+            
             <div class="full-width-box mt-3 d-flex align-items-center">
               <div class="container">
                 <div class="row">
-                  <table class="table table-bordered">
+                  <table class="schedule-table">
                     <thead>
                       <tr>
-                        <th scope="col">( 7 ) الحصة</th>
-                        <th scope="col">وقت الراحة</th>
-                        <th scope="col">( 6 ) الحصة</th>
-                        <th scope="col">وقت الراحة</th>
-                        <th scope="col">( 5 ) الحصة</th>
-                        <th scope="col">وقت الراحة</th>
-                        <th scope="col">( 4 ) الحصة</th>
-                        <th scope="col">وقت الراحة</th>
-                        <th scope="col">( 3 ) الحصة</th>
-                        <th scope="col">وقت الراحة</th>
-                        <th scope="col">( 2 ) الحصة</th>
-                        <th scope="col">وقت الراحة</th>
-                        <th scope="col">( 1 ) الحصة</th>
-                        <th scope="col">الأيام / عدد الحصص</th>
+                        <th>اليوم</th>
+                        <th>الحصة (1)</th>
+                        <th>الحصة (2)</th>
+                        <th>الحصة (3)</th>
+                        <th>الحصة (4)</th>
+                        <th>الحصة (5)</th>
+                        <th>الحصة (6)</th>
+                        <th>الحصة (7)</th>
                       </tr>
                     </thead>
-                    <tbody class="table-group-divider">
+                    <tbody>
                       <tr>
+                        <td>الأحد</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -821,15 +825,9 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th scope="row">السبت</th>
                       </tr>
                       <tr>
+                        <td>الاثنين</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -837,30 +835,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th scope="row">الأحد</th>
                       </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th scope="row">الإثنين</th>
-                      </tr>
+                      <!-- More rows as needed -->
                     </tbody>
                   </table>
                 </div>
@@ -1077,7 +1053,7 @@
 <!-- Paper Work Modal -->
 <div
   class="modal fade"
-  id="paper"
+  id="TecherPaper"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1"

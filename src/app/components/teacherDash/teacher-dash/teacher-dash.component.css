@@ -143,16 +143,6 @@
     width: 100%;
     justify-content: space-evenly;
 }
-
-/* Individual Boxes within the Content Area */
-canvas {
-  display: block;       /* Prevents extra space below the canvas */
-  width: 100%;         /* Set canvas width to 100% of its container */
-  height: auto;        /* Automatically adjust height */
-}
-
-
-
 .form-control {
     border-radius: 15px; /* Rounded corners */
     padding: 7px; /* Padding inside the input */

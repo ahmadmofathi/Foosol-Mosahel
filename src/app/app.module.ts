@@ -19,6 +19,7 @@ import { MainComponent } from './components/main/main.component';
 import { StudentComponent } from './components/student/student.component';
 import { PaperComponent } from './components/paper/paper.component';
 import { ExamComponent } from './components/exam/exam.component';
+import { ClassComponent } from './components/class/class.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ExamComponent } from './components/exam/exam.component';
     StudentComponent,
     PaperComponent,
     ExamComponent,
+    ClassComponent,
     
   ],
   imports: [

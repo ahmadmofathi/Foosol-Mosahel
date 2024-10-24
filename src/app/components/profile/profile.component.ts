@@ -35,6 +35,9 @@ export class ProfileComponent {
   }
 
   // Method to handle file selection
+
+  // Goals
+  
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -46,6 +49,8 @@ export class ProfileComponent {
       reader.readAsDataURL(file); // Read file as base64
     }
   }
+
+
 
   // Method called when CKEditor is ready
   onReady(editor: any): void {

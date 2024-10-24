@@ -41,6 +41,25 @@
     right: 1px;
     bottom: 1px;
     margin: auto;
+    align-items: center;
+    display: flex;
+}
+
+.insideNextNav img{
+  margin-left: 30px;
+  margin-top: 1%;
+  border: 5px solid blue;
+  width:60px;
+  margin-right: 10px;
+
+}
+
+.teacher-name {
+  font-size: 24px;
+  font-weight: bolder;
+  margin-top: 1%;
+  color:#FAF444;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .outlined-text {
@@ -414,3 +433,58 @@
 }
 
 
+
+
+.modal-schedule-table {
+  width: 80%;
+  height: 90%;
+  background-color: #034f64;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.modal-schedule-table .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.modal-schedule-table .modal-body {
+  overflow: auto;
+  max-height: 75vh; /* Keep space for the table */
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.schedule-table th, .schedule-table td {
+  border: 2px solid #289282; /* Customize borders */
+  padding: 10px;
+}
+
+.schedule-table th {
+  background-color: #fff2cc;
+  font-weight: bold;
+}
+
+.schedule-table td {
+  background-color: #ffffff;
+}
+
+.close-button {
+  background-color: red;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}

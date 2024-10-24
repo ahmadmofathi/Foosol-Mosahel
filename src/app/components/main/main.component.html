@@ -2,23 +2,39 @@
   <div class="overlay"></div>
 
   <!-- Icons on the left side -->
-  <div class="icon-container left-icons">
-    <i class="fa-solid fa-house me-3"></i>
-    <i class="fa-solid fa-house"></i>
+  <div class="icon-container left-icons align-items-center">
+    
+    <img src="../../../assets/images/human.png" width="60px" height="60px" >
+    <div class="nav_icon">
+      <img src="../../../assets/images/bell.svg" width="30px" height="30px">
+    </div>
+
+  
   </div>
 
   <!-- Icons on the right side -->
-  <div class="icon-container right-icons" (click)="toggleMenu()">
-    <i class="fa-solid fa-house"></i>
+  <div class="icon-container right-icons align-items-center" >
+    <div class="nav_icon">
+      <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
+    </div>
+    <div class="nav_icon">
+      <img src="../../../assets/images/home.svg" width="30px" height="30px" class="nav_icon">
+    </div>
   </div>
+ 
 
   <!-- Horizontal menu that is shown or hidden based on the boolean value -->
   <div class="horizontal-menu" *ngIf="isMenuVisible">
     <ul>
-      <li><i class="fa-solid fa-home"></i> Home</li>
-      <li><i class="fa-solid fa-user"></i> Profile</li>
-      <li><i class="fa-solid fa-cog"></i> Settings</li>
-      <li><i class="fa-solid fa-sign-out-alt"></i> Logout</li>
+     
+      <li routerLink="/profile"><i class="fa-solid fa-user" ></i> ملف الانجاز</li>
+      <li routerLink="/student"><i class="fa-solid fa-cog" ></i> الطلبه</li>
+      <li routerLink="/teacherDash"><i class="fa-solid fa-sign-out-alt" ></i> السبوره</li>
+      <li routerLink="/paper"><i class="fa-solid fa-sign-out-alt" ></i> ورقه عمل</li>
+      <li routerLink="/exam"><i class="fa-solid fa-sign-out-alt" ></i>الاختبار</li>
+
+
+
     </ul>
   </div>
 
@@ -138,8 +154,8 @@
         </div>
         <div class="container">
           <div class="row header" style="justify-content: center; align-items: center;">
-            <div class="col-md-1">
-              <i class="fa-solid fa-plus" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+            <div class="col-md-1" routerLink="/class">
+              <i class="fa-solid fa-plus" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;" ></i>
             </div>
             <h3 class="col-md-11">الفصل</h3>
             
@@ -264,7 +280,7 @@
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
-          <h1 class="modal-title" id="staticBackdropLabel">السيرة الذاتية</h1>
+          <h1 class="modal-title" id="staticBackdropLabel" > قيام الدولة الاموية</h1>
           <button
           type="button"
           class="close closebtn"
@@ -280,7 +296,7 @@
           </div>
 
           <div class="modal-body">
-            <div class="full-width-box custom-full-width-grid mt-3">
+            <div class="full-width-box custom-full-width-grid ">
           
               <!-- 3x3 grid of cards -->
               <div

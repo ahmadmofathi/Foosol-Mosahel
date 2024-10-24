@@ -13,8 +13,11 @@ export class TeacherDashComponent  implements AfterViewInit {
   private drawing = false;
   private startX = 0;
   private startY = 0;
+  x: number = 0;
+  y: number = 0;
   penColor: string = '#000000';
-  penSize: number = 2;
+  penSize: number =3;
+  cleanSize: number = 20
   mode: string = 'draw'; // draw, erase, text
   canvasHistory: string[] = [];
   currentStep: number = -1;
@@ -46,7 +49,7 @@ export class TeacherDashComponent  implements AfterViewInit {
       this.ctx.beginPath();
       this.ctx.moveTo(event.offsetX, event.offsetY);
     } else if (this.mode === 'erase') {
-      this.ctx.clearRect(event.offsetX, event.offsetY, this.penSize, this.penSize);
+      this.ctx.clearRect(event.offsetX, event.offsetY, this.cleanSize, this.cleanSize);
     } else if (this.mode === 'text') {
       this.startX = event.offsetX;
       this.startY = event.offsetY;
@@ -61,7 +64,7 @@ export class TeacherDashComponent  implements AfterViewInit {
       this.ctx.lineTo(event.offsetX, event.offsetY);
       this.ctx.stroke();
     } else if (this.mode === 'erase') {
-      this.ctx.clearRect(event.offsetX, event.offsetY, this.penSize, this.penSize);
+      this.ctx.clearRect(event.offsetX, event.offsetY, this.cleanSize, this.cleanSize);
     }
   }
 
@@ -84,12 +87,6 @@ export class TeacherDashComponent  implements AfterViewInit {
     this.ctx.strokeStyle = this.penColor;
   }
 
-  onPenSizeChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.penSize = +input.value;
-    this.ctx.lineWidth = this.penSize;
-  }
-
   // Change mode and cursor style
   setMode(mode: string): void {
     this.mode = mode;
@@ -99,9 +96,9 @@ export class TeacherDashComponent  implements AfterViewInit {
   setCursor(): void {
     const canvas = this.canvasRef.nativeElement;
     if (this.mode === 'draw') {
-      this.cursorStyle = 'crosshair'; // Standard cursor for drawing
+      this.cursorStyle = 'url(https://i.ibb.co/brhhfs6/pencil20x20.png), auto'; // Standard cursor for drawing
     } else if (this.mode === 'erase') {
-      this.cursorStyle = 'not-allowed'; // Erasing cursor looks like "not-allowed"
+      this.cursorStyle = 'url(https://i.ibb.co/kyV4Npc/eraser20x20.png), auto';
     } else if (this.mode === 'text') {
       this.cursorStyle = 'text'; // Text insertion cursor
     }

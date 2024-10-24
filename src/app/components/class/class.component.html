@@ -1,0 +1,78 @@
+<div class="background-container">
+  <div class="overlay"></div>
+  <nav class="navbar">
+    <div class="container"></div>
+  </nav>
+  <div class="custom-form">
+    <div class="my-form">
+      <div class="form-group">
+
+        <div class="flex-container">
+
+          <div class="box add-class">
+            <img
+              src="../../../assets/images/plus-circle2.png"
+              alt="Add Class"
+              routerLink="/student"
+            />
+            <p>إضافة فصل جديد</p>
+          </div>
+
+          <div class="outline">
+          <div class="box2 class-details">
+            <div>
+              <div class="header-container">
+                <div (click)="toggleNav()" class="icon-container">
+                  <img
+                    src="../../../assets/images/settings.svg"
+                    alt="Settings"
+                    width="30px"
+                    height="20px"
+                  />
+                </div>
+                <p class="header-text">فصل رابعه اول</p>
+              </div>
+
+              <div class="small-nav" *ngIf="navOpen">
+                <!-- Edit Icon and Text -->
+                <div class="nav-item">
+                  <img src="../../../assets/images/edit-4.png" alt="Edit" />
+                  <span>تعديل الفصل</span>
+                  <!-- Arabic text for "Edit class" -->
+                </div>
+
+                <!-- Delete Icon and Text -->
+                <div class="nav-item">
+                  <img src="../../../assets/images/trash-2.png" alt="Delete" />
+                  <span>حذف الفصل</span>
+                  <!-- Arabic text for "Delete class" -->
+                </div>
+              </div>
+
+              <div class="student-info-container">
+                <div class="text-container">
+                    <p class="student-text">عدد الطلاب</p>
+                    <p class="student-number">35</p>
+                </div>
+                <div class="image-container">
+                    <img src="../../../assets/images/class.png" alt="students" width="50px" height="50px">
+                </div>
+                
+            </div>
+
+            <button class="students-button">الطلاب</button>
+
+
+
+            </div>
+          </div>
+        </div>
+
+          
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

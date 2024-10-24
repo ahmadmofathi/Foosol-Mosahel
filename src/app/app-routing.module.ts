@@ -13,16 +13,15 @@ import { MainComponent } from './components/main/main.component';
 import { StudentComponent } from './components/student/student.component';
 import { ExamComponent } from './components/exam/exam.component';
 import { PaperComponent } from './components/paper/paper.component';
+import { ClassComponent } from './components/class/class.component';
 
 const routes: Routes = [
   {path:'login', component:SignupFormComponent},
-  {path:'hesham',component:SignUpComponent},
   {path:'sign-up',component:LoginFormComponent},
   {path:'home',component:HomeComponent},
   {path:'payment',component:PaymentComponent},
   {path:'approve',component:ApprovPaymentComponent},
   {path:'teacherDash',component:TeacherDashComponent},
-  {path:'settings',component:SettingsComponent},
   {path:'payment', component:PaymentComponent},
   {path:'profile',component:ProfileComponent},
   {path:'approve', component:ApprovPaymentComponent},
@@ -30,8 +29,9 @@ const routes: Routes = [
   {path:'student',component:StudentComponent},
   {path:'exam',component:ExamComponent},
   {path:'paper',component:PaperComponent},
-  {path:'',component:SignupFormComponent},
-  {path:'**',component:SignupFormComponent}
+  {path:'class',component:ClassComponent},
+  {path:'',component:LoginFormComponent},
+  {path:'**',component:LoginFormComponent}
 ];
 
 @NgModule({

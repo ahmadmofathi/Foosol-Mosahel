@@ -5,7 +5,7 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     overflow: hidden; /* Prevent scrolling within this container */
-    background-image: url('../../../assets/images/back.jpg');
+    /* background-image: url('../../../assets/images/back.jpg'); */
     background-repeat: no-repeat;
     background-position-x: center;
     background-size:contain;
@@ -56,13 +56,17 @@
   }
   
   .icon-container {
-    background-color: #224273; /* Blue background */
     padding: 10px; /* Add padding */
     border-radius: 5px; /* Rounded corners */
     display: flex; /* Display icons in a row */
     gap: 10px; /* Space between icons */
+    margin-top: 10px;
   }
-  
+  .nav_icon{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #001a72;
+  }
   .icon-class-1, .icon-class-2 {
     font-size: 24px; /* Adjust size as needed */
     color: white; /* Adjust color as needed */
@@ -81,6 +85,7 @@
   
   .custom-form{
     width:700px;
+    margin-top: 20px;
     
   }
 
@@ -223,7 +228,6 @@
 }
 
 .icon-container {
-  background-color: #224273;
   padding: 10px;
   border-radius: 5px;
   display: flex;
@@ -298,19 +302,12 @@
   color: white; /* Red "X" on hover */
 }
 
-.modal-title {
-  color:#FCF2BD;
-  font-size: larger;
-  font-weight: bold;
-  text-align: center;
-
-}
 
 .custom-table {
   width: 100%;
   border-collapse: collapse;
   background-color: #FCF2BD; /* Table background color */
-  color: black; /* Text color */
+  color: rgb(233, 200, 200); /* Text color */
   direction: rtl; /* RTL alignment for the table */
   text-align: right; /* Left align the text */
   border: 2px solid black; /* Outer border for the whole table */
@@ -400,14 +397,24 @@
       border: none; /* Removes the border */
     }
   
-    .modal-header h1{
-      text-align: center !important;
-      font-size: large;
-    }
+
+
+
     .modal-header {
-      display: flex; /* or block */
-      justify-content: center; /* Center horizontally if using flex */
-    }    
+      display: flex; /* Enable flexbox for the header */
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+      padding: 20px; /* Add padding if necessary */
+    }
+    
+    .modal-header h1 {
+      text-align: center !important; /* Center the text */
+      font-size: 30px; /* Set the desired font size */
+      color: #ffff; /* Set text color to white */
+      font-weight: 700 !important; /* Set font weight to bold */
+      margin: 0; /* Remove default margin */
+    }
+     
 
 
     /* Modal Close Button Styles */
@@ -432,14 +439,19 @@ outline: none;           /* Remove outline on focus */
 .modal .close span {
 margin: 0;               /* Remove default margin */
 }
+.modal-footer {
+  display: flex; /* Use flexbox layout */
+  justify-content: flex-start; /* Align items to the left */
+  padding: 5px 15px; /* Adjust padding to make it smaller (top/bottom reduced) */
+  margin-top: 0; /* Ensure no top margin */
+}
 
 .custombtn {
-  background-color: #F1E8BF;
-  color: black;
-  border-radius: 10px;
-  min-width:150px;
-  float: left;
-  font-weight: bold;
+  background-color: #F1E8BF; /* Button background color */
+  color: black; /* Button text color */
+  border-radius: 10px; /* Rounded corners */
+  min-width: 150px; /* Minimum width */
+  font-weight: bold; /* Bold text */
 }
 
 .full-width-box {
@@ -498,6 +510,11 @@ margin: 0;               /* Remove default margin */
 
 .custom-card-title{
   color:#817B60
+}
+
+.modal-body {
+  margin-top: 0; /* Remove margin to decrease distance to footer */
+  padding: 10px; /* Optional: add some padding for content spacing */
 }
 
 

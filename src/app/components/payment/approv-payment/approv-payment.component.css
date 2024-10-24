@@ -6,7 +6,7 @@
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   overflow: hidden; /* Prevent scrolling within this container */
-  background-image: url('../../../../assets/images/back.jpg');
+  /* background-image: url('../../../../assets/images/back.jpg'); */
   background-repeat: no-repeat;
   background-position-x: center;
   background-size:contain;
@@ -56,30 +56,28 @@
   z-index: 2; /* Ensure it's above the overlay */
 }
 
-.icon-container {
-  background-color: #224273; /* Blue background */
-  padding: 10px; /* Add padding */
-  border-radius: 5px; /* Rounded corners */
-  display: flex; /* Display icons in a row */
-  gap: 10px; /* Space between icons */
-}
+
 
 .icon-class-1, .icon-class-2 {
   font-size: 24px; /* Adjust size as needed */
   color: white; /* Adjust color as needed */
 }
 
+  
 .my-form {
   position: relative; /* This makes the form above the overlay */
   z-index: 2; /* Ensure the form is above the overlay */
   background-color: rgba(223, 206, 178, 0.7); /* Semi-transparent background */
   padding: 20px; /* Adds some padding to the form */
-  border-radius: 5px; /* Optional: rounded corners */
+  border-radius: 30px; /* Optional: rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for form */
+  height: auto;
+ /* Fixed height */
 }
 
 .custom-form{
   width:700px;
+  margin-top: 20px;
   
 }
 
@@ -165,3 +163,28 @@
  
   }
   
+
+  .icon-container {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px; /* Space between icons */
+  }
+  
+  .left-icons {
+    left: 25%; /* Position on the left */
+    top: 3%; /* Center vertically */
+    transform: translateY(-50%);
+  }
+  
+  .right-icons {
+    right: 25%; /* Position on the right */
+    top: 3%; /* Center vertically */
+    transform: translateY(-50%);
+  }
+  .nav_icon{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #001a72;
+  }

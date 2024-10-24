@@ -6,173 +6,194 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild }
   styleUrls: ['./teacher-dash.component.css']
 })
 export class TeacherDashComponent  implements AfterViewInit {
-  @ViewChild('drawingCanvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('textInput', { static: false }) textInputRef!: ElementRef<HTMLInputElement>;
-
-  private ctx!: CanvasRenderingContext2D;
-  private drawing = false;
-  private startX = 0;
-  private startY = 0;
-  x: number = 0;
-  y: number = 0;
-  penColor: string = '#000000';
-  penSize: number =3;
-  cleanSize: number = 20
-  mode: string = 'draw'; // draw, erase, text
-  canvasHistory: string[] = [];
-  currentStep: number = -1;
-  cursorStyle: string = 'default'; // New property for cursor style
-  isFullScreen: boolean = false;
-  currentBoardId = 1;
-
-
-  constructor() {
-  }
-
   ngAfterViewInit(): void {
+    this.resizeCanvas();
+    throw new Error('Method not implemented.');
+
+  }
+  @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+  ctx!: CanvasRenderingContext2D | null;
+  x = 0;
+  y = 0;
+  mDown = false;
+  pen = true;
+  penSizeShow = true;
+  penSize = 5;
+  clean = false;  // Eraser state
+  cleanSize = 30;
+  color = 'black';
+  save = false;
+  imageType = 'image/png';
+  dataUrl = '';
+  canvasWidth = 0;
+  canvasHeight = 0;
+  cursorStyle: string = 'default'; // New property for cursor style
+  textInputVisible = false; // State to manage text input visibility
+  textInputValue = ''; // Holds the text input value
+  startX = 0; // To store the starting X position for text
+  startY = 0; // To store the starting Y position for text
+  
+  // Listen to window resize event and adjust the canvas size
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.resizeCanvas();
+  }
+
+  resizeCanvas() {
     const canvas = this.canvasRef.nativeElement;
-    this.ctx = canvas.getContext('2d')!;
-    this.ctx.lineWidth = this.penSize;
-    this.ctx.lineCap = 'round';
-    this.ctx.strokeStyle = this.penColor;
-    this.saveCanvasState(); // Save the initial empty state of the canvas
-    this.setCursor(); // Apply initial cursor style
-  }
-  // setCursor() {
-  //   throw new Error('Method not implemented.');
-  // }
+    const parentWidth = canvas.parentElement?.clientWidth || 0;
 
-  @HostListener('mousedown', ['$event'])
-  onMouseDown(event: MouseEvent): void {
-    this.drawing = true;
-    if (this.mode === 'draw') {
-      this.ctx.beginPath();
-      this.ctx.moveTo(event.offsetX, event.offsetY);
-    } else if (this.mode === 'erase') {
-      this.ctx.clearRect(event.offsetX, event.offsetY, this.cleanSize, this.cleanSize);
-    } else if (this.mode === 'text') {
-      this.startX = event.offsetX;
-      this.startY = event.offsetY;
-      this.showTextInput(event.offsetX, event.offsetY);
-    }
+    // Set the canvas dimensions based on the container's width
+    this.canvasWidth = parentWidth;
+    this.canvasHeight = this.canvasWidth * (500 / 700); // Keep the aspect ratio (original was 700x500)
+
+    canvas.width = this.canvasWidth;
+    canvas.height = this.canvasHeight;
+
+    // Get the drawing context
+    this.ctx = canvas.getContext('2d');
+    this.setCursor(); // Set initial cursor style
+
   }
 
-  @HostListener('mousemove', ['$event'])
-  onMouseMove(event: MouseEvent): void {
-    if (!this.drawing) return;
-    if (this.mode === 'draw') {
-      this.ctx.lineTo(event.offsetX, event.offsetY);
-      this.ctx.stroke();
-    } else if (this.mode === 'erase') {
-      this.ctx.clearRect(event.offsetX, event.offsetY, this.cleanSize, this.cleanSize);
-    }
-  }
-
-  @HostListener('mouseup', ['$event'])
-  onMouseUp(): void {
-    this.drawing = false;
-    this.ctx.closePath();
-    this.saveCanvasState(); // Save the current state after drawing
-  }
-
-  @HostListener('mouseleave', ['$event'])
-  onMouseLeave(): void {
-    this.drawing = false;
-  }
-
-  // Handle color change
-  onPenColorChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.penColor = input.value;
-    this.ctx.strokeStyle = this.penColor;
-  }
-
-  // Change mode and cursor style
-  setMode(mode: string): void {
-    this.mode = mode;
-    this.setCursor(); // Update cursor when the mode changes
-  }
-
-  setCursor(): void {
+  ngOnInit() {
     const canvas = this.canvasRef.nativeElement;
-    if (this.mode === 'draw') {
-      this.cursorStyle = 'url(https://i.ibb.co/brhhfs6/pencil20x20.png), auto'; // Standard cursor for drawing
-    } else if (this.mode === 'erase') {
-      this.cursorStyle = 'url(https://i.ibb.co/kyV4Npc/eraser20x20.png), auto';
-    } else if (this.mode === 'text') {
+    this.ctx = canvas.getContext('2d');
+  }
+
+  // Method for toggling the pen tool
+  togglePen() {
+    // this.penSizeShow = !this.penSizeShow;
+    this.pen = true;
+    this.clean = false;
+    this.setCursor(); // Update cursor style for pen
+
+  }
+
+  // Method for toggling the eraser tool
+  toggleEraser() {
+    this.clean = !this.clean;
+    // this.penSizeShow = false;
+    this.pen = false;
+    this.setCursor(); // Update cursor style for pen
+  }
+  toggleText() {
+    this.textInputVisible = true; // Show text input when text mode is selected
+    // this.penSizeShow = false; // Hide pen size selector
+    this.clean = false; // Ensure eraser is not active
+    this.pen = false; // Ensure pen is not active
+    this.setCursor(); // Update cursor style for text
+  }
+  setCursor() {
+    const canvas = this.canvasRef.nativeElement;
+    if (this.pen) {
+      this.cursorStyle = 'url(https://i.ibb.co/brhhfs6/pencil20x20.png), auto'; // Custom cursor for drawing
+    } else if (this.clean) {
+      this.cursorStyle = 'url(https://i.ibb.co/kyV4Npc/eraser20x20.png), auto'; // Custom cursor for erasing
+    } else {
       this.cursorStyle = 'text'; // Text insertion cursor
     }
     canvas.style.cursor = this.cursorStyle; // Apply the cursor to the canvas
   }
-
-  // Show text input box on the canvas at a specific position
-  showTextInput(x: number, y: number): void {
-    const input = this.textInputRef.nativeElement;
-    input.style.left = `${x}px`;
-    input.style.top = `${y}px`;
-    input.style.display = 'block';
-    input.focus();
-  }
-
-  addText(event: KeyboardEvent): void {
-    const input = event.target as HTMLInputElement; // Get the input element
-    const value = input.value;
-
-    input.style.display = 'none'; // Hide input after typing
-
-    if (this.ctx && value.trim() !== '') {
-        this.ctx.fillStyle = this.penColor; // Use selected pen color
-        this.ctx.font = `${this.penSize * 10}px Arial`; // Set font size based on pen size
-        this.ctx.fillText(value, this.startX, this.startY); // Draw text on canvas
+  // Drawing related methods (e.g., mouseDown, mouseUp, etc.)
+  mouseDown(event: MouseEvent) {
+    if (this.ctx) {
+      this.mDown = true;
+      this.ctx.beginPath();
+      this.ctx.lineWidth = this.penSize;
+      this.ctx.strokeStyle = this.color;
+      this.x = event.offsetX;
+      this.y = event.offsetY;
+      this.ctx.moveTo(this.x, this.y);
+      
+      // If in text mode, store the starting position
+      if (this.textInputVisible) {
+        this.startX = this.x;
+        this.startY = this.y;
+        this.showTextInput(); // Show text input where mouse is clicked
+      }
     }
-
-    input.value = ''; // Clear input field
-}
-// Save canvas state
-  saveCanvasState(): void {
-    const canvas = this.canvasRef.nativeElement;
-    const dataUrl = canvas.toDataURL();
-    this.canvasHistory = this.canvasHistory.slice(0, this.currentStep + 1); // Discard undone states
-    this.canvasHistory.push(dataUrl);
-    this.currentStep++;
   }
 
-  addImage(event: Event): void {
+  mouseUp() {
+    this.mDown = false;
+  }
+
+  mouseMove(event: MouseEvent) {
+    if (this.mDown && this.ctx) {
+      this.x = event.offsetX;
+      this.y = event.offsetY;
+
+      if (this.clean) {
+        this.ctx.clearRect(this.x, this.y, this.cleanSize, this.cleanSize);
+      } else {
+        this.ctx.lineTo(this.x, this.y);
+        this.ctx.stroke();
+      }
+    }
+  }
+
+  clear() {
+    if (this.ctx) {
+      const canvas = this.canvasRef.nativeElement;
+      this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  saving() {
+    const canvas = this.canvasRef.nativeElement;
+    this.dataUrl = canvas.toDataURL(this.imageType);
+    console.log(this.dataUrl);
+  }
+
+  toggleSave() {
+    this.save = !this.save;
+  }
+   showTextInput() {
+    const inputElement = document.getElementById('textInput') as HTMLInputElement;
+    inputElement.style.left = `${this.startX}px`;
+    inputElement.style.top = `${this.startY}px`;
+    inputElement.style.display = 'block';
+    inputElement.value = ''; // Clear previous input
+    inputElement.focus();
+  }
+
+  // Handle text input change
+  onTextInputChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.textInputValue = input.value;
+  }
+
+  // Add text to canvas
+  addTextToCanvas() {
+    if (this.ctx && this.textInputValue.trim() !== '') {
+      this.ctx.fillStyle = this.color; // Use selected pen color
+      this.ctx.font = `${this.penSize * 2}px Arial`; // Set font size based on pen size
+      this.ctx.fillText(this.textInputValue, this.startX, this.startY); // Draw text on canvas
+      this.textInputVisible = false; // Hide input after adding text
+      const inputElement = document.getElementById('textInput') as HTMLInputElement;
+      inputElement.style.display = 'none'; // Hide input field
+    }
+  }
+  onImageSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
+      const file = input.files[0];
       const reader = new FileReader();
+
       reader.onload = (e: any) => {
         const img = new Image();
-        img.onload = () => {
-          this.ctx.drawImage(img, this.startX, this.startY, img.width, img.height);
-        };
         img.src = e.target.result;
+        img.onload = () => {
+          const canvas = this.canvasRef.nativeElement;
+          if (this.ctx) {
+            this.ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+            this.ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // Draw image on canvas
+          }
+        };
       };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
 
-  undo(): void {
-    if (this.currentStep > 0) {
-      this.currentStep--;
-      this.restoreCanvasState(this.canvasHistory[this.currentStep]);
+      reader.readAsDataURL(file);
     }
-  }
-
-  redo(): void {
-    if (this.currentStep < this.canvasHistory.length - 1) {
-      this.currentStep++;
-      this.restoreCanvasState(this.canvasHistory[this.currentStep]);
-    }
-  }
-
-  restoreCanvasState(dataUrl: string): void {
-    const canvas = this.canvasRef.nativeElement;
-    const img = new Image();
-    img.src = dataUrl;
-    img.onload = () => {
-      this.ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-      this.ctx.drawImage(img, 0, 0); // Restore the canvas
-    };
   }
 }

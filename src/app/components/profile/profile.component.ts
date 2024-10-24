@@ -18,6 +18,24 @@ export class ProfileComponent {
     }
   };
 
+
+  isInternShipModalOpen = false; // For the first modal
+  isNewModalOpen = false; // For the new modal
+
+  // Method to open the new modal and close the current one
+  openNewModal() {
+    this.isNewModalOpen = true;
+    this.isInternShipModalOpen = false; // Close the current modal
+    // Optionally, you can also use jQuery or Bootstrap modal methods to handle this
+    // $('#internShip').modal('hide'); // Close current modal if using jQuery
+    // $('#newModal').modal('show'); // Show new modal if using jQuery
+  }
+
+  closeCurrentModal() {
+    this.isInternShipModalOpen = false;
+    // Handle modal close logic here if needed
+  }
+
   private editorInstance: any; // Stores the CKEditor instance
 
   @ViewChild('fileInput') fileInput: ElementRef | undefined;

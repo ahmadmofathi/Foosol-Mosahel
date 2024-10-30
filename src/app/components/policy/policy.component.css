@@ -1,0 +1,66 @@
+/* Centering the card in the viewport */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+ 
+
+  }
+  
+  /* Styling the main card */
+  .card-center {
+    width: 700px; /* Increased width for a larger card */
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card-center h4 {
+    font-size: 24px;
+    color: #8C8C8C;
+  }
+  
+  /* Styling the gray box */
+  .gray-box {
+    width: 100%;
+    background-color: #E6E6E6;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: right;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Optional: spacing between paragraphs */
+  }
+  
+  /* Text inside the gray box */
+  .letter {
+    font-size: 12px;
+    font-weight:bold ;
+    line-height: 1.8;
+    color: #333;
+  }
+  
+  /* Styling the button */
+  .action-button {
+padding: 2px 35px;
+    background-color: #001A72;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-button:hover {
+    background-color: #001A72;
+  }
+  

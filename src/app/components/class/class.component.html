@@ -13,10 +13,12 @@
             <img
               src="../../../assets/images/plus-circle2.png"
               alt="Add Class"
-              routerLink="/student"
+              data-bs-toggle="modal" data-bs-target="#class"
             />
             <p>إضافة فصل جديد</p>
           </div>
+
+
 
           <div class="outline">
           <div class="box2 class-details">
@@ -60,7 +62,7 @@
                 
             </div>
 
-            <button class="students-button">الطلاب</button>
+            <button class="students-button" routerLink="/student">الطلاب</button>
 
 
 
@@ -76,3 +78,105 @@
     </div>
   </div>
 </div>
+
+
+
+
+<!-- Class Modal -->
+<div
+  class="modal fade"
+  id="class"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content outer-container">
+      <div class="inner-container">
+        <div class="modal-header">
+          <h1 class="modal-title" id="staticBackdropLabel">
+          اضافة فصل
+          </h1>
+          <button
+          type="button"
+          class="close closebtn"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          >
+            <img src="../../../assets/images/close.png" width="40px">
+          </button>
+        </div>
+
+        <div class="modal-body full-width-box">
+          <div class="container">
+            <!-- <div class="row lineclass">
+              <div class="col-md-12 align-items-center justify-content-center">
+                <div class="user-img-container">
+                  <img src="../../../assets/images/user-plus.png" alt="User Image" class="user-img" />
+                </div>
+              </div>
+            </div>  -->
+            <div class="row">
+              <form class="w-100 mt-4 ">
+                
+                <div class="row mb-3 justify-content-center">
+                
+                  <div class="col-md-12 text-right">
+                    <label> اسم الفصل</label>
+                    <input type="text" class="form-control rounded-pill" />
+                  </div>
+
+
+                  <div class="col-md-12 text-right mt-3">
+                    <label>المواد المطلوبة</label>
+                    
+                    <div class="chip-input form-control rounded-pill" (click)="inputField.focus()">
+                      <!-- Display selected skills as chips inside the input field -->
+                      <ng-container *ngFor="let selectedSkill of selectedSkills">
+                        <mat-chip [removable]="true" (removed)="removeSkill(selectedSkill)">
+                          {{ selectedSkill }}
+                          <mat-icon matChipRemove>close</mat-icon>
+                        </mat-chip>
+                      </ng-container>
+                      
+                      <!-- Input field for adding new skills -->
+                      <input #inputField
+                             type="text"
+                             class="form-control rounded-pill"
+                           
+                             (keydown.enter)="addSkill(inputField.value); inputField.value='';"
+                             (blur)="inputField.value='';" />
+                    </div>
+                  </div>
+                  
+                  <div class="checkbox-list">
+                    <!-- Checkbox list for skills selection -->
+                    <div *ngFor="let skill of allSkills">
+                      <label>
+                        <input type="checkbox" (change)="onSkillSelect(skill, $event)" />
+                        {{ skill }}
+                      </label>
+                    </div>
+                  </div>
+                  
+                  
+
+    
+                </div>
+            
+
+              </form> 
+            </div> 
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button class="btn custombtn">حفظ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

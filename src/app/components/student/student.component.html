@@ -100,49 +100,45 @@
 
     <!-- Students List -->
     <div class="students-list">
-        <div class="student" *ngFor="let student of students; let i = index">
-            
-            <div >
-            <span class="student-grade me-1">100 / 95</span><span>إجمالي النقاط</span>
-            </div>
-
-            <div class="student-info">
-        
-            <span class="student-name">{{ student.name }}</span>
-
-            <img
+      <div class="student" *ngFor="let student of students; let i = index">
+        <div >
+          <span class="student-grade me-1" (click)="toggleDropdown(i)" >100 / 95</span><span (click)="toggleDropdown(i)">إجمالي النقاط</span>
+        </div>
+    
+        <div class="student-info" (click)="toggleDropdown(i)">
+          <span class="student-name">{{ student.name }}</span>
+    
+          <img
             [src]="student.image"
             alt="Student Image"
             class="student-image"
-            (click)="toggleDropdown(i)"
-            />
-
-            <!-- Dropdown Menu -->
-            <div *ngIf="dropdownIndex === i" class="dropdown-menu show">
+          />
+    
+          <!-- Dropdown Menu -->
+          <div *ngIf="dropdownIndex === i" class="dropdown-menu show">
             <button type="button" class="dropdown-item" disabled>
-              الملف الشخصي 
+              الملف الشخصي
               <i class="fa-regular fa-user"></i>
             </button>
             <a class="dropdown-item" href="#"> تعديل الطالب
               <i class="fa-regular fa-pen-to-square"></i>
             </a>
             <a class="dropdown-item" href="#">
-                حذف الطالب
-                <i class="fa-solid fa-trash"></i>
-              </a>
-                
-              </div>
-            
-
-            <div class="student-icons">
-                <span class="badge">{{ i + 1 }}</span>
-        
-            </div>
-            </div>
-
-
+              حذف الطالب
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </div>
+    
+          <div class="student-icons">
+            <span class="badge">{{ i + 1 }}</span>
+          </div>
         </div>
+
+
+      </div>
     </div>
+    
+    
 
 
   </div>
@@ -242,14 +238,28 @@
         </div>
 
         <div class="modal-body full-width-box">
+
           <div class="container">
-            <div class="row lineclass">
+
+            <!-- <div class="row lineclass">
               <div class="col-md-12 align-items-center justify-content-center">
                 <div class="user-img-container">
                   <img src="../../../assets/images/user-plus.png" alt="User Image" class="user-img" />
                 </div>
               </div>
-            </div> 
+            </div>  -->
+            
+
+            <div class="row lineclass">
+              <div class="col-md-12 align-items-center justify-content-center">
+                <div class="user-img-container" (click)="fileInput.click()">
+                  <img [src]="userImage || '../../../assets/images/user-plus.png'" alt="User Image" class="user-img" />
+                </div>
+                <!-- Hidden file input for image upload -->
+                <input #fileInput type="file" accept="image/*" (change)="onImageSelected($event)" style="display: none;" />
+              </div>
+            </div>
+
             <div class="row">
               <form class="w-100 mt-4 ">
                 

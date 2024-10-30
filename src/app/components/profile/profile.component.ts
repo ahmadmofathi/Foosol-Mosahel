@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -18,9 +19,15 @@ export class ProfileComponent {
     }
   };
 
-
   isInternShipModalOpen = false; // For the first modal
   isNewModalOpen = false; // For the new modal
+
+  constructor(private location: Location) {}
+
+
+  goBack(): void {
+    this.location.back();
+  }
 
   // Method to open the new modal and close the current one
   openNewModal() {

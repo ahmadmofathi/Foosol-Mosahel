@@ -6,6 +6,17 @@
   <nav class="navbar w-100">
     <div class="row w-100">
       <div class="outlined-text text-center">ملف الأنجاز</div>
+      <div
+      class="col-md-2 d-flex justify-content-center align-items-center">
+      <button
+      type="button"
+      class=" closebtn"
+      (click)="goBack()"
+ 
+    >
+      <img src="../../../assets/images/close.png" width="40px" />
+    </button>
+    </div>
     </div>
   </nav>
 
@@ -827,6 +838,7 @@
               style="display: none"
               #fileInput
               (change)="onFileSelected($event)"
+              
             />
           </div>
 

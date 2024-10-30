@@ -20,6 +20,16 @@ import { StudentComponent } from './components/student/student.component';
 import { PaperComponent } from './components/paper/paper.component';
 import { ExamComponent } from './components/exam/exam.component';
 import { ClassComponent } from './components/class/class.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StudentProfileComponent } from './components/student-profile/student-profile.component';
+import { SignStudentComponent } from './components/sign-student/sign-student.component';
+import { LoginStudentComponent } from './components/login-student/login-student.component';
+import { PolicyComponent } from './components/policy/policy.component';
+import { CovenantsComponent } from './components/covenants/covenants.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { PrepExamComponent } from './prep-exam/prep-exam.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +48,13 @@ import { ClassComponent } from './components/class/class.component';
     PaperComponent,
     ExamComponent,
     ClassComponent,
+    StudentProfileComponent,
+    SignStudentComponent,
+    LoginStudentComponent,
+    PolicyComponent,
+    CovenantsComponent,
+    PrepExamComponent,
+    
     
   ],
   imports: [
@@ -46,7 +63,11 @@ import { ClassComponent } from './components/class/class.component';
     NgbModule,
     CKEditorModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatChipsModule,
+    MatIconModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

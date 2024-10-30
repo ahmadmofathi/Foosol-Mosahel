@@ -28,11 +28,7 @@ export class StudentComponent {
 
 
   toggleDropdown(index: number): void {
-    if (this.dropdownIndex === index) {
-      this.dropdownIndex = null; // Close dropdown if clicked again
-    } else {
-      this.dropdownIndex = index; // Open dropdown for clicked image
-    }
+    this.dropdownIndex = this.dropdownIndex === index ? null : index; // Toggle the dropdown
   }
 
   // Optional: Close the dropdown if clicked outside
@@ -41,6 +37,22 @@ export class StudentComponent {
     const target = event.target as HTMLElement;
     if (!target.closest('.student-info')) {
       this.dropdownIndex = null; // Close the dropdown if the click is outside
+    }
+  }
+
+  userImage: string | ArrayBuffer | null = null; // To store the uploaded image
+
+  // Function to handle image selection
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target && e.target.result) { // Ensure e.target and result are not null
+          this.userImage = e.target.result; // Set the uploaded image as userImage
+        }
+      };
+      reader.readAsDataURL(input.files[0]); // Read the uploaded file as a data URL
     }
   }
 }

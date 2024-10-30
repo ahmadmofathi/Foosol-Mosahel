@@ -59,13 +59,7 @@
     z-index: 2; /* Ensure it's above the overlay */
   }
   
-  .icon-container {
-    background-color: #224273; /* Blue background */
-    padding: 10px; /* Add padding */
-    border-radius: 5px; /* Rounded corners */
-    display: flex; /* Display icons in a row */
-    gap: 10px; /* Space between icons */
-  }
+ 
   
   .icon-class-1, .icon-class-2 {
     font-size: 24px; /* Adjust size as needed */
@@ -226,13 +220,6 @@
   border-radius: 50%;
 }
 
-.icon-container {
-  background-color: #224273;
-  padding: 10px;
-  border-radius: 5px;
-  display: flex;
-  cursor: pointer;
-}
 
 /* Horizontal menu */
 .horizontal-menu {
@@ -616,4 +603,31 @@ margin: 0;               /* Remove default margin */
 .form-check-input:checked + .form-check-label-all{
   background-color: #001A72;
   color:#fff;
+}
+
+
+
+.icon-container {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  gap: 10px; 
+  margin-top: 10px;/* Space between icons */
+}
+
+.left-icons {
+  left: 25%; /* Position on the left */
+  top: 3%; /* Center vertically */
+  transform: translateY(-50%);
+}
+
+.right-icons {
+  right: 25%; /* Position on the right */
+  top: 3%; /* Center vertically */
+  transform: translateY(-50%);
+}
+.nav_icon{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #001a72;
 }

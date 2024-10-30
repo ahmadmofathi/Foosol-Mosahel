@@ -14,6 +14,12 @@ import { StudentComponent } from './components/student/student.component';
 import { ExamComponent } from './components/exam/exam.component';
 import { PaperComponent } from './components/paper/paper.component';
 import { ClassComponent } from './components/class/class.component';
+import { StudentProfileComponent } from './components/student-profile/student-profile.component';
+import { SignStudentComponent } from './components/sign-student/sign-student.component';
+import { LoginStudentComponent } from './components/login-student/login-student.component';
+import { PolicyComponent } from './components/policy/policy.component';
+import { CovenantsComponent } from './components/covenants/covenants.component';
+import { PrepExamComponent } from './prep-exam/prep-exam.component';
 
 const routes: Routes = [
   {path:'login', component:SignupFormComponent},
@@ -30,6 +36,12 @@ const routes: Routes = [
   {path:'exam',component:ExamComponent},
   {path:'paper',component:PaperComponent},
   {path:'class',component:ClassComponent},
+  {path:'studentPro',component:StudentProfileComponent},
+  {path:'signStudent',component:SignStudentComponent},
+  {path:'loginStudent',component:LoginStudentComponent},
+  {path:'policy',component:PolicyComponent},
+  {path:'covenants',component:CovenantsComponent},
+  {path:'prepExam',component:PrepExamComponent},
   {path:'',component:LoginFormComponent},
   {path:'**',component:LoginFormComponent}
 ];

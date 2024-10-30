@@ -4,17 +4,16 @@
   .teacher-board-container {
     /* padding: 15px; */
     height: auto; /* Adjust the height so the page is not full-screen */
-    flex-direction: column;
-    margin-top: 30px;
-    padding: 15px; /* Add consistent padding */
-    width: 80vw;
+    /* flex-direction: column; */
+    /* margin-top: 30px; */
+    /* padding: 15px; */
   }
   
   /* Navbar Styling */
   .user-navbar {
     background-color: #11407B;
     color: white;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     border-bottom: 10px solid #fd8f38;
     width: 100%;
     padding: 30px;
@@ -45,13 +44,14 @@
     align-items: center;
     background-color: #fff;
     border-radius: 5px; /* Rounded corners for boxes */
-    padding: 5px; /* Padding inside each box */ /* Allow auto height for content */ 
-
+    padding: 1px; /* Padding inside each box */ /* Allow auto height for content */ 
+    width:5%;
+    height: auto;
   }
   /* Tool Panel */
   .tool-panel {
-    height: auto; /* Allow auto height for content */  
     align-items: center;
+    margin-top: 70px;
   }
   
   /* Writing Board */
@@ -160,30 +160,85 @@
 .slider-icon {
   cursor: pointer; /* Change cursor to pointer on hover */
 }
+.btn_r{
+  width: auto;
+  padding: 0px;
+  justify-content: right;
+}
+.btn_l{
+  width: auto;
+  padding: 0px;
+  justify-content: left;
+}
+.btns{
+  width:30%;
+}
+.c_btnl{
+  margin-right: 5px;
+  width:auto;
+  padding: 0px;
+  float: right;
+}
+.c_btnr{
+  margin-right: 5px;
+  width:auto;
+  padding: 0px;
+  float: left;
+}
 
-
-
+.c_space{
+  width: auto;
+}
 
 
 .custom-button{
   background-color:#fff ;
   color:#001A72;
+  font-size: 15px;
+
 }
 
-/* Footer Box */
-.footer-box {
-  background-color: #F9EFBC; /* Same background as boxes */
-  border: 6px solid #918B73; /* Same border style */
-  padding: 30px; /* Padding similar to other boxes */
-  text-align: center; /* Center the footer text */
-  border-radius: 10px; /* Rounded corners */
-  margin-top: 30px; /* Space above the footer */
+.custom-button.active {
+  background-color: #001A72; /* Active background */
+  color: white; /* Active text color */
+}
+.footer-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
-/* Adjust max-width of container */
-.teacher-board-container {
-  max-width: 60%;
+.footer-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
+
+.icon-slider {
+  display: flex;
+  align-items: center;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Space between icons */
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust spacing between buttons */
+}
+
+
+
 
 
 @keyframes slideUp {
@@ -261,6 +316,15 @@
   margin: 10px 10px; /* Add spacing between icons */
   cursor: pointer; /* Change cursor to indicate clickable icons */
   
+}
+
+.footer-icon2 {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  margin: 15px; /* Add spacing between icons */
+  cursor: pointer; /* Change cursor to indicate clickable icons */
+  background-color: #001A72;
+  border-radius: 10px;
 }
 
 .icon-slider {
@@ -430,4 +494,233 @@ height: 30px;
 }
 .switcher{
   align-items: center;
+}
+
+/* Parent row container */
+.row2 {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 5px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* Student List Container */
+.student-list {
+  width: 100%;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.student-list-container {
+  display: flex;
+  flex-direction: column;
+  width:auto;
+  padding: 5px;
+  min-height: 200px;
+}
+
+.student-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-icons {
+  display: flex;
+  width: auto;
+}
+/* Styling for status icons with letters */
+.status-icons span {
+  width: 100%;
+  height:15px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+  color: #fff;
+  padding: 5px;
+  /* font-weight: bold; */
+}
+
+/* Color classes for status icons */
+.status-icons .late {
+  background-color: red;
+}
+
+.status-icons .present {
+  background-color: #25D408;
+}
+
+.status-icons .excused {
+  background-color: #D89E09;
+}
+
+.status-icons .absent {
+  background-color: #147CDC;
+}
+
+.status-icons .sleep {
+  background-color: #EC2DFD;
+}
+
+
+
+
+/* Student info and image */
+.student-info {
+  display: flex;
+  align-items: center;
+}
+
+.student-name-container {
+  padding: 5px 10px;
+  background-color: #eaeaea;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.student-name {
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.student-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Scrollbar styling */
+.student-list-container {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #eaeaea;
+}
+
+.student-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.student-list-container::-webkit-scrollbar-track {
+  background: #eaeaea;
+}
+
+.student-list-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+
+.color-meanings {
+  margin-top: 20px; /* Space above the color meanings section */
+  padding: 10px; /* Optional padding */
+  border: 1px solid #ccc; /* Optional border */
+  border-radius: 5px; /* Optional rounded corners */
+  background-color: #f9f9f9; /* Optional background color */
+}
+
+.color-legend {
+margin-left: 0;
+justify-content: space-between;
+padding: 5px;
+max-width: 60%;
+min-width: 10%;
+width: auto;
+display: flex;
+}
+.f_c{
+  width: auto;
+  justify-content: space-between;
+}
+.color-item {
+  display: flex;
+  align-items: center; /* Center the items vertically */
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border-radius: 50%; /* Rounded corners */
+}
+
+.late-color  {
+  background-color: red; /* Set the color for 'late' */
+ 
+}
+
+.lateSpan{
+  color:red;
+ 
+}
+
+.present-color  {
+  background-color: #25D408; 
+}
+
+.presentSpan{
+  color:#25D408;
+ 
+}
+.excused-color {
+  background-color: #D89E09; /* Set the color for 'excused' */
+}
+
+.excusedSpan{
+  color:#D89E09;
+
+}
+
+.absent-color {
+  background-color: #147CDC; /* Set the color for 'absent' */
+}
+.absentSpan{
+  color:#147CDC;
+
+}
+
+.sleep-color{
+  background-color: #EC2DFD;
+}
+
+.sleepSpan{
+  color: #EC2DFD;
+
+}
+
+
+/* student-list.component.css */
+.student-list-container , .containerColor {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 1.5s ease, opacity 1.5s ease;
+}
+
+.student-list-container.show,
+.containerColor.show {
+  padding-left: 20px;
+  padding-right: 20px;
+  max-height: 500px; /* Adjust as needed */
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.student-list-container.hide,
+.containerColor.hide {
+  max-height: 0;
+  opacity: 0;
 }

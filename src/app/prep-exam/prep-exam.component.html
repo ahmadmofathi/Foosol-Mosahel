@@ -51,40 +51,83 @@
             <div class="header">
                 <div class="header-item">
                     <span>المادة</span>
-                    <p class="subject">توحيد</p>
+                    <p class="subject mt-2">توحيد</p>
                 </div>
                 <div class="header-item">
                     <span>الفصل</span>
                     <div class="terms">
-                        <div class="term" *ngFor="let term of terms">{{ term }}</div>
+                        <div class="term mt-2" *ngFor="let term of terms">{{ term }}</div>
                     </div>
                 </div>
                 <div class="header-item">
                     <span>الصف</span>
-                    <p class="class-level">الاول متوسط</p>
+                    <p class="class-level mt-2">الاول متوسط</p>
                 </div>
-                <!-- <div class="total-tests">
-                    إجمالي الاختبارات
-                    <span class="test-count">24</span>
-                </div> -->
-                <!-- <button class="add-test-btn">+ إضافة اختبار</button> -->
+           
             </div>
+
+
+                 <div class="add-test float-end">
+                    إجمالي الاختبارات
+                    <br><span class="test-count">24</span>
+                </div>
+
+            <button class="add-test-btn mb-3" data-bs-toggle="modal" data-bs-target="#exam">+ إضافة اختبار</button>
+
         
             <!-- Card Items -->
-            <div *ngFor="let test of tests" class="card-container ">
-                <div class="card-header">
-                    <span class="item-title">{{ test.title }}</span>
-                    <div class="icons">
-                        <button class="icon-btn">+ إضافة أسئلة</button>
-                        <button class="icon-btn">⚙️</button>
-                        <button class="icon-btn">A</button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <span class="item-info">إجمالي الدرجات: {{ test.score }}</span>
-                    <!-- <span class="status-tag" [ngClass]="getStatusClass(test.status)">{{ test.status }}</span> -->
-                </div>
-            </div>
+            <div *ngFor="let test of tests; let i = index" class="card-container">
+
+              <span class="number-badge">{{ i + 1 }}</span>
+
+
+              <div class="card-header">
+                  <!-- Title and list icon on the left side -->
+                  <div class="title-with-icon">
+                      <span class="item-title">{{ test.title }}</span>
+                      
+                      <button class="list-icon">
+                       
+                          <img src="../../assets/images/list-left.png" height="30px" width="30px">
+                      </button>
+                  </div>
+          
+                  <!-- Icons on the right side (add question, settings, A icon) -->
+                  <div class="icons mt-3">
+                      <button class="icon-btn">+ إضافة أسئلة</button>
+
+                      <div class="btn-group">   
+                      <button class="icon-btn2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="../../assets/images/settingsBl.svg" height="20px" width="20px">
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
+                      </button>
+                      </div>
+
+                      <button class="icon-btn3" data-bs-toggle="modal" data-bs-target="#student">
+                          <img src="../../assets/images/A.png" height="13px" width="15px">
+                      </button>
+                  </div>
+          
+                  <!-- Dropdown menu that shows only when dropdownVisible is true for this test -->
+                  <!-- <div *ngIf="dropMenu" >
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div> -->
+              </div>
+          
+              <div class="card-body">
+                  <span class="item-info">إجمالي الدرجات: {{ test.score }}</span>
+              </div>
+          </div>
+          
+          
     
     
   
@@ -94,3 +137,176 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+  <!-- Exam Modal -->
+<div
+class="modal fade"
+id="exam"
+data-bs-backdrop="static"
+data-bs-keyboard="false"
+tabindex="-1"
+aria-labelledby="staticBackdropLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content outer-container">
+    <div class="inner-container">
+      <div class="modal-header">
+        <h1 class="modal-title" id="staticBackdropLabel">
+        اضافة إختبار
+        </h1>
+        <button
+        type="button"
+        class="close closebtn"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        >
+          <img src="../../../assets/images/close.png" width="40px">
+        </button>
+      </div>
+
+      <div class="modal-body full-width-box">
+        <div class="container">
+         
+          <div class="row">
+            <form class="w-100 mt-4 ">
+              
+              <div class="row mb-3 justify-content-center">
+              
+                <div class="col-md-12 text-right">
+                  <label>عنوان الاختبار</label>
+                  <input type="text" class="form-control rounded-pill" />
+                </div>
+
+                <div class="col-md-12 text-right">
+                  <label>اجمالي الدرجات</label>
+                  <input type="text" class="form-control rounded-pill" />
+                </div>
+
+                 <!-- Switch Container for تحديد وقت -->
+                 <div class="col-md-12 switch-container">
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                  <span class="switch-label">تحديد وقت</span>
+                </div>
+
+
+                <div class="col-md-12 switch-container">
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                  <span class="switch-label ">نشر تلقائي</span>
+                </div>
+                
+                
+           
+                
+                
+
+  
+              </div>
+          
+
+            </form> 
+          </div> 
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button class="btn custombtn">حفظ</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Student Modal -->
+
+<div
+class="modal fade"
+id="student"
+data-bs-backdrop="static"
+data-bs-keyboard="false"
+tabindex="-1"
+aria-labelledby="staticBackdropLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg">
+  <div class="modal-content outer-container">
+    <div class="inner-container">
+      <div class="modal-header">
+        <h1 class="modal-title" id="staticBackdropLabel">
+        مشاركة اختبار مع طلاب
+        </h1>
+        <button
+        type="button"
+        class="close closebtn"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        >
+          <img src="../../../assets/images/close.png" width="40px">
+        </button>
+      </div>
+
+   
+
+      <div class="modal-body ">
+        <div class=" mb-3">
+          <button class="btn custombtn2">أرسال</button>
+        </div>
+        <div class="students-list">
+          <div class="student" *ngFor="let student of students; let i = index">
+            <div >
+              <span class=" me-1" (click)="toggleDropdown(i)" > </span><span (click)="toggleDropdown(i)"> </span>
+            </div>
+        
+            <div class="student-info" (click)="toggleDropdown(i)">
+              <span class="student-name">{{ student.name }}</span>
+        
+              <img
+                [src]="student.image"
+                alt="Student Image"
+                class="student-image"
+              />
+        
+              <!-- Dropdown Menu -->
+              <div *ngIf="dropdownIndex === i" class="dropdown-menu show">
+                <button type="button" class="dropdown-item" disabled>
+                  الملف الشخصي
+                  <i class="fa-regular fa-user"></i>
+                </button>
+                <a class="dropdown-item" href="#"> تعديل الطالب
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </a>
+                <a class="dropdown-item" href="#">
+                  حذف الطالب
+                  <i class="fa-solid fa-trash"></i>
+                </a>
+              </div>
+        
+              <div class="student-icons">
+                <span class="badge">
+                  <input type="checkbox">
+                </span>
+              </div>
+            </div>
+    
+    
+          </div>
+        </div>
+        
+      </div>
+
+   
+    </div>
+  </div>
+</div>
+</div>

@@ -20,6 +20,8 @@ import { LoginStudentComponent } from './components/login-student/login-student.
 import { PolicyComponent } from './components/policy/policy.component';
 import { CovenantsComponent } from './components/covenants/covenants.component';
 import { PrepExamComponent } from './prep-exam/prep-exam.component';
+import { DegreeComponent } from './components/degree/degree.component';
+import { ExamPaperComponent } from './components/exam-paper/exam-paper.component';
 
 const routes: Routes = [
   {path:'login', component:SignupFormComponent},
@@ -40,8 +42,10 @@ const routes: Routes = [
   {path:'signStudent',component:SignStudentComponent},
   {path:'loginStudent',component:LoginStudentComponent},
   {path:'policy',component:PolicyComponent},
+  {path:'degree',component:DegreeComponent},
   {path:'covenants',component:CovenantsComponent},
   {path:'prepExam',component:PrepExamComponent},
+  {path:'examPaper',component:ExamPaperComponent},
   {path:'',component:LoginFormComponent},
   {path:'**',component:LoginFormComponent}
 ];

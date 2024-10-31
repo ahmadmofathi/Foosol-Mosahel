@@ -472,20 +472,6 @@
     background-color: #FCF2BD;
 }
 
-.full-width-box {
-    min-width: 100%;
-    /* Take full width of modal body */
-    background-color: #FCF2BD;
-    /* Background color */
-    border-radius: 6px;
-    border: 3px solid black;
-    /* Black border */
-    box-sizing: border-box;
-    /* Ensure padding doesn't affect width */
-    padding: 100px 10px;
-    align-items: center;
-
-}
 
 .full-width-box h4 {
     color: #817B60;
@@ -557,24 +543,33 @@
     font-weight: bold;
 }
 
+.custombtn2 {
+    background-color: #F1E8BF;
+    color: black;
+    border-radius: 10px;
+    min-width: 150px;
+    float: rigth;
+    font-weight: bold;
+}
+
 .full-width-box {
     min-width: 100%;
     /* Take full width of modal body */
     background-color: #F1E8BF;
     /* Background color */
     border-radius: 20px;
-    padding: 20px 30px;
+    padding: 10px 30px;
     align-items: center;
     border: none;
 
 }
 
-.full-width-box h4 {
+/* .full-width-box h4 {
     color: #817B60;
     align-items: center;
     text-align: center;
     font-size: 20px;
-}
+} */
 
 
 .custom-full-width-grid {
@@ -682,7 +677,7 @@
 
 .subject, .class-level {
     font-size: 1.1rem;
-    color: #e73232;
+    color: #FDA822;
     font-family: "Almarai", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -690,18 +685,21 @@
 
 .terms {
     display: flex;
-    gap: 5px;
+    gap: 6px;
+    right:50%;
 }
 
 .term {
     background-color: #ffb53a;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px 8px;
     border-radius: 5px;
     font-size: 0.9rem;
     font-family: "Almarai", sans-serif;
     font-weight: 400;
     font-style: normal;
+    margin-right: 10px;
+   
 }
 
 .total-tests {
@@ -718,17 +716,19 @@
 }
 
 .add-test-btn {
-    background-color: #224273;
+    background-color: #001A72;
     color: #fff;
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 4px 12px;
+    border-radius: 15px;
     cursor: pointer;
     margin-left: 10px;
 }
 
 /* Card Items */
 .card-container {
+    position: relative;
+   
     background-color: #FCF2BD;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -772,11 +772,29 @@
 }
 
 .icon-btn {
-    background-color: #224273;
+    background-color: #001A72;
     color: #fff;
     border: none;
-    padding: 4px 8px;
-    border-radius: 5px;
+    padding: 5px 18px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.icon-btn2 {
+    background-color: white;
+    /* color: #fff; */
+    border: 1px solid #001A72;
+    padding: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon-btn3 {
+    background-color: white;
+    /* color: #fff; */
+    border: 1px solid #001A72;
+    padding: 1px 2px;
+    border-radius: 50%;
     cursor: pointer;
 }
 
@@ -787,7 +805,7 @@
 }
 
 .item-info {
-    font-size: 0.9rem;
+    font-size: 10px;
     color: #666;
 }
 
@@ -809,3 +827,180 @@
 .status-tag.unavailable {
     background-color: #dc3545;
 }
+
+label{
+    text-align: right important!;
+    display: block;
+    margin-bottom: 5px;
+    
+    }
+    
+    form {
+      direction: rtl; /* Ensures the form is right-to-left */
+    }
+
+    .form-control {
+        border: none;
+        background-color: #CEC7B7;
+        box-shadow: none;
+        font-size: 16px;
+        padding: 10px;
+        }
+        
+        /* Rounded corners for inputs */
+        .form-control.rounded-pill {
+        border-radius: 50px;
+        }
+
+    /* General container for the switch and label */
+.switch-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    font-family: Arial, sans-serif;
+    direction: rtl; /* For right-to-left layout */
+    flex-direction: row-reverse;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 13px;
+    margin-left: 10px; /* Space between switch and label */
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #8D8D8D;
+    transition: 0.4s;
+    border-radius: 10px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 1px;
+    bottom: 0;
+    background-color: #D9D9D9;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  /* Green background when checked */
+  input:checked + .slider {
+    background-color: #B6FFAF; /* Green color */
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+    background-color: #31D422;
+
+  }
+  
+  /* Style for the label */
+  .switch-label {
+    color: #B3A776;
+    font-size: 14px;
+  }
+  
+  .list-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+/* Number badge positioned on the top-right corner */
+.number-badge {
+    position: absolute;
+    top: 5px;  /* Adjust position */
+    right: 10px; /* Adjust position */
+    background-color: #001A72; /* Light yellow background */
+    color: white;
+    border-radius: 50%;
+    width: 15px; /* Adjust size as needed */
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15); /* Optional shadow for depth */
+}
+
+
+
+.dropdown-menu {
+    position: absolute;
+    background-color: #001A72;
+    z-index: -1; /* Bootstrap's default dropdown z-index, can adjust if needed */
+}
+.students-list {
+    /* background-color: #F1E8BF; */
+     border-radius: 20px;
+     padding: 10px;
+     margin-bottom:10px;
+ 
+   }
+   
+   .student {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     background-color: #F1E8BF;
+     padding: 10px;
+     border-radius: 25px;
+     margin-bottom: 15px; /* Add margin to create space between each student */
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Optional: add subtle shadow */
+   }
+   
+   .student-grade {
+     background-color: #CEB887;
+     padding: 3px;
+     border-radius: 5px;
+     color: #000;
+   }
+   
+   .student-info {
+     display: flex;
+     align-items: center;
+    
+   }
+   
+   .student-image {
+     width: 40px;
+     border-radius: 10px;
+     margin-right: 10px;
+     cursor: pointer;
+     border:2px solid #03556B;
+   }
+   
+   .student-name {
+     font-size: 16px;
+     font-weight: bold;
+     margin-right: 10px;
+   }
+   
+   .student-icons {
+     display: flex;
+     align-items: center;
+   }
+
+   .text-end {
+    text-align: right; /* Aligns the button to the right */
+  }

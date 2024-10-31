@@ -1,0 +1,361 @@
+<div class="background-container">
+    <div class="overlay"></div>
+
+    <div class="icon-container left-icons align-items-center">
+    
+        <img src="../../../assets/images/human.png" width="60px" height="60px" >
+        <div class="nav_icon">
+          <img src="../../../assets/images/bell.svg" width="30px" height="30px">
+        </div>
+    
+      
+      </div>
+  
+      <div class="icon-container center-icons align-items-center">
+          <h1>درجات الطلاب</h1>
+      </div>
+    
+      <!-- Icons on the right side -->
+      <div class="icon-container right-icons align-items-center" >
+        <div class="nav_icon">
+          <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
+        </div>
+        <div class="nav_icon" (click)="toggleMenu()">
+          <img src="../../../assets/images/home.svg" width="30px" height="30px" class="nav_icon">
+        </div>
+      </div>
+  
+    <div class="main-page">
+      <!-- Header -->
+      <!-- <div class="header">
+            <div class="user-profile">
+              <img src="../../../assets/images/human.png" alt="User Image" class="user-image">
+              <i class="fa fa-bell bell-icon"></i>
+            </div>
+            <div class="header-icons">
+              <i class="fa fa-cog"></i>
+              <i class="fa fa-home"></i>
+            </div>
+          </div> -->
+  
+      <!-- Search and Filters -->
+      <div class="search-and-filters">
+        <div class="dropdown ">
+            <button class="btn btn-filter"><i class="fa-solid fa-sliders pe-2"></i>
+              فلتر
+              
+            </button>
+            <div class="dropdown-content">
+            <a href="#">فرز بحسب المركز</a>
+            <a href="#">فرز بحسب الاسم</a>
+            <a href="#">فرز بحسب النوع</a>
+            </div>
+        </div>
+  
+          <div class="dropdown ms-1">
+              <button class="btn btn-filter">تصدير</button>
+              <div class="dropdown-content">
+              <a href="#">PDF</a>
+              <a href="#">Excel</a>
+              </div>
+          </div>
+  
+          <div class="search-container ">
+              <input type="text" class="search-bar" placeholder="بحث عن طالب" />
+              <i class="fa fa-search search-icon"></i>
+          </div>
+  
+           
+  
+       
+  
+  
+      </div>
+      <div class="class-section-info container">
+          <div class="row class-row">
+
+
+            <div class="col-md-2 class-all m-3">
+                <div class="class-info">
+                    <div class="container">
+                        <div class="row">
+                            <span class="class-text">تاريخ الاختبار</span>
+                        </div>
+                        <div class="row">
+                            <span class="class-value">1-11-2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+              <div class="col-md-2 class-all m-3">
+                  <div class="class-info">
+                      <div class="container">
+                          <div class="row">
+                              <span class="class-text">نوع الاختبار</span>
+                          </div>
+                          <div class="row">
+                              <span class="class-value">اختبار اخرالشهر</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-md-2 class-all m-3">
+                  <div class="class-info">
+                      <div class="container">
+                          <div class="row">
+                              <span class="class-text">الفصل</span>
+                          </div>
+                          <div class="row">
+                              <span class="class-value">2</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-2 class-all m-3">
+                  <div class="class-info">
+                      <div class="container">
+                          <div class="row">
+                              <span class="class-text">الصف</span>
+                          </div>
+                          <div class="row">
+                              <span class="class-value">الأول الابتدائي</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Students List -->
+      <div class="students-list">
+        <div class="student" *ngFor="let student of students; let i = index">
+          <div >
+            <span class="student-grade me-1" (click)="toggleDropdown(i)" >100 / 95</span><span (click)="toggleDropdown(i)">إجمالي النقاط</span>
+          </div>
+      
+          <div class="student-info" (click)="toggleDropdown(i)">
+            <span class="student-name">{{ student.name }}</span>
+      
+            <img
+              [src]="student.image"
+              alt="Student Image"
+              class="student-image"
+            />
+      
+            <!-- Dropdown Menu -->
+            <div *ngIf="dropdownIndex === i" class="dropdown-menu show">
+              <button type="button" class="dropdown-item" disabled>
+                الملف الشخصي
+                <i class="fa-regular fa-user"></i>
+              </button>
+              <a class="dropdown-item" href="#"> تعديل الطالب
+                <i class="fa-regular fa-pen-to-square"></i>
+              </a>
+              <a class="dropdown-item" href="#">
+                حذف الطالب
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </div>
+      
+            <div class="student-icons">
+              <span class="badge">{{ i + 1 }}</span>
+            </div>
+          </div>
+  
+  
+        </div>
+      </div>
+      
+      
+  
+  
+    </div>
+  </div>
+  
+  <div
+    class="modal fade"
+    id="Edit"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content outer-container">
+        <div class="inner-container">
+          <div class="modal-header">
+            <h1 class="modal-title" id="staticBackdropLabel">السيرة الذاتية</h1>
+            <button
+              type="button"
+              class="close closebtn"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <img src="../../../assets/images/close.png" width="40px" />
+            </button>
+          </div>
+  
+          <div class="modal-footer">
+            <button class="btn custombtn ms-4">حفظ</button>
+          </div>
+  
+          <div class="modal-body">
+            <div class="full-width-box custom-full-width-grid mt-3">
+              <!-- 3x3 grid of cards -->
+            </div>
+  
+            <div class="comment-box mt-4">
+              <div class="comment-header">
+                <button class="add-comment-btn">إضافة</button>
+                <div class="stars-rating">
+                  <span class="rating-text ms-2">تقييم الدرس</span>
+                  <span class="stars">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </span>
+                </div>
+              </div>
+  
+              <textarea
+                class="comment-textarea"
+                placeholder="قم بكتابة تعليق"
+                rows="1"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <!-- Student Modal -->
+  <div
+    class="modal fade"
+    id="studentProfile"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content outer-container">
+        <div class="inner-container">
+          <div class="modal-header">
+            <h1 class="modal-title" id="staticBackdropLabel">
+              معلومات الطالب
+            </h1>
+            <button
+            type="button"
+            class="close closebtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            >
+              <img src="../../../assets/images/close.png" width="40px">
+            </button>
+          </div>
+  
+          <div class="modal-body full-width-box">
+  
+            <div class="container">
+  
+              <!-- <div class="row lineclass">
+                <div class="col-md-12 align-items-center justify-content-center">
+                  <div class="user-img-container">
+                    <img src="../../../assets/images/user-plus.png" alt="User Image" class="user-img" />
+                  </div>
+                </div>
+              </div>  -->
+              
+  
+              <div class="row lineclass">
+                <div class="col-md-12 align-items-center justify-content-center">
+                  <div class="user-img-container" (click)="fileInput.click()">
+                    <img [src]="userImage || '../../../assets/images/user-plus.png'" alt="User Image" class="user-img" />
+                  </div>
+                  <!-- Hidden file input for image upload -->
+                  <input #fileInput type="file" accept="image/*" (change)="onImageSelected($event)" style="display: none;" />
+                </div>
+              </div>
+  
+              <div class="row">
+                <form class="w-100 mt-4 ">
+                  
+                  <div class="row mb-3 justify-content-center">
+                  
+                    <div class="col-md-6 text-right">
+                      <label>الاسم الاول</label>
+                      <input type="text" class="form-control rounded-pill" />
+                    </div>
+      
+                    <div class="col-md-6 float-right">
+                      <label >الاسم الاخير</label>
+                      <input type="text" class="form-control rounded-pill" />
+                    </div>
+                    
+                  </div>
+              
+                  <div class="row mb-3 justify-content-center">
+                    <div class="col-md-12 text-right">
+                      <label>البريد الإلكتروني</label>
+                      <input type="email" class="form-control rounded-pill" />
+                    </div>
+                  </div>
+              
+                  <div class="row mb-12 justify-content-center">
+                    <div class="form-group mb-3 text-right">
+                      <label class="label" for="phone">رقم الهاتف</label>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center form-control rounded-pill" style="width: 110px;">
+                          <img src="https://flagcdn.com/24x18/sa.png" alt="KSA Flag" width="20" />
+                          <span class="ml-2">+966</span>
+                        </div>
+                  
+                        <input type="text" class="form-control rounded-pill" id="phone" placeholder="اضف رقم الهاتف" required style="flex-grow: 1; margin-right: 10px;" />
+                      </div>
+                    </div>
+                  </div>
+                  
+      
+                    <div class="col-md-12 text-right mb-3">
+                      <label>النوع</label>
+                      <select class="form-control rounded-pill">
+                        <option>ذكر</option>
+                        <option>أنثى</option>
+                      </select>
+                    </div>
+              
+                  <div class="row mb-3 justify-content-center">
+                    <div class="col-md-12 text-right">
+                      <label>رقم الطالب</label>
+                      <input type="text" class="form-control rounded-pill" disabled value="4566" />
+                    </div>
+                  </div>
+              
+              
+                </form> 
+              </div> 
+            </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button class="btn custombtn">حفظ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

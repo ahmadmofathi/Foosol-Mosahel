@@ -24,21 +24,32 @@ export class PrepExamComponent {
   }
   terms = [1, 2, 3]; // Example data for terms
   tests = [
-    { title: 'اختبار اخر الاسبوع', score: 50, status: 'متاح' },
-    { title: 'اختبار اخر الشهر', score: 50, status: 'مكتمل' },
-    { title: 'اختبار اخر الترم', score: 50, status: 'منتهي' }
-  ];
+    { title: 'اختبار آخر الأسبوع', score: 50},
+    { title: 'اختبار الشهر', score: 50 },
+    { title: 'اختبار آخر الترم', score: 50 }
+];
 
-  getStatusClass(status: string) {
-    switch (status) {
-      case 'متاح':
-        return 'available';
-      case 'مكتمل':
-        return 'limited';
-      case 'منتهي':
-        return 'unavailable';
-      default:
-        return '';
-    }
-  }
+dropMenu = false
+
+// toggleDropdown() {
+//   this.dropMenu = !this.dropMenu;
+
+// }
+
+students: any[] = [
+  { name: 'أسامة علي ال سعود', image: '../../../assets/images/student.png' },
+  { name: 'أسامة علي ال سعود', image: '../../../assets/images/student.png' },
+  { name: 'أسامة علي ال سعود', image: '../../../assets/images/student.png' },
+  // add more students
+];
+
+dropdownIndex: number | null = null;
+
+
+toggleDropdown(index: number): void {
+  this.dropdownIndex = this.dropdownIndex === index ? null : index; // Toggle the dropdown
+}
+
+
+
 }

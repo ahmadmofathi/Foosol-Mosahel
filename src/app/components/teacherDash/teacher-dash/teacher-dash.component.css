@@ -15,7 +15,6 @@
     color: white;
     /* margin-top: 5px; */
     border-bottom: 10px solid #fd8f38;
-    width: 100%;
     padding: 30px;
   }
 
@@ -37,21 +36,19 @@
   .c_btn{
     background:none;
     border: none;
-    margin-top: 10px;
+    padding: 5px;
   }
   .tools-panel{
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    border-radius: 5px; /* Rounded corners for boxes */
-    padding: 1px; /* Padding inside each box */ /* Allow auto height for content */ 
-    width:5%;
-    height: auto;
+    width: 5%;
+    padding: 10px 0 10px 0;
+    border-right: 2px solid #000;
   }
   /* Tool Panel */
   .tool-panel {
     align-items: center;
-    margin-top: 70px;
   }
   
   /* Writing Board */
@@ -132,7 +129,7 @@
 }
 
 .progress-step p {
-   
+
     font-size: 18px; /* Label font size */
     color: #666; /* Label color */
 }
@@ -140,9 +137,8 @@
 /* Content Wrapper Styling */
 .content-wrapper {
     background-color: #185CA3; /* Blue background */
-    padding: 30px; /* Padding around the content */
-    width: 100%;
     justify-content: space-evenly;
+    height: auto;
 }
 .form-control {
     border-radius: 15px; /* Rounded corners */
@@ -206,7 +202,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  padding-top: 20px;
 }
 
 .footer-container {
@@ -723,4 +719,23 @@ display: flex;
 .containerColor.hide {
   max-height: 0;
   opacity: 0;
+}
+.toolsbar{
+  background-color: #185CA3;
+  padding: 10px;
+  align-items: center;
+}
+.toolbarin{
+  background-color: #fff;
+  border-radius: 10px;
+  align-items: center;
+  padding: 5px;
+}
+.col_c1{
+  width: 63% ;
+  align-items: center;
+}
+.col_c2{
+  width: 33%;
+  align-items: center;
 }

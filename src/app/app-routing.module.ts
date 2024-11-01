@@ -22,6 +22,7 @@ import { CovenantsComponent } from './components/covenants/covenants.component';
 import { PrepExamComponent } from './prep-exam/prep-exam.component';
 import { DegreeComponent } from './components/degree/degree.component';
 import { ExamPaperComponent } from './components/exam-paper/exam-paper.component';
+import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
   {path:'login', component:SignupFormComponent},
@@ -46,6 +47,7 @@ const routes: Routes = [
   {path:'covenants',component:CovenantsComponent},
   {path:'prepExam',component:PrepExamComponent},
   {path:'examPaper',component:ExamPaperComponent},
+  {path:'teacher',component:TestComponent},
   {path:'',component:LoginFormComponent},
   {path:'**',component:LoginFormComponent}
 ];

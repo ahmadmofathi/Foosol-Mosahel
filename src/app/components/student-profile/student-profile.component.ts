@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class StudentProfileComponent {
     }
   };
 
+  constructor(private location: Location) {}
 
   isInternShipModalOpen = false; // For the first modal
   isNewModalOpen = false; // For the new modal
@@ -169,6 +171,9 @@ triggerFileUpload() {
     }
   }
 
+  goBack(): void {
+    this.location.back();
+  }
   // Opens the camera
   // openCamera(): void {
   //   this.cameraOpen = true; // Show camera feed

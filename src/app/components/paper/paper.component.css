@@ -631,3 +631,28 @@ margin: 0;               /* Remove default margin */
   border-radius: 10px;
   background-color: #001a72;
 }
+
+.almarai-regular {
+  font-family: "Almarai", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+span,h6,button{
+  font-family: "Almarai", serif;
+  font-weight: bolder;
+  font-style:normal;
+  font-size: medium;
+}
+
+h6{
+  margin: 0px;
+   padding: 0px;
+}
+
+h3{
+  font-family: "Almarai", serif;
+  font-weight: bolder;
+  font-style:normal;
+  font-size: 30px;
+}

@@ -2,7 +2,7 @@
     <div class="overlay"></div>
   
   
-    <div class="icon-container left-icons align-items-center">
+    <div class="icon-container left-icons align-items-center pb-3">
     
       <img src="../../../assets/images/human.png" width="60px" height="60px" >
       <div class="nav_icon">
@@ -12,12 +12,12 @@
     
     </div>
 
-    <div class="icon-container center-icons align-items-center">
+    <div class="icon-container center-icons align-items-center  pb-3">
         <h1>الاختبارات</h1>
     </div>
   
     <!-- Icons on the right side -->
-    <div class="icon-container right-icons align-items-center" >
+    <div class="icon-container right-icons align-items-center  pb-3" >
       <div class="nav_icon">
         <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
       </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="header-item">
                     <span>الفصل</span>
-                    <div class="terms">
+                    <div class="terms ">
                         <div class="term mt-2" *ngFor="let term of terms">{{ term }}</div>
                     </div>
                 </div>
@@ -68,8 +68,9 @@
 
 
                  <div class="add-test float-end">
-                    إجمالي الاختبارات
-                    <br><span class="test-count">24</span>
+                   <span class="mytitle">إجمالي الاختبارات </span>
+                   <br>
+                    <span class="test-count">24</span>
                 </div>
 
             <button class="add-test-btn mb-3" data-bs-toggle="modal" data-bs-target="#exam">+ إضافة اختبار</button>

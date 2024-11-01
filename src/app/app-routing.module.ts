@@ -46,6 +46,7 @@ const routes: Routes = [
   {path:'covenants',component:CovenantsComponent},
   {path:'prepExam',component:PrepExamComponent},
   {path:'examPaper',component:ExamPaperComponent},
+  {path:'try',component:SignUpComponent},
   {path:'',component:LoginFormComponent},
   {path:'**',component:LoginFormComponent}
 ];

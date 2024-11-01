@@ -1,1 +1,108 @@
-<p>exam-paper works!</p>
+<div class="worksheet-container  justify-content-center align-items-center ">
+  <!-- Header with Closable Boxes -->
+
+  <div class="row">
+    <div class="header">
+      <div class="col-md-3">
+        <div *ngIf="headerBox1Visible" class="header-box ms-2">
+          <span>Header Box 1</span>
+          <button class="close-btn" (click)="closeHeaderBox(1)">X</button>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div *ngIf="headerBox2Visible" class="header-box">
+          <span>Header Box 2</span>
+          <button class="close-btn" (click)="closeHeaderBox(2)">X</button>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div *ngIf="headerBox3Visible" class="header-box">
+          <span>Header Box 3</span>
+          <button class="close-btn" (click)="closeHeaderBox(3)">X</button>
+        </div>
+      </div>
+      <!-- Add more header boxes if needed -->
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- informations -->
+    <div class="row line">
+      <div class="header">
+
+        <div class="col-md-4">
+            <div class="inform-box ">
+              <span>Header Box 1</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="inform-box ">
+              <span>Header Box 1</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="inform-box ">
+              <span>Header Box 1</span>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+
+    <!-- Button of Q -->
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-primary mybutton" type="button">
+            <i class="fa-solid fa-plus ps-3"></i>
+            قم باضافه السؤال 
+
+        </button>
+      </div>
+
+
+      <!-- Icones  -->
+
+      <div class="icon-buttons mt-3">
+        <div 
+          *ngFor="let icon of icons; let i = index" 
+          class="icon-button" 
+          [ngClass]="{'active': activeButton === i}"
+          (click)="selectButton(i)"
+        >
+          <img [src]="icon.src" [alt]="icon.alt" />
+          <p>{{ icon.label }}</p>
+        </div>
+      </div>
+
+  </div>
+
+  <!-- Question Sections -->
+  <!-- <div class="question-section" *ngFor="let question of questions">
+      <div class="question-header">
+        <span>Question {{ question.id }}</span>
+        <button (click)="addQuestion()">+ Add Question</button>
+      </div>
+      <textarea placeholder="Write your question here..." [(ngModel)]="question.text"></textarea> -->
+
+  <!-- Options Section -->
+  <!-- <div class="options">
+        <div *ngFor="let option of question.options" class="option">
+          <input type="text" [(ngModel)]="option.text" placeholder="Option text">
+          <button (click)="removeOption(question.id, option.id)">X</button>
+        </div>
+        <button (click)="addOption(question.id)">+ Add Option</button>
+      </div>
+    </div> -->
+
+  <!-- Footer with Preview Button -->
+  <!-- <div class="footer">
+      <button class="preview-btn" (click)="preview()">Preview</button>
+      <p>Footer Information or Submission Date</p>
+    </div>
+  </div> -->
+</div>

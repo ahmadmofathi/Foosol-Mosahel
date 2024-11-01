@@ -45,33 +45,49 @@ export class ProfileComponent {
 
   private editorInstance: any; // Stores the CKEditor instance
 
-  @ViewChild('fileInput') fileInput: ElementRef | undefined;
+  // @ViewChild('fileInput') fileInput: ElementRef | undefined;
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
   @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>;
+
+  showFileUploadContent = false;
+  showEditor = false;
+  uploadedFileUrl: string | null = null;
 
   capturedImage: string | ArrayBuffer | null = null;
   public cameraOpen: boolean = false;
   private videoStream: MediaStream | null = null;
 
   // Method to trigger file input dialog
-  triggerFileUpload(): void {
-    if (this.fileInput) {
-      this.fileInput.nativeElement.click();
-    }
-  }
+  // triggerFileUpload(): void {
+  //   if (this.fileInput) {
+  //     this.fileInput.nativeElement.click();
+  //   }
+  // }
 
   // Method to handle file selection
 
   // Goals
   
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
+    // const file = event.target.files[0];
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.onload = (e: any) => {
+    //     this.capturedImage = e.target.result; 
+    //     this.insertImageIntoEditor(this.capturedImage as string);
+    //   };
+    //   reader.readAsDataURL(file); // Read file as base64
+    // }
+
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.capturedImage = e.target.result; // Convert image to base64
-        this.insertImageIntoEditor(this.capturedImage as string); // Insert into CKEditor
+      reader.onload = () => {
+        this.uploadedFileUrl = reader.result as string; // Set the file URL
       };
-      reader.readAsDataURL(file); // Read file as base64
+      reader.readAsDataURL(file);
     }
   }
 
@@ -149,6 +165,18 @@ export class ProfileComponent {
     this.showMoreData = !this.showMoreData;
     this.whichClick = !this.whichClick;
   }
+
+  showEditorContent() {
+    this.showEditor = true;
+    this.showFileUploadContent = false;
+  }
+
+  triggerFileUpload() {
+    this.fileInput.nativeElement.click();
+    this.showFileUploadContent = true;
+    this.showEditor = false;
+  }
+
   
   
 }

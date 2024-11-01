@@ -14,17 +14,36 @@
 
   <!-- Icons on the right side -->
   <div class="icon-container right-icons align-items-center" >
+
     <div class="nav_icon">
       <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
     </div>
     <div class="nav_icon" (click)="toggleMenu()">
       <img src="../../../assets/images/home.svg" width="30px" height="30px" class="nav_icon">
     </div>
+    
   </div>
  
 
+  <!-- Expanded menu -->
+<div *ngIf="isMenuOpen" class="expanded-menu">
+  <div class="menu-item">
+    <img src="../../../assets/images/home.svg" width="30px" height="30px">
+    <span>الرئيسية</span>
+  </div>
+  <div class="menu-item">
+    <img src="../../../assets/images/schedule.svg" width="30px" height="30px">
+    <span>الجدول</span>
+  </div>
+  <div class="menu-item">
+    <img src="../../../assets/images/students.svg" width="30px" height="30px">
+    <span>الطلاب</span>
+  </div>
+  <!-- Add more items as needed -->
+</div>
+
   <!-- Horizontal menu that is shown or hidden based on the boolean value -->
-  <div class="horizontal-menu" *ngIf="isMenuVisible">
+  <!-- <div class="horizontal-menu" *ngIf="isMenuVisible">
     <ul>
      
       <li routerLink="/profile"><i class="fa-solid fa-user" ></i> ملف الانجاز</li>
@@ -36,7 +55,7 @@
 
 
     </ul>
-  </div>
+  </div> -->
 
   <div class="custom-form">
     <div class="my-form">
@@ -62,7 +81,7 @@
           <div class="col-md-3 custom-box">
             <div class="container">
               <div class="row">
-                <h6>
+                <h6 >
                   احياء
                 </h6>
               </div>
@@ -71,8 +90,8 @@
 
           <div class="col-md-3 custom-box">
             <div class="container">
-              <div class="row">
-                <h6>
+              <div class="row " >
+                <h6 style="text-align: center; margin: 0px; padding: 0px;">
                   اللغة العربية
                 </h6>
               </div>
@@ -82,7 +101,7 @@
           <div class="col-md-3 custom-box">
             <div class="container">
               <div class="row">
-                <h6>
+                <h6 >
                   توحيد
                 </h6>
               </div>
@@ -276,7 +295,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -300,18 +319,34 @@
           
               <!-- 3x3 grid of cards -->
               <div
-                class="custom-card-wrapper"
-                *ngFor="let card of cards; let cardIndex = index"
-              >
-                <div class="custom-card" [ngClass]="{'hide-card': hiddenCards[cardIndex]}">
-                  <i class="fa-solid fa-times custom-close-icon" (click)="hideCard(cardIndex)"></i>
-                  <!-- Card Content -->
-                  <div class="custom-card-body">
-                    <h5 class="custom-card-title">Card Title</h5>
-                    <!-- <p class="custom-card-text">Some description here.</p> -->
-                  </div>
+              class="custom-card-wrapper"
+              *ngFor="let card of cards; let cardIndex = index"
+            >
+              <div class="custom-card" [ngClass]="{'hide-card': hiddenCards[cardIndex]}">
+                <i
+                  class="fa-solid fa-times custom-close-icon"
+                  (click)="removeFile(cardIndex)"
+                ></i>
+                <div class="custom-card-body" (click)="openFileInput(cardIndex)">
+                  <h5 class="custom-card-title">Card Title</h5>
+            
+                  <!-- Show thumbnail image if uploaded -->
+                  <img *ngIf="uploadedImages[cardIndex]" [src]="uploadedImages[cardIndex]" alt="Uploaded Image" class="thumbnail-image" />
+            
+                  <p *ngIf="uploadedFiles[cardIndex] && !uploadedImages[cardIndex]">File Attached: {{ uploadedFiles[cardIndex]?.name }}</p>
                 </div>
+            
+                <!-- Hidden file input -->
+                <input
+                  type="file"
+                  #fileInput
+                  style="display: none;"
+                  accept="image/*"
+                  (change)="attachFile($event, cardIndex)"
+                />
               </div>
+            </div>
+            
           
             </div>
 

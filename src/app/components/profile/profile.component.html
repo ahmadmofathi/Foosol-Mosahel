@@ -7,14 +7,14 @@
     <div class="row w-100">
       <div class="outlined-text text-center">ملف الأنجاز</div>
       <div
-      class="col-md-2 d-flex justify-content-center align-items-center">
+      class="col-md-2 ">
       <button
       type="button"
       class=" closebtn"
       (click)="goBack()"
  
     >
-      <img src="../../../assets/images/close.png" width="40px" />
+      <img src="../../../assets/images/close.png" width="40px" style="border:none" />
     </button>
     </div>
     </div>
@@ -107,7 +107,7 @@
                 data-bs-toggle="modal"
                 data-bs-target="#Certificates"
               >
-                شهارات الشكر و التكريم
+                شهادات الشكر و التكريم
               </button>
             </div>
             <div class="col-md-2 d-flex justify-content-center">
@@ -197,7 +197,7 @@
     <div class="content-container d-flex w-100 mt-3">
       <div class="line"></div>
       <button class="btn custombtn3 justify-content-cente align-items-center">
-        ملف إنجاز مادة
+        ------ / ملف إنجاز مادة
       </button>
       <div class="line"></div>
     </div>
@@ -384,7 +384,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -490,7 +490,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -660,7 +660,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -745,7 +745,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -764,10 +764,16 @@
 
         <div class="modal-body">
           <div class="content-container3 d-flex w-100">
-            <button class="btn custombtn">اكتب الاهداف</button>
+            <!-- Button to show CKEditor -->
+            <button class="btn custombtn" (click)="showEditorContent()">
+              اكتب الاهداف
+            </button>
+
+            <!-- Button to show file upload content -->
             <button class="btn custombtn ms-4" (click)="triggerFileUpload()">
               رفع صورةاو ملف
             </button>
+
             <input
               type="file"
               #fileInput
@@ -777,14 +783,23 @@
             />
           </div>
 
-          <ckeditor
-            [editor]="Editor"
-            [(ngModel)]="editorData"
-            [config]="editorConfig"
-            (ready)="onReady($event)"
-            class="custom-ckeditor"
-          ></ckeditor>
+          <!-- Box to display content based on selected state -->
+          <div class="full-width-box mt-3 d-flex align-items-center">
+            <!-- Display uploaded image if showFileUploadContent is true -->
+            <img *ngIf="showFileUploadContent && uploadedFileUrl" [src]="uploadedFileUrl" class="img-fluid" alt="Uploaded File" />
+
+            <!-- Display CKEditor if showEditor is true -->
+            <ckeditor
+              *ngIf="showEditor"
+              [editor]="Editor"
+              [(ngModel)]="editorData"
+              [config]="editorConfig"
+              (ready)="onReady($event)"
+              class="custom-ckeditor"
+            ></ckeditor>
+          </div>
         </div>
+
         <div class="modal-footer">
           <button class="btn custombtn ms-4">حفظ</button>
         </div>
@@ -803,7 +818,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -832,13 +847,13 @@
             <button class="btn custombtn ms-4" (click)="triggerFileUpload()">
               رفع ملف
             </button>
+
             <input
               type="file"
-              accept="image/*"
-              style="display: none"
               #fileInput
               (change)="onFileSelected($event)"
-              
+              accept="image/*"
+              style="display: none"
             />
           </div>
 
@@ -853,20 +868,16 @@
             class="full-width-box mt-3 d-flex align-items-center justify-content-center"
           >
             <!-- Dynamically replace the image here -->
-            <img
-              *ngIf="capturedImage"
-              [src]="capturedImage"
-              width="100%"
-              height="auto"
-              class="captured-photo"
-            />
+            <img *ngIf="showFileUploadContent && uploadedFileUrl" [src]="uploadedFileUrl" class="img-fluid" alt="Uploaded File" />
+
             <div *ngIf="!capturedImage" class="placeholder-content">
               <img
                 src="../../../assets/images/upload.png"
                 width="50px"
                 height="50px"
+                *ngIf="!showFileUploadContent && !uploadedFileUrl"
               />
-              <h4 class="me-3">هنا شواهد شهادة الشكر و التقدرير</h4>
+              <h4 class="me-3" *ngIf="!showFileUploadContent && !uploadedFileUrl">هنا شواهد شهادة الشكر و التقدرير</h4>
             </div>
           </div>
         </div>
@@ -888,7 +899,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -969,7 +980,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -986,20 +997,42 @@
 
         <div class="modal-body">
           <div class="content-container3 d-flex w-100">
-            <button class="btn custombtn">اكتب الاهداف</button>
+            <!-- Button to show CKEditor -->
+            <button class="btn custombtn" (click)="showEditorContent()">
+              اكتب الاهداف
+            </button>
+
+            <!-- Button to show file upload content -->
             <button class="btn custombtn ms-4" (click)="triggerFileUpload()">
               رفع صورةاو ملف
             </button>
+
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              style="display: none"
+            />
           </div>
 
-          <ckeditor
-            [editor]="Editor"
-            [(ngModel)]="editorData"
-            [config]="editorConfig"
-            (ready)="onReady($event)"
-            class="custom-ckeditor"
-          ></ckeditor>
+          <!-- Box to display content based on selected state -->
+          <div class="full-width-box mt-3 d-flex align-items-center">
+            <!-- Display uploaded image if showFileUploadContent is true -->
+            <img *ngIf="showFileUploadContent && uploadedFileUrl" [src]="uploadedFileUrl" class="img-fluid" alt="Uploaded File" />
+
+            <!-- Display CKEditor if showEditor is true -->
+            <ckeditor
+              *ngIf="showEditor"
+              [editor]="Editor"
+              [(ngModel)]="editorData"
+              [config]="editorConfig"
+              (ready)="onReady($event)"
+              class="custom-ckeditor"
+            ></ckeditor>
+          </div>
         </div>
+
         <div class="modal-footer">
           <button class="btn custombtn ms-4">حفظ</button>
         </div>
@@ -1019,7 +1052,7 @@
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
@@ -1095,7 +1128,7 @@
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content outer-container">
         <div class="inner-container">
           <div class="modal-header">
@@ -1168,7 +1201,7 @@
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content outer-container">
         <div class="inner-container">
           <div class="modal-header">
@@ -1207,7 +1240,7 @@
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content outer-container">
         <div class="inner-container">
           <div class="modal-header">
@@ -1248,7 +1281,7 @@
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content outer-container">
         <div class="inner-container">
           <div class="modal-header">
@@ -1295,7 +1328,7 @@
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content outer-container">
         <div class="inner-container">
           <div class="modal-header">
@@ -1312,18 +1345,44 @@
             </button>
           </div>
 
-          <div class="modal-body">
-            <div class="content-container3 d-flex w-100">
-              <button class="btn custombtn">اكتب التقييم</button>
-              <button class="btn custombtn ms-4">رفع صورةاو ملف</button>
-            </div>
+               <div class="modal-body">
+          <div class="content-container3 d-flex w-100">
+            <!-- Button to show CKEditor -->
+            <button class="btn custombtn" (click)="showEditorContent()">
+              اكتب الاهداف
+            </button>
 
+            <!-- Button to show file upload content -->
+            <button class="btn custombtn ms-4" (click)="triggerFileUpload()">
+              رفع صورةاو ملف
+            </button>
+
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              style="display: none"
+            />
+          </div>
+
+          <!-- Box to display content based on selected state -->
+          <div class="full-width-box mt-3 d-flex align-items-center">
+            <!-- Display uploaded image if showFileUploadContent is true -->
+            <img *ngIf="showFileUploadContent && uploadedFileUrl" [src]="uploadedFileUrl" class="img-fluid" alt="Uploaded File" />
+
+            <!-- Display CKEditor if showEditor is true -->
             <ckeditor
+              *ngIf="showEditor"
               [editor]="Editor"
+              [(ngModel)]="editorData"
               [config]="editorConfig"
+              (ready)="onReady($event)"
               class="custom-ckeditor"
             ></ckeditor>
           </div>
+        </div>
+        
           <div class="modal-footer">
             <button class="btn custombtn ms-4">حفظ</button>
           </div>

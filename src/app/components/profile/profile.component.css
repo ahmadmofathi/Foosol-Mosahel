@@ -1,17 +1,27 @@
 /* Container */
-.teacher-board-container {
-    /* padding: 15px; */
+/* .teacher-board-container {
+    padding: 15px;
     height: auto;
-    /* Adjust the height so the page is not full-screen */
     display: flex;
     flex-direction: column;
     margin-top: 30px;
     max-width: 100%;
-    /* Flexibility for all screens */
     padding: 15px;
-    /* Add consistent padding */
     max-width: 75%;
     
+
+} */
+
+.teacher-board-container {
+
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding: 0;
+  min-width: 100%;
+  margin: 0;
+  
 
 }
 
@@ -20,7 +30,7 @@
     background-color: #11407B;
     color: white;
     padding: 30px;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     border-bottom: 10px solid #F56101;
 }
 
@@ -184,6 +194,9 @@
     border-radius: 6px;
     text-align: center;
     margin-top: 40px;
+    padding:10px;
+    width: 100%;
+    min-width: 16%;
     /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6); */
     box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Enhanced text shadow */
@@ -197,8 +210,11 @@
     border: 1px solid #B29F7F;
     border-radius: 6px;
     text-align: center;
-    font-size: 13px;
+    font-size: 15px;
     margin-top: 40px;
+    padding:10px;
+    width: 100%;
+    min-width: 16%;
     /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6); */
     box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Enhanced text shadow */
@@ -287,23 +303,22 @@
 
 /* Close button with red background and white X */
 .closebtn {
-    background-color: red; /* Red background */
+ 
     color: white; /* White "X" icon */
     font-weight: bold;
     border-radius: 50%;
     position: absolute;
     top: 25px;
     right: 15px;
-    padding: 5px 10px;
+    padding:0;
+    margin: 0;
+    background-color: #BC1010;
     border: none; /* Remove default borders */
     cursor: pointer; /* Pointer cursor on hover */
 }
 
 /* Change background and text color on hover */
-.closebtn:hover {
-    background-color: red; /* White background on hover */
-    color: white; /* Red "X" on hover */
-}
+
 
 .modal-title {
     color:#FCF2BD;
@@ -383,6 +398,8 @@
     }
     .custom-ckeditor {
         background-color: #FCF2BD;
+        width: 100%;
+        justify-content: center;
     }
 
     .full-width-box {
@@ -391,9 +408,10 @@
         border-radius: 6px;
         border: 3px solid black; /* Black border */
         box-sizing: border-box; /* Ensure padding doesn't affect width */
-        padding:100px 10px;
+        padding: 10px;
         align-items: center;
-
+        min-height: 300px;
+      height: fit-content;
       }
       
       .full-width-box h4{
@@ -416,6 +434,10 @@
         justify-content: center; /* Center horizontally if using flex */
       }    
 
+      .img-fluid{
+        width: 100%;
+        height: auto;
+      }
 
       /* Modal Close Button Styles */
 .modal .close {
@@ -495,4 +517,11 @@
   color: white;
   font-size: 24px;
   cursor: pointer;
+}
+
+
+.modal-title{
+  font-size: 40px !important;
+  font-weight: bold;
+
 }

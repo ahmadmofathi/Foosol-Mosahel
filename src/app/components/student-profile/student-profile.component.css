@@ -228,6 +228,9 @@ float:right;
     border-radius: 6px;
     text-align: center;
     margin-top: 40px;
+    padding:10px;
+    width: 100%;
+    min-width: 16%;
     /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6); */
     box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Enhanced text shadow */
@@ -243,6 +246,9 @@ float:right;
     text-align: center;
     font-size: 13px;
     margin-top: 40px;
+    padding:10px;
+    width: 100%;
+    min-width: 16%;
     /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6); */
     box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Enhanced text shadow */
@@ -313,6 +319,8 @@ float:right;
 }
      */
 
+ 
+
      /* Outer container to show the background color */
 .outer-container {
     background-color: #F5B104; /* Outer background */
@@ -331,23 +339,21 @@ float:right;
 
 /* Close button with red background and white X */
 .closebtn {
-    background-color: red; /* Red background */
-    color: white; /* White "X" icon */
-    font-weight: bold;
-    border-radius: 50%;
-    position: absolute;
-    top: 25px;
-    right: 15px;
-    padding: 5px 10px;
-    border: none; /* Remove default borders */
-    cursor: pointer; /* Pointer cursor on hover */
+ 
+  color: white; /* White "X" icon */
+  font-weight: bold;
+  border-radius: 50%;
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  padding:0;
+  margin: 0;
+  background-color: #BC1010;
+  border: none; /* Remove default borders */
+  cursor: pointer; /* Pointer cursor on hover */
 }
 
-/* Change background and text color on hover */
-.closebtn:hover {
-    background-color: red; /* White background on hover */
-    color: white; /* Red "X" on hover */
-}
+
 
 .modal-title {
     color:#FCF2BD;
@@ -835,3 +841,9 @@ float:right;
 /* .bio-custom-table tbody tr:last-child td {
   border-radius: 0 0 8px 8px;
 } */
+
+.modal-title{
+  font-size: 40px !important;
+  font-weight: bold;
+
+}

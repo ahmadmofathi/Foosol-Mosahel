@@ -1716,15 +1716,15 @@
     padding-left: 1.25rem; }
   
   .form-check-input {
-    position: absolute;
-    margin-top: 0.3rem;
-    /* margin-left: -1.25rem; */
-   }
+    float: right;
+  }
     .form-check-input:disabled ~ .form-check-label {
       color: #6c757d; }
   
   .form-check-label {
-    margin-bottom: 0; }
+    margin-bottom: 0; 
+    margin-right: 1.5rem;
+  }
   
   .form-check-inline {
     display: -webkit-inline-box;

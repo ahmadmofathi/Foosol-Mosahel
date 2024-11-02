@@ -1,0 +1,27 @@
+    /* Container */
+.teacher-board-container {
+    height: auto; /* Adjust the height so the page is not full-screen */
+}
+/* Navbar Styling */
+.user-navbar {
+    background-color: #11407B;
+    color: white;
+    /* margin-top: 5px; */
+    border-bottom: 10px solid #fd8f38;
+    padding: 30px;
+}
+
+
+/* Boxes */
+.box {
+    background-color: #F9EFBC;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px; /* Rounded corners for better aesthetics */
+    border: 6px solid #918B73;
+}
+
+.center-box {
+    border: 6px solid #fd8f38;
+}

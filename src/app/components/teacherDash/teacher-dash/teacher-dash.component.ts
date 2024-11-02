@@ -12,11 +12,6 @@ export class TeacherDashComponent  implements AfterViewInit {
   toggleStudentList() {
     this.isStudentListVisible = !this.isStudentListVisible;
   }
-
-
-
-
-
   isBehaviorActive: boolean = false;
   isInteractionActive: boolean = false;
   isPreparationActive: boolean = true;
@@ -294,13 +289,20 @@ export class TeacherDashComponent  implements AfterViewInit {
   dataUrl = '';
   canvasWidth = 0;
   canvasHeight = 0;
-  cursorStyle: string = 'default'; // New property for cursor style
-  textInputVisible = false; // State to manage text input visibility
-  textInputValue = ''; // Holds the text input value
-  startX = 0; // To store the starting X position for text
-  startY = 0; // To store the starting Y position for text
-  
-  // Listen to window resize event and adjust the canvas size
+  cursorStyle: string = 'default'; // Cursor style
+  textInputVisible = false; // Manage text input visibility
+  textInputValue = ''; // Text input value
+  startX = 0; // Starting X for text
+  startY = 0; // Starting Y for text
+  private isDrawing = false;
+  canDraw: boolean = true; // Control drawing state
+
+  ngOnInit() {
+    const canvas = this.canvasRef.nativeElement;
+    this.ctx = canvas.getContext('2d');
+  }
+
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.resizeCanvas();
@@ -309,76 +311,67 @@ export class TeacherDashComponent  implements AfterViewInit {
   resizeCanvas() {
     const canvas = this.canvasRef.nativeElement;
     const parentWidth = canvas.parentElement?.clientWidth || 0;
-
-    // Set the canvas dimensions based on the container's width
     this.canvasWidth = parentWidth;
-    this.canvasHeight = this.canvasWidth * (500 / 700); // Keep the aspect ratio (original was 700x500)
-
+    this.canvasHeight = this.canvasWidth * (500 / 700);
     canvas.width = this.canvasWidth;
     canvas.height = this.canvasHeight;
-
-    // Get the drawing context
     this.ctx = canvas.getContext('2d');
-    this.setCursor(); // Set initial cursor style
-
+    this.setCursor();
   }
 
-  ngOnInit() {
-    const canvas = this.canvasRef.nativeElement;
-    this.ctx = canvas.getContext('2d');
+  togglenotdraw() {
+    this.canDraw = !this.canDraw; // Toggle drawing state
+    this.setCursor();
   }
 
-  // Method for toggling the pen tool
   togglePen() {
-    // this.penSizeShow = !this.penSizeShow;
     this.pen = true;
     this.clean = false;
-    this.setCursor(); // Update cursor style for pen
-
+    this.canDraw = true;
+    this.setCursor();
   }
 
-  // Method for toggling the eraser tool
   toggleEraser() {
     this.clean = !this.clean;
-    // this.penSizeShow = false;
     this.pen = false;
-    this.setCursor(); // Update cursor style for pen
+    this.setCursor();
   }
+
   toggleText() {
-    this.textInputVisible = true; // Show text input when text mode is selected
-    // this.penSizeShow = false; // Hide pen size selector
-    this.clean = false; // Ensure eraser is not active
-    this.pen = false; // Ensure pen is not active
-    this.setCursor(); // Update cursor style for text
+    this.textInputVisible = true;
+    this.clean = false;
+    this.pen = false;
+    this.setCursor();
   }
+
   setCursor() {
     const canvas = this.canvasRef.nativeElement;
-    if (this.pen) {
-      this.cursorStyle = 'url(https://i.ibb.co/brhhfs6/pencil20x20.png), auto'; // Custom cursor for drawing
+    if (!this.canDraw) {
+      this.cursorStyle = 'not-allowed'; // Cursor style when drawing is disabled
+    } else if (this.pen) {
+      this.cursorStyle = 'url(https://i.ibb.co/brhhfs6/pencil20x20.png), auto';
     } else if (this.clean) {
-      this.cursorStyle = 'url(https://i.ibb.co/kyV4Npc/eraser20x20.png), auto'; // Custom cursor for erasing
+      this.cursorStyle = 'url(https://i.ibb.co/kyV4Npc/eraser20x20.png), auto';
     } else {
-      this.cursorStyle = 'text'; // Text insertion cursor
+      this.cursorStyle = 'text';
     }
-    canvas.style.cursor = this.cursorStyle; // Apply the cursor to the canvas
+    canvas.style.cursor = this.cursorStyle;
   }
-  // Drawing related methods (e.g., mouseDown, mouseUp, etc.)
+
   mouseDown(event: MouseEvent) {
-    if (this.ctx) {
-      this.mDown = true;
-      this.ctx.beginPath();
-      this.ctx.lineWidth = this.penSize;
-      this.ctx.strokeStyle = this.color;
-      this.x = event.offsetX;
-      this.y = event.offsetY;
-      this.ctx.moveTo(this.x, this.y);
-      
-      // If in text mode, store the starting position
-      if (this.textInputVisible) {
-        this.startX = this.x;
-        this.startY = this.y;
-        this.showTextInput(); // Show text input where mouse is clicked
-      }
+    if (!this.canDraw || !this.ctx) return;
+    this.mDown = true;
+    this.ctx.beginPath();
+    this.ctx.lineWidth = this.penSize;
+    this.ctx.strokeStyle = this.color;
+    this.x = event.offsetX;
+    this.y = event.offsetY;
+    this.ctx.moveTo(this.x, this.y);
+
+    if (this.textInputVisible) {
+      this.startX = this.x;
+      this.startY = this.y;
+      this.showTextInput();
     }
   }
 
@@ -387,10 +380,9 @@ export class TeacherDashComponent  implements AfterViewInit {
   }
 
   mouseMove(event: MouseEvent) {
-    if (this.mDown && this.ctx) {
+    if (this.mDown && this.canDraw && this.ctx) {
       this.x = event.offsetX;
       this.y = event.offsetY;
-
       if (this.clean) {
         this.ctx.clearRect(this.x, this.y, this.cleanSize, this.cleanSize);
       } else {
@@ -398,6 +390,26 @@ export class TeacherDashComponent  implements AfterViewInit {
         this.ctx.stroke();
       }
     }
+  }
+
+  touchStart(event: TouchEvent) {
+    if (!this.canDraw || !this.ctx) return;
+    event.preventDefault();
+    const rect = this.canvasRef.nativeElement.getBoundingClientRect();
+    const touch = event.touches[0];
+    this.startDrawing(touch.clientX - rect.left, touch.clientY - rect.top);
+  }
+
+  touchMove(event: TouchEvent) {
+    if (!this.canDraw || !this.ctx) return;
+    event.preventDefault();
+    const rect = this.canvasRef.nativeElement.getBoundingClientRect();
+    const touch = event.touches[0];
+    this.draw(touch.clientX - rect.left, touch.clientY - rect.top);
+  }
+
+  touchEnd() {
+    this.stopDrawing();
   }
 
   clear() {
@@ -416,32 +428,32 @@ export class TeacherDashComponent  implements AfterViewInit {
   toggleSave() {
     this.save = !this.save;
   }
-   showTextInput() {
+
+  showTextInput() {
     const inputElement = document.getElementById('textInput') as HTMLInputElement;
     inputElement.style.left = `${this.startX}px`;
     inputElement.style.top = `${this.startY}px`;
     inputElement.style.display = 'block';
-    inputElement.value = ''; // Clear previous input
+    inputElement.value = '';
     inputElement.focus();
   }
 
-  // Handle text input change
   onTextInputChange(event: Event) {
     const input = event.target as HTMLInputElement;
     this.textInputValue = input.value;
   }
 
-  // Add text to canvas
   addTextToCanvas() {
     if (this.ctx && this.textInputValue.trim() !== '') {
-      this.ctx.fillStyle = this.color; // Use selected pen color
-      this.ctx.font = `${this.penSize * 2}px Arial`; // Set font size based on pen size
-      this.ctx.fillText(this.textInputValue, this.startX, this.startY); // Draw text on canvas
-      this.textInputVisible = false; // Hide input after adding text
+      this.ctx.fillStyle = this.color;
+      this.ctx.font = `${this.penSize * 2}px Arial`;
+      this.ctx.fillText(this.textInputValue, this.startX, this.startY);
+      this.textInputVisible = false;
       const inputElement = document.getElementById('textInput') as HTMLInputElement;
-      inputElement.style.display = 'none'; // Hide input field
+      inputElement.style.display = 'none';
     }
   }
+
   onImageSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -454,8 +466,8 @@ export class TeacherDashComponent  implements AfterViewInit {
         img.onload = () => {
           const canvas = this.canvasRef.nativeElement;
           if (this.ctx) {
-            this.ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-            this.ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // Draw image on canvas
+            this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+            this.ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           }
         };
       };
@@ -463,8 +475,6 @@ export class TeacherDashComponent  implements AfterViewInit {
       reader.readAsDataURL(file);
     }
   }
-  private isDrawing = false;
-
 
   private startDrawing(x: number, y: number) {
     if (this.ctx) {
@@ -489,26 +499,4 @@ export class TeacherDashComponent  implements AfterViewInit {
       }
     }
   }
-
-
-
-  touchStart(event: TouchEvent) {
-    event.preventDefault();
-    const rect = this.canvasRef.nativeElement.getBoundingClientRect();
-    const touch = event.touches[0];
-    this.startDrawing(touch.clientX - rect.left, touch.clientY - rect.top);
-  }
-
-  touchMove(event: TouchEvent) {
-    event.preventDefault();
-    const rect = this.canvasRef.nativeElement.getBoundingClientRect();
-    const touch = event.touches[0];
-    this.draw(touch.clientX - rect.left, touch.clientY - rect.top);
-  }
-
-  touchEnd() {
-    this.stopDrawing();
-  }
-
-  
 }

@@ -823,7 +823,7 @@
       <div class="inner-container">
         <div class="modal-header">
           <h1 class="modal-title" id="staticBackdropLabel">
-            شهادات الشكر و التقدير
+            شهادات الشكر و التكريم
           </h1>
           <button
             type="button"
@@ -837,11 +837,11 @@
 
         <div class="modal-body">
           <div class="content-container3 d-flex w-100">
-            <button class="btn custombtn" (click)="openCamera()">
+            <button class="btn custombtn me-3" (click)="toggleCamera()">
               <img
                 src="../../../assets/images/camera.png"
-                width="30px"
-                height="30px"
+                width="20px"
+                height="20px"
               />
             </button>
             <button class="btn custombtn ms-4" (click)="triggerFileUpload()">
@@ -862,6 +862,16 @@
             <button class="btn custombtn mt-3" (click)="capturePhoto()">
               التقاط الصورة
             </button>
+          </div>
+
+          <!-- Show captured image preview -->
+          <div *ngIf="capturedImage" class="image-preview">
+            <h3>Captured Image:</h3>
+            <img
+              [src]="capturedImage"
+              alt="Captured Photo"
+              style="max-width: 100%"
+            />
           </div>
 
           <div

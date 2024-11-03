@@ -6,12 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./prep-exam.component.css']
 })
 export class PrepExamComponent {
+
+  
   isMenuVisible: boolean = false; // Initially hidden
 
   toggleMenu() {
     this.isMenuVisible = !this.isMenuVisible; // Toggle the menu visibility
   }
 
+  tests2 = []; // Assuming this is populated with your data
+  isDropdownOpen: boolean[] = []; // Array to track dropdown states
+
+  toggleDropdown2(index: number) {
+      this.isDropdownOpen[index] = !this.isDropdownOpen[index]; // Toggle the state for the specific index
+  }
 
   cards = Array(9).fill({});
 

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  isMenuVisible: boolean = false; // Initially hidden
+  // isMenuVisible: boolean = false; // Initially hidden
 
   // toggleMenu() {
   //   this.isMenuVisible = !this.isMenuVisible; // Toggle the menu visibility
@@ -56,7 +56,14 @@ export class MainComponent {
     this.uploadedImages[cardIndex] = null;
   }
 
-  isMenuOpen: boolean = false;
+  isMenuOpen = false;
+
+  menuItems = [
+    { icon: '../../../assets/images/student.svg', label: 'الطلاب' },
+    { icon: '../../../assets/images/schedule.svg', label: 'الجدول' },
+    { icon: '../../../assets/images/exam.svg', label: 'الاختبارات' },
+    // Add more items as needed
+  ];
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

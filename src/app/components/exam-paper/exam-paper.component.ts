@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 @Component({
   selector: 'app-exam-paper',
@@ -11,18 +13,12 @@ export class ExamPaperComponent {
   headerBox2Visible = true;
   headerBox3Visible = true;
 
-  // Question data structure
-  questions = [
-    {
-      id: 1,
-      text: '',
-      options: [
-        { id: 1, text: '' },
-        { id: 2, text: '' }
-      ]
-    }
-  ];
+  public Editor = ClassicEditor;
+  public questionContent: string = '';
+  public instructionContent: string = '';
+  public questionGrade: number = 0;
 
+ 
   // Close header box
   closeHeaderBox(boxNumber: number) {
     if (boxNumber === 1) this.headerBox1Visible = false;
@@ -30,38 +26,6 @@ export class ExamPaperComponent {
     if (boxNumber === 3) this.headerBox3Visible = false;
   }
 
-  // Add a new question
-  addQuestion() {
-    const newQuestion = {
-      id: this.questions.length + 1,
-      text: '',
-      options: [{ id: 1, text: '' }]
-    };
-    this.questions.push(newQuestion);
-  }
-
-  // Add a new option to a question
-  addOption(questionId: number) {
-    const question = this.questions.find(q => q.id === questionId);
-    if (question) {
-      const newOptionId = question.options.length + 1;
-      question.options.push({ id: newOptionId, text: '' });
-    }
-  }
-
-  // Remove an option from a question
-  removeOption(questionId: number, optionId: number) {
-    const question = this.questions.find(q => q.id === questionId);
-    if (question) {
-      question.options = question.options.filter(option => option.id !== optionId);
-    }
-  }
-
-  // Preview functionality
-  preview() {
-    console.log('Preview clicked!');
-    // Implement preview logic as needed
-  }
 
   icons = [
     { src: '../../../assets/images/p1.png', alt: 'Icon 1', label: 'املأ الفراغات داخل الصورة' },
@@ -81,4 +45,57 @@ export class ExamPaperComponent {
     this.activeButton = index;
   }
   
+
+  addQuestion() {
+    // Handle question addition logic
+    console.log("Question Content:", this.questionContent);
+    console.log("Instruction Content:", this.instructionContent);
+    console.log("Question Grade:", this.questionGrade);
+  }
+
+
+  addOption() {
+    const newOptionId = String.fromCharCode(97 + this.options.length); // generates 'e', 'f', etc.
+    this.options.push({ id: newOptionId, label: 'ن', answer: '', isCorrect: false });
+  }
+
+
+  toggleCheck(option:any) {
+    option.checked = !option.checked;
+  }
+  options = [
+    { id: 'a', label: 'أ', answer: '', isCorrect: false },
+    { id: 'b', label: 'ب', answer: '', isCorrect: false },
+    { id: 'c', label: 'ج', answer: '', isCorrect: false },
+    { id: 'd', label: 'د', answer: '', isCorrect: false }
+  ];
+
+  feedback: string | null = null;
+  selectedOptionId: string | null = null;
+
+  // Function to add a new option
+ 
+  // Function to set the correct answer
+  setCorrectAnswer(optionId: string) {
+    this.options.forEach(option => {
+      option.isCorrect = option.id === optionId;
+    });
+  }
+
+  // Function to check the answer
+  checkAnswer() {
+    const correctOption = this.options.find(option => option.isCorrect);
+    const selectedOption = this.options.find(option => option.id === this.selectedOptionId);
+
+    if (selectedOption) {
+      if (selectedOption === correctOption) {
+        this.feedback = 'Correct!';
+      } else {
+        this.feedback = 'Wrong answer. Try again!';
+      }
+    } else {
+      this.feedback = 'Please select an answer.';
+    }
+  }
+
 }

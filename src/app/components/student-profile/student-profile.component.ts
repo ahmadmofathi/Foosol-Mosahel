@@ -28,6 +28,12 @@ export class StudentProfileComponent {
   isCollapse = false;
   iswhatsOpen = false;
   isFileUploadActive = false;
+  showEditor = false;
+
+  showFileUploadContent = false;
+  uploadedFileUrl: string | null = null;
+
+
 
 
   resetView() {
@@ -47,6 +53,12 @@ export class StudentProfileComponent {
     this.iswhatsOpen = true;
     this.activeButton = 'collapse';
   }
+
+  showEditorContent() {
+    this.showEditor = true;
+    this.showFileUploadContent = false;
+  }
+
 
   activeButton: string = ''; 
 
@@ -105,7 +117,9 @@ toggleCamera() {
 
   private editorInstance: any; // Stores the CKEditor instance
 
-  @ViewChild('fileInput') fileInput: ElementRef | undefined;
+  // @ViewChild('fileInput') fileInput: ElementRef | undefined;
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
   @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>;
 
   capturedImage: string | ArrayBuffer | null = null;
@@ -114,9 +128,12 @@ toggleCamera() {
 
   // Method to trigger file input dialog
  
-triggerFileUpload() {
-  this.fileInput?.nativeElement.click();
-}
+
+  triggerFileUpload() {
+    this.fileInput.nativeElement.click();
+    this.showFileUploadContent = true;
+    this.showEditor = false;
+  }
 
   // Method to handle file selection
 
@@ -135,19 +152,30 @@ triggerFileUpload() {
   // }
 
   uploadedImage: string | ArrayBuffer | null = null;  // For file upload preview
+
+
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
+    // const file = event.target.files[0];
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.onload = (e: any) => {
+    //     this.uploadedImage = e.target.result; // Preview the image
+    //   };
+    //   reader.onerror = (error) => {
+    //     console.error('File reading error:', error);
+    //   };
+    //   reader.readAsDataURL(file); // Reads file for preview
+    // } else {
+    //   console.error("No file selected or file reading failed.");
+    // }
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.uploadedImage = e.target.result; // Preview the image
+      reader.onload = () => {
+        this.uploadedFileUrl = reader.result as string; // Set the file URL
       };
-      reader.onerror = (error) => {
-        console.error('File reading error:', error);
-      };
-      reader.readAsDataURL(file); // Reads file for preview
-    } else {
-      console.error("No file selected or file reading failed.");
+      reader.readAsDataURL(file);
     }
   }
   

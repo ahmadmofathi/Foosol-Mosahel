@@ -679,3 +679,84 @@ h3{
   font-style:normal;
   font-size: 30px;
 }
+
+/* Dropdown Menu Styling */
+.horizontal-dropdown-menu {
+  position: absolute;
+  top: 10px; /* Adjust based on where you want it to open */
+  right: 0;
+  background-color: #F8E9C6;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  z-index: 1000;
+  width: auto; /* Dynamic width to fit the items horizontally */
+}
+
+/* Show the dropdown menu when it’s open */
+.horizontal-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Menu Header with Close Button */
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Close Button */
+.close-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Horizontal List for Menu Items */
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Align items in a row */
+  gap: 20px; /* Space between items */
+  align-items: center;
+}
+
+/* List Items */
+.menu-items li {
+  display: flex;
+  align-items: center;
+  color: #333;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  white-space: nowrap; /* Prevent text from wrapping */
+  /* background-color: #001A72;  */
+  color: #001A72; /* White text color */
+  padding: 10px 15px; /* Add padding for a button-like appearance */
+}
+
+.menu-items li:hover {
+  background-color: #d6c9ac; /* Darker color on hover */
+}
+
+/* Icon Styling */
+.menu-items li i {
+  margin-right: 8px; /* Space between icon and label */
+  font-size: 18px;
+}

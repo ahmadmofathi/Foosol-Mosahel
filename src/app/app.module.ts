@@ -29,7 +29,7 @@ import { CovenantsComponent } from './components/covenants/covenants.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { PrepExamComponent } from './prep-exam/prep-exam.component';
+import { PrepExamComponent } from './components/prep-exam/prep-exam.component';
 import { DegreeComponent } from './components/degree/degree.component';
 import { ExamPaperComponent } from './components/exam-paper/exam-paper.component';
 import { TestComponent } from './components/test/test.component';

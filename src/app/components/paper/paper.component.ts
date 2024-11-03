@@ -36,6 +36,11 @@ export class PaperComponent {
   updateSelectAll() {
     this.selectAll = this.option1 && this.option2 && this.option3;
   }
+
+  isMenuOpen = false;
+  toggleMenu2() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }
 
 

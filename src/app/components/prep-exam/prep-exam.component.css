@@ -961,7 +961,7 @@ label{
 .dropdown-menu {
     position: absolute;
     background-color: #001A72;
-    z-index: -1; /* Bootstrap's default dropdown z-index, can adjust if needed */
+    z-index: 1000; /* Bootstrap's default dropdown z-index, can adjust if needed */
 }
 .students-list {
     /* background-color: #F1E8BF; */
@@ -1018,4 +1018,35 @@ label{
     text-align: right; /* Aligns the button to the right */
   }
 
-  
+  .hidden {
+    display: none;
+}
+/* Styles for the custom dropdown */
+.btn-group {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Aligns dropdown below the button */
+    left: 0;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-item {
+    padding: 8px 10px;
+    color: #333;
+    text-decoration: none;
+    text-align: end;
+}
+
+.dropdown-item:hover {
+    background-color: #ddd;
+}

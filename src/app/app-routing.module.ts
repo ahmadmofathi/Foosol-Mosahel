@@ -19,7 +19,7 @@ import { SignStudentComponent } from './components/sign-student/sign-student.com
 import { LoginStudentComponent } from './components/login-student/login-student.component';
 import { PolicyComponent } from './components/policy/policy.component';
 import { CovenantsComponent } from './components/covenants/covenants.component';
-import { PrepExamComponent } from './prep-exam/prep-exam.component';
+import { PrepExamComponent } from './components/prep-exam/prep-exam.component';
 import { DegreeComponent } from './components/degree/degree.component';
 import { ExamPaperComponent } from './components/exam-paper/exam-paper.component';
 import { TestComponent } from './components/test/test.component';

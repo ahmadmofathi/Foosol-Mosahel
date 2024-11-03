@@ -1,4 +1,4 @@
-<div class="worksheet-container  justify-content-center align-items-center ">
+<div class="worksheet-container justify-content-center align-items-center">
   <!-- Header with Closable Boxes -->
 
   <div class="row">
@@ -31,78 +31,195 @@
     <!-- informations -->
     <div class="row line">
       <div class="header">
+        <div class="col-md-4">
+          <div class="inform-box">
+            <span>Header Box 1</span>
+          </div>
+        </div>
 
         <div class="col-md-4">
-            <div class="inform-box ">
-              <span>Header Box 1</span>
-            </div>
+          <div class="inform-box">
+            <span>Header Box 1</span>
           </div>
+        </div>
 
-          <div class="col-md-4">
-            <div class="inform-box ">
-              <span>Header Box 1</span>
-            </div>
+        <div class="col-md-4">
+          <div class="inform-box">
+            <span>Header Box 1</span>
           </div>
-
-          <div class="col-md-4">
-            <div class="inform-box ">
-              <span>Header Box 1</span>
-            </div>
-          </div>
-
+        </div>
       </div>
     </div>
-
 
     <!-- Button of Q -->
 
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary mybutton" type="button">
-            <i class="fa-solid fa-plus ps-3"></i>
-            قم باضافه السؤال 
+      <button class="btn btn-primary mybutton" type="button">
+        <i class="fa-solid fa-plus ps-3"></i>
+        قم باضافه السؤال
+      </button>
+    </div>
 
-        </button>
+    <!-- Icones  -->
+
+    <div class="icon-buttons mt-3">
+      <div
+        *ngFor="let icon of icons; let i = index"
+        class="icon-button"
+        [ngClass]="{ active: activeButton === i }"
+        (click)="selectButton(i)"
+      >
+        <img [src]="icon.src" [alt]="icon.alt" />
+        <p>{{ icon.label }}</p>
+      </div>
+    </div>
+
+    <!-- Question and Instruction Form -->
+    <div class="question-form mt-4">
+      <!-- Question Title -->
+      <!-- Firsst Type -->
+      <div class="form-group row">
+        <label for="questionTitle" class="form-label"
+          >اكتب ما تريد في السؤال</label
+        >
+        <input
+          id="questionTitle"
+          type="text"
+          class="form-control input-box"
+          placeholder="اكتب رأس السؤال مثال ( اكتب المقالة التالية )"
+        />
       </div>
 
+      <!-- Question Content CKEditor -->
+      <div class="form-group mt-3">
+        <ckeditor
+          [(ngModel)]="questionContent"
+          [editor]="Editor"
+          data="<p></p>"
+          class="ck-editor"
+        ></ckeditor>
+      </div>
 
-      <!-- Icones  -->
-
-      <div class="icon-buttons mt-3">
-        <div 
-          *ngFor="let icon of icons; let i = index" 
-          class="icon-button" 
-          [ngClass]="{'active': activeButton === i}"
-          (click)="selectButton(i)"
+      <!-- Instruction Content CKEditor -->
+      <div class="form-group mt-3 row">
+        <label for="instructions" class="form-label"
+          >اكتب التعليمات للسؤال ( اختياري )</label
         >
-          <img [src]="icon.src" [alt]="icon.alt" />
-          <p>{{ icon.label }}</p>
+        <ckeditor
+          [(ngModel)]="instructionContent"
+          [editor]="Editor"
+          data="<p></p>"
+          class="ck-editor"
+        ></ckeditor>
+      </div>
+
+      <!-- Add Question Button -->
+      <div class="form-group mt-3 row align-items-center">
+        <!-- Left side: Label and Input -->
+        <!-- <div class="left-group d-flex align-items-center"> -->
+        <input
+          id="questionGrade"
+          type="number"
+          class="form-control grade-input input-box"
+          [(ngModel)]="questionGrade"
+          min="1"
+          placeholder="Enter value"
+        />
+        <label for="questionGrade" class="form-label ms-1"
+          >ادخل درجة هذا السؤال</label
+        >
+
+        <!-- </div> -->
+        <!-- <div class="input-group">
+  
+      <button class="plus-icon">+</button>
+    </div> -->
+      </div>
+    </div>
+
+    <!-- First Type End -->
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-primary mybutton" type="button">
+        <i class="fa-solid fa-plus ps-3"></i>
+        قم باضافه السؤال
+      </button>
+    </div>
+
+
+    <div class="question-form mt-4">
+      <!-- Question Title -->
+      <!-- secound Type -->
+      <div class="form-group row">
+        <label for="questionTitle" class="form-label"
+          >اكتب ما تريد في السؤال</label
+        >
+        <input
+          id="questionTitle"
+          type="text"
+          class="form-control input-box"
+          placeholder="اكتب رأس السؤال مثال ( اكتب المقالة التالية )"
+        />
+      </div>
+
+      <!-- Question Content CKEditor -->
+      <div class="form-group mt-3">
+        <ckeditor [(ngModel)]="questionContent" [editor]="Editor" data="<p></p>" class="ck-editor"></ckeditor>
+      </div>
+      
+      <div class="checkbox-container">
+        <div class="checkbox-option" *ngFor="let option of options">
+          <input
+            type="radio"
+            [id]="option.id + '-correct'"
+            name="correctAnswer"
+            (change)="setCorrectAnswer(option.id)"
+          />
+          <label [for]="option.id + '-correct'" class="radio-label">Set Correct</label>
+      
+          <label class="option-label">
+            <div class="checkbox-circle">{{ option.label }}</div>
+            <input
+              type="text"
+              [(ngModel)]="option.answer"
+              class="answer-input"
+              placeholder="أكتب اختيار"
+            />
+          </label>
+        </div>
+        
+        <div class="add-option">
+          <button (click)="addOption()">+</button>
         </div>
       </div>
+      
+      <!-- Radio buttons for selecting an answer when taking the quiz -->
+      <div class="checkbox-container">
+        <p>Select your answer:</p>
+        <div class="checkbox-option" *ngFor="let option of options">
+          <input
+            type="radio"
+            [id]="option.id + '-select'"
+            name="selectedAnswer"
+            [(ngModel)]="selectedOptionId"
+            [value]="option.id"
+          />
+          <label [for]="option.id + '-select'" class="radio-label">{{ option.answer }}</label>
+        </div>
+      </div>
+      
+      <!-- Submit button and feedback display -->
+      <button (click)="checkAnswer()" class="submit-button">Submit Answer</button>
+      <p class="feedback" *ngIf="feedback">{{ feedback }}</p>
+      
+
+    <!-- End Secound Question -->
+
+
+
+
+
+
 
   </div>
-
-  <!-- Question Sections -->
-  <!-- <div class="question-section" *ngFor="let question of questions">
-      <div class="question-header">
-        <span>Question {{ question.id }}</span>
-        <button (click)="addQuestion()">+ Add Question</button>
-      </div>
-      <textarea placeholder="Write your question here..." [(ngModel)]="question.text"></textarea> -->
-
-  <!-- Options Section -->
-  <!-- <div class="options">
-        <div *ngFor="let option of question.options" class="option">
-          <input type="text" [(ngModel)]="option.text" placeholder="Option text">
-          <button (click)="removeOption(question.id, option.id)">X</button>
-        </div>
-        <button (click)="addOption(question.id)">+ Add Option</button>
-      </div>
-    </div> -->
-
-  <!-- Footer with Preview Button -->
-  <!-- <div class="footer">
-      <button class="preview-btn" (click)="preview()">Preview</button>
-      <p>Footer Information or Submission Date</p>
-    </div>
-  </div> -->
 </div>

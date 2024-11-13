@@ -788,10 +788,6 @@ h3 {
 
 
 }
-.custom-large-modal .modal-dialog {
-  max-width: 75%; /* Set your desired width */
-  max-height: 300px;
-}
 
 
 .ck-editor__editable_inline {

@@ -42,6 +42,27 @@ export class CertificatesComponent {
   // create certificate 
 
   public Editor = ClassicEditor;
+  public editorConfig = {
+    toolbar: {
+      items: [
+        'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'
+      ]
+    },
+    // Custom style configurations for the editing area
+    editorConfig: {
+      editorConfig: {
+        content: {
+          inlineStyles: {
+            'background-color': '#e9e9e9',
+            'border-bottom': 'none',
+            'border-right': 'none',
+            'border-left': 'none',
+            'width': '100%'
+          }
+        }
+      }
+    }
+  };
   public certificateContent: string = '';  // CKEditor content (should be a string)
   public selectedBorder: string = ''; 
 
@@ -69,5 +90,20 @@ export class CertificatesComponent {
   // Optional: Unlock the border selection area based on certain conditions
   unlockBorderSelection(): void {
     this.isBorderSelectionLocked = false;
+  }
+  public certificateContent2: string = `
+
+  <p><img src="../../../assets/images/certi (5).png" alt="Certificate Image" style="width:100%; max-width:500px; border:1px solid #ddd; padding:10px;"></p>
+
+`;
+
+  saveChanges() {
+    console.log('Content saved:', this.certificateContent);
+    // Implement your save functionality here
+  }
+
+  deleteCertificate() {
+    this.certificateContent = '';  // Clear the content in the CKEditor
+    console.log('Content deleted');
   }
 }

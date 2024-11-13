@@ -167,44 +167,60 @@
 
 <!-- edit Modal -->
 
-<div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">اختر نموذج من النماذج الموجودة</h2>
-        <button class="close-button" >&times;</button>
-      </div>
+<div class="modal fade custom-large-modal" id="editModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content custom-certificate-modal-content">
+      <div class="modal-body custom-certificate-body">
+        <!-- Left Section -->
+        <div class="left-section w-50 p-3">
+          <div class="editor-buttons mb-2">
 
-      <div class="modal-body d-flex align-items-start">
-        
-        <!-- Left Section: CKEditor -->
-        <div class="left-section">
-          <ckeditor [(ngModel)]="certificateContent" [editor]="Editor"></ckeditor>
+            <button type="button" class="btn create-button" (click)="deleteCertificate()" style="padding: 5px 40px;">حذف</button>
+
+            <button type="button" class="btn create-button" (click)="saveChanges()" style="padding: 5px 40px;">حفظ</button>
+          </div>
+          <ckeditor [(ngModel)]="certificateContent2" [editor]="Editor" ></ckeditor>
         </div>
-  
 
-        <!-- Vertical Separator -->
-        <div class="separator"></div>
+        <div class="separator2"></div>
 
-        <!-- Right Section: Border Templates -->
-        <div class="right-section">
-          <p class="selection-instruction">قم بإختيار النموذج المطلوب</p>
-          <div class="templates-container">
-            <div class="template-item" *ngFor="let border of borders" (click)="selectBorder(border)">
-              <img [src]="border.src" class="border-img" [class.selected]="border.src === selectedBorder">
-              
-              <!-- Lock Overlay if selection is disabled -->
-              <div *ngIf="isBorderSelectionLocked" class="lock-overlay">
-                <i class="bi bi-lock-fill lock-icon"></i>
-              </div>
+        <!-- Right Side: Thumbnails Section with Overlay -->
+        <div class="certificate-thumbnails w-40 p-3 position-relative">
+
+          <h4 style="text-align: end; margin-bottom: 10px;">قم باختيار النموذج المطلوب</h4>
+          
+          <div class="thumbnail-grid">
+            <!-- Thumbnail Images -->
+            <div class="thumbnail-item">
+              <img src="../../../assets/images/certi (3).png" alt="Certificate Template 1">
             </div>
+            <div class="thumbnail-item">
+              <img src="../../../assets/images/certi (1).png" alt="Certificate Template 1">
+            </div> <div class="thumbnail-item">
+              <img src="../../../assets/images/certi (2).png" alt="Certificate Template 1">
+            </div>
+            <div class="thumbnail-item">
+              <img src="../../../assets/images/certi (7).png" alt="Certificate Template 1">
+            </div> <div class="thumbnail-item">
+              <img src="../../../assets/images/certi (6).png" alt="Certificate Template 1">
+            </div> <div class="thumbnail-item">
+              <img src="../../../assets/images/certi (5).png" alt="Certificate Template 1">
+            </div>
+            <!-- Add additional thumbnail items as needed -->
+          </div>
+          <!-- Overlay for the entire thumbnails section -->
+          <div class="overlay2 lock-container">
+            <div class="lock-text">
+              لا يمكن اختيار قالب عند التعديل
+            </div>
+            <img src="../../../assets/images/lock-on.png" width="80px" class="lock-icon">
+          
+            
+         
           </div>
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="saveCertificate()">Save</button>
-      </div>
     </div>
   </div>
 </div>

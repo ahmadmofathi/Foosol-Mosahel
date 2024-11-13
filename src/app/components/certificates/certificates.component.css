@@ -777,7 +777,6 @@ h3 {
 /* Left Section with CKEditor */
 .left-section {
   display: flex;
-  flex-direction: column;
 }
 
 .editor-buttons {
@@ -811,14 +810,9 @@ h3 {
 }
 
 
-
-/* Vertical Separator Styling */
-.separator2 {
-  width: 1px;
-  background-color: black; /* Black color for the separator */
-  margin: 0 15px;          /* Adds space on both sides of the separator */
+.user-sep{
+  border-right:2px solid black;
 }
-
 /* Right Section: Thumbnails Grid */
 .certificate-thumbnails {
   position: relative; /* Make the thumbnails section relative for overlay positioning */

@@ -1,0 +1,200 @@
+<div class="background-container">
+  <div class="overlay"></div>
+
+  <div class="icon-container left-icons align-items-center">
+    <img src="../../../assets/images/human.png" width="60px" height="60px" />
+    <div class="nav_icon">
+      <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
+    </div>
+  </div>
+
+  <div class="icon-container center-icons align-items-center">
+    <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      توزيع المنهج
+    </h1>
+  </div>
+
+  <!-- Icons on the right side -->
+  <div class="icon-container right-icons align-items-center">
+    <div class="nav_icon">
+      <img
+        src="../../../assets/images/settings.svg"
+        width="30px"
+        height="30px"
+        class="nav_icon"
+      />
+    </div>
+    <div class="nav_icon">
+      <img
+        src="../../../assets/images/home.svg"
+        width="30px"
+        height="30px"
+        class="nav_icon"
+      />
+    </div>
+  </div>
+
+  <div class="custom-form">
+    <div class="my-form">
+      <h2 class="myhead">: توزيع المنهج</h2>
+
+      <hr class="separator" />
+
+      <div class="row payment-methods">
+        <div class="custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-left"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 custom-box">
+          <div class="container">
+            <div class="row">
+              <h6>احياء</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2 custom-box">
+          <div class="container">
+            <div class="row">
+              <h6 style="text-align: center; margin: 0px; padding: 0px">
+                اللغة العربية
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2 custom-box">
+          <div class="container">
+            <div class="row">
+              <h6>توحيد</h6>
+            </div>
+          </div>
+        </div>
+        <div class="custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+        <div class="c_col">
+            <div class="container">
+                <div class="row">
+                    <span class="custom-label" >المادة</span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="row payment-methods">
+        <div class="custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-left"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 custom-box">
+          <div class="container">
+            <div class="row">
+              <h6>ثالثة متوسط</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2 custom-box">
+          <div class="container">
+            <div class="row">
+              <h6>أولي متوسط</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2 custom-box">
+          <div class="container">
+            <div class="row">
+              <h6>ثانية متوسط</h6>
+            </div>
+          </div>
+        </div>
+        <div class="custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+        <div class="c_col">
+          <div class="container">
+            <div class="row">
+                <span class="custom-label" >الصف</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row payment-methods">
+        <div class="col-md-1 custom-box-2">
+          <div class="container"></div>
+        </div>
+
+        <div class="col-md-3 custom-boxA">
+          <div class="input-container">
+            <input class="custom-input" type="number" [(ngModel)]="value" />
+          </div>
+          <div class="arrow-container">
+            <div class="custom-arrow up-arrow" (click)="increaseValue()">
+              <img
+                src="../../../assets/images/arrow-small-up.png"
+                width="20px"
+                height="20px"
+              />
+            </div>
+            <div class="custom-arrow down-arrow" (click)="decreaseValue()">
+              <img
+                src="../../../assets/images/arrow-small-down.png"
+                width="20px"
+                height="20px"
+              />
+            </div>
+          </div>
+          <label class="custom-label">عدد الاسابيع</label>
+        </div>
+
+        <div class="col-md-3 custom-boxA">
+          <div class="input-container">
+            <input class="custom-input" type="number" [(ngModel)]="value2" />
+          </div>
+          <div class="arrow-container">
+            <div class="custom-arrow up-arrow" (click)="increaseValue2()">
+              <img
+                src="../../../assets/images/arrow-small-up.png"
+                width="20px"
+                height="20px"
+              />
+            </div>
+            <div class="custom-arrow down-arrow" (click)="decreaseValue2()">
+              <img
+                src="../../../assets/images/arrow-small-down.png"
+                width="20px"
+                height="20px"
+              />
+            </div>
+          </div>
+          <label class="custom-label">عدد الحصص</label>
+        </div>
+
+        <div class="col-md-1 custom-box-2">
+          <div class="container"></div>
+        </div>
+
+        <div class="button-container">
+          <button class="create-button" routerLink="/curriculumT">التالي</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

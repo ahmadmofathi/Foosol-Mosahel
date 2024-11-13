@@ -1,0 +1,189 @@
+<div class="background-container">
+  <div class="overlay"></div>
+
+  <div class="icon-container left-icons align-items-center">
+    <img src="../../../assets/images/human.png" width="60px" height="60px" />
+    <div class="nav_icon">
+      <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
+    </div>
+  </div>
+
+  <div class="icon-container center-icons align-items-center">
+    <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      المهارات الاساسية
+    </h1>
+  </div>
+
+  <div class="icon-container right-icons align-items-center">
+    <div class="nav_icon">
+      <img
+        src="../../../assets/images/settings.svg"
+        width="30px"
+        height="30px"
+      />
+    </div>
+    <div class="nav_icon">
+      <img src="../../../assets/images/home.svg" width="30px" height="30px" />
+    </div>
+  </div>
+
+
+  <div class="custom-form">
+
+    
+  <div class="container-fluid edit-nav">
+    <div class="row">
+      
+      <div class="col-4">
+        <button class="edit-button">تعديل</button>
+      </div>
+      
+    </div>
+  </div>
+
+  
+    <div class="my-form">
+      <div class="logo-header">
+        <div class="left-icon">
+          <!-- Placeholder for the circular icon on the left side -->
+          <div class="circle-icon">?</div>
+        </div>
+
+        <div class="center-logo">
+          <!-- Vision 2030 Logo and Ministry of Education text -->
+          <img
+            src="../../../assets/images/logo2030.png"
+            alt="Vision 2030"
+            class="vision-logo"
+          />
+        </div>
+
+        <div class="right-details">
+            <!-- Ministry of Education text and school details in the same div -->
+            <div class="ministry-text">
+              المملكة العربية السعودية<br />
+              وزارة التعليم
+            </div>
+            <div class="school-container">
+              
+                <input type="text" class="school-input" />
+                <span>: المدرسة</span>
+              </div>
+          </div>
+      </div>
+
+      <div class="table-container">
+        <div class="table-header">
+          <div class="header-content">
+            <!-- <span class="title">المهارات الاساسية لمادة (الأحياء) الصف الثاني المتوسط</span> -->
+          </div>
+        </div>
+        <table class="custom-table">
+          <thead style="border-collapse: separate">
+            <tr>
+              <!-- Right side: 'أسماء الطلاب' with rowspan for two rows -->
+              <th rowspan="2" class="student-names-header">أسماء الطلاب</th>
+
+              <!-- Left side: 'عدد المهارات التي لم تجتز' with rowspan for two rows -->
+
+              <!-- Center section with title spanning across multiple columns -->
+              <th colspan="9" class="center-title">
+                المهارات الاساسية لمادة (الأحياء) الصف الثاني المتوسط
+              </th>
+
+              <th rowspan="2" class="skills-header student-names-header">
+                عدد المهارات التي لم تجتز
+              </th>
+            </tr>
+            <tr class="sep">
+              <!-- Row for skill numbers (1 to 9) -->
+              <th class="number-row first-cell">1</th>
+              <th class="number-row">2</th>
+              <th class="number-row">3</th>
+              <th class="number-row">4</th>
+              <th class="number-row">5</th>
+              <th class="number-row">6</th>
+              <th class="number-row">7</th>
+              <th class="number-row">8</th>
+              <th class="last-cell">9</th>
+            </tr>
+          </thead>
+          <tbody>
+       
+            <!-- <td>أسامة أشرف</td> -->
+
+            <tr *ngFor="let row of tableData; let rowIndex = index">
+                <td>أسامة أشرف</td>
+                <td *ngFor="let cell of tableData[0]; let colIndex = index">
+                    <div
+                      class="icon-container2"
+                      (click)="toggleDropdown($event, 0, colIndex)"
+                    >
+                      <img
+                        *ngIf="cell.status === 'true'"
+                        src="../../../assets/images/check-circle.png"
+                        width="30px"
+                        height="30px"
+                      />
+                      <img
+                        *ngIf="cell.status === 'false'"
+                        src="../../../assets/images/cross-circle.png"
+                        width="30px"
+                        height="30px"
+                      />
+                      <div *ngIf="cell.dropdownOpen" class="dropdown-menu">
+                        <div (click)="setStatus(0, colIndex, 'true')">
+                          <img
+                            src="../../../assets/images/check-circle.png"
+                            width="30px"
+                            height="30px"
+                          />
+                        </div>
+                        <div (click)="setStatus(0, colIndex, 'false')">
+                          <img
+                            src="../../../assets/images/cross-circle.png"
+                            width="30px"
+                            height="30px"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td></td>
+              </tr>
+
+            <tr>
+              <td>أسامة أشرف</td>
+
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>أسامة أشرف</td>
+
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td><span class="icon pass"></span></td>
+              <td></td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

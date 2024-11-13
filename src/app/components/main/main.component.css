@@ -734,6 +734,9 @@ h3{
   display: flex; /* Align items in a row */
   gap: 20px; /* Space between items */
   align-items: center;
+  max-width: 600px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 /* List Items */

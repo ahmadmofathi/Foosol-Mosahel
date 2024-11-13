@@ -341,3 +341,245 @@
   color: #888; /* Placeholder text color */
 }
 
+.matching-question-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.add-question-section {
+  flex: 1;
+  text-align: right;
+}
+
+.question-parts-section {
+  flex: 2;
+  display: flex;
+  gap: 10px;
+}
+
+.question-box {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.delete-icon-section {
+  display: flex;
+  align-items: center;
+}
+
+.group-boxes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adds space between the boxes */
+  margin-top: 20px;
+}
+
+.group-box {
+  border-radius: 12px;
+  padding: 10px;
+  width: 300px;
+  position: relative;
+  font-family: 'AGA Mashq Bold', sans-serif;
+}
+
+.yellow-border {
+  border: 2px solid #FFD700; /* Yellow border */
+}
+
+.blue-border {
+  border: 2px solid #007bff; /* Blue border */
+}
+
+.label-box {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  position: absolute;
+  top: -20px;
+  right: 10px;
+}
+
+.label-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #333;
+  flex: 1;
+}
+
+.icon-button {
+  background-color: #4b69ff;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.content-box {
+  margin-top: 30px;
+  padding: 20px;
+  text-align: center;
+}
+
+.content-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
+.add-box-button {
+  background-color: #4b69ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Basic layout */
+.teacher-section, .student-section {
+  padding: 16px;
+  border: 1px solid #ccc;
+  margin-bottom: 24px;
+  background-color: #f9f9f9;
+}
+
+/* Category container */
+.category-container,
+.category-box {
+  position: relative;
+  border: 2px dashed #ddd;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  min-width: 200px;
+  transition: background-color 0.3s;
+}
+
+/* Header style to match the ribbon look */
+.category-header {
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  padding: 4px 12px;
+  font-weight: bold;
+  background-color: #ffc107; /* You can adjust colors */
+  color: #000;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+/* Add colors to differentiate categories */
+.category-container:nth-child(1) .category-header,
+.category-box:nth-child(1) .category-header {
+  background-color: #ffc107; /* Yellow for first category */
+}
+
+.category-container:nth-child(2) .category-header,
+.category-box:nth-child(2) .category-header {
+  background-color: #007bff; /* Blue for second category */
+}
+
+/* List of items */
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  background: #fff;
+  padding: 8px;
+  margin: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Styling for draggable items */
+.item-pool {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.item {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  cursor: move;
+  margin: 4px;
+  font-size: 14px;
+}
+
+/* Drag target for categories */
+.category-box {
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  background-color: #f1f1f1;
+}
+
+.categories {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+
+.example-container {
+  display: inline-block;
+  width: 200px;
+  margin: 10px;
+}
+
+.example-list {
+  min-height: 150px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.example-box {
+  margin: 5px;
+  padding: 10px;
+  background-color: #e0e0e0;
+  cursor: move;
+  border-radius: 5px;
+}
+
+.example-container h2 {
+  text-align: center;
+}
+
+.add-category, .add-items {
+  margin-bottom: 15px;
+}
+
+input {
+  margin-right: 5px;
+}

@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <!-- Question and Instruction Form -->
+    <!-- First Question Opening-->
     <div class="question-form mt-4">
       <!-- Question Title -->
       <!-- Firsst Type -->
@@ -146,10 +146,9 @@
       </button>
     </div>
 
-
     <div class="question-form mt-4">
       <!-- Question Title -->
-      <!-- secound Type -->
+      <!-- secound Type Multi choice-->
       <div class="form-group row">
         <label for="questionTitle" class="form-label"
           >اكتب ما تريد في السؤال</label
@@ -164,9 +163,15 @@
 
       <!-- Question Content CKEditor -->
       <div class="form-group mt-3">
-        <ckeditor [(ngModel)]="questionContent" [editor]="Editor" data="<p></p>" class="ck-editor"></ckeditor>
+        <ckeditor
+          [(ngModel)]="questionContent"
+          [editor]="Editor"
+          data="<p></p>"
+          class="ck-editor"
+          (ngModelChange)="updateAlignmentBasedOnLanguage()"
+        ></ckeditor>
       </div>
-      
+
       <div class="checkbox-container">
         <div class="checkbox-option" *ngFor="let option of options">
           <input
@@ -175,8 +180,8 @@
             name="correctAnswer"
             (change)="setCorrectAnswer(option.id)"
           />
-          <label [for]="option.id + '-correct'" class="radio-label">Set Correct</label>
-      
+          <!-- <label [for]="option.id + '-correct'" class="radio-label">Set Correct</label> -->
+
           <label class="option-label">
             <div class="checkbox-circle">{{ option.label }}</div>
             <input
@@ -187,12 +192,12 @@
             />
           </label>
         </div>
-        
+
         <div class="add-option">
           <button (click)="addOption()">+</button>
         </div>
       </div>
-      
+
       <!-- Radio buttons for selecting an answer when taking the quiz -->
       <div class="checkbox-container">
         <p>Select your answer:</p>
@@ -204,22 +209,268 @@
             [(ngModel)]="selectedOptionId"
             [value]="option.id"
           />
-          <label [for]="option.id + '-select'" class="radio-label">{{ option.answer }}</label>
+          <label [for]="option.id + '-select'" class="radio-label">{{
+            option.answer
+          }}</label>
         </div>
       </div>
-      
+
       <!-- Submit button and feedback display -->
-      <button (click)="checkAnswer()" class="submit-button">Submit Answer</button>
+      <button (click)="checkAnswer()" class="submit-button">
+        Submit Answer
+      </button>
       <p class="feedback" *ngIf="feedback">{{ feedback }}</p>
-      
+    </div>
 
     <!-- End Secound Question -->
 
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-primary mybutton" type="button">
+        <i class="fa-solid fa-plus ps-3"></i>
+        قم باضافه السؤال
+      </button>
+    </div>
+
+    <!-- Third Question -->
+    <!-- End Third Question -->
+
+    <!-- Fourth Question Matching -->
+    <div class="question-form mt-4">
+      <div class="form-group row">
+        <label for="questionTitle" class="form-label"
+          >اكتب ما تريد في السؤال</label
+        >
+        <input
+          id="questionTitle"
+          type="text"
+          class="form-control input-box"
+          placeholder="اكتب رأس السؤال مثال ( اكتب المقالة التالية )"
+        />
+      </div>
+
+      <!-- Question Content CKEditor -->
+      <div class="form-group mt-3">
+        <ckeditor
+          [(ngModel)]="questionContent"
+          [editor]="Editor"
+          data="<p></p>"
+          class="ck-editor"
+        ></ckeditor>
+      </div>
+      <!-- 
+      <label for="questionTitle" class="form-label"
+      >اكتب الاجابات المتطابقه امام بعضها</label> -->
+      <div class="matching-question-container">
+        <h3>Add Questions and Answers</h3>
+
+        <!-- Input Rows for Adding Questions -->
+        <div
+          *ngFor="let question of questions; let i = index"
+          class="matching-question-row"
+        >
+          <div class="add-question-section">
+            <button (click)="addQuestion2()">
+              <i class="fa fa-plus" style="color: #e73232"></i>
+            </button>
+          </div>
+
+          <!-- Input Boxes for Question Parts -->
+          <div class="question-parts-section">
+            <input
+              type="text"
+              placeholder="Question Part 1"
+              class="question-box"
+              [(ngModel)]="question.part1"
+            />
+            <input
+              type="text"
+              placeholder="Question Part 2"
+              class="question-box"
+              [(ngModel)]="question.part2"
+            />
+          </div>
+
+          <!-- Remove Button -->
+          <div class="delete-icon-section">
+            <button (click)="removeQuestion(i)">
+              <i class="bi bi-x-circle" style="color: #e73232">X</i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Button to Save and Shuffle -->
+        <button (click)="saveAndShuffle()">Save and Shuffle for Test</button>
+
+        <!-- Display Shuffled Parts for Matching -->
+        <div *ngIf="shuffledPart1.length > 0 && shuffledPart2.length > 0">
+          <h3>Match the Words</h3>
+          <div class="row">
+            <!-- Column for Shuffled Part1 (Questions) -->
+            <div class="col">
+              <h4>Part 1</h4>
+              <ul>
+                <li *ngFor="let part1 of shuffledPart1; let i = index">
+                  {{ part1 }}
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column for Matching Answers (Dropdowns) -->
+            <div class="col">
+              <h4>Select the Matching Answer</h4>
+              <ul>
+                <li *ngFor="let part1 of shuffledPart1; let i = index">
+                  <select [(ngModel)]="selectedAnswers[i]">
+                    <option [ngValue]="null">Select Answer</option>
+                    <option
+                      *ngFor="let part2 of shuffledPart2"
+                      [ngValue]="part2"
+                    >
+                      {{ part2 }}
+                    </option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Button to Submit Answers -->
+          <button (click)="submitAnswers()">Submit Answers</button>
+
+          <!-- Feedback Display -->
+          <div *ngIf="isSubmitted" class="feedback">
+            <p>Correct Answers: {{ correctCount }}</p>
+            <p>Incorrect Answers: {{ incorrectCount }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Fourth Question -->
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-primary mybutton" type="button">
+        <i class="fa-solid fa-plus ps-3"></i>
+        قم باضافه السؤال
+      </button>
+    </div>
+
+    <!-- True or Flase Question -->
+    <div class="question-form mt-4">
+      <div class="form-group row">
+        <label for="questionTitle" class="form-label"
+          >اكتب ما تريد في السؤال</label
+        >
+        <input
+          id="questionTitle"
+          type="text"
+          class="form-control input-box"
+          placeholder="اكتب رأس السؤال مثال ( اكتب المقالة التالية )"
+        />
+      </div>
+
+      <!-- Question Content CKEditor -->
+      <div class="form-group mt-3">
+        <ckeditor
+          [(ngModel)]="questionContent"
+          [editor]="Editor"
+          data="<p></p>"
+          class="ck-editor"
+          (ngModelChange)="updateAlignmentBasedOnLanguage()"
+        ></ckeditor>
+      </div>
+      <div class="checkbox-container">
+        <h3>Create True/False Question</h3>
+
+        <div class="checkbox-option" *ngFor="let answerOption of answerOptions">
+          <!-- Radio button to select the correct answer -->
+          <input
+            type="radio"
+            [id]="answerOption.id + '-correct'"
+            name="correctAnswer"
+            (change)="setCorrectAnswerTF(answerOption.id)"
+          />
+
+          <!-- Input box for answer options with default text -->
+          <label class="option-label">
+            <div class="checkbox-circle">{{ answerOption.text }}</div>
+            <input
+              type="text"
+              [(ngModel)]="answerOption.text"
+              class="answer-input"
+              placeholder="Enter option"
+            />
+          </label>
+        </div>
+
+        <!-- No need for additional options since we want only True and False -->
+      </div>
+
+      <div class="checkbox-container">
+        <h3>Select your answer:</h3>
+
+        <!-- Display options for student to choose from -->
+        <div class="checkbox-option" *ngFor="let answerOption of answerOptions">
+          <input
+            type="radio"
+            [id]="answerOption.id + '-select'"
+            name="selectedAnswer"
+            [(ngModel)]="selectedAnswerId"
+            [value]="answerOption.id"
+          />
+          <label [for]="answerOption.id + '-select'" class="radio-label">
+            {{ answerOption.text }}
+            <!-- Show the text, which is True/False -->
+          </label>
+        </div>
+
+        <!-- Submit button and feedback display -->
+        <button (click)="checkStudentAnswer()" class="submit-button">
+          Submit Answer
+        </button>
+        <p class="feedback" *ngIf="feedbackMessage">{{ feedbackMessage }}</p>
+      </div>
+    </div>
+
+    <!--  End True or Flase Question -->
+
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-primary mybutton" type="button">
+        <i class="fa-solid fa-plus ps-3"></i>
+        قم باضافه السؤال
+      </button>
+    </div>
+
+    <!-- Start Sorting Question  -->
+
+    <div class="question-form mt-4">
+      <div class="form-group row">
+        <label for="questionTitle" class="form-label"
+          >اكتب ما تريد في السؤال</label
+        >
+        <input
+          id="questionTitle"
+          type="text"
+          class="form-control input-box"
+          placeholder="اكتب رأس السؤال مثال ( اكتب المقالة التالية )"
+        />
+      </div>
+
+      <!-- Question Content CKEditor -->
+      <div class="form-group mt-3">
+        <ckeditor
+          [(ngModel)]="questionContent"
+          [editor]="Editor"
+          data="<p></p>"
+          class="ck-editor"
+          (ngModelChange)="updateAlignmentBasedOnLanguage()"
+        ></ckeditor>
+      </div>
+
+      
+</div>
+    <!-- End Sorting Question  -->
 
 
 
-
-
-
-  </div>
 </div>

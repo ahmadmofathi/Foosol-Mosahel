@@ -1,0 +1,558 @@
+.background-container {
+    position: relative;
+    /* Position context for child elements */
+    min-height: 100vh;
+    /* Set a smaller height */
+    display: flex;
+    /* For centering the form */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    overflow: hidden;
+    /* Prevent scrolling within this container */
+    /* background-image: url('../../../assets/images/back.jpg'); */
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: contain;
+    padding: 50px;
+}
+
+.overlay {
+    position: absolute;
+    /* Overlay positioned absolutely */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black with 50% opacity */
+    z-index: 1;
+    /* Ensure the overlay is above the background */
+}
+
+.navbar {
+    position: relative;
+    z-index: 2;
+    /* Ensure the navbar is above the overlay */
+    background: transparent;
+    /* Transparent navbar background */
+}
+
+.top-left {
+    position: absolute;
+    /* Position it at the top left */
+    top: 20px;
+    /* Adjust as necessary */
+    left: 20px;
+    /* Adjust as necessary */
+    z-index: 2;
+    /* Ensure it's above the overlay */
+}
+
+.circle-image-container {
+    position: relative;
+    /* Position context for the icon */
+    width: 50px;
+    /* Set the size for the circle */
+    height: 50px;
+    /* Set the size for the circle */
+}
+
+.circle-image {
+    width: 100%;
+    /* Full width of the container */
+    height: 100%;
+    /* Full height of the container */
+    border-radius: 50%;
+    /* Make it circular */
+}
+
+.your-icon-class {
+    position: absolute;
+    /* Position it over the circle image */
+    top: 50%;
+    /* Center it vertically */
+    left: 50%;
+    /* Center it horizontally */
+    transform: translate(-50%, -50%);
+    /* Center the icon */
+    font-size: 20px;
+    /* Adjust size as needed */
+    color: white;
+    /* Adjust color as needed */
+}
+
+.top-right {
+    position: absolute;
+    /* Position it at the top right */
+    top: 20px;
+    /* Adjust as necessary */
+    right: 20px;
+    /* Adjust as necessary */
+    z-index: 2;
+    /* Ensure it's above the overlay */
+}
+
+
+
+.icon-class-1,
+.icon-class-2 {
+    font-size: 24px;
+    /* Adjust size as needed */
+    color: white;
+    /* Adjust color as needed */
+}
+
+.my-form {
+    position: relative;
+    /* This makes the form above the overlay */
+    z-index: 2;
+    /* Ensure the form is above the overlay */
+    background-color: white;
+    /* Semi-transparent background */
+    padding: 20px;
+    /* Adds some padding to the form */
+    border-radius: 30px;
+    /* Optional: rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Optional: shadow for form */
+    height: auto;
+    /* Fixed height */
+}
+
+.custom-form {
+    width: 700px;
+    margin-top: 40px;
+
+}
+
+
+.header {
+    text-align: center;
+    color: #6C6355;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+
+
+.own-btn2 {
+    background-color: #001A72;
+    color: white;
+    border-radius: 15px;
+    padding: 5px 10px 5px 10px;
+    text-align: center;
+    font-size: 10px;
+    border: none;
+
+}
+
+.div-button2 {
+    justify-content: left;
+    align-items: center;
+    text-align: center;
+}
+
+.div-button {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.icon-container {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+    /* Space between icons */
+}
+
+.left-icons {
+    left: 25%;
+    /* Position on the left */
+    top: 3%;
+    /* Center vertically */
+    transform: translateY(-50%);
+}
+
+.right-icons {
+    right: 25%;
+    /* Position on the right */
+    top: 3%;
+    /* Center vertically */
+    transform: translateY(-50%);
+}
+
+.icon-class {
+    font-size: 24px;
+    /* Adjust size as needed */
+    color: white;
+    /* Adjust color as needed */
+    padding: 10px;
+    border-radius: 50%;
+}
+
+
+/* Horizontal menu */
+.horizontal-menu {
+    background-color: #F1E8BF;
+    /* Your desired background color */
+    position: absolute;
+    top: 50px;
+    right: 0;
+    /* Align to the right */
+    z-index: 3;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: block;
+    direction: rtl;
+    /* Ensure right-to-left layout */
+}
+
+
+.horizontal-menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    /* Reverse the order of list items */
+    margin: 0;
+}
+
+.horizontal-menu ul li {
+    padding: 10px 20px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.horizontal-menu ul li:hover {
+    background-color: #ccc;
+}
+
+.outer-container {
+    background-color: #F5B104;
+    /* Outer background */
+    border-radius: 40px;
+    border: 5px solid #E45C00;
+    /* Border around the modal */
+    padding: 15px;
+    /* Padding around inner container */
+}
+
+/* Inner container to give the effect of margin and background color #03556B */
+.inner-container {
+    background-color: #03556B;
+    /* Inner background */
+    border-radius: 30px;
+    /* Inner corner radius */
+    padding: 20px;
+    /* Padding inside for content */
+    position: relative;
+    /* To allow the close button positioning */
+}
+
+/* Close button with red background and white X */
+.closebtn {
+    background-color: red;
+    /* Red background */
+    color: white;
+    /* White "X" icon */
+    font-weight: bold;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px;
+    right: 15px;
+    padding: 5px 10px;
+    border: none;
+    /* Remove default borders */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+}
+
+/* Change background and text color on hover */
+.closebtn:hover {
+    background-color: red;
+    /* White background on hover */
+    color: white;
+    /* Red "X" on hover */
+}
+
+.modal-title {
+    color: #FCF2BD;
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FCF2BD;
+    /* Table background color */
+    color: black;
+    /* Text color */
+    direction: rtl;
+    /* RTL alignment for the table */
+    text-align: right;
+    /* Left align the text */
+    border: 2px solid black;
+    /* Outer border for the whole table */
+    border-radius: 15px;
+    /* Rounded corners for the table */
+}
+
+
+
+
+
+.icon-container {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    /* Space between icons */
+}
+
+.left-icons {
+    left: 25%;
+    /* Position on the left */
+    top: 3%;
+    /* Center vertically */
+    transform: translateY(-50%);
+}
+
+.right-icons {
+    right: 25%;
+    /* Position on the right */
+    top: 3%;
+    /* Center vertically */
+    transform: translateY(-50%);
+}
+
+.center-icons {
+    right: 45%;
+    /* Position on the right */
+    top: 4%;
+    /* Center vertically */
+    transform: translateY(-50%);
+    
+}
+.center-icons h1 {
+    font-family: "Almarai", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color:#001A72;
+}
+
+.nav_icon {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #001a72;
+}
+
+.almarai-regular {
+    font-family: "Almarai", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+span,
+h6,
+button {
+    font-family: "Almarai", serif;
+    font-weight: bolder;
+    font-style: normal;
+    font-size: medium;
+}
+
+h6 {
+    margin: 0px;
+    padding: 0px;
+}
+
+h3 {
+    font-family: "Almarai", serif;
+    font-weight: bolder;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.payment-methods{
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+    text-align: center;
+    border-bottom: 3px solid white;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.custom-box{
+    background-color: #D9D9D9;
+    padding: 5px;
+    border-radius: 15px;
+    /* box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4); */
+    color:#001A72;
+    font-size: large;
+    font-weight: bold;
+    display: flex; /* Apply Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    /* margin-bottom: 30px; */
+  }
+  .custom-box-2{
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    width:5%;
+    margin: 0px;
+    display: flex;
+    /* margin-bottom: 30px; */
+
+  }
+  .custom-box-2 .fa-solid{
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    display: flex;
+    color: #001A72;
+    font-size: larger;
+    margin: 0px;
+}
+  .custom-box-text{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+    color:#001A72;
+    font-size: large;
+    font-weight: bold;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    width: auto;
+  }
+  .custom-box-selected{
+    background-color:#001A72;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: large;
+    font-weight: bold;
+    display: flex; /* Apply Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .separator {
+    border-top: 3px solid #D9D9D9;
+    margin-bottom: 30px;
+  }
+  
+
+  .myhead{
+    text-align: end;
+    font-weight: bold;
+  }
+
+  .custom-input{
+    border: none;
+    background-color:#D9D9D9 ;
+    height:70px;
+    width: 70px;
+    outline: none; 
+  }
+
+  .custom-input:focus{
+    border: none;
+    outline: none; 
+  }
+
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-input {
+    border: none;
+    background-color: #D9D9D9;
+    text-align: center;
+    font-size: 24px;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+ /* Hide default arrows in Firefox */
+  }
+  
+  .custom-input::-webkit-outer-spin-button,
+  .custom-input::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Hide default arrows in Chrome, Safari, Edge, Opera */
+    margin: 0;
+  }
+  
+  .arrow-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px; /* Space from the input */
+  }
+  
+  .custom-arrow {
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    color: #000; /* Adjust the color as needed */
+    padding: 4px; /* Add some padding around the arrows */
+  }
+  .custom-boxA{
+    padding: 5px;
+
+    color:#001A72;
+    font-size: large;
+    font-weight: bold;
+    display: flex; /* Apply Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .custom-label {
+    font-size: 20px; /* Adjust font size as needed */
+    color: #8c8c8c; /* Label color, similar to your image */
+    /* margin-left: 12px; Space between arrows and label */
+    white-space: nowrap; /* Prevent text wrapping */
+    font-weight: bolder;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px; /* Adds a little space between the button and hr */
+  }
+  
+  .create-button {
+    background-color: #001A72;
+    color: #fff;
+    padding: 10px 35px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+.c_col{
+    width:13.5%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+}

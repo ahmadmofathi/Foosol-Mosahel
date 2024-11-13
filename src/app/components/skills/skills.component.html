@@ -1,0 +1,143 @@
+<div class="background-container">
+  <div class="overlay"></div>
+
+  <div class="icon-container left-icons align-items-center">
+    <img src="../../../assets/images/human.png" width="60px" height="60px" />
+    <div class="nav_icon">
+      <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
+    </div>
+  </div>
+
+  <div class="icon-container center-icons align-items-center">
+    <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      المهارات الاساسية
+    </h1>
+  </div>
+
+  <!-- Icons on the right side -->
+  <div class="icon-container right-icons align-items-center">
+    <div class="nav_icon">
+      <img
+        src="../../../assets/images/settings.svg"
+        width="30px"
+        height="30px"
+        class="nav_icon"
+      />
+    </div>
+    <div class="nav_icon">
+      <img
+        src="../../../assets/images/home.svg"
+        width="30px"
+        height="30px"
+        class="nav_icon"
+      />
+    </div>
+  </div>
+
+  <div class="custom-form" *ngIf="isTableView">
+    <div class="my-form">
+      <div class="form-group">
+        <div class="table-container">
+          <div class="header">
+            <div class="header-actions">
+              <button class="btn">تصدير</button>
+
+              <button class="btn">
+                <i class="fa-solid fa-angle-down"></i> إخفاء الأعمدة
+              </button>
+            </div>
+            <div class="skills-count">
+              <i class="bi bi-person-circle"></i> عدد المهارات
+              <span class="count">3</span>
+            </div>
+          </div>
+
+          <table class="skills-table">
+            <thead>
+              <tr>
+                <th>الإجراء</th>
+                <th>اسم المادة</th>
+                <th>اسم الصف</th>
+                <th>وصف للمهارة</th>
+                <th>رقم المهارة</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let skill of skills">
+                <td class="actions">
+                  <button class="edit-btn" (click)="editSkill(skill)">
+                    <img
+                      src="../../../assets/images/edit-4.png"
+                      width="20px"
+                      height="20px"
+                    />
+                  </button>
+                  <button class="delete-btn" (click)="deleteSkill(skill.id)">
+                    <img
+                      src="../../../assets/images/trash-2.png"
+                      width="20px"
+                      height="20px"
+                    />
+                  </button>
+                </td>
+
+                <td>{{ skill.subjectName }}</td>
+                <td>{{ skill.className }}</td>
+                <td>
+                  <input
+                    *ngIf="skill.isNew"
+                    [(ngModel)]="skill.description"
+                    placeholder="اضف وصف المهاره"
+                  />
+                  <span *ngIf="!skill.isNew">{{ skill.description }}</span>
+                </td>
+                <td>{{ skill.id }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button class="add-skill-btn" (click)="addNewSkill()">
+            <i class="fa-solid fa-plus"></i> إضافة مهارة
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="popup-container">
+          <h3>المادة</h3>
+          <div class="row">
+            <div class="class-container">
+              <span class="custom-col">احياء</span>
+              <span class="custom-col">اللغة العربية</span>
+              <span class="custom-col">توحيد</span>
+            </div>
+          </div>
+          <div class="row line"></div>
+          <h3>الصف</h3>
+          <div class="row">
+            <div class="class-container">
+              <span class="custom-col">ثالثة متوسط</span>
+              <span class="custom-col">اولى متوسط</span>
+              <span class="custom-col">ثانية متوسط</span>
+            </div>
+          </div>
+
+          <button class="add-skill-btn" (click)="toggleTable()">إظهار</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

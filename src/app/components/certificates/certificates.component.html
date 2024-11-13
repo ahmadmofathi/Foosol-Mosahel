@@ -1,0 +1,210 @@
+<div class="background-container">
+  <div class="overlay"></div>
+
+  <div class="icon-container left-icons align-items-center">
+    <img src="../../../assets/images/human.png" width="60px" height="60px" />
+    <div class="nav_icon">
+      <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
+    </div>
+  </div>
+
+  <div class="icon-container center-icons align-items-center">
+    <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      شهادات الشكر
+    </h1>
+  </div>
+
+  <!-- Icons on the right side -->
+  <div class="icon-container right-icons align-items-center">
+    <div class="nav_icon">
+      <img
+        src="../../../assets/images/settings.svg"
+        width="30px"
+        height="30px"
+        class="nav_icon"
+      />
+    </div>
+    <div class="nav_icon">
+      <img
+        src="../../../assets/images/home.svg"
+        width="30px"
+        height="30px"
+        class="nav_icon"
+      />
+    </div>
+  </div>
+
+  <div class="custom-form">
+    <div class="my-form">
+      <div class="form-group">
+        <div class="certificate-selector">
+          <!-- Title and Button -->
+          <!-- <h2>اختر نموذج من النماذج الموجودة</h2>
+            <button class="create-button">+ إنشاء شهادة</button>
+            <div class="row">
+                <hr />
+            </div> -->
+
+          <h2>اختر نموذج من النماذج الموجودة</h2>
+
+          <div class="button-container" data-bs-toggle="modal" data-bs-target="#createModal">
+            <button class="create-button">+ إنشاء شهادة</button>
+          </div>
+          <hr class="separator" />
+
+          <!-- Certificate Grid -->
+          <div class="certificate-grid">
+            <div
+              *ngFor="let certificate of certificates"
+              class="certificate-item"
+            >
+              <img
+                [src]="certificate.image"
+                [alt]="certificate.altText"
+                class="certificate-image"
+              />
+
+              <div class="overlay">
+                <button
+                  class="overlay-button"
+                  [ngClass]="{ active: certificate.activeButton === 'view' }"
+                  (click)="onButtonClick(certificate, 'view')"
+                >
+                  عرض
+                </button>
+                <button
+                  class="overlay-button"
+                  [ngClass]="{ active: certificate.activeButton === 'send' }"
+                  (click)="onButtonClick(certificate, 'send')"
+                >
+                  إرسال
+                </button>
+
+                <!-- X icon to open the menu -->
+                <!-- <span  (click)="toggleMenu(certificate)"> -->
+                   <img src="../../../assets/images/whiteCross.png" width="30px" height="30px" class="x-icon" (click)="toggleMenu(certificate)">
+                <!-- </span> -->
+                <div *ngIf="certificate.isMenuOpen" class="small-menu">
+                <button (click)="menuAction('Delete')" class="me-2" data-bs-toggle="modal" data-bs-target="#deleteModal"><img src="../../../assets/images/trash-2.png" width="20px" height="20px"></button>
+                  <button (click)="menuAction('Edit')" class="me-2" data-bs-toggle="modal" data-bs-target="#editModal"><img src="../../../assets/images/edit-4.png" width="20px" height="20px"></button>
+                  <button ><img src="../../../assets/images/download.png" width="20px" height="20px"></button>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Delete Modal -->
+
+
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h5 class="modal-title">هل انت متاكد من حذف الشهادة</h5>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لا اريد ان احذف</button>
+          <button type="button" class="btn btn-danger">نعم انا متاكد</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Create Modal -->
+
+<!-- Certificate Creation Modal -->
+<div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createModalLabel">Create Certificate</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body with CKEditor and Border Template Selection -->
+      <div class="modal-body d-flex align-items-start">
+        
+        <!-- Left Section: CKEditor -->
+        <div class="left-section w-50 p-3">
+          <ckeditor [(ngModel)]="certificateContent" [editor]="Editor"></ckeditor>
+        </div>
+
+        <!-- Vertical Separator -->
+        <div class="separator"></div>
+
+        <!-- Right Section: Border Templates -->
+        <div class="right-section w-50 p-3">
+          <p>Select a border template:</p>
+          <div class="border-templates">
+            <!-- Display available borders as clickable images -->
+            <img *ngFor="let border of borders" 
+                 [src]="border.src" 
+                 (click)="selectBorder(border)" 
+                 class="border-img" 
+                 [class.selected]="border.src === selectedBorder">
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer with Save Button -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveCertificate()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- edit Modal -->
+
+<div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">اختر نموذج من النماذج الموجودة</h2>
+        <button class="close-button" >&times;</button>
+      </div>
+
+      <div class="modal-body d-flex align-items-start">
+        
+        <!-- Left Section: CKEditor -->
+        <div class="left-section">
+          <ckeditor [(ngModel)]="certificateContent" [editor]="Editor"></ckeditor>
+        </div>
+  
+
+        <!-- Vertical Separator -->
+        <div class="separator"></div>
+
+        <!-- Right Section: Border Templates -->
+        <div class="right-section">
+          <p class="selection-instruction">قم بإختيار النموذج المطلوب</p>
+          <div class="templates-container">
+            <div class="template-item" *ngFor="let border of borders" (click)="selectBorder(border)">
+              <img [src]="border.src" class="border-img" [class.selected]="border.src === selectedBorder">
+              
+              <!-- Lock Overlay if selection is disabled -->
+              <div *ngIf="isBorderSelectionLocked" class="lock-overlay">
+                <i class="bi bi-lock-fill lock-icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveCertificate()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

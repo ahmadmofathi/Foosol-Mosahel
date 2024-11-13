@@ -1,0 +1,31 @@
+<!-- Full-page background container -->
+<div class="full-background">
+
+    <!-- Centered overlay container with image background and form -->
+    <div class="overlay-container">
+      
+      <!-- Background Image Section -->
+      <div class="image-background">
+        <h2 class="image-title">تسجيل الدخول إلى السيستم</h2>
+      </div>
+      
+      <!-- Form Section -->
+      <div class="form-container">
+        <img src="../../../assets/images/logoForm.png" alt="Logo" class="logo" />
+  
+        <div class="role-selector">
+          <button [ngClass]="{'active': role === 'supervisor'}" (click)="setRole('supervisor')">المشرف</button>
+          <button [ngClass]="{'active': role === 'admin'}" (click)="setRole('admin')">المدير</button>
+        </div>
+  
+        <form (ngSubmit)="onSubmit()">
+          <input type="text" placeholder="رمز الدخول" [(ngModel)]="formData.accessCode" name="accessCode" />
+          <input type="email" placeholder="البريد الإلكتروني" [(ngModel)]="formData.email" name="email" />
+          <input type="password" placeholder="كلمة السر" [(ngModel)]="formData.password" name="password" />
+          <input type="password" placeholder="تأكيد كلمة السر" [(ngModel)]="formData.confirmPassword" name="confirmPassword" />
+          <button type="submit" class="submit-button">تسجيل الدخول</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

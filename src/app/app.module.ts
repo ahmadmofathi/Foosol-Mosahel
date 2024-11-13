@@ -33,6 +33,18 @@ import { PrepExamComponent } from './components/prep-exam/prep-exam.component';
 import { DegreeComponent } from './components/degree/degree.component';
 import { ExamPaperComponent } from './components/exam-paper/exam-paper.component';
 import { TestComponent } from './components/test/test.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { CertificatesComponent } from './components/certificates/certificates.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CurriculumComponent } from './components/curriculum/curriculum.component';
+import { Curriculum2Component } from './components/curriculum2/curriculum2.component';
+import { StudyScheduleComponent } from './components/study-schedule/study-schedule.component';
+import { StudentTransComponent } from './components/student-trans/student-trans.component';
+import { ReasonTransferComponent } from './components/reason-transfer/reason-transfer.component';
+import { MainSkillsComponent } from './components/main-skills/main-skills.component';
+import { FinalScheduleComponent } from './components/final-schedule/final-schedule.component';
+import { StatementComponent } from './components/statement/statement.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +72,17 @@ import { TestComponent } from './components/test/test.component';
     DegreeComponent,
     ExamPaperComponent,
     TestComponent,
+    AdminComponent,
+    SkillsComponent,
+    CertificatesComponent,
+    CurriculumComponent,
+    Curriculum2Component,
+    StudyScheduleComponent,
+    StudentTransComponent,
+    ReasonTransferComponent,
+    MainSkillsComponent,
+    FinalScheduleComponent,
+    StatementComponent,
     
     
   ],
@@ -73,7 +96,8 @@ import { TestComponent } from './components/test/test.component';
     BrowserAnimationsModule,
     MatChipsModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

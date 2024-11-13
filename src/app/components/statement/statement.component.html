@@ -1,0 +1,156 @@
+<div class="background-container">
+  <div class="overlay"></div>
+
+  <div class="Topnavbar">
+    <!-- Left icons container -->
+
+    <div class="icon-container3 left-icons">
+      <div class="nav_icon">
+        <img
+          src="../../../assets/images/settings.svg"
+          width="30px"
+          height="30px"
+        />
+        <span style="color: white" class="ps-3">الاعدادات</span>
+      </div>
+      <div class="nav_icon2">
+        <img
+          src="../../../assets/images/bellblue.png"
+          width="30px"
+          height="30px"
+        />
+      </div>
+    </div>
+
+    <!-- Right icon container -->
+    <div class="icon-container3 right-icons">
+      <div class="nav_icon">
+        <img src="../../../assets/images/home.svg" width="30px" height="30px" />
+        <span style="color: white" class="ps-3">الرئيسية</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-form">
+    <div class="container-fluid edit-nav">
+      <div class="row">
+        <div class="col-2 mb-3">
+          <button class="edit-button">تعديل</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-form">
+      <div class="logo-header">
+        <div class="left-icon">
+          <!-- Placeholder for the circular icon on the left side -->
+          <div class="circle-icon">?</div>
+        </div>
+
+        <div class="center-logo">
+          <!-- Vision 2030 Logo and Ministry of Education text -->
+          <img
+            src="../../../assets/images/logo2030.png"
+            alt="Vision 2030"
+            class="vision-logo"
+          />
+        </div>
+
+        <div class="right-details">
+          <!-- Ministry of Education text and school details in the same div -->
+          <div class="ministry-text">
+            المملكة العربية السعودية<br />
+            وزارة التعليم
+          </div>
+          <div class="school-container">
+            <input type="text" class="school-input" />
+            <span>: المدرسة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="styled-table">
+          <thead>
+            <!-- Row 1: Main Headers -->
+            <tr>
+              <th rowspan="3" style="width: 25px">م</th>
+              <th rowspan="3" style="width: 150px">اسم الطالب</th>
+              <th colspan="12">المهام الأدائية</th>
+              <th colspan="12">المشاركة والتفاعل</th>
+
+              <th rowspan="2" style="width: 50px">اختبار تحريري قصير</th>
+              <th rowspan="2" style="width: 50px">اختبار نهاية الفصل</th>
+              <th rowspan="2" style="width: 50px">المجموع</th>
+            </tr>
+
+            <!-- Row 2: Subsection Headers -->
+            <tr>
+              <th colspan="6">الواجبات</th>
+              <th colspan="6">بحوث مشروعات تقارير</th>
+              <th colspan="6">تطبيقات أنشطة صفية</th>
+              <th colspan="6">مشاركة</th>
+            </tr>
+
+            <!-- Row 3: Detailed Headers -->
+            <tr>
+              <!-- المهام الأدائية: الواجبات Columns -->
+              <th colspan="5">الدرجة</th>
+              <th style="width: 30px; background-color: #d9d9d9">5</th>
+              <th colspan="5">الدرجة</th>
+              <th style="width: 30px; background-color: #d9d9d9">5</th>
+
+              <!-- المشاركة والتفاعل: تطبيقات أنشطة صفية Columns -->
+              <th colspan="5">الدرجة</th>
+              <th style="width: 30px; background-color: #d9d9d9">5</th>
+              <th colspan="5">الدرجة</th>
+              <th style="width: 30px; background-color: #d9d9d9">5</th>
+              <th>الدرجة:</th>
+              <th>الدرجة:</th>
+              <th>الدرجة:</th>
+            </tr>
+          </thead>
+
+          <!-- Body Rows -->
+          <tbody>
+            <tr *ngFor="let row of rows">
+                <td><input type="text"  /></td>
+
+              <!-- <td><input type="text" [value]="row" /></td> -->
+              <td><input type="text" /></td>
+
+              <!-- المهام الأدائية: الواجبات Section -->
+              <td *ngFor="let i of [1, 2, 3, 4, 5]" style="width: 30px">
+                <input type="text" />
+              </td>
+              <td style="background-color: #d9d9d9"><input type="text" /></td>
+
+              <!-- المهام الأدائية: بحوث مشروعات تقارير Section -->
+              <td *ngFor="let i of [1, 2, 3, 4, 5]" style="width: 30px">
+                <input type="text" />
+              </td>
+              <td style="background-color: #d9d9d9"><input type="text" /></td>
+
+              <!-- المشاركة والتفاعل: تطبيقات أنشطة صفية Section -->
+              <td *ngFor="let i of [1, 2, 3, 4, 5]" style="width: 30px">
+                <input type="text" />
+              </td>
+              <td style="background-color: #d9d9d9"><input type="text" /></td>
+
+              <!-- المشاركة والتفاعل: مشاركة Section -->
+              <td *ngFor="let i of [1, 2, 3, 4, 5]" style="width: 30px">
+                <input type="text" />
+              </td>
+              <td style="background-color: #d9d9d9"><input type="text" /></td>
+
+              <!-- المجموع Column -->
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 /* Centering the card in the viewport */
@@ -12,6 +13,8 @@
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  background-color: #EDECEC;
+
 }
 
 .container {
@@ -19,6 +22,7 @@
   justify-content: center;
   align-items: center;
   width: 100%; /* Full width to ensure horizontal centering */
+
 }
 
 /* Styling the main card */

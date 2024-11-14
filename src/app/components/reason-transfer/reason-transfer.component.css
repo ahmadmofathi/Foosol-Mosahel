@@ -16,20 +16,17 @@
     background-position-x: center;
     background-size: contain;
     padding: 50px;
+    background-color: #EDECEC;
+
 }
 
-.overlay {
+/* .overlay {
     position: absolute;
-    /* Overlay positioned absolutely */
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     background-color: rgba(0, 0, 0, 0.5);
-    /* Black with 50% opacity */
     z-index: 1;
-    /* Ensure the overlay is above the background */
-}
+} */
 
 .navbar {
     position: relative;

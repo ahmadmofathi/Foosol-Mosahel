@@ -93,7 +93,7 @@ export class CertificatesComponent {
   }
   public certificateContent2: string = `
 
-  <p><img src="../../../assets/images/certi (5).png" alt="Certificate Image" style="width:100%; max-width:500px; border:1px solid #ddd; padding:10px;"></p>
+  <p><img src="../../../assets/images/certi (5).png" alt="Certificate Image" style="width:100%;  border:1px solid #ddd; padding:10px;"></p>
 
 `;
 

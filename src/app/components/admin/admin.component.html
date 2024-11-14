@@ -11,7 +11,7 @@
       
       <!-- Form Section -->
       <div class="form-container">
-        <img src="../../../assets/images/logoForm.png" alt="Logo" class="logo" />
+        <img src="../../../assets/images/log.png" alt="Logo" class="logo" width="120px" height="100px" />
   
         <div class="role-selector">
           <button [ngClass]="{'active': role === 'supervisor'}" (click)="setRole('supervisor')">المشرف</button>
@@ -19,11 +19,13 @@
         </div>
   
         <form (ngSubmit)="onSubmit()">
-          <input type="text" placeholder="رمز الدخول" [(ngModel)]="formData.accessCode" name="accessCode" />
+          <!-- <input type="text" placeholder="رمز الدخول" [(ngModel)]="formData.accessCode" name="accessCode" /> -->
+           <label class="custom-label">البريد الالكتروني</label>
           <input type="email" placeholder="البريد الإلكتروني" [(ngModel)]="formData.email" name="email" />
-          <input type="password" placeholder="كلمة السر" [(ngModel)]="formData.password" name="password" />
-          <input type="password" placeholder="تأكيد كلمة السر" [(ngModel)]="formData.confirmPassword" name="confirmPassword" />
-          <button type="submit" class="submit-button">تسجيل الدخول</button>
+          <label class="custom-label">كلمة السر</label>
+          <input type="password" placeholder="**********" [(ngModel)]="formData.password" name="password" />
+          <!-- <input type="password" placeholder="تأكيد كلمة السر" [(ngModel)]="formData.confirmPassword" name="confirmPassword" /> -->
+          <button type="submit" class="submit-button mt-4">تسجيل الدخول</button>
         </form>
       </div>
     </div>

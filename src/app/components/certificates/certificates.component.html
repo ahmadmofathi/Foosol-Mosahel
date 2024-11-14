@@ -73,6 +73,8 @@
                   class="overlay-button"
                   [ngClass]="{ active: certificate.activeButton === 'view' }"
                   (click)="onButtonClick(certificate, 'view')"
+                  data-bs-toggle="modal"
+                  data-bs-target="#showModal"
                 >
                   عرض
                 </button>
@@ -80,6 +82,8 @@
                   class="overlay-button"
                   [ngClass]="{ active: certificate.activeButton === 'send' }"
                   (click)="onButtonClick(certificate, 'send')"
+                  data-bs-toggle="modal"
+                  data-bs-target="#sendModal"
                 >
                   إرسال
                 </button>
@@ -169,17 +173,8 @@
 <!-- Create Modal -->
 
 <!-- Certificate Creation Modal -->
-<div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content custom-certificate-modal-content">
-      <div class="modal-body custom-certificate-body">
-        <!-- Left Section -->
-        <div class="left-section w-50 p-3">
-          <div class="editor-buttons mb-2">
-
-            <button type="button" class="btn create-button" (click)="saveChanges()" style="padding: 5px 40px;">حفظ</button>
 <div
-  class="modal fade"
+  class="modal fade custom-large-modal"
   id="createModal"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
@@ -187,87 +182,110 @@
   aria-labelledby="createModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="createModalLabel">Create Certificate</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
+<button
+type="button"
+class="close-button"
+aria-label="Close"
+data-bs-dismiss="modal"
+>
+<img src="../../../assets/images/whiteCross.png">
+</button>
 
-      <!-- Modal Body with CKEditor and Border Template Selection -->
-      <div class="modal-body d-flex align-items-start">
-        <!-- Left Section: CKEditor -->
-        <div class="left-section w-50 p-3">
-          <ckeditor
-            [(ngModel)]="certificateContent"
-            [editor]="Editor"
-          ></ckeditor>
-        </div>
 
-        <!-- Vertical Separator -->
-        <div class="separator"></div>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content custom-certificate-modal-content">
+      <div class="modal-body custom-certificate-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-7 user-sep">
+              <!-- Left Section -->
+              <div class="left-section">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="editor-buttons mb-2">
+                      
 
-        <!-- Right Section: Border Templates -->
-        <div class="right-section w-50 p-3">
-          <p>Select a border template:</p>
-          <div class="border-templates">
-            <!-- Display available borders as clickable images -->
-            <img
-              *ngFor="let border of borders"
-              [src]="border.src"
-              (click)="selectBorder(border)"
-              class="border-img"
-              [class.selected]="border.src === selectedBorder"
-            />
+                        <button
+                          type="button"
+                          class="btn create-button"
+                          (click)="saveChanges()"
+                          style="padding: 5px 40px"
+                        >
+                          حفظ
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <ckeditor
+                        [(ngModel)]="certificateContent2"
+                        [editor]="Editor"
+                      ></ckeditor>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="container">
+                <div class="row">
+                  <h6 style="text-align: end">قم بإختيار النموذج المطلوب</h6>
+                </div>
+                <div class="row" style="width: 130%;">
+                  <div class="col-12" >
+                    <!-- Right Side: Thumbnails Section with Overlay -->
+                    <div class="certificate-thumbnails">
+                      <div class="thumbnail-grid">
+                        <!-- Thumbnail Images -->
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (3).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (1).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (2).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (7).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (6).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (5).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <!-- Add additional thumbnail items as needed -->
+                      </div>
+                  
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <ckeditor [(ngModel)]="certificateContent2" [editor]="Editor" ></ckeditor>
         </div>
-
-        <div class="separator2"></div>
-
-        <!-- Right Side: Thumbnails Section with Overlay -->
-        <div class="certificate-thumbnails w-40 p-3 position-relative">
-
-          <h4 style="text-align: end; margin-bottom: 10px;">قم باختيار النموذج المطلوب</h4>
-          
-          <div class="thumbnail-grid">
-            <!-- Thumbnail Images -->
-            <div class="thumbnail-item">
-              <img src="../../../assets/images/certi (3).png" alt="Certificate Template 1">
-            </div>
-            <div class="thumbnail-item">
-              <img src="../../../assets/images/certi (1).png" alt="Certificate Template 1">
-            </div> <div class="thumbnail-item">
-              <img src="../../../assets/images/certi (2).png" alt="Certificate Template 1">
-            </div>
-            <div class="thumbnail-item">
-              <img src="../../../assets/images/certi (7).png" alt="Certificate Template 1">
-            </div> <div class="thumbnail-item">
-              <img src="../../../assets/images/certi (6).png" alt="Certificate Template 1">
-            </div> <div class="thumbnail-item">
-              <img src="../../../assets/images/certi (5).png" alt="Certificate Template 1">
-            </div>
-            <!-- Add additional thumbnail items as needed -->
-          </div>
-          <!-- Overlay for the entire thumbnails section -->
-    
-        </div>
-      </div>
-
-      <!-- Modal Footer with Save Button -->
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="saveCertificate()"
-        >
-          Save
-        </button>
       </div>
     </div>
   </div>
@@ -281,12 +299,23 @@
   aria-labelledby="certificateModalLabel"
   aria-hidden="true"
 >
+
+<button
+type="button"
+class="close-button"
+aria-label="Close"
+data-bs-dismiss="modal"
+>
+<img src="../../../assets/images/whiteCross.png">
+</button>
+
+
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content custom-certificate-modal-content">
       <div class="modal-body custom-certificate-body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-8 user-sep">
+            <div class="col-7 user-sep">
               <!-- Left Section -->
               <div class="left-section">
                 <div class="container-fluid">
@@ -324,13 +353,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-3">
-              <div class="container-fluid">
+            <div class="col-4">
+              <div class="container">
                 <div class="row">
                   <h6 style="text-align: end">قم بإختيار النموذج المطلوب</h6>
                 </div>
-                <div class="row">
-                  <div class="col-12">
+                <div class="row" style="width: 130%;">
+                  <div class="col-12" >
                     <!-- Right Side: Thumbnails Section with Overlay -->
                     <div class="certificate-thumbnails">
                       <div class="thumbnail-grid">
@@ -384,7 +413,317 @@
                           class="lock-icon"
                         />
                       </div>
+                      
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Show Modal  -->
+
+<div
+  class="modal fade custom-large-modal"
+  id="showModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="createModalLabel"
+  aria-hidden="true"
+>
+<button
+type="button"
+class="close-button"
+aria-label="Close"
+data-bs-dismiss="modal"
+>
+<img src="../../../assets/images/whiteCross.png">
+</button>
+
+
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content custom-certificate-modal-content">
+      <div class="modal-body custom-certificate-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-7 user-sep">
+              <!-- Left Section -->
+              <div class="left-section">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="editor-buttons mb-2">
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <img src="../../../assets/images/certi (1).png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="container">
+                <div class="centered" style="justify-items: center;">
+                <div class="row" style="margin-bottom: 1px;">
+                  <div class="col-12">
+                    <div class="editor-buttons mb-1">
+                      <button
+                        type="button"
+                        class="btn create-button"
+                       
+                        style="padding: 5px 60px"
+                      >
+                        ارسال
+                      </button>
+
+                     
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="editor-buttons ">
+                      <button
+                        type="button"
+                        class="btn create-button"
+                       
+                        style="padding: 5px 60px"
+                      >
+                        تعديل
+                      </button>
+
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="row" style="width: 130%;">
+                  <div class="col-12" >
+                    <!-- Right Side: Thumbnails Section with Overlay -->
+                    <div class="certificate-thumbnails">
+                      <div class="thumbnail-grid">
+                        <!-- Thumbnail Images -->
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (3).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (1).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (2).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (7).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (6).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <div class="thumbnail-item">
+                          <img
+                            src="../../../assets/images/certi (5).png"
+                            alt="Certificate Template 1"
+                          />
+                        </div>
+                        <!-- Add additional thumbnail items as needed -->
+                      </div>
+                  
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Send Modal -->
+
+<div
+  class="modal fade custom-large-modal"
+  id="sendModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="createModalLabel"
+  aria-hidden="true"
+>
+<button
+type="button"
+class="close-button"
+aria-label="Close"
+data-bs-dismiss="modal"
+>
+<img src="../../../assets/images/whiteCross.png">
+</button>
+
+
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content custom-certificate-modal-content">
+      <div class="modal-body custom-certificate-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-7 user-sep">
+              <!-- Left Section -->
+              <div class="left-section">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="editor-buttons mb-2">
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <img src="../../../assets/images/certi (1).png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="container">
+                <div class="centered" style="justify-items: center;">
+                <div class="row" style="margin-bottom: 1px;">
+                  <div class="col-12">
+                    <div class="editor-buttons mb-1">
+                      <button
+                        type="button"
+                        class="btn create-button"
+                       
+                        style="padding: 5px 60px"
+                      >
+                        ارسال
+                      </button>
+
+                     
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="editor-buttons ">
+                      <button
+                        type="button"
+                        class="btn create-button"
+                       
+                        style="padding: 5px 60px"
+                      >
+                        تعديل
+                      </button>
+
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="row" style="width: 130%;">
+                  <div class="col-12" >
+                    <!-- Right Side: Thumbnails Section with Overlay -->
+              
+                     
+                      <div class="form-section custom-selection">
+                        <!-- Class Selection -->
+                        <div class="mb-3">
+                          <div calss="container-fluid">
+                            <div class="custom-row">
+                              <select class="form-select custom-select">
+                                <option>اختر الصف</option>
+                                <!-- Additional class options here -->
+                              </select>
+                              <label class="custom-label">الصف</label>
+                            </div>
+                          </div>
+                        </div>
+              
+                        <!-- Section Selection -->
+                        <div class="mb-3">
+                          <div calss="container-fluid">
+                            <div class="custom-row">
+                              <select class="form-select custom-select">
+                                <option>اختر الفصل</option>
+                                <!-- Additional class options here -->
+                              </select>
+                              <label class="custom-label">الفصل</label>
+                            </div>
+                          </div>
+                          <div class="custom-row">
+                            <div
+                              class="student-checkboxes custom-select d-flex gap-2 mt-2"
+                              style="background-color: unset"
+                            >
+                              <input
+                                type="checkbox"
+                                id="student1"
+                                name="student1"
+                                class="c-checkbox"
+                              />
+                              <label for="student1">1</label>
+                              <input type="checkbox" id="student2" name="student2" />
+                              <label for="student2">2</label>
+                              <input type="checkbox" id="student3" name="student3" />
+                              <label for="student3">3</label>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Student Selection -->
+                        <div class="student-section">
+                          <div calss="container-fluid">
+                            <div class="custom-row">
+                              <select class="form-select custom-select">
+                                <option>البحث عن الطالب</option>
+                                <option>تحديد كل الطلاب</option>
+                                <option >
+                                  اسامه علي محمد
+                                </option>
+                                <option >
+                                  اسامه علي خالد
+                                </option>
+                              </select>
+                              <label class="custom-label">الطلاب</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  
+                      
+                  
                   </div>
                 </div>
               </div>

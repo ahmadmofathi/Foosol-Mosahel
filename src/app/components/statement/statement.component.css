@@ -334,8 +334,7 @@ h3 {
 }
 
 .center-logo .vision-logo {
-    width: 150px;
-    height: 80px;
+    height: 100px;
     margin-bottom: 3px;
 }
 
@@ -376,7 +375,7 @@ h3 {
     border-bottom: 1px dashed #000;
     /* Dashed underline */
     outline: none;
-    width: 150px;
+    width: 100px;
     /* Adjust as needed */
     padding: 0;
     font-size: 16px;
@@ -430,4 +429,35 @@ h3 {
     text-align: right;
     background-color: transparent;
   }
-  
+  .form-check-inline {
+    flex-direction: row-reverse; /* Put input on the right and label on the left */
+    margin-left: 10px; /* Adjust spacing between inline items */
+    margin-right: 5px;
+  }
+  .form-check-label {
+    margin-left: 0px; /* Add spacing between label and checkbox */
+  }
+  .form-check-label {
+    margin-right: 0px; /* Add space between label and checkbox */
+  }
+  .form-check-input {
+    order: 2;
+  }
+  .h6_c{
+    font-size: 12px;
+    color: #000;
+  }
+.ministry-text-c{
+    color: #000;
+    font-size: 12px;
+}
+.ministry-text-c span{
+    color: #000;
+    font-size: 12px;
+}
+.ministry-text-c input{
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}

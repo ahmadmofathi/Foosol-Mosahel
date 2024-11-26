@@ -13,12 +13,11 @@ interface Item {
 }
 
 // Define the structure for a category, which includes an array of items
-interface Category {
+export interface Category {
   name: string;
-  items: Item[];
-  newItemText?: string; // For entering new item text dynamically
-  editMode?: boolean;
+  values: any[];
 }
+
 
 
 @Component({
@@ -229,86 +228,69 @@ export class ExamPaperComponent {
 
 
   // Sortiing Group Funtions
-  categories: Category[] = [];
-  allItems: Item[] = [];
-  mode: 'teacher' | 'student' = 'teacher'; // Start in Teacher mode
-  newCategoryName = ''; // For entering new category name
 
-  // Toggle between Teacher and Student Mode
-  toggleMode() {
-    if (this.mode === 'teacher') {
-      this.allItems = this.categories.flatMap((category) => category.items);
-      this.categories.forEach((category) => (category.items = [])); // Clear items from categories
-      this.mode = 'student'; // Switch to student mode
-    } else {
-      this.mode = 'teacher'; // Switch back to teacher mode
-    }
+
+  
+  // Student's answers
+  categories: Array<{ name: string; color: string; items: Array<{ value: string; selected: boolean }> }> = [];
+  shuffledCategories: Array<{ name: string; color: string }> = [];
+  shuffledItems: Array<{ value: string; selected: boolean }> = [];
+  newCategoryName: string = ''; // Holds the input for the category name
+newCategoryItems: string = ''; // Holds the input for the category items
+score :number =0;
+total:number =0;
+
+addCategory() {
+  if (this.newCategoryName && this.newCategoryItems) {
+    const items = this.newCategoryItems.split(',').map((item) => ({
+      value: item.trim(),
+      selected: false,
+    }));
+    const randomColor = this.getRandomColor();
+    this.categories.push({ name: this.newCategoryName, color: randomColor, items });
+
+    // Reset input fields
+    this.newCategoryName = '';
+    this.newCategoryItems = '';
+    this.prepareStudentData();
   }
+}
+  
+  prepareStudentData() {
+  // Prepare shuffled categories and items for the student part
+  this.shuffledCategories = this.categories.map((category) => ({
+    name: category.name,
+    color: category.color,
+  }));
 
-  // Add a new category
-  addCategory() {
-    if (this.newCategoryName.trim()) {
-      this.categories.push({
-        name: this.newCategoryName.trim(),
-        items: [],
-        newItemText: '',
-      });
-      this.newCategoryName = ''; // Reset the category name input
-    }
-  }
+  this.shuffledItems = this.categories
+    .flatMap((category) => category.items)
+    .sort(() => Math.random() - 0.5); // Shuffle items
+}
+  
+checkAnswerCat() {
+  this.score = 0;
+  this.total = 0;
 
-  // Toggle edit mode for a category name
-  toggleEditMode(category: Category) {
-    category.editMode = !category.editMode;
-  }
-
-  // Add an item to a category
-  addItemToCategory(category: Category) {
-    if (category.newItemText?.trim()) {
-      category.items.push({ text: category.newItemText.trim() });
-      category.newItemText = ''; // Reset the input after adding the item
-    }
-  }
-
-  // Drag-and-drop logic for moving items between the pool and categories
-  drop(event: CdkDragDrop<Item[]>, category?: Category) {
-    const item = event.item.data;
-    const containerData = event.previousContainer.data as Item[];
-
-    // If dropped into a category
-    if (category) {
-      if (!category.items.includes(item)) {
-        category.items.push(item);  // Add the item to the dropped category
-      }
-    } else {
-      // If dropped back into the pool
-      if (!this.allItems.includes(item)) {
-        this.allItems.push(item); // Add the item back to the pool
+  // Calculate score by comparing selected items for each category
+  for (const category of this.categories) {
+    for (const item of category.items) {
+      this.total++; // Count all items
+      if (item.selected) {
+        // Increment score only if it's a correct answer
+        this.score++;
       }
     }
-
-    // Remove the item from its previous container
-    const itemIndex = containerData.indexOf(item);
-    if (itemIndex !== -1) {
-      containerData.splice(itemIndex, 1); // Remove item from its original position
-    }
   }
-
-  // Check answers in Student Mode
-  checkAnswers() {
-    let correctCount = 0;
-    this.categories.forEach((category) => {
-      const correctItems = category.items.filter((item) => {
-        if (category.name === 'Land') {
-          return ['Lion', 'Giraffe'].includes(item.text);
-        } else if (category.name === 'Sea') {
-          return ['Shark', 'Whale'].includes(item.text);
-        }
-        return false;
-      });
-      correctCount += correctItems.length;
-    });
-    alert(`You have ${correctCount} correct items.`);
+}
+getRandomColor(): string {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
   }
+  return color;
+}
+  
 }
 

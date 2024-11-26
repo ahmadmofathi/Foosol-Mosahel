@@ -1,0 +1,510 @@
+.background-container {
+  position: relative;
+  /* Position context for child elements */
+  min-height: 100vh;
+  /* Set a smaller height */
+  display: flex;
+  /* For centering the form */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  overflow: hidden;
+  z-index: 0;
+  /* Prevent scrolling within this container */
+  /* background-image: url('../../../assets/images/back.jpg'); */
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: contain;
+  padding: 50px;
+  background-color: #F2F2F2;
+
+}
+
+
+/* Top Navigation Bar */
+.top-nav {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  color: white;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+/* Left and Right Icons */
+.left-icons,
+.right-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.nav_icon {
+  color: #001A72;
+  font-size: large;
+  align-items: center;
+  display: flex;
+}
+
+.nav-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.nav_icon2 {
+  padding: 10px;
+  background-color: #001A72;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.my-form {
+  position: relative;
+  z-index: 2;
+  /* background-color: white; */
+  /* padding: 20px; */
+  /* border-radius: 30px; */
+  /* box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); */
+  height: auto;
+}
+
+.custom-form {
+  width: auto;
+  min-width: 1000px;
+  border-top: 3px solid black;
+  position: relative;
+  z-index: 1;
+  position: relative;
+}
+
+
+.almarai-regular {
+  font-family: "Almarai", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+span,
+h2,
+button,
+th,
+td,
+h1,
+label,h4 {
+  font-family: "Almarai", serif;
+  font-weight: bolde;
+  font-style: normal;
+  font-size: medium;
+}
+
+h6 {
+  margin: 0px;
+  padding: 0px;
+}
+
+h3 {
+  font-family: "Almarai", serif;
+  font-weight: bolder;
+  font-style: normal;
+  font-size: 30px;
+}
+
+
+/* Right side */
+.right-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Title */
+.title {
+  font-size: 25px;
+  font-weight: bold;
+  color: #001A72;
+  margin: 0;
+}
+
+
+/* Wrapper to hold the navigation */
+.nav-wrapper {
+  position: fixed;
+  /* Fixed to stay within the viewport */
+  top: 20px;
+  /* Adjusted to add pixel values */
+  left: 0;
+  width: 100%;
+  /* Full width of the viewport */
+  z-index: 999;
+  /* Keep it on top */
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  /* Vertically center */
+  overflow-x: visible;
+  /* Allow horizontal overflow if needed */
+  background: transparent;
+  /* Optional: make the wrapper background transparent */
+  padding: 10px 0;
+  /* Ensure the bar has some padding */
+}
+
+/* Navigation Container */
+.nav-container {
+  position: relative;
+  background-color: #fcf2bd;
+  /* Light yellow background */
+  border-radius: 15px;
+  width: auto;
+  /* Let the content dictate the width */
+  max-width: 70%;
+  /* Optional: Prevent it from getting too wide */
+  height: auto;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  /* Enable horizontal scrolling for icons */
+  padding: 10px 20px;
+  /* Add some padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Add a subtle shadow */
+  direction: rtl;
+  /* Keep the layout aligned for RTL */
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+/* Close Button */
+.close-btn {
+  z-index: 2;
+  position: absolute;
+  top: 5%;
+  right: 23px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #ff0000;
+  /* Darker red on hover */
+}
+
+/* Slide-In Animation */
+
+/* Home Icon Section */
+
+.home-icon {
+  position: absolute;
+  top: -35%;
+  right: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  /* Ensure it's above the navigation */
+}
+
+/* Circle Styling */
+.home-icon .circle,
+.setting-icon .circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fcf2bd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.6),
+    0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid white;
+  z-index: 11;
+  /* Keep it above other elements */
+}
+
+.home-icon i,
+.setting-icon i {
+  font-size: 32px;
+  color: #224273;
+}
+
+
+.home-icon span {
+  margin-top: 5px;
+  /* Adjust to position the text under the icon */
+  font-size: 14px;
+  font-family: 'AGA Mashq Bold', Arial, sans-serif;
+  color: #000;
+}
+
+/* Navigation Items */
+.nav-items {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  overflow-x: auto;
+  padding-right: 60px;
+}
+
+.nav-item.first-item {
+  padding-right: 60px;
+  /* Extra padding for the first item */
+}
+
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+  font-family: 'AGA Mashq Bold', Arial, sans-serif;
+  text-align: center;
+  color: #000;
+  font-size: 14px;
+}
+
+.nav-item.first-item {
+  padding-right: 60px;
+  /* Extra padding for the first item */
+}
+
+.nav-item i {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.nav-item span {
+  font-size: 12px;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  color: #224273;
+  /* Highlight color */
+}
+
+/* // Setting NAv */
+
+.setting-icon {
+  position: absolute;
+  top: -43%;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.settingNav-container {
+  position: relative;
+  background-color: #fcf2bd;
+  border-radius: 15px;
+  width: auto;
+  max-width: 40%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  padding: 10px 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+  margin-right: 130px;
+  margin-top: 10px;
+}
+
+.closeSetting-btn {
+  z-index: 2;
+  position: absolute;
+  top: 1%;
+  right: 105px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Full width to ensure horizontal centering */
+
+}
+
+/* Styling the main card */
+.card-center {
+  width: 700px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-center h4 {
+  font-size: 24px;
+  color: #8C8C8C;
+}
+
+/* Styling the gray box */
+.gray-box {
+  width: 100%;
+  /* background-color: #E6E6E6; */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: right;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+      overflow-y: scroll;
+    max-height: 400px;
+}
+
+/* Text inside the gray box */
+.letter {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* Styling the button */
+.action-button {
+  padding: 2px 35px;
+  background-color: #001A72;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #001A72;
+}
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.question-item {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.question-header {
+  background: #001A72;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  direction: rtl;
+}
+
+.question-body textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.add-question-btn,
+.save-btn {
+  background: #001A72;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.add-question-btn:hover,
+.save-btn:hover {
+  background: #172b4d;
+}
+.toggle-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.question-title-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  flex-grow: 1; /* Take available space */
+  outline: none;
+}
+
+.question-title-input::placeholder {
+  color: #fff; /* Light placeholder color */
+}
+.ck-editor__editable {
+  min-height: 150px;
+  background-color: #fcf2bd;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable {
+  background-color: #E6E6E6; /* Light gray background */
+  border: none; /* Remove the border */
+  padding: 10px; /* Optional: Add padding */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  box-shadow: none; /* Optional: Remove any shadow */
+  min-height: 200px; /* Optional: Set a minimum height */
+}
+::ng-deep .ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable {
+  background-color: #E6E6E6;
+  border: none;
+}
+
+.ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content > .ck-toolbar {
+  border: 0;
+  border-bottom: 1px solid;
+}  
+
+::ng-deep .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content > .ck-toolbar {
+  border: 0;
+  border-bottom: 1px solid #000;
+}

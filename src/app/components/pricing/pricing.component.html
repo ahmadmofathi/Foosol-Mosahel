@@ -1,0 +1,571 @@
+<div
+  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height: 100%"
+>
+<div class="container-fluid">
+  <div class="row">
+    <div class="top-nav">
+      <!-- Left Icons -->
+      <div class="left-icons">
+        <div class="nav_icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="nav_icon">
+          <i class="fa-regular fa-bell"></i>
+        </div>
+      </div>
+      <!-- Right Icons -->
+      <div class="right-icons">
+        <div class="nav_icon2"  (click)="openSetting()">
+          <img
+            src="../../../assets/images/settings.svg"
+            width="30px"
+            height="30px"
+            class="nav-icon"
+          />
+        </div>
+        <div class="nav_icon2" (click)="openNav()">
+          <img
+            src="../../../assets/images/home.svg"
+            width="30px"
+            height="30px"
+            class="nav-icon"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row container">
+    <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+      <button class="close-btn" (click)="openNav()">&times;</button>
+  
+      <div class="nav-container">
+        <!-- Close Button -->
+  
+        <!-- Home Icon Section -->
+        <div class="home-icon">
+          <div class="circle">
+            <i class="">
+              <img
+                src="../../assets/images/home-1.svg"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الرئيسية</span>
+            <!-- Move the span inside the circle -->
+          </div>
+        </div>
+  
+        <!-- Other Navigation Icons -->
+        <div class="nav-items">
+          <div class="nav-item first-item" routerLink="/subscripeDetails">
+            <i class="">
+              <img
+                src="../../assets/images/users-more.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>معلومات الاشتراك</span>
+          </div>
+          <div class="nav-item" routerLink="/bills">
+            <i class="">
+              <img
+                src="../../assets/images/coin-1.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الفواتير</span>
+          </div>
+          <div class="nav-item" routerLink="/package">
+            <i class="">
+              <img
+                src="../../assets/images/crown-2.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الباقات</span>
+          </div>
+          <div class="nav-item" routerLink="/pricing">
+            <i class="">
+              <img
+                src="../../assets/images/coin-1.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>أسعار المواد</span>
+          </div>
+          <div class="nav-item" routerLink="/stages">
+            <i class="">
+              <img
+                src="../../assets/images/document-filled.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>المراحل</span>
+          </div>
+          <div class="nav-item" routerLink="/classroom">
+            <i class="">
+              <img
+                src="../../assets/images/document-filled.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الصفوف</span>
+          </div>
+          <div class="nav-item" routerLink="/material">
+            <i class="">
+              <img
+                src="../../assets/images/document-filled.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>المواد</span>
+          </div>
+          <div class="nav-item" routerLink="/questions">
+            <i class="">
+              <img
+                src="../../assets/images/suitcase.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>البنك</span>
+          </div>
+          <div class="nav-item">
+            <i class="">
+              <img
+                src="../../assets/images/document-plus.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>توزيع المنهج</span>
+          </div>
+          <div class="nav-item" routerLink="/rating">
+            <i class="">
+              <img
+                src="../../assets/images/offer.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span> التقيمات</span>
+          </div>
+          <div class="nav-item" routerLink="/subscripe">
+            <i class="">
+              <img
+                src="../../assets/images/location-med-2.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span> المناطق</span>
+          </div>
+          <div class="nav-item">
+            <i class="">
+              <img
+                src="../../assets/images/screen-share.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span> بطاقة الدرس</span>
+          </div>
+          <div class="nav-item" routerLink="/users">
+            <i class="">
+              <img
+                src="../../assets/images/users-more.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span> المستخدمين</span>
+          </div>
+          <div class="nav-item">
+            <i class="">
+              <img
+                src="../../assets/images/calendar-user.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span> المهارات الاساسية</span>
+          </div>
+          <div class="nav-item" routerLink="/requests">
+            <i class="">
+              <img
+                src="../../assets/images/like.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span> طلبات الموافقة</span>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </div>
+
+  <div class="row container">
+    <div class="col-12 nav-wrapper" *ngIf="isSettingBarOpen">
+      <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+
+      <div class="settingNav-container">
+        <div class="setting-icon">
+          <div class="circle">
+            <i class="">
+              <img
+                src="../../assets/images/settingsBlue.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الاعدادات</span>
+            <!-- Move the span inside the circle -->
+          </div>
+        </div>
+
+         <div class="nav-items">
+
+          <div class="nav-item first-item" routerLink="/technical">
+            <i class="">
+              <img
+                src="../../../assets/images/headphones.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الدعم الفني</span>
+          </div>
+
+          <div class="nav-item" routerLink="/permission">
+            <i class="">
+              <img
+                src="../../../assets/images/shield-empty.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الصلاحيات</span>
+          </div>
+
+          <div class="nav-item" routerLink="/covenants">
+            <i class="">
+              <img
+              src="../../../assets/images/list-left-1.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>العهود والمواثيق</span>
+          </div>
+
+          <div class="nav-item " routerLink="/policy">
+            <i class="">
+              <img
+                src="../../../assets/images/list-left-1.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الشروط الاحكام</span>
+          </div>
+
+          <div class="nav-item" routerLink="/commonq">
+            <i class="">
+              <img
+                src="../../../assets/images/question-circle.png"
+                height="20px"
+                width="20px"
+              />
+            </i>
+            <span>الاسئلة الشائعه</span>
+          </div>
+
+
+          </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+  <div class="custom-form">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="header-container">
+          <!-- Left side: Buttons -->
+          <div class="left-buttons">
+            <button
+              id="addContractBtn"
+              class="button add-contract-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#createModal"
+              [ngClass]="{
+                active: addContractActive,
+                inactive: !addContractActive
+              }"
+              (click)="toggleAddContract()"
+            >
+              إنشاء سعر جديد <i class="fa-solid fa-plus"></i>
+            </button>
+            <button
+              id="exportPdfBtn"
+              class="button export-pdf-btn"
+              [ngClass]="{
+                active: !addContractActive,
+                inactive: addContractActive
+              }"
+              (click)="toggleExportPdf()"
+            >
+              تصدير PDF
+            </button>
+          </div>
+
+          <!-- Right side: Title and Search bar -->
+          <div class="right-content">
+            <div class="search-container">
+              <input
+                type="text"
+                placeholder="قم بالبحث هنا"
+                class="search-input"
+              />
+              <i class="fa-solid fa-search search-icon"></i>
+            </div>
+            <h2 class="title">تسعير المواد</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-form">
+      <div class="form-group">
+        <div class="table-container">
+          <table class="skills-table">
+            <thead>
+              <tr class="header-row">
+                <th>الاجراء</th>
+                <th>المستخدم <i class="fa-solid fa-sort"></i></th>
+                <th>تاريخ الانشاء <i class="fa-solid fa-sort"></i></th>
+                <th>المرحله <i class="fa-solid fa-sort"></i></th>
+                <th>اسم الصف <i class="fa-solid fa-sort"></i></th>
+                <th>اسم الماده <i class="fa-solid fa-sort"></i></th>
+                <th>الخصم <i class="fa-solid fa-sort"></i></th>
+                <th>السعر <i class="fa-solid fa-sort"></i></th>
+                <th>رقم السعر <i class="fa-solid fa-sort"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="actions">
+                  <i
+                    class="ellipsis-btn fa-solid fa-ellipsis"
+                    (click)="showMenu()"
+                  ></i>
+
+                  <!-- Dropdown menu -->
+                  <div class="dropdown-menu" [class.open]="isMenuOpen">
+                    <button class="dropdown-item edit-btn">
+                      <i class="fa-solid fa-cog"></i> تعديل
+                    </button>
+                    <button class="dropdown-item delete-btn">
+                      <i class="fa-solid fa-trash"></i> حذف
+                    </button>
+                  </div>
+                </td>
+
+                <td>admin</td>
+
+                <td>2-11-2024</td>
+
+                <td>277</td>
+                <td>جده</td>
+                <td>جده</td>
+
+                <td>1</td>
+              </tr>
+              <tr>
+                <td class="actions">
+                  <!-- <button class="ellipsis-btn" (click)="showMenu()"> -->
+                  <i
+                    class="ellipsis-btn fa-solid fa-ellipsis"
+                    (click)="showMenu()"
+                  ></i>
+                </td>
+                <td>admin</td>
+
+                <td>2-11-2024</td>
+
+                <td>399</td>
+                <td>الرياض</td>
+                <td>جده</td>
+                <td>جده</td>
+                <td>جده</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td class="actions">
+                  <i
+                    class="ellipsis-btn fa-solid fa-ellipsis"
+                    (click)="showMenu()"
+                  ></i>
+                </td>
+                <td>admin</td>
+
+                <td>2-11-2024</td>
+
+                <td>590</td>
+                <td>مكة المكرمة</td>
+                <td>جده</td>
+                <td>جده</td>
+                <td>جده</td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+
+       
+        </div>
+        <div class="custom-pagination">
+          <button (click)="previousPage()" [disabled]="currentPage === 1">‹</button>
+          <button *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage">{{ page }}</button>
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+
+<!-- Create Modal  -->
+
+<div
+  class="modal fade"
+  id="createModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          إضافه سعر للماده
+        </h1>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="mb-3">
+              <div class="container">
+                <div class="row justify-content-end">
+              <label for="exampleFormControlInput1" class="form-label"
+                >المرحله</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="قم باختيار المرحله"
+              />
+            </div>
+            </div>
+            </div>
+          </div>
+
+       
+
+          <div class="col-md-4">
+            <div class="mb-3">
+              <div class="container">
+                <div class="row justify-content-end">
+              <label for="exampleFormControlInput1" class="form-label"
+                >الصف</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="قم باختيار الصف"
+              />
+            </div>
+            </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="mb-3">
+              <div class="container">
+                <div class="row justify-content-end">
+              <label for="exampleFormControlInput1" class="form-label"
+                >الماده</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="قم باختيار اسم الماده"
+              />
+            </div>
+            </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="mb-3">
+              <div class="container">
+                <div class="row justify-content-end">
+              <label for="exampleFormControlInput1" class="form-label"
+                >الخصم</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="قم بتحديد نسبه الخصم"
+              />
+            </div>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="mb-3">
+              <div class="container">
+                <div class="row justify-content-end">
+              <label for="exampleFormControlInput1" class="form-label"
+                >الماده</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="ضع سعر الماده"
+              />
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          إلغاء
+        </button>
+        <button type="button" class="btn export-pdf-btn">اضافة</button>
+      </div>
+    </div>
+  </div>
+</div>

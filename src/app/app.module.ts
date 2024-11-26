@@ -45,6 +45,35 @@ import { ReasonTransferComponent } from './components/reason-transfer/reason-tra
 import { MainSkillsComponent } from './components/main-skills/main-skills.component';
 import { FinalScheduleComponent } from './components/final-schedule/final-schedule.component';
 import { StatementComponent } from './components/statement/statement.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ExamTeacherComponent } from './components/SuperAdmin/exam-teacher/exam-teacher.component';
+import { PrepExamTeacherComponent } from './components/SuperAdmin/prep-exam-teacher/prep-exam-teacher.component';
+import { WorkPaperComponent } from './components/SuperAdmin/work-paper/work-paper.component';
+import { MaterialComponent } from './components/material/material.component';
+import { StagesComponent } from './components/stages/stages.component';
+import { ClassroomComponent } from './components/classroom/classroom.component';
+import { SubjectComponent } from './components/subject/subject.component';
+import { SubscripeDetailsComponent } from './components/subscripe-details/subscripe-details.component';
+import { PackageComponent } from './components/package/package.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { QuestionsComponent } from './components/questions/questions.component';
+import { UsersComponent } from './components/users/users.component';
+import { PermissionsComponent } from './components/permissions/permissions.component';
+import { BankqComponent } from './components/bankq/bankq.component';
+import { QuesComponent } from './components/SuperAdmin/ques/ques.component';
+import { LessonComponent } from './components/SuperAdmin/lesson/lesson.component';
+import { PrepPolicyComponent } from './components/prep-policy/prep-policy.component';
+import { PrepConvenantsComponent } from './components/prep-convenants/prep-convenants.component';
+import { BillsComponent } from './components/bills/bills.component';
+import { RequestsComponent } from './components/requests/requests.component';
+import { CommonQuestionComponent } from './components/common-question/common-question.component';
+import { TechnicalComponent } from './components/technical/technical.component';
+import { TableComponent } from './components/table/table.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { ListDegreeComponent } from './components/list-degree/list-degree.component';
 
 @NgModule({
   declarations: [
@@ -83,8 +112,33 @@ import { StatementComponent } from './components/statement/statement.component';
     MainSkillsComponent,
     FinalScheduleComponent,
     StatementComponent,
-    
-    
+    SubscriptionComponent,
+    ExamTeacherComponent,
+    PrepExamTeacherComponent,
+    WorkPaperComponent,
+    MaterialComponent,
+    StagesComponent,
+    ClassroomComponent,
+    SubjectComponent,
+    SubscripeDetailsComponent,
+    PackageComponent,
+    PricingComponent,
+    RatingComponent,
+    QuestionsComponent,
+    UsersComponent,
+    PermissionsComponent,
+    BankqComponent,
+    QuesComponent,
+    LessonComponent,
+    PrepPolicyComponent,
+    PrepConvenantsComponent,
+    BillsComponent,
+    RequestsComponent,
+    CommonQuestionComponent,
+    TechnicalComponent,
+    TableComponent,
+    ListDegreeComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -97,7 +151,12 @@ import { StatementComponent } from './components/statement/statement.component';
     MatChipsModule,
     MatIconModule,
     RouterModule,
-    DragDropModule
+    DragDropModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,836 @@
+.background-container {
+    position: relative; /* Position context for child elements */
+    min-height: 100vh; /* Set a smaller height */
+    display: flex; /* For centering the form */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow: hidden; /* Prevent scrolling within this container */
+    /* background-image: url('../../../assets/images/back.jpg'); */
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size:contain;
+    padding: 50px;
+    background-color: #EDECEC;
+  }
+  
+  .overlay {
+    position: absolute; /* Overlay positioned absolutely */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    z-index: 1; /* Ensure the overlay is above the background */
+  }
+  
+  .top-left {
+    position: absolute; /* Position it at the top left */
+    top: 20px; /* Adjust as necessary */
+    left: 20px; /* Adjust as necessary */
+    z-index: 2; /* Ensure it's above the overlay */
+  }
+  
+  .circle-image-container {
+    position: relative; /* Position context for the icon */
+    width: 50px; /* Set the size for the circle */
+    height: 50px; /* Set the size for the circle */
+  }
+  
+  .circle-image {
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    border-radius: 50%; /* Make it circular */
+  }
+  
+  .your-icon-class {
+    position: absolute; /* Position it over the circle image */
+    top: 50%; /* Center it vertically */
+    left: 50%; /* Center it horizontally */
+    transform: translate(-50%, -50%); /* Center the icon */
+    font-size: 20px; /* Adjust size as needed */
+    color: white; /* Adjust color as needed */
+  }
+  
+  .top-right {
+    position: absolute; /* Position it at the top right */
+    top: 20px; /* Adjust as necessary */
+    right: 20px; /* Adjust as necessary */
+    z-index: 2; /* Ensure it's above the overlay */
+  }
+  
+ 
+  
+  .icon-class-1, .icon-class-2 {
+    font-size: 24px; /* Adjust size as needed */
+    color: white; /* Adjust color as needed */
+  }
+  
+  .my-form {
+    position: relative; /* This makes the form above the overlay */
+    z-index: 2; /* Ensure the form is above the overlay */
+    background-color: white;
+   padding: 20px; /* Adds some padding to the form */
+    border-radius: 30px; /* Optional: rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for form */
+    height: auto;
+   /* Fixed height */
+  }
+  
+  .custom-form{
+    width:700px;
+    
+  }
+
+  .custom-box{
+    background-color: #D9D9D9;
+    padding: 5px;
+    border-radius: 15px;
+    /* box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4); */
+    color: #001A72;
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+  
+  .custom-box-2{
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    width:auto;
+    margin-bottom: 30px;
+
+  }
+  .custom-box-2 .fa-solid{
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    width:auto;
+    color: #001A72;
+    font-size: 40px;
+  }
+  .custom-box-text{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+    color:#001A72;
+    font-size: large;
+    font-weight: bold;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    width: auto;
+  }
+  .custom-box-selected{
+    background-color:#001A72;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: large;
+    font-weight: bold;
+    display: flex; /* Apply Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .payment-methods{
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+    text-align: center;
+    border-bottom: 3px solid #D9D9D9;
+    ;
+
+}
+  
+  .header {
+    text-align: center;
+    color:#6C6355;
+    margin-bottom: 40px;
+    margin-top: 10px;
+  }
+ 
+  .payment-methods2{
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+    text-align: center;
+
+}
+
+.own-btn{
+  background-color:#001A72 ;
+  color: white;
+  border-radius: 15px;
+  padding: 5px 50px 5px 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.own-btn2{
+  background-color:#001A72 ;
+  color: white;
+  border-radius: 15px;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+  font-size: 10px;
+  border: none;
+
+}
+.div-button2{
+  justify-content: left;
+  align-items: center; 
+  text-align: center;
+}
+
+.div-button{
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+}
+
+.icon-container {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  gap: 10px; /* Space between icons */
+}
+
+.left-icons {
+  left: 25%; /* Position on the left */
+  top: 3%; /* Center vertically */
+  transform: translateY(-50%);
+}
+
+.right-icons {
+  right: 25%; /* Position on the right */
+  top: 3%; /* Center vertically */
+  transform: translateY(-50%);
+}
+
+.icon-class {
+  font-size: 24px; /* Adjust size as needed */
+  color: white; /* Adjust color as needed */
+  padding: 10px;
+  border-radius: 50%;
+}
+
+
+/* Horizontal menu */
+.horizontal-menu {
+  background-color: #F1E8BF; /* Your desired background color */
+  position: absolute;
+  top: 50px;
+  right: 0; /* Align to the right */
+  z-index: 3;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: block;
+  direction: rtl; /* Ensure right-to-left layout */
+}
+
+
+.horizontal-menu ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row-reverse; /* Reverse the order of list items */
+  margin: 0;
+}
+
+.horizontal-menu ul li {
+  padding: 10px 20px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.horizontal-menu ul li:hover {
+  background-color: #ccc;
+}
+
+.outer-container {
+  background-color: #F5B104; /* Outer background */
+  border-radius: 40px;
+  border: 5px solid #E45C00; /* Border around the modal */
+  padding: 15px; /* Padding around inner container */
+}
+
+/* Inner container to give the effect of margin and background color #03556B */
+.inner-container {
+  background-color: #03556B; /* Inner background */
+  border-radius: 30px; /* Inner corner radius */
+  padding: 20px; /* Padding inside for content */
+  position: relative; /* To allow the close button positioning */
+}
+
+/* Close button with red background and white X */
+.closebtn {
+  background-color: red; /* Red background */
+  color: white; /* White "X" icon */
+  font-weight: bold;
+  border-radius: 50%;
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  padding: 5px 10px;
+  border: none; /* Remove default borders */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Change background and text color on hover */
+.closebtn:hover {
+  background-color: red; /* White background on hover */
+  color: white; /* Red "X" on hover */
+}
+
+.modal-title {
+  color:white;
+  font-size: larger;
+  font-weight: bolder;
+  text-align: center;
+
+}
+.lesson-title {
+  font-size: 1.5rem;
+  color: black;
+  background-color: #FCF2BD;
+  padding: 13px 70px;
+  border-radius: 15px;
+  text-align: end;
+
+}
+
+.lessonContainer{
+  align-items: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FCF2BD; /* Table background color */
+  color: black; /* Text color */
+  direction: rtl; /* RTL alignment for the table */
+  text-align: right; /* Left align the text */
+  border: 2px solid black; /* Outer border for the whole table */
+  border-radius: 15px; /* Rounded corners for the table */
+}
+
+.custom-table th, .custom-table td {
+  padding: 10px;
+  border: none; /* No borders between the cells */
+}
+
+.custom-table th:first-child {
+  border-top-right-radius: 15px; /* Top-right corner */
+}
+
+.custom-table th:last-child {
+  border-top-left-radius: 15px; /* Top-left corner */
+}
+
+.custom-table tr:last-child td:first-child {
+  border-bottom-right-radius: 15px; /* Bottom-right corner */
+}
+
+.custom-table tr:last-child td:last-child {
+  border-bottom-left-radius: 15px; /* Bottom-left corner */
+}
+
+.custom-table, .custom-table th, .custom-table td {
+  border: 3px solid black; /* Black border for table, rows, and columns */
+  border-radius: 5px;
+  align-items: end;
+  font-weight: bold;
+
+}
+
+.custom-table th, .custom-table td {
+  padding: 10px;
+  align-items: end;
+
+}
+
+.custom-table th {
+  background-color: #FCF2BD  }
+
+  .form-input {
+      width: 100%;
+      padding: 5px;
+      border: none; /* Removes the default border */
+      border-radius: 5px;
+      background-color: #FCF2BD;
+      color: black;
+      font-size: 16px;
+      box-sizing: border-box; 
+    }
+
+    .form-input:focus {
+      outline: none; /* Removes the outline */
+      border: none; /* Ensures no border appears on focus */
+      box-shadow: none; /* Removes any shadow effect, if applicable */
+    }
+  .ck.ck-editor__editable {
+      background-color: #FCF2BD;
+  }
+  .custom-ckeditor {
+      background-color: #FCF2BD;
+  }
+
+  .full-width-box {
+      min-width: 100%; /* Take full width of modal body */
+    
+      border-radius: 6px;
+      border: 3px solid black; /* Black border */
+      box-sizing: border-box; /* Ensure padding doesn't affect width */
+      padding:100px 10px;
+      align-items: center;
+
+    }
+    
+    .full-width-box h4{
+      color:#817B60;
+      align-items: center;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .modal-body ,.modal-footer ,.modal-header {
+      border: none; /* Removes the border */
+    }
+  
+    .modal-header h1{
+      text-align: center !important;
+      font-size: large;
+    }
+    .modal-header {
+      display: flex; /* or block */
+      justify-content: center; /* Center horizontally if using flex */
+    }    
+
+
+    /* Modal Close Button Styles */
+.modal .close {
+position: absolute;
+top: 10px; /* Adjust as needed */
+right: 10px; /* Adjust as needed */
+background-color: #BC1010;  /* Red background */
+border-radius: 50%;      /* Make it circular */
+color: white;            /* White color for the icon */
+font-size: 40px;  
+font-weight: bolder;       /* Adjust size as needed */
+width: 32px;             /* Width of the circle */
+height: 32px;            /* Height of the circle */
+display: flex;
+justify-content: center;
+align-items: center;
+border: none;            /* Remove any default border */
+outline: none;           /* Remove outline on focus */
+}
+
+.modal .close span {
+margin: 0;               /* Remove default margin */
+}
+
+.custombtn {
+  background-color: #F1E8BF;
+  color: black;
+  border-radius: 10px;
+  min-width:150px;
+  float: left;
+  font-weight: bold;
+}
+
+.full-width-box {
+  min-width: 100%; /* Take full width of modal body */
+
+  border-radius: 20px;
+  padding:20px 30px;
+  align-items: center;
+  border: none;
+
+}
+
+.full-width-box h4{
+  color:#817B60;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+}
+
+
+.custom-full-width-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 20px; /* Space between the cards */
+}
+
+.custom-card-wrapper {
+  position: relative;
+}
+
+.custom-card {
+  background-color: #FCF2BD;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 90px;
+  position: relative;
+  /* width: 100%; */
+  /* height: 100%; */
+  min-height: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+  border: 1px solid black;
+}
+
+.custom-close-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #817B60;
+}
+
+.custom-card-body {
+  text-align: center;
+}
+
+/* Hidden card style */
+.hide-card {
+  display: none;
+}
+
+.custom-card-title{
+  color:#817B60
+}
+
+
+.comment-box {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 600px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: Arial, sans-serif;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse; 
+}
+
+.add-comment-btn {
+  background-color: #0e1e5b;
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.stars-rating {
+  display: flex;
+  align-items: center;
+}
+
+.rating-text {
+  margin-right: 10px;
+  font-size: 16px;
+  color: #000;
+}
+
+.stars i {
+  color: #000;
+  font-size: 18px;
+  margin-right: 3px;
+}
+
+.comment-textarea {
+  background-color: #d3d3d3;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  resize: none;
+  font-size: 14px;
+  color: #666;
+  text-align: right;
+}
+
+.comment-textarea::placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+.comment-box {
+  direction: rtl;
+}
+.form-check-input {
+  display: none;
+}
+
+/* Styling the label to make it look like a button */
+.form-check-label-mine {
+  display: inline-block;
+  padding: 20px;
+  background-color:#fff ;
+  color: #001A72;
+  border-radius: 15px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s;
+  font-size: large;
+  font-weight: bold;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Style the button when the checkbox is checked */
+.checked-item label {
+  background-color: #001A72;
+  color:#fff;
+}
+
+.form-check-label-all {
+  display: inline-block;
+  padding: 10px;
+  background-color:#fff ;
+  color: #001A72;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s;
+  font-size: large;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the button when the checkbox is checked */
+.form-check-input:checked + .form-check-label-all{
+  background-color: #001A72;
+  color:#fff;
+}
+
+
+
+.icon-container {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  gap: 10px; 
+  margin-top: 10px;/* Space between icons */
+}
+
+.left-icons {
+  left: 25%; /* Position on the left */
+  top: 3%; /* Center vertically */
+  transform: translateY(-50%);
+}
+
+.right-icons {
+  right: 25%; /* Position on the right */
+  top: 3%; /* Center vertically */
+  transform: translateY(-50%);
+}
+.nav_icon{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #001a72;
+}
+
+.almarai-regular {
+  font-family: "Almarai", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+span,h6,button{
+  font-family: "Almarai", serif;
+  font-weight: bolder;
+  font-style:normal;
+  font-size: medium;
+}
+
+h6{
+  margin: 0px;
+   padding: 0px;
+}
+
+h3{
+  font-family: "Almarai", serif;
+  font-weight: bolder;
+  font-style:normal;
+  font-size: 30px;
+  color: #8c8c8c;
+}
+
+
+.center-icons {
+    right: 50%;
+    /* Position on the right */
+    top: 4%;
+    /* Center vertically */
+    transform: translateY(-50%);
+    
+}
+.center-icons h1 {
+    font-family: "Almarai", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-icons, .right-icons {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.center-icons {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-title {
+  color: #001A72;
+  font-size: 1.5rem;  /* Adjust this value to fit your design */
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 1.2rem;  /* Adjust font size on smaller screens */
+  }
+
+  .background-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .left-icons, .right-icons {
+    flex: none;
+    margin-bottom: 10px;
+  }
+
+  .center-icons {
+    flex: none;
+    margin-bottom: 20px;
+  }
+}
+
+
+.custom-full-width-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 50px; /* Space between the cards */
+}
+
+.custom-card-wrapper {
+  position: relative;
+}
+
+/* .custom-card {
+  background-color: #cec7b7;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 90px;
+  position: relative;
+} */
+
+.custom-close-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #817B60;
+}
+
+.custom-card-body {
+  text-align: center;
+}
+
+/* Hidden card style */
+.hide-card {
+  display: none;
+}
+
+
+
+.modal-body {
+  margin-top: 0; /* Remove margin to decrease distance to footer */
+  padding: 10px; /* Optional: add some padding for content spacing */
+}
+
+.custom-card {
+  width: 100%;
+  height: 250px; /* Set a fixed height for the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden; /* Ensures the image doesn't overflow the card */
+  background-color: #F1E8BF;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 90px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+border :1px solid #CEC7B7;
+  
+}
+
+.card-image {
+  width: 100%; /* Make the image take the full width of the card */
+  height: 100%; /* Make the image take the full height of the card */
+  object-fit: cover; /* Ensures the image covers the card area, cropping as necessary */
+  border-radius: 8px; /* Match the card's border-radius for consistent design */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Places the image behind other content */
+}
+
+.custom-card-title {
+  z-index: 1; /* Ensures the title is visible on top of the image */
+  color: #656565;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.thumbnail-image {
+  width: 140px;
+  height: 170px;
+  object-fit: cover; /* Ensures the image fits within the dimensions, cropping as necessary */
+  border-radius: 4px; /* Slightly rounded corners for a polished look */
+  margin-top: 10px; /* Add spacing from the card title */
+}

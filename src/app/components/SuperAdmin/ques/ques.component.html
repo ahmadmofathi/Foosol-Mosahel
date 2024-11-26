@@ -1,0 +1,291 @@
+<div class="background-container">
+  <!-- <div class="overlay"></div> -->
+
+  <div class="icon-container left-icons align-items-center">
+    <img src="../../../assets/images/human.png" width="60px" height="60px" />
+    <div class="nav_icon">
+      <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
+    </div>
+  </div>
+
+  <div class="icon-container center-icons align-items-center pb-3">
+    <h1 style=" color: #001A72;">بنك الاسئلة</h1>
+  </div>
+
+  <!-- Icons on the right side -->
+  <div class="icon-container right-icons align-items-center">
+    <div class="nav_icon">
+      <img
+        src="../../../assets/images/settings.svg"
+        width="30px"
+        height="30px"
+        class="nav_icon"
+      />
+    </div>
+    <div class="nav_icon" (click)="toggleMenu()">
+      <img
+        src="../../../assets/images/home.svg"
+        width="30px"
+        height="30px"
+        class="nav_icon"
+      />
+    </div>
+  </div>
+
+  <!-- Horizontal menu that is shown or hidden based on the boolean value -->
+  <div class="horizontal-menu" *ngIf="isMenuVisible">
+    <ul>
+      <li routerLink="/profile">
+        <i class="fa-solid fa-user"></i> ملف الانجاز
+      </li>
+      <li routerLink="/student"><i class="fa-solid fa-cog"></i> الطلبه</li>
+      <li routerLink="/teacherDash">
+        <i class="fa-solid fa-sign-out-alt"></i> السبوره
+      </li>
+      <li routerLink="/paper">
+        <i class="fa-solid fa-sign-out-alt"></i> ورقه عمل
+      </li>
+      <li routerLink="/exam">
+        <i class="fa-solid fa-sign-out-alt"></i>الاختبار
+      </li>
+    </ul>
+  </div>
+
+  <div class="custom-form">
+    <div class="my-form">
+      <div class="form-group">
+
+        <div class="container">
+            <div
+              class="row">
+              <h3 class="col-md-11" style="
+              text-align: end;
+              color: #001A72;
+              font-weight: bold;
+              font-size: large;
+          ">بنك الاسئله</h3>
+            </div>
+          </div>
+
+
+        <div class="container">
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
+            <!-- <div class="col-md-1">
+                <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+              </div> -->
+            <h3 class="col-md-11">الماده</h3>
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>احياء</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>اللغة العربية</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>توحيد</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
+            <!-- <div class="col-md-1">
+                <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+              </div> -->
+            <h3 class="col-md-11">المرحلة</h3>
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>ثانوي</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>متوسط</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>إبتدائي</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
+            <!-- <div class="col-md-1">
+                <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+              </div> -->
+            <h3 class="col-md-11">الصف</h3>
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>ثالثة متوسط</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>أولي متوسط</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+            <div class="container">
+              <div class="row">
+                <h6>ثانية متوسط</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 custom-box-2">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row payment-methods">
+         
+            <div class="col-md-3 custom-box">
+              <div class="container">
+                <div class="row">
+                  <h6>
+                  اختبارات
+                  </h6>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3 custom-box">
+              <div class="container">
+                <div class="row">
+                  <h6>
+                   ورقة عمل
+                  </h6>
+                </div>
+              </div>
+            </div>
+  
+        
+          
+          </div> -->
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <div class="div-button">
+              <button
+                class="own-btn"
+                style="font-weight: bold; font-size: large"
+                routerLink="/prepExamTeacher"
+              >
+                إختبارات
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="div-button">
+              <button
+                class="own-btn"
+                style="font-weight: bold; font-size: large"
+                routerLink="/prepExamTeacher"
+              >
+               ورقة عمل
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="div-button mt-4">
+            <button
+              class="own-btn"
+              style="font-weight: bold; font-size: large; padding:5px 70px;"
+              routerLink="/prepExamTeacher"
+            >
+           عرض
+            </button>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,115 +1,153 @@
-/* Centering the form on the page with two sides */
-.page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+/* Wrapper to hold the navigation */
+.nav-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Navigation Container */
+.nav-container {
+  position: relative;
+    background-color: #fcf2bd;
+  border-radius: 15px;
+  padding: 10px;
+  width: 50%; /* Set the width of the navigation */
+  max-width: 600px;
+  direction: rtl;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover {
+  background-color: #ff0000; /* Darker red on hover */
+}
+
+/* Slide-In Animation */
+.slide-in {
+  animation: slidein 0.7s ease-out forwards;
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(100%); /* Start off-screen to the right */
+  }
+  to {
+    transform: translateX(0); /* Fully visible */
+  }
+}
+
+/* Slide-Out Animation */
+.slide-out {
+  animation: slideout 0.7s ease-out forwards;
+}
+
+@keyframes slideout {
+  from {
+    transform: translateX(0); /* Start fully visible */
+  }
+  to {
+    transform: translateX(100%); /* Move off-screen to the right */
+  }
+}
+ /* Home Icon Section */
+ .home-icon {
+  position: absolute; /* Allows the icon to move outside the nav */
+  top: -50%; /* Push it halfway outside vertically */
+  right: 20px; /* Adjust horizontal positioning */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10; /* Ensure it's above the navigation */
+}
+
+/* Circle Styling */
+.home-icon .circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fcf2bd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.6),
+    0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid white;
+  z-index: 11; /* Keep it above other elements */
+}
+
+
+.home-icon i {
+   font-size: 32px;
+   color: #224273;
  }
  
- /* Left white section (form section) */
- .form-section {
-    width: 50%;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
+ .home-icon span {
+   margin-top: 5px; /* Adjust to position the text under the icon */
+   font-size: 14px;
+   font-family: 'AGA Mashq Bold', Arial, sans-serif;
+   color: #000;
  }
  
- /* Right purple section */
- .purple-section {
-    width: 50%;
-    background-color: #4a4aff; /* Purple color */
-    min-height: 100vh;
+ /* Navigation Items */
+ .nav-items {
+   display: flex;
+   align-items: center;
+   flex-grow: 1;
+   overflow-x: auto;
+   padding-right: 60px;
  }
  
- .form-container {
-    width: 100%;
-    max-width: 400px;
-    text-align: right;
+ .nav-item.first-item {
+   padding-right: 60px; /* Extra padding for the first item */
  }
  
- .form-header {
-    text-align: center;
-    margin-bottom: 20px;
+ 
+ .nav-item {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   margin: 0 15px;
+   font-family: 'AGA Mashq Bold', Arial, sans-serif;
+   text-align: center;
+   color: #000;
+   font-size: 14px;
  }
  
- .tabs {
-    display: flex;
-    justify-content: space-between;
+ .nav-item.first-item {
+   padding-right: 60px; /* Extra padding for the first item */
  }
  
- .tabs button {
-    width: 50%;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background-color: #f0f0f0;
+ .nav-item i {
+   font-size: 24px;
+   margin-bottom: 5px;
+   color: #000;
  }
  
- .tabs button.active {
-    background-color: #000;
-    color: #fff;
+ .nav-item span {
+   font-size: 12px;
  }
  
- .form-group {
-    margin-bottom: 15px;
-    text-align: right;
- }
- 
- .form-group label {
-    font-size: 14px;
-    display: block;
-    margin-bottom: 5px;
- }
- 
- .form-group input,
- .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-align: right;
- }
- 
- .phone-input {
-    display: flex;
- }
- 
- .phone-input select {
-    width: 80px;
-    margin-left: 10px;
- }
- 
- .terms {
-    display: flex;
-    align-items: center;
- }
- 
- .terms label {
-    margin-left: 8px;
- }
- 
- .submit-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #000;
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
- }
- 
- .submit-button:hover {
-    background-color: #333;
- }
- 
- .login-link {
-    text-align: center;
-    margin-top: 10px;
+ .nav-item:hover {
+   cursor: pointer;
+   color: #224273; /* Highlight color */
  }
  

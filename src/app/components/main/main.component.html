@@ -1,104 +1,237 @@
 <div class="background-container">
-  <div class="overlay"></div>
 
   <!-- Icons on the left side -->
   <div class="icon-container left-icons align-items-center">
     
-    <img src="../../../assets/images/human.png" width="60px" height="60px" >
+    <div class="profile-container" (click)="toggleMenu()">
+      <img
+        src="../../../assets/images/human.png"
+        alt="Profile"
+        width="60px"
+        height="60px"
+      />
+    </div>
+  
     <div class="nav_icon">
       <img src="../../../assets/images/bell.svg" width="30px" height="30px">
+    </div>
+
+
+  
+    <!-- Dropdown Menu -->
+    <div
+      *ngIf="menuOpen"
+      class="dropdown-menu"
+    >
+      <div class="menu-item">
+        ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
+      </div>
+      <div class="menu-item">
+         توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
+      </div>
+      <hr />
+      <div class="menu-item logout">
+       <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
+      </div>
     </div>
 
   
   </div>
 
-  <!-- Icons on the right side -->
   <div class="icon-container right-icons align-items-center">
-    <!-- Settings Icon -->
-    <div class="nav_icon">
+    <div class="nav_icon" (click)="openSetting()">
         <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
     </div>
 
-    <!-- Home Icon (Toggle Dropdown) -->
-    <div class="nav_icon" (click)="toggleMenu()">
+    <div class="nav_icon" (click)="openNav()">
         <img src="../../../assets/images/home.svg" width="30px" height="30px" class="nav_icon">
     </div>
 
-    <!-- Horizontal Dropdown Menu -->
-    <div *ngIf="isMenuOpen" [class.show]="isMenuOpen" class="horizontal-dropdown-menu">
-        <div class="menu-header">
-            <span>الرئيسية</span>
-            <button class="close-btn" (click)="toggleMenu()">✖</button>
-        </div>
 
-        <ul class="menu-items">
-            <li routerLink="/profile">
-                <i class="fa-solid fa-user"></i> ملف الانجاز
-            </li>
-            <li routerLink="/student">
-                <i class="fa-solid fa-cog"></i> الطلبه
-            </li>
-            <li routerLink="/teacherDash">
-                <i class="fa-solid fa-sign-out-alt"></i> السبوره
-            </li>
-            <li routerLink="/paper">
-                <i class="fa-solid fa-sign-out-alt"></i> ورقه عمل
-            </li>
-            <li routerLink="/exam">
-                <i class="fa-solid fa-sign-out-alt"></i> الاختبار
-            </li>
-            <li routerLink="/studentPro">
-              <i class="fa-solid fa-user"></i> ملف الطالب
-          </li>
-          <li routerLink="/signStudent">
-            <i class="fa-solid fa-user">تسجيل الطالب</i> 
-        </li>
-        <li routerLink="/curriculum">
-          <i class="fa-solid fa-user">توزيع المنهج</i> 
-      </li>
-      <li routerLink="/certificate">
-        <i class="fa-solid fa-user"> الشهادات</i> 
-    </li>
-    <li routerLink="/skills">
-      <i class="fa-solid fa-user">المهارات</i> 
-  </li>
-        </ul>
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+        <button class="close-btn" (click)="openNav()">&times;</button>
+    
+        <div class="nav-container">
+          <!-- Close Button -->
+    
+          <!-- Home Icon Section -->
+          <div class="home-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/home-1.svg"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="color: #001A72;">الرئيسية</span>
+              <!-- Move the span inside the circle -->
+            </div>
+          </div>
+    
+          <!-- Other Navigation Icons -->
+          <div class="nav-items">
+            <div class="nav-item first-item" routerLink="/table">
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-link.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الجدول</span>
+            </div>
+            <div class="nav-item" routerLink="/student">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الطلاب</span>
+            </div>
+            <div class="nav-item" routerLink="/package">
+              <i class="">
+                <img
+                  src="../../../assets/images/chart-vertical.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الكشوف</span>
+            </div>
+            <div class="nav-item" routerLink="/paper">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>اوراق العمل</span>
+            </div>
+            <div class="nav-item" routerLink="/exam">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الاختبارات</span>
+            </div>
+            <div class="nav-item" routerLink="/certificate">
+              <i class="">
+                <img
+                  src="../../../assets/images/crown-1.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الشهادات</span>
+            </div>
+            <div class="nav-item" routerLink="/reason">
+              <i class="">
+                <img
+                  src="../../../assets/images/user-warning.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>تحويل طالب</span>
+            </div>
+            <div class="nav-item" routerLink="/skills">
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-user.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>المهارات الاساسية</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../../assets/images/suitcase.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> البنك</span>
+            </div>
+            <div class="nav-item" routerLink="/curriculum">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> توزيع المنهج</span>
+            </div>
+
+          </div>
+        </div>
+      </div>    
     </div>
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
+        <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+
+        <div class="settingNav-container">
+          <div class="setting-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plusBlue.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="font-size: small; color:#001A72">اعداد النقاط</span>
+              <!-- Move the span inside the circle -->
+            </div>
+          </div>
+
+           <div class="nav-items">
+
+            <div class="nav-item first-item" routerLink="/technical">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد الدرجات</span>
+            </div>
+
+            <div class="nav-item" routerLink="/permission">
+              <i class="">
+                <img
+                  src="../../../assets/images/headphones.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الدعم الفني</span>
+            </div>
+
+
+
+
+            </div>
+        </div>
+      </div>
+    </div>
+
 </div>
 
 
- 
-
-  <!-- Expanded menu -->
-<!-- <div *ngIf="isMenuOpen" class="expanded-menu">
-  <div class="menu-item">
-    <img src="../../../assets/images/home.svg" width="30px" height="30px">
-    <span>الرئيسية</span>
-  </div>
-  <div class="menu-item">
-    <img src="../../../assets/images/schedule.svg" width="30px" height="30px">
-    <span>الجدول</span>
-  </div>
-  <div class="menu-item">
-    <img src="../../../assets/images/students.svg" width="30px" height="30px">
-    <span>الطلاب</span>
-  </div>
-</div> -->
-
-  <!-- Horizontal menu that is shown or hidden based on the boolean value -->
-  <!-- <div class="horizontal-menu" *ngIf="isMenuVisible">
-    <ul>
-     
-      <li routerLink="/profile"><i class="fa-solid fa-user" ></i> ملف الانجاز</li>
-      <li routerLink="/student"><i class="fa-solid fa-cog" ></i> الطلبه</li>
-      <li routerLink="/teacherDash"><i class="fa-solid fa-sign-out-alt" ></i> السبوره</li>
-      <li routerLink="/paper"><i class="fa-solid fa-sign-out-alt" ></i> ورقه عمل</li>
-      <li routerLink="/exam"><i class="fa-solid fa-sign-out-alt" ></i>الاختبار</li>
-
-
-
-    </ul>
-  </div> -->
 
   <div class="custom-form">
     <div class="my-form">
@@ -122,7 +255,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 custom-box">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row">
                 <h6 >
@@ -132,7 +265,7 @@
             </div>
           </div>
 
-          <div class="col-md-3 custom-box">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row " >
                 <h6 style="text-align: center; margin: 0px; padding: 0px;">
@@ -142,7 +275,7 @@
             </div>
           </div>
 
-          <div class="col-md-3 custom-box">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row">
                 <h6 >
@@ -178,7 +311,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 custom-box">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row">
                 <h6>
@@ -188,7 +321,7 @@
             </div>
           </div>
 
-          <div class="col-md-3 custom-box">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row">
                 <h6>
@@ -198,7 +331,7 @@
             </div>
           </div>
 
-          <div class="col-md-3 custom-box">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row">
                 <h6>
@@ -207,6 +340,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-1 custom-box-2">
             <div class="container">
               <div class="row">
@@ -233,7 +367,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 custom-box-2">
+          <div class="col-md-3 custom-box-2" >
             <div class="container">
               <div class="row">
                 <h6 class="custom-box-text">3</h6>
@@ -241,15 +375,15 @@
             </div>
           </div>
 
-          <div class="col-md-3 custom-box-2">
-            <div class="container">
+          <div class="col-md-3 custom-box-2" >
+            <div class="container" >
               <div class="row">
                 <h6 class="custom-box-text">2</h6>
               </div>
             </div>
           </div>
 
-          <div class="col-md-3 custom-box-2">
+          <div class="col-md-3 custom-box-2" >
             <div class="container">
               <div class="row">
                 <h6 class="custom-box-text">1</h6>
@@ -281,7 +415,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 custom-box">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row ">
                 <h6>
@@ -291,7 +425,7 @@
             </div>
           </div>
 
-          <div class="col-md-3 custom-box-selected">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row ">
                 <h6>
@@ -301,7 +435,7 @@
             </div>
           </div>
 
-          <div class="col-md-3 custom-box">
+          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
             <div class="container">
               <div class="row ">
                 <h6>

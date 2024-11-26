@@ -28,6 +28,8 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "ckeditor5": "^43.2.0",
+    "ngx-pagination": "^6.0.3",
+    "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -37,6 +39,7 @@
     "@angular/cli": "^16.2.16",
     "@angular/compiler-cli": "^16.2.0",
     "@angular/localize": "^16.2.0",
+    "@types/bootstrap": "^5.2.10",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",

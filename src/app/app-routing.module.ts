@@ -34,6 +34,32 @@ import { ReasonTransferComponent } from './components/reason-transfer/reason-tra
 import { MainSkillsComponent } from './components/main-skills/main-skills.component';
 import { FinalScheduleComponent } from './components/final-schedule/final-schedule.component';
 import { StatementComponent } from './components/statement/statement.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { ExamTeacherComponent } from './components/SuperAdmin/exam-teacher/exam-teacher.component';
+import { PrepExamTeacherComponent } from './components/SuperAdmin/prep-exam-teacher/prep-exam-teacher.component';
+import { WorkPaperComponent } from './components/SuperAdmin/work-paper/work-paper.component';
+import { MaterialComponent } from './components/material/material.component';
+import { StagesComponent } from './components/stages/stages.component';
+import { ClassroomComponent } from './components/classroom/classroom.component';
+import { SubjectComponent } from './components/subject/subject.component';
+import { SubscripeDetailsComponent } from './components/subscripe-details/subscripe-details.component';
+import { PackageComponent } from './components/package/package.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { QuestionsComponent } from './components/questions/questions.component';
+import { UsersComponent } from './components/users/users.component';
+import { PermissionsComponent } from './components/permissions/permissions.component';
+import { BankqComponent } from './components/bankq/bankq.component';
+import { QuesComponent } from './components/SuperAdmin/ques/ques.component';
+import { LessonComponent } from './components/SuperAdmin/lesson/lesson.component';
+import { PrepPolicyComponent } from './components/prep-policy/prep-policy.component';
+import { PrepConvenantsComponent } from './components/prep-convenants/prep-convenants.component';
+import { BillsComponent } from './components/bills/bills.component';
+import { RequestsComponent } from './components/requests/requests.component';
+import { CommonQuestionComponent } from './components/common-question/common-question.component';
+import { TechnicalComponent } from './components/technical/technical.component';
+import { TableComponent } from './components/table/table.component';
+import { ListDegreeComponent } from './components/list-degree/list-degree.component';
 
 const routes: Routes = [
   {path:'login', component:SignupFormComponent},
@@ -71,6 +97,32 @@ const routes: Routes = [
   {path:'mainSkill',component:MainSkillsComponent},
   {path:'final',component:FinalScheduleComponent},
   {path:'statement',component:StatementComponent},
+  {path:'subscripe',component:SubscriptionComponent},
+  {path:'examTeacher',component:ExamTeacherComponent},
+  {path:'prepExamTeacher',component:PrepExamTeacherComponent},
+  {path:'paperTeacher',component:WorkPaperComponent},
+  {path:'material',component:MaterialComponent},
+  {path:'stages',component:StagesComponent},
+  {path:'classroom',component:ClassroomComponent},
+  // {path:'subject',component:SubjectComponent},
+  {path:'subscripeDetails',component:SubscripeDetailsComponent},
+  {path:'package',component:PackageComponent},
+  {path:'pricing',component:PricingComponent},
+  {path:'rating',component:RatingComponent},
+  {path:'questions',component:QuestionsComponent},
+  {path:'users',component:UsersComponent},
+  {path:'permission',component:PermissionsComponent},
+  {path:'bankQuestion',component:BankqComponent},
+  {path:'QuesTeacher',component:QuesComponent},
+  {path:'lessons',component:LessonComponent},
+  {path:'prepPolicy',component:PrepPolicyComponent},
+  {path:'prepConvenants',component:PrepConvenantsComponent},
+  {path:'requests',component:RequestsComponent},
+  {path:'bills',component:BillsComponent},
+  {path:'commonq',component:CommonQuestionComponent},
+  {path:'technical',component:TechnicalComponent},
+  {path:'table',component:TableComponent},
+  {path:'listDegree',component:ListDegreeComponent},
   {path:'',component:LoginFormComponent},
   {path:'**',component:LoginFormComponent}
 ];

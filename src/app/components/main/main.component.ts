@@ -65,8 +65,48 @@ export class MainComponent {
     // Add more items as needed
   ];
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  isNavbarOpen = false;
+  isIconShow = false;
+  isSettingBarOpen= false;
+  
+  openNav() {
+    this.isNavbarOpen = !this.isNavbarOpen;
+    this.showIcone();
   }
+  
+  showIcone(){
+    this.isIconShow =true;
+  }
+  
+  openSetting(){
+    this.isSettingBarOpen = !this.isSettingBarOpen;
+  }
+  
+  
+
+  toggleStyle(event: any) {
+    const divElement = event.target.closest('.custom-box'); 
+  
+    
+    // Toggle styles
+    if (divElement.style.backgroundColor === 'rgb(0, 26, 114)') { // if it's already the '001A72'
+      divElement.style.backgroundColor = 'white';
+      divElement.style.color = '#001A72';
+    } else {
+      divElement.style.backgroundColor = '#001A72';
+      divElement.style.color = 'white';
+    }
+  }
+
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+    console.log('Menu Open State:', this.menuOpen); // Debugging
+  }
+
+ 
+
+  
 }
 

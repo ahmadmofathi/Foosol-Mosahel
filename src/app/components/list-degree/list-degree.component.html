@@ -1,0 +1,140 @@
+<div class="background-container">
+    <div class="overlay"></div>
+  
+    <div class="icon-container left-icons align-items-center">
+      <img src="../../../assets/images/human.png" width="60px" height="60px" />
+      <div class="nav_icon">
+        <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
+      </div>
+    </div>
+  
+    <div class="icon-container center-icons align-items-center">
+      <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        كشف الدرجات
+      </h1>
+    </div>
+  
+    <!-- Icons on the right side -->
+    <div class="icon-container right-icons align-items-center">
+      <div class="nav_icon">
+        <img
+          src="../../../assets/images/settings.svg"
+          width="30px"
+          height="30px"
+          class="nav_icon"
+        />
+      </div>
+      <div class="nav_icon">
+        <img
+          src="../../../assets/images/home.svg"
+          width="30px"
+          height="30px"
+          class="nav_icon"
+        />
+      </div>
+    </div>
+  
+    <div class="custom-form">
+      <div class="my-form">
+          <div class="cotainer-fluid">
+              <div class="row">
+                  <div class="col-12 float-end" routerLink="/transfer">
+                      <button class="create-button float-end" >
+                          <i class="fa-solid fa-plus"></i> انشاء تحويل
+                      </button>
+                  </div>
+              </div>
+          </div>
+          
+  
+        <hr class="separator" />
+  
+        
+         
+        <div class="card-grid">
+          <div class="card" *ngFor="let card of cards">
+              <div class="overlay">
+  
+                  <div class="overlay-buttons">
+                      <button
+                        class="overlay-button"
+                        [ngClass]="{ active: card.activeButton === 'view' }"
+                        (click)="onButtonClick(card, 'view')"
+                        data-bs-toggle="modal"
+                        data-bs-target="#viewModal"
+                      >
+                        عرض
+                      </button>
+                      <button
+                        class="overlay-button"
+                        [ngClass]="{ active: card.activeButton === 'send' }"
+                        (click)="onButtonClick(card, 'send')"
+                      >
+                      pdf تصدير 
+                      </button>
+                    </div>
+  
+                    <img
+                    src="../../../assets/images/whiteCross.png"
+                    width="30px"
+                    height="30px"
+                    class="x-icon"
+                    (click)="toggleMenu(card)"
+                  />
+                  <div *ngIf="card.isMenuOpen" class="small-menu">
+                      <button
+                        (click)="menuAction('Delete')"
+                        class="me-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                      >
+                        <img
+                          src="../../../assets/images/trash-2.png"
+                          width="20px"
+                          height="20px"
+                        />
+                      </button>
+                      <button (click)="menuAction('Edit')" class="me-2">
+                        <img
+                          src="../../../assets/images/edit-4.png"
+                          width="20px"
+                          height="20px"
+                        />
+                      </button>
+                      <!-- <button>
+                        <img
+                          src="../../../assets/images/calendar-link.png"
+                          width="20px"
+                          height="20px"
+                        />
+                      </button> -->
+                    </div>
+  
+                  </div>
+            <!-- Top section: Number and Label -->
+            <div class="card-header">
+              <span class="card-number">{{ card.number }}</span>
+              <span class="card-label">{{ card.label }}</span>
+            </div>
+        
+            <!-- Center content: Main text -->
+            <div class="card-content">
+           الفترة الاولي
+            </div>
+        
+            <!-- Bottom section: Date label and input -->
+            <div class="card-footer">
+              <input type="date" id="date-{{ card.number }}" [(ngModel)]="card.date" />
+              <label for="date-{{ card.number }}">تاريخ البدء</label>
+            </div>
+          </div>
+        </div>
+        
+            
+  
+         
+    
+      </div>
+    </div>
+  </div>
+  

@@ -8,26 +8,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent {
 
-  signUpForm: FormGroup;
-   userType: string = 'student';
+  isNavbarOpen = false;
 
-   constructor(private fb: FormBuilder) {
-      this.signUpForm = this.fb.group({
-         fullName: ['', Validators.required],
-         countryCode: ['+966', Validators.required],
-         phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-         password: ['', [Validators.required, Validators.minLength(6)]],
-         confirmPassword: ['', Validators.required],
-         terms: [false, Validators.requiredTrue]
-      });
-   }
-
-   onSubmit() {
-      if (this.signUpForm.valid) {
-         console.log("Form Submitted", this.signUpForm.value);
-      } else {
-         console.log("Form is invalid");
-      }
-   }
-
+  openNav() {
+    this.isNavbarOpen = !this.isNavbarOpen;
+  }
+ 
 }

@@ -1,0 +1,250 @@
+<div
+  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height: 100%"
+>
+  <div class="top-nav">
+    <!-- Left Icons -->
+    <div class="left-icons">
+      <div class="nav_icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="nav_icon">
+        <i class="fa-regular fa-bell"></i>
+      </div>
+    </div>
+    <!-- Right Icons -->
+    <div class="right-icons">
+      <div class="nav_icon2">
+        <img
+          src="../../../assets/images/settings.svg"
+          width="30px"
+          height="30px"
+          class="nav-icon"
+        />
+      </div>
+      <div class="nav_icon2">
+        <img
+          src="../../../assets/images/home.svg"
+          width="30px"
+          height="30px"
+          class="nav-icon"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-form">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="header-container">
+          <!-- Left side: Buttons -->
+          <div class="left-buttons">
+            <button
+              id="addContractBtn"
+              class="button add-contract-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#createModal"
+              [ngClass]="{
+                active: addContractActive,
+                inactive: !addContractActive
+              }"
+              (click)="toggleAddContract()"
+            >
+              إنشاء ماده جديده <i class="fa-solid fa-plus"></i>
+            </button>
+            <button
+              id="exportPdfBtn"
+              class="button export-pdf-btn"
+              [ngClass]="{
+                active: !addContractActive,
+                inactive: addContractActive
+              }"
+              (click)="toggleExportPdf()"
+            >
+              تصدير PDF
+            </button>
+          </div>
+
+          <!-- Right side: Title and Search bar -->
+          <div class="right-content">
+            <div class="search-container">
+              <input
+                type="text"
+                placeholder="قم بالبحث هنا"
+                class="search-input"
+              />
+              <i class="fa-solid fa-search search-icon"></i>
+            </div>
+            <h2 class="title">المواد</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-form">
+      <div class="form-group">
+        <div class="table-container">
+          <table class="skills-table">
+            <thead>
+              <tr class="header-row">
+                <th>الاجراء</th>
+                <th>المستخدم <i class="fa-solid fa-sort"></i></th>
+                <th>تاريخ الانشاء <i class="fa-solid fa-sort"></i></th>
+                <th>المرحله <i class="fa-solid fa-sort"></i></th>
+                <th>اسم الصف <i class="fa-solid fa-sort"></i></th>
+                <th>اسم الماده <i class="fa-solid fa-sort"></i></th>
+                <th>رقم الماده <i class="fa-solid fa-sort"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="actions">
+                  <i
+                    class="ellipsis-btn fa-solid fa-ellipsis"
+                    (click)="showMenu()"
+                  ></i>
+
+                  <!-- Dropdown menu -->
+                  <div class="dropdown-menu" [class.open]="isMenuOpen">
+                    <button class="dropdown-item edit-btn">
+                      <i class="fa-solid fa-cog"></i> تعديل
+                    </button>
+                    <button class="dropdown-item delete-btn">
+                      <i class="fa-solid fa-trash"></i> حذف
+                    </button>
+                  </div>
+                </td>
+
+                <td>admin</td>
+
+                <td>2-11-2024</td>
+
+                <td>277</td>
+                <td>جده</td>
+                <td>جده</td>
+
+                <td>1</td>
+              </tr>
+              <tr>
+                <td class="actions">
+                  <!-- <button class="ellipsis-btn" (click)="showMenu()"> -->
+                  <i
+                    class="ellipsis-btn fa-solid fa-ellipsis"
+                    (click)="showMenu()"
+                  ></i>
+                </td>
+                <td>admin</td>
+
+                <td>2-11-2024</td>
+
+                <td>399</td>
+                <td>الرياض</td>
+                <td>جده</td>
+
+                <td>2</td>
+              </tr>
+              <tr>
+                <td class="actions">
+                  <i
+                    class="ellipsis-btn fa-solid fa-ellipsis"
+                    (click)="showMenu()"
+                  ></i>
+                </td>
+                <td>admin</td>
+
+                <td>2-11-2024</td>
+
+                <td>590</td>
+                <td>مكة المكرمة</td>
+                <td>جده</td>
+
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- <div class="custom-pagination">
+                  <button (click)="previousPage()" [disabled]="currentPage === 1">‹</button>
+                  <button *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage">{{ page }}</button>
+                  <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+                </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+
+<!-- Create Modal  -->
+
+<div
+  class="modal fade"
+  id="createModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          إضافه ماده جديده
+        </h1>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                      >الماده</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleFormControlInput1"
+                      placeholder="قم بكتابه اسم الماده"
+                    />
+                  </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label"
+                >المرحله</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="قم باختيار المرحله"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label"
+                >الصف</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="قم باختيار الصف"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          إلغاء
+        </button>
+        <button type="button" class="btn export-pdf-btn">اضافة</button>
+      </div>
+    </div>
+  </div>
+</div>

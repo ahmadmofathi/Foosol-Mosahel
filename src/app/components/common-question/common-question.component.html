@@ -1,0 +1,372 @@
+<div
+  style="
+    background-color: #f2f2f2;
+    padding: 0px 70px 70px 70px;
+    height: -webkit-fill-available;
+  "
+>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="top-nav">
+        <!-- Left Icons -->
+        <div class="left-icons">
+          <!-- <div class="nav_icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div> -->
+          <div class="nav_icon">
+            <i class="fa-regular fa-bell"></i>
+          </div>
+        </div>
+        <!-- Right Icons -->
+        <div class="right-icons">
+          <div class="right-content">
+            <h2 class="title">الاسئلة العشوائية</h2>
+          </div>
+
+          <div class="nav_icon2" (click)="openSetting()">
+            <img
+              src="../../../assets/images/settings.svg"
+              width="30px"
+              height="30px"
+              class="nav-icon"
+            />
+          </div>
+          <div class="nav_icon2" (click)="openNav()">
+            <img
+              src="../../../assets/images/home.svg"
+              width="30px"
+              height="30px"
+              class="nav-icon"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+        <button class="close-btn" (click)="openNav()">&times;</button>
+
+        <div class="nav-container">
+          <!-- Close Button -->
+
+          <!-- Home Icon Section -->
+          <div class="home-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/home-1.svg"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الرئيسية</span>
+              <!-- Move the span inside the circle -->
+            </div>
+          </div>
+
+          <!-- Other Navigation Icons -->
+          <div class="nav-items">
+            <div class="nav-item first-item" routerLink="/subscripeDetails">
+              <i class="">
+                <img
+                  src="../../assets/images/users-more.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>معلومات الاشتراك</span>
+            </div>
+            <div class="nav-item" routerLink="/bills">
+              <i class="">
+                <img
+                  src="../../assets/images/coin-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الفواتير</span>
+            </div>
+            <div class="nav-item" routerLink="/package">
+              <i class="">
+                <img
+                  src="../../assets/images/crown-2.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الباقات</span>
+            </div>
+            <div class="nav-item" routerLink="/pricing">
+              <i class="">
+                <img
+                  src="../../assets/images/coin-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>أسعار المواد</span>
+            </div>
+            <div class="nav-item" routerLink="/stages">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>المراحل</span>
+            </div>
+            <div class="nav-item" routerLink="/classroom">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الصفوف</span>
+            </div>
+            <div class="nav-item" routerLink="/material">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>المواد</span>
+            </div>
+            <div class="nav-item" routerLink="/questions">
+              <i class="">
+                <img
+                  src="../../assets/images/suitcase.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>البنك</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../assets/images/document-plus.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>توزيع المنهج</span>
+            </div>
+            <div class="nav-item" routerLink="/rating">
+              <i class="">
+                <img
+                  src="../../assets/images/offer.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> التقيمات</span>
+            </div>
+            <div class="nav-item" routerLink="/subscripe">
+              <i class="">
+                <img
+                  src="../../assets/images/location-med-2.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> المناطق</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../assets/images/screen-share.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> بطاقة الدرس</span>
+            </div>
+            <div class="nav-item" routerLink="/users">
+              <i class="">
+                <img
+                  src="../../assets/images/users-more.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> المستخدمين</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../assets/images/calendar-user.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> المهارات الاساسية</span>
+            </div>
+            <div class="nav-item" routerLink="/requests">
+              <i class="">
+                <img
+                  src="../../assets/images/like.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> طلبات الموافقة</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isSettingBarOpen">
+        <button class="closeSetting-btn" (click)="openSetting()">
+          &times;
+        </button>
+
+        <div class="settingNav-container">
+          <div class="setting-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/settingsBlue.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الاعدادات</span>
+              <!-- Move the span inside the circle -->
+            </div>
+          </div>
+
+          <div class="nav-items">
+            <div class="nav-item first-item" routerLink="/technical">
+              <i class="">
+                <img
+                  src="../../../assets/images/headphones.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الدعم الفني</span>
+            </div>
+
+            <div class="nav-item" routerLink="/permission">
+              <i class="">
+                <img
+                  src="../../../assets/images/shield-empty.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الصلاحيات</span>
+            </div>
+
+            <div class="nav-item" routerLink="/covenants">
+              <i class="">
+                <img
+                  src="../../../assets/images/list-left-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>العهود والمواثيق</span>
+            </div>
+
+            <div class="nav-item" routerLink="/policy">
+              <i class="">
+                <img
+                  src="../../../assets/images/list-left-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الشروط الاحكام</span>
+            </div>
+
+            <div class="nav-item" routerLink="/commonq">
+              <i class="">
+                <img
+                  src="../../../assets/images/question-circle.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الاسئلة الشائعه</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-form">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="header-container">
+          <!-- Left side: Buttons -->
+          <div class="left-buttons"></div>
+
+          <!-- Right side: Title and Search bar -->
+        </div>
+      </div>
+    </div>
+
+    <div class="my-form">
+      <div class="container">
+        <div class="card-center" style="margin-top: 30px">
+          <h4 style="font-weight: bolder">الاسئلة العشوائية</h4>
+          <div class="gray-box">
+            <div class="questions-container">
+              <!-- <h2>الأسئلة العشوائية</h2> -->
+
+              <div
+                class="question-item"
+                *ngFor="let question of questions; let i = index"
+              >
+                <div class="question-header" (click)="toggleAnswer(i)">
+                  <input
+                    [(ngModel)]="question.title"
+                    (click)="$event.stopPropagation()"
+                    class="question-title-input"
+                    placeholder="أدخل عنوان السؤال"
+                  />
+                  <img
+                    [src]="
+                      question.showAnswer
+                        ? '../../../assets/images/chevron-up.png'
+                        : '../../../assets/images/chevron-up(1).png'
+                    "
+                    alt="Toggle Answer"
+                    class="toggle-icon"
+                  />
+                </div>
+                <div *ngIf="question.showAnswer" class="question-body">
+                    <ckeditor
+                    [(ngModel)]="question.answer"
+                    [editor]="Editor"
+                    [config]="editorConfig"
+                  ></ckeditor>
+                </div>
+              </div>
+
+              <button class="action-button" (click)="addNewQuestion()">
+                اضف سؤال جديد
+              </button>
+              <!-- <button class="save-btn" (click)="saveQuestions()">حفظ المعلومات</button> -->
+            </div>
+          </div>
+          <button class="action-button" (click)="saveQuestions()">
+            حفظ المعلومات
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+
+<!-- Create Modal  -->

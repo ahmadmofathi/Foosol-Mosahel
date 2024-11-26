@@ -1,0 +1,491 @@
+.background-container {
+    position: relative;
+    /* Position context for child elements */
+    min-height: 100vh;
+    /* Set a smaller height */
+    display: flex;
+    /* For centering the form */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    overflow: hidden;
+    z-index: 0;
+    /* Prevent scrolling within this container */
+    /* background-image: url('../../../assets/images/back.jpg'); */
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: contain;
+    padding: 50px;
+    background-color: #F2F2F2;
+  
+  }
+  
+  
+  /* Top Navigation Bar */
+  .top-nav {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  }
+  
+  /* Left and Right Icons */
+  .left-icons,
+  .right-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .nav_icon {
+    color: #001A72;
+    font-size: large;
+    align-items: center;
+    display: flex;
+  }
+  
+  .nav-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  .nav_icon2 {
+    padding: 10px;
+    background-color: #001A72;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  
+  .my-form {
+    position: relative;
+    z-index: 2;
+    /* background-color: white; */
+    /* padding: 20px; */
+    /* border-radius: 30px; */
+    /* box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); */
+    height: auto;
+  }
+  
+  .custom-form {
+    width: auto;
+    min-width: 1000px;
+    border-top: 3px solid black;
+    position: relative;
+    z-index: 1;
+    position: relative;
+  }
+  
+  
+  .almarai-regular {
+    font-family: "Almarai", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  span,
+  h2,
+  button,
+  th,
+  td,
+  h1,
+  label,h4 {
+    font-family: "Almarai", serif;
+    font-weight: bolde;
+    font-style: normal;
+    font-size: medium;
+  }
+  
+  h6 {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  h3 {
+    font-family: "Almarai", serif;
+    font-weight: bolder;
+    font-style: normal;
+    font-size: 30px;
+  }
+  
+  
+  /* Right side */
+  .right-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Title */
+  .title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #001A72;
+    margin: 0;
+  }
+  
+  
+  /* Wrapper to hold the navigation */
+  .nav-wrapper {
+    position: fixed;
+    /* Fixed to stay within the viewport */
+    top: 20px;
+    /* Adjusted to add pixel values */
+    left: 0;
+    width: 100%;
+    /* Full width of the viewport */
+    z-index: 999;
+    /* Keep it on top */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    /* Vertically center */
+    overflow-x: visible;
+    /* Allow horizontal overflow if needed */
+    background: transparent;
+    /* Optional: make the wrapper background transparent */
+    padding: 10px 0;
+    /* Ensure the bar has some padding */
+  }
+  
+  /* Navigation Container */
+  .nav-container {
+    position: relative;
+    background-color: #fcf2bd;
+    /* Light yellow background */
+    border-radius: 15px;
+    width: auto;
+    /* Let the content dictate the width */
+    max-width: 70%;
+    /* Optional: Prevent it from getting too wide */
+    height: auto;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    /* Enable horizontal scrolling for icons */
+    padding: 10px 20px;
+    /* Add some padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow */
+    direction: rtl;
+    /* Keep the layout aligned for RTL */
+    margin-right: 50px;
+    margin-top: 10px;
+  }
+  
+  /* Close Button */
+  .close-btn {
+    z-index: 2;
+    position: absolute;
+    top: 5%;
+    right: 23px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    background-color: #ff0000;
+    /* Darker red on hover */
+  }
+  
+  /* Slide-In Animation */
+  
+  /* Home Icon Section */
+  
+  .home-icon {
+    position: absolute;
+    top: -35%;
+    right: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    /* Ensure it's above the navigation */
+  }
+  
+  /* Circle Styling */
+  .home-icon .circle,
+  .setting-icon .circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #fcf2bd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.6),
+      0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid white;
+    z-index: 11;
+    /* Keep it above other elements */
+  }
+  
+  .home-icon i,
+  .setting-icon i {
+    font-size: 32px;
+    color: #224273;
+  }
+  
+  
+  .home-icon span {
+    margin-top: 5px;
+    /* Adjust to position the text under the icon */
+    font-size: 14px;
+    font-family: 'AGA Mashq Bold', Arial, sans-serif;
+    color: #000;
+  }
+  
+  /* Navigation Items */
+  .nav-items {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    overflow-x: auto;
+    padding-right: 60px;
+  }
+  
+  .nav-item.first-item {
+    padding-right: 60px;
+    /* Extra padding for the first item */
+  }
+  
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+    font-family: 'AGA Mashq Bold', Arial, sans-serif;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+  }
+  
+  .nav-item.first-item {
+    padding-right: 60px;
+    /* Extra padding for the first item */
+  }
+  
+  .nav-item i {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #000;
+  }
+  
+  .nav-item span {
+    font-size: 12px;
+  }
+  
+  .nav-item:hover {
+    cursor: pointer;
+    color: #224273;
+    /* Highlight color */
+  }
+  
+  /* // Setting NAv */
+  
+  .setting-icon {
+    position: absolute;
+    top: -43%;
+    right: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  .settingNav-container {
+    position: relative;
+    background-color: #fcf2bd;
+    border-radius: 15px;
+    width: auto;
+    max-width: 40%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    padding: 10px 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    direction: rtl;
+    margin-right: 130px;
+    margin-top: 10px;
+  }
+  
+  .closeSetting-btn {
+    z-index: 2;
+    position: absolute;
+    top: 1%;
+    right: 105px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+ 
+  .container {
+    display: flex;
+    flex-direction: row-reverse; /* Places the chat section on the right */
+    /* height: 100vh; */
+  }
+  
+  .left-panel {
+    width: 30%;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .left-panel .search-bar {
+    padding: 10px;
+    /* border-bottom: 1px solid #ddd; */
+  }
+  
+  .left-panel .search-bar input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-top: 70px;
+  }
+  
+  .recent-chats {
+    overflow-y: auto;
+    flex-grow: 1;
+    direction:rtl;
+  }
+  
+  .recent-chat {
+    padding: 15px;
+    /* border-bottom: 1px solid #eee; */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .recent-chat img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .chat-window {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+  }
+  
+  .chat-header {
+    background-color: #DBDADA;
+    color: #000;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    border-bottom: 1px solid #ddd;
+    direction: rtl;
+ 
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .chat-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .chat-body {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #F1F4F1;
+  }
+  
+  .message {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .message.sent .bubble {
+    background-color: #dcf8c6;
+    margin-left: auto;
+  }
+  
+  .message.received .bubble {
+    background-color: #fff;
+    margin-right: auto;
+  }
+  
+  .bubble {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+  }
+  
+  .timestamp {
+    font-size: 0.75em;
+    color: #999;
+    margin-top: 5px;
+  }
+  
+  .chat-input {
+    background-color: #f0f0f0;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd;
+  }
+  
+  .chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .chat-input button {
+    margin-left: 10px;
+    background-color: #075e54;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

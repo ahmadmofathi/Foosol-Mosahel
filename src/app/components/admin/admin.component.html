@@ -1,33 +1,30 @@
 <!-- Full-page background container -->
 <div class="full-background">
 
-    <!-- Centered overlay container with image background and form -->
-    <div class="overlay-container">
-      
-      <!-- Background Image Section -->
-      <div class="image-background">
-        <h2 class="image-title">تسجيل الدخول إلى السيستم</h2>
+  <!-- Centered overlay container with image background and form -->
+  <div class="overlay-container">
+
+    <!-- Background Image Section -->
+    <div class="image-background">
+      <h2 class="image-title">تسجيل الدخول إلى السيستم</h2>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+      <img src="../../../assets/images/log.png" alt="Logo" class="logo" width="120px" height="100px" />
+
+      <div class="role-selector">
+        <button [ngClass]="{'active': role === 'supervisor'}" (click)="setRole('supervisor')">المشرف</button>
+        <button [ngClass]="{'active': role === 'admin'}" (click)="setRole('admin')">المدير</button>
       </div>
-      
-      <!-- Form Section -->
-      <div class="form-container">
-        <img src="../../../assets/images/log.png" alt="Logo" class="logo" width="120px" height="100px" />
-  
-        <div class="role-selector">
-          <button [ngClass]="{'active': role === 'supervisor'}" (click)="setRole('supervisor')">المشرف</button>
-          <button [ngClass]="{'active': role === 'admin'}" (click)="setRole('admin')">المدير</button>
-        </div>
-  
-        <form (ngSubmit)="onSubmit()">
-          <!-- <input type="text" placeholder="رمز الدخول" [(ngModel)]="formData.accessCode" name="accessCode" /> -->
-           <label class="custom-label">البريد الالكتروني</label>
-          <input type="email" placeholder="البريد الإلكتروني" [(ngModel)]="formData.email" name="email" />
-          <label class="custom-label">كلمة السر</label>
-          <input type="password" placeholder="**********" [(ngModel)]="formData.password" name="password" />
-          <!-- <input type="password" placeholder="تأكيد كلمة السر" [(ngModel)]="formData.confirmPassword" name="confirmPassword" /> -->
-          <button type="submit" class="submit-button mt-4">تسجيل الدخول</button>
-        </form>
-      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        <label class="custom-label">البريد الالكتروني</label>
+        <input type="email" placeholder="البريد الإلكتروني" [(ngModel)]="formData.email" name="email" />
+        <label class="custom-label">كلمة السر</label>
+        <input type="password" placeholder="**********" [(ngModel)]="formData.password" name="password" />
+        <button type="submit" class="submit-button mt-4">تسجيل الدخول</button>
+      </form>
     </div>
   </div>
-  
+</div>

@@ -467,6 +467,84 @@
         ></ckeditor>
       </div>
 
+      <div>
+        <!-- Teacher Section -->
+        <h2>Teacher's Input</h2>
+        <div class="input-container">
+          <!-- Group Box -->
+          <div class="group-box">
+           
+            <!-- Group Name Input -->
+            <div class="group-name">
+              <input
+                type="text"
+                id="categoryName"
+                [(ngModel)]="newCategoryName"
+                placeholder="اكتب اسم المجموعة"
+              />
+            </div>
+            <!-- Matching Items Input -->
+            <div class="group-items">
+              <textarea
+                id="categoryItems"
+                [(ngModel)]="newCategoryItems"
+                placeholder="اكتب الاجابات المتطابقة"
+              ></textarea>
+            </div>
+            <!-- Add Category Button -->
+            <button (click)="addCategory()">Add Category</button>
+          </div>
+        </div>
+
+      
+        <!-- Student Section -->
+        
+    
+      </div>
+      
+        
+        <hr />
+        
+        <!-- Display added categories -->
+        <h2>Categories and Items</h2>
+        <div *ngFor="let category of categories">
+          <h3>{{ category.name }}</h3>
+          <ul>
+            <li *ngFor="let item of category.items">
+              {{ item.value }}
+            </li>
+          </ul>
+        </div>
+
+        
+      </div>
+      <h2>Student's Sorting Area</h2>
+  <div class="student-container">
+    <div
+      *ngFor="let category of categories"
+      class="student-box"
+      [ngStyle]="{ border: '2px solid ' + category.color }"
+    >
+      <h3>{{ category.name }}</h3>
+      <ul>
+        <li *ngFor="let item of category.items">
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="item.selected"
+            />
+            {{ item.value }}
+          </label>
+        </li>
+      </ul>
+    </div>
+      
+    <button (click)="checkAnswerCat()">Check Answers</button>
+  <div>
+    <p>Score: {{ score }} / {{ total }}</p>
+  </div>
+      
+
       
 </div>
     <!-- End Sorting Question  -->

@@ -1,0 +1,264 @@
+<div class="background-container">
+    <div class="overlay"></div>
+    <div class="icon-container left-icons align-items-center pb-3">
+      <img src="../../../assets/images/human.png" width="60px" height="60px" >
+      <div class="nav_icon">
+        <img src="../../../assets/images/bell.svg" width="30px" height="30px">
+      </div>
+    </div>
+
+    <div class="icon-container center-icons align-items-center  pb-3">
+        <h1>الاختبارات</h1>
+    </div>
+  
+    <!-- Icons on the right side -->
+    <div class="icon-container right-icons align-items-center  pb-3" >
+      <div class="nav_icon">
+        <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
+      </div>
+      <div class="nav_icon" (click)="toggleMenu()">
+        <img src="../../../assets/images/home.svg" width="30px" height="30px" class="nav_icon">
+      </div>
+    </div>
+  <!-- Horizontal menu that is shown or hidden based on the boolean value -->
+  <div class="horizontal-menu" *ngIf="isMenuVisible">
+    <ul>
+     
+      <li routerLink="/profile"><i class="fa-solid fa-user" ></i> ملف الانجاز</li>
+      <li routerLink="/student"><i class="fa-solid fa-cog" ></i> الطلبه</li>
+      <li routerLink="/teacherDash"><i class="fa-solid fa-sign-out-alt" ></i> السبوره</li>
+      <li routerLink="/paper"><i class="fa-solid fa-sign-out-alt" ></i> ورقه عمل</li>
+      <li routerLink="/exam"><i class="fa-solid fa-sign-out-alt" ></i>الاختبار</li>
+
+
+
+    </ul>
+  </div>
+
+  
+    <div class="custom-form">
+      <div class="my-form">
+        <div class="form-group container">
+            <div class="header">
+                <div class="header-item">
+                    <span>المادة</span>
+                    <p class="subject mt-2">توحيد</p>
+                </div>
+                <div class="header-item">
+                    <span>الفصل</span>
+                    <div class="terms ">
+                        <div class="term mt-2" *ngFor="let term of terms">{{ term }}</div>
+                    </div>
+                </div>
+                <div class="header-item">
+                    <span>الصف</span>
+                    <p class="class-level mt-2">الاول متوسط</p>
+                </div>
+           
+            </div>
+            <div class="add-test float-end">
+              <span class="mytitle">إجمالي الاختبارات </span>
+              <br>
+              <span class="test-count">24</span>
+            </div>
+            <button class="add-test-btn mb-3" data-bs-toggle="modal" data-bs-target="#exam">+ إضافة اختبار</button>
+            <!-- Card Items -->
+            <div *ngFor="let test of tests; let i = index" class="card-container">
+              <span class="number-badge">{{ i + 1 }}</span>
+              <div class="card-header">
+                  <!-- Title and list icon on the left side -->
+                  <div class="title-with-icon">
+                      <span class="item-title">{{ test.title }}</span>
+                      
+                      <button class="list-icon">
+                          <img src="../../assets/images/list-left.png" height="30px" width="30px">
+                      </button>
+                  </div>
+          
+                  <!-- Icons on the right side (add question, settings, A icon) -->
+                  <div class="icons mt-3">
+                      <button class="icon-btn">+ إضافة أسئلة</button>
+          
+                      <div class="btn-group" (click)="toggleDropdown2(i)">
+                          <button class="icon-btn2 dropdown-toggle no-arrow">
+                              <img src="../../assets/images/settingsBl.svg" height="20px" width="20px">
+                          </button>
+                          
+                          <!-- Custom Dropdown Menu -->
+                          <ul *ngIf="isDropdownOpen[i]" class="dropdown-menu">
+                            <li style="border-bottom:1px solid black"><a class="dropdown-item">معاينة الاختبار
+                                <i class="fa-regular fa-eye"></i>
+                              </a></li>
+                              <li><a class="dropdown-item">
+                                تعديل <i class="fa-solid fa-pen-to-square"></i> </a></li>
+                              <li><a class="dropdown-item" >حذف <i class="fa-solid fa-trash"></i></a></li>
+                            
+                          </ul>
+                      </div>
+          
+                    
+                  </div>
+              </div>
+              <div class="card-body">
+                  <span class="item-info">إجمالي الدرجات: {{ test.score }}</span>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+  <!-- Exam Modal -->
+<div
+class="modal fade"
+id="exam"
+data-bs-backdrop="static"
+data-bs-keyboard="false"
+tabindex="-1"
+aria-labelledby="staticBackdropLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content outer-container">
+    <div class="inner-container">
+      <div class="modal-header">
+        <h1 class="modal-title" id="staticBackdropLabel">
+        اضافة إختبار
+        </h1>
+        <button
+        type="button"
+        class="close closebtn"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        >
+          <img src="../../../assets/images/close.png" width="40px">
+        </button>
+      </div>
+
+      <div class="modal-body full-width-box">
+        <div class="container" style="padding-top:0;">
+         
+          <div class="row">
+            <form class="w-100 mt-4 ">
+              
+              <div class="row mb-3 justify-content-center">
+              
+                <div class="col-md-12 text-right mb-2">
+                  <label>عنوان الاختبار</label>
+                  <input type="text" class="form-control rounded-pill" />
+                </div>
+
+                <div class="col-md-12 text-right">
+                  <label>اجمالي الدرجات</label>
+                  <input type="text" class="form-control rounded-pill" />
+                </div>
+
+                 <!-- Switch Container for تحديد وقت -->
+                 <!-- <div class="col-md-12 switch-container">
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                  <span class="switch-label">تحديد وقت</span>
+                </div> -->
+
+
+                <!-- <div class="col-md-12 switch-container">
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                  <span class="switch-label ">نشر تلقائي</span>
+                </div> -->
+
+  
+              </div>
+          
+
+            </form> 
+          </div> 
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button class="btn custombtn">حفظ</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Student Modal -->
+
+<div
+class="modal fade"
+id="student"
+data-bs-backdrop="static"
+data-bs-keyboard="false"
+tabindex="-1"
+aria-labelledby="staticBackdropLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg">
+  <div class="modal-content outer-container">
+    <div class="inner-container">
+      <div class="modal-header">
+        <h1 class="modal-title" id="staticBackdropLabel">
+        مشاركة اختبار مع طلاب
+        </h1>
+        <button
+        type="button"
+        class="close closebtn"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        >
+          <img src="../../../assets/images/close.png" width="40px">
+        </button>
+      </div>
+
+   
+
+      <div class="modal-body ">
+        <div class=" mb-3">
+          <button class="btn custombtn2">أرسال</button>
+        </div>
+        <div class="students-list">
+          <div class="student" *ngFor="let student of students; let i = index">
+            <div >
+              <span class=" me-1" (click)="toggleDropdown(i)" > </span><span (click)="toggleDropdown(i)"> </span>
+            </div>
+        
+            <div class="student-info" (click)="toggleDropdown(i)">
+              <span class="student-name">{{ student.name }}</span>
+        
+              <img
+                [src]="student.image"
+                alt="Student Image"
+                class="student-image"
+              />
+        
+           
+        
+              <div class="student-icons">
+                <span class="badge">
+                  <input type="checkbox">
+                </span>
+              </div>
+            </div>
+    
+    
+          </div>
+        </div>
+        
+      </div>
+
+   
+    </div>
+  </div>
+</div>
+</div>

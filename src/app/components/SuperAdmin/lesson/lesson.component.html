@@ -1,254 +1,516 @@
-<div class="background-container">
-  <!-- <div class="overlay"></div> -->
+<div
 
-  <div class="icon-container left-icons align-items-center">
-    <img src="../../../assets/images/human.png" width="60px" height="60px" />
-    <div class="nav_icon">
-      <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
+  style="
+    background-color: #f2f2f2;
+    padding: 0px 70px 70px 70px;
+   
+  "
+>
+  <!-- <div class="container-fluid"> -->
+    <div class="row">
+      <div class="top-nav">
+        <!-- Left Icons -->
+        <div class="left-icons">
+          <!-- <div class="nav_icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div> -->
+          <div class="nav_icon">
+            <i class="fa-regular fa-bell"></i>
+          </div>
+        </div>
+        <!-- Right Icons -->
+        <div class="right-icons" style="margin-top: 30px;">
+          <div class="right-content">
+            <h2 class="title">تحضير بطاقة الدرس</h2>
+          </div>
+
+          <div class="nav_icon2" (click)="openSetting()">
+            <img
+              src="../../../assets/images/settings.svg"
+              width="30px"
+              height="30px"
+              class="nav-icon"
+            />
+          </div>
+          <div class="nav_icon2" (click)="openNav()">
+            <img
+              src="../../../assets/images/home.svg"
+              width="30px"
+              height="30px"
+              class="nav-icon"
+            />
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+        <button class="close-btn" (click)="openNav()">&times;</button>
+
+        <div class="nav-container">
+          <!-- Close Button -->
+
+          <!-- Home Icon Section -->
+          <div class="home-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/home-1.svg"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الرئيسية</span>
+              <!-- Move the span inside the circle -->
+            </div>
+          </div>
+
+          <!-- Other Navigation Icons -->
+          <div class="nav-items">
+            <div class="nav-item first-item" routerLink="/subscripeDetails">
+              <i class="">
+                <img
+                  src="../../assets/images/users-more.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>معلومات الاشتراك</span>
+            </div>
+            <div class="nav-item" routerLink="/bills">
+              <i class="">
+                <img
+                  src="../../assets/images/coin-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الفواتير</span>
+            </div>
+            <div class="nav-item" routerLink="/package">
+              <i class="">
+                <img
+                  src="../../assets/images/crown-2.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الباقات</span>
+            </div>
+            <div class="nav-item" routerLink="/pricing">
+              <i class="">
+                <img
+                  src="../../assets/images/coin-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>أسعار المواد</span>
+            </div>
+            <div class="nav-item" routerLink="/stages">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>المراحل</span>
+            </div>
+            <div class="nav-item" routerLink="/classroom">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الصفوف</span>
+            </div>
+            <div class="nav-item" routerLink="/material">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>المواد</span>
+            </div>
+            <div class="nav-item" routerLink="/questions">
+              <i class="">
+                <img
+                  src="../../assets/images/suitcase.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>البنك</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../assets/images/document-plus.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>توزيع المنهج</span>
+            </div>
+            <div class="nav-item" routerLink="/rating">
+              <i class="">
+                <img
+                  src="../../assets/images/offer.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> التقيمات</span>
+            </div>
+            <div class="nav-item" routerLink="/subscripe">
+              <i class="">
+                <img
+                  src="../../assets/images/location-med-2.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> المناطق</span>
+            </div>
+            <div class="nav-item" routerLink="/lessons">
+              <i class="">
+                <img
+                  src="../../assets/images/screen-share.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> بطاقة الدرس</span>
+            </div>
+            <div class="nav-item" routerLink="/users">
+              <i class="">
+                <img
+                  src="../../assets/images/users-more.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> المستخدمين</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../assets/images/calendar-user.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> المهارات الاساسية</span>
+            </div>
+            <div class="nav-item" routerLink="/requests">
+              <i class="">
+                <img
+                  src="../../assets/images/like.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span> طلبات الموافقة</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="icon-container center-icons align-items-center pb-3">
-    <h1 class="header-title">تحضير بطاقة درس</h1>
-  </div>
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isSettingBarOpen">
+        <button class="closeSetting-btn" (click)="openSetting()">
+          &times;
+        </button>
 
-  <!-- Icons on the right side -->
-  <div class="icon-container right-icons align-items-center">
-    <div class="nav_icon">
-      <img
-        src="../../../assets/images/settings.svg"
-        width="30px"
-        height="30px"
-        class="nav_icon"
-      />
-    </div>
-    <div class="nav_icon" (click)="toggleMenu()">
-      <img
-        src="../../../assets/images/home.svg"
-        width="30px"
-        height="30px"
-        class="nav_icon"
-      />
-    </div>
-  </div>
-
-  <!-- Horizontal menu that is shown or hidden based on the boolean value -->
-  <div class="horizontal-menu" *ngIf="isMenuVisible">
-    <ul>
-      <li routerLink="/profile">
-        <i class="fa-solid fa-user"></i> ملف الانجاز
-      </li>
-      <li routerLink="/student"><i class="fa-solid fa-cog"></i> الطلبه</li>
-      <li routerLink="/teacherDash">
-        <i class="fa-solid fa-sign-out-alt"></i> السبوره
-      </li>
-      <li routerLink="/paper">
-        <i class="fa-solid fa-sign-out-alt"></i> ورقه عمل
-      </li>
-      <li routerLink="/exam">
-        <i class="fa-solid fa-sign-out-alt"></i>الاختبار
-      </li>
-    </ul>
-  </div>
-
-  <div class="custom-form">
-    <div class="my-form">
-      <div class="form-group">
-        <div class="container">
-          <div
-            class="row header"
-            style="justify-content: center; align-items: center"
-          >
-            <div class="col-md-1">
-              <i
-                class="fa-solid fa-bag-shopping"
-                style="
-                  padding: 10px;
-                  color: #fff;
-                  background-color: #001a72;
-                  border-radius: 50%;
-                "
-              ></i>
-            </div>
-            <h3 class="col-md-11">الماده</h3>
-          </div>
-        </div>
-
-        <div class="row payment-methods">
-          <div class="col-md-1 custom-box-2">
-            <div class="container">
-              <div class="row">
-                <i class="fa-solid fa-angle-left"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>احياء</h6>
-              </div>
+        <div class="settingNav-container">
+          <div class="setting-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/settingsBlue.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الاعدادات</span>
+              <!-- Move the span inside the circle -->
             </div>
           </div>
 
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>اللغة العربية</h6>
-              </div>
+          <div class="nav-items">
+            <div class="nav-item first-item" routerLink="/technical">
+              <i class="">
+                <img
+                  src="../../../assets/images/headphones.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الدعم الفني</span>
             </div>
-          </div>
 
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>توحيد</h6>
-              </div>
+            <div class="nav-item" routerLink="/permission">
+              <i class="">
+                <img
+                  src="../../../assets/images/shield-empty.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الصلاحيات</span>
             </div>
-          </div>
-          <div class="col-md-1 custom-box-2">
-            <div class="container">
-              <div class="row">
-                <i class="fa-solid fa-angle-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="container">
-          <div
-            class="row header"
-            style="justify-content: center; align-items: center"
-          >
-            <div class="col-md-1">
-              <i
-                class="fa-solid fa-bag-shopping"
-                style="
-                  padding: 10px;
-                  color: #fff;
-                  background-color: #001a72;
-                  border-radius: 50%;
-                "
-              ></i>
+            <div class="nav-item" routerLink="/covenants">
+              <i class="">
+                <img
+                  src="../../../assets/images/list-left-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>العهود والمواثيق</span>
             </div>
-            <h3 class="col-md-11">المرحلة</h3>
-          </div>
-        </div>
 
-        <div class="row payment-methods">
-          <div class="col-md-1 custom-box-2">
-            <div class="container">
-              <div class="row">
-                <i class="fa-solid fa-angle-left"></i>
-              </div>
+            <div class="nav-item" routerLink="/policy">
+              <i class="">
+                <img
+                  src="../../../assets/images/list-left-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الشروط الاحكام</span>
             </div>
-          </div>
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>ثانوي</h6>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>متوسط</h6>
-              </div>
+            <div class="nav-item" routerLink="/commonq">
+              <i class="">
+                <img
+                  src="../../../assets/images/question-circle.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الاسئلة الشائعه</span>
             </div>
           </div>
-
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>إبتدائي</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-1 custom-box-2">
-            <div class="container">
-              <div class="row">
-                <i class="fa-solid fa-angle-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div
-            class="row header"
-            style="justify-content: center; align-items: center"
-          >
-            <div class="col-md-1">
-              <i
-                class="fa-solid fa-bag-shopping"
-                style="
-                  padding: 10px;
-                  color: #fff;
-                  background-color: #001a72;
-                  border-radius: 50%;
-                "
-              ></i>
-            </div>
-            <h3 class="col-md-11">الصف</h3>
-          </div>
-        </div>
-
-        <div class="row payment-methods" style="border-bottom: none">
-          <div class="col-md-1 custom-box-2">
-            <div class="container">
-              <div class="row">
-                <i class="fa-solid fa-angle-left"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>ثالثة متوسط</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>أولي متوسط</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>ثانية متوسط</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-1 custom-box-2">
-            <div class="container">
-              <div class="row">
-                <i class="fa-solid fa-angle-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- routerLink="/prepExamTeacher" -->
-        <div class="div-button mt-4">
-          <button
-            class="own-btn"
-            style="font-weight: bold; font-size: large; padding: 5px 70px"
-            data-bs-toggle="modal" data-bs-target="#Edit"
-        
-          >
-            عرض
-          </button>
         </div>
       </div>
     </div>
   </div>
+
+  <hr class="seperator">
+
+  <div class="custom-form container">
+    <div class="my-form">
+      <div class="form-group">
+
+
+      <div class="container">
+        <div
+          class="row header"
+          style="justify-content: center; align-items: center"
+        >
+          <div class="col-md-1">
+            <i
+              class="fa-solid fa-bag-shopping"
+              style="
+                padding: 10px;
+                color: #fff;
+                background-color: #001a72;
+                border-radius: 50%;
+              "
+            ></i>
+          </div>
+          <h3 class="col-md-11">الماده</h3>
+        </div>
+      </div>
+
+      <div class="row payment-methods">
+        <div class="col-md-1 custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-left"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>احياء</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>اللغة العربية</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>توحيد</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1 custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div
+          class="row header"
+          style="justify-content: center; align-items: center"
+        >
+          <div class="col-md-1">
+            <i
+              class="fa-solid fa-bag-shopping"
+              style="
+                padding: 10px;
+                color: #fff;
+                background-color: #001a72;
+                border-radius: 50%;
+              "
+            ></i>
+          </div>
+          <h3 class="col-md-11">المرحلة</h3>
+        </div>
+      </div>
+
+      <div class="row payment-methods">
+        <div class="col-md-1 custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-left"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>ثانوي</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>متوسط</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>إبتدائي</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1 custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div
+          class="row header"
+          style="justify-content: center; align-items: center"
+        >
+          <div class="col-md-1">
+            <i
+              class="fa-solid fa-bag-shopping"
+              style="
+                padding: 10px;
+                color: #fff;
+                background-color: #001a72;
+                border-radius: 50%;
+              "
+            ></i>
+          </div>
+          <h3 class="col-md-11">الصف</h3>
+        </div>
+      </div>
+
+      <div class="row payment-methods" style="border-bottom: none">
+        <div class="col-md-1 custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-left"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>ثالثة متوسط</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>أولي متوسط</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <div class="container">
+            <div class="row">
+              <h6>ثانية متوسط</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1 custom-box-2">
+          <div class="container">
+            <div class="row">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="div-button mt-4">
+        <button
+          class="own-btn"
+          style="font-weight: bold; font-size: large; padding: 5px 70px"
+          data-bs-toggle="modal" data-bs-target="#Edit"
+      
+        >
+          عرض
+        </button>
+      </div>
+
+     
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
 </div>
+
+<!-- Create Modal  -->
+
 
 <!-- Modal -->
 

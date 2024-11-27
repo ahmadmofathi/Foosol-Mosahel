@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-users',
@@ -14,22 +14,44 @@ export class UsersComponent {
     // Add more data as needed
   ];
   
+  isMenuOpen: { [key: number]: boolean } = {};
+  elements: any[] = [];
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const menus = document.querySelectorAll('.dropdown-menu');
+    const buttons = document.querySelectorAll('.ellipsis-btn');
+
+    let clickedInside = false;
+    menus.forEach((menu, index) => {
+      if (menu.contains(target) || buttons[index]?.contains(target)) {
+        clickedInside = true;
+      }
+    });
+
+    if (!clickedInside) {
+      this.regions.forEach(region => (region.isMenuOpen = false));
+    }
+  }
+
+  showMenu(index: number): void {
+    this.regions.forEach((region, i) => {
+      region.isMenuOpen = i === index ? !region.isMenuOpen : false;
+    });
+  }
+
+
   toggleMenu(item: any) {
     this.regions.forEach((region) => (region.isMenuOpen = false));
     item.isMenuOpen = !item.isMenuOpen;
   }
 
-  isMenuOpen: boolean = false;
 
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
-    // Add a global event listener when the component is initialized
-    this.renderer.listen('document', 'click', (event: Event) => {
-      if (!this.elRef.nativeElement.contains(event.target)) {
-        this.isMenuOpen = false;
-      }
-    });
+  
   }
 
   ngOnDestroy() {
@@ -37,10 +59,6 @@ export class UsersComponent {
     this.renderer.listen('document', 'click', () => {});
   }
 
-  // Function to toggle the dropdown menu
-  showMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
 
   currentPage = 1;
 totalPages = 10; // Replace with the actual total pages
@@ -81,8 +99,8 @@ toggleExportPdf() {
   this.addContractActive = false;  // Make "إنشاء عقد جديد" inactive
 }
 
-status1 = 'مفعل'; // Default value for the first row
-  status2 = 'معطل'; // Default value for the second row
+
+
 
   updateStatusColor(): void {
   }
@@ -98,5 +116,20 @@ openNav() {
 showIcone(){
   this.isIconShow =true;
 }
+
+dropdownOpen: boolean = false;
+status1: string = 'مفعل'; // Default selected option
+options: string[] = ['مفعل', 'معطل'];
+hoveredOption: string | null = null;
+
+toggleDropdown() {
+  this.dropdownOpen = !this.dropdownOpen;
+}
+
+selectOption(option: string) {
+  this.status1 = option;
+  this.dropdownOpen = false;
+}
+
 
 }

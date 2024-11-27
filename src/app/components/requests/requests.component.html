@@ -1,5 +1,5 @@
 <div
-  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height: 100%"
+  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; "
 >
 <div class="container-fluid">
   <div class="row">
@@ -300,7 +300,38 @@
                   </div>
                 </td>
 
-                <td>admin</td>
+                <td style="justify-content: center; display: flex;">
+                  <div
+                    class="custom-dropdown"
+                    (click)="toggleDropdown()"
+                    [class.open]="dropdownOpen"
+                  >
+                    <div
+                      class="selected-option"
+                      [ngStyle]="{
+                        color: status1 === 'مفعل' ? '#28a745' : '#e73232'
+                      }"
+                    >
+                      <i class="fa-solid fa-chevron-down"></i>
+                      <!-- Down arrow -->
+                      {{ status1 }}
+                    </div>
+                    <ul class="dropdown-options" *ngIf="dropdownOpen">
+                      <li
+                        *ngFor="let option of options"
+                        (click)="selectOption(option)"
+                        [ngStyle]="{
+                          color: option === 'مفعل' ? '#28a745' : '#e73232'
+                        }"
+                        [class.hovered]="hoveredOption === option"
+                        (mouseenter)="hoveredOption = option"
+                        (mouseleave)="hoveredOption = null"
+                      >
+                        {{ option }}
+                      </li>
+                    </ul>
+                  </div>
+                </td>
 
                 <td>2-11-2024</td>
                 <td>

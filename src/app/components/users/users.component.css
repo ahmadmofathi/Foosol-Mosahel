@@ -475,39 +475,7 @@
     color: #667085;
   }
   
-  .custom-pagination {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    gap: 8px;
-  }
-  
-  .custom-pagination button {
-    background-color: transparent;
-    border: none;
-    color: #224273;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 50%;
-    transition: background-color 0.2s;
-  }
-  
-  .custom-pagination button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .custom-pagination .active {
-    font-weight: bold;
-    background-color: #224273;
-    color: #ffffff;
-  }
-  
-  .custom-pagination button:disabled {
-    color: #c0c0c0;
-    cursor: not-allowed;
-  }
-  
+
   .modal-body ,.modal-footer ,.modal-header {
     border: none; /* Removes the border */
   }
@@ -558,7 +526,7 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   display: flex;
   /* align-items: center; */
@@ -658,3 +626,146 @@
    color: #224273; /* Highlight color */
  }
  
+  /* Dropdown container */
+  .custom-dropdown {
+    position: relative;
+    /* width: 100%; */
+    border: 1px solid #001A72;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* padding: 5px; */
+    text-align: center;
+  }
+  
+  /* Selected option */
+  .selected-option {
+    padding: 5px;
+  }
+  
+  /* Dropdown options list */
+  .dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    /* width: 100%; */
+    width: 100%;
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+  }
+  
+  /* Individual options */
+  .dropdown-options li {
+    padding: 5px;
+    transition: background-color 0.2s ease;
+    
+  }
+  
+  /* Hover effect */
+  .dropdown-options li.hovered {
+    background-color: rgba(240, 240, 240, 0.8); /* Light gray with opacity */
+  }
+  
+  .selected-option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align text and arrow to the left */
+    gap: 10px; /* Space between arrow and text */
+  }
+  
+   
+  
+.form-group{
+  min-height: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-pagination {
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
+  display: flex;
+  gap: 5px;
+}
+
+.custom-pagination button {
+  background-color: transparent;
+  border: none;
+  color: #224273;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+
+.custom-pagination .active {
+  font-weight: bold;
+  background-color: #224273;
+  color: #ffffff;
+}
+
+.custom-pagination button:disabled {
+  color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+.custom-pagination{
+  justify-content: end;
+  padding: 20px 20px;
+  font-size: small;
+}
+.custom-pagination button{
+  border-radius: 5px;
+  background-color: #dedede;
+  font-size: small;
+}
+
+.modal-body ,.modal-footer ,.modal-header {
+  border: none; /* Removes the border */
+}
+/* start here */
+.form-group{
+  min-height: 500px;
+  position: relative;
+  /* Allow the pagination to be positioned relative to this container */
+  display: flex;
+  flex-direction: column;
+}
+.modal-title{
+  margin: 0px;
+  font-weight:bold;
+  font-size: large;
+  color: #001A72;
+  float: right;
+}
+.modal-header{
+  align-items: center;
+  justify-content: end;
+}
+.modal-body{
+  padding: 0rem 1rem;
+}
+.form-label{
+  text-align: end;
+}
+.form-control{
+  text-align: end;
+  border: 1px solid #001A72;
+}
+.btn-secondary{
+  color: #001A72;
+  background-color: #dedede;
+  border: none;
+}

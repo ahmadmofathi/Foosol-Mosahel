@@ -639,7 +639,7 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   display: flex;
   /* align-items: center; */
@@ -781,7 +781,7 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   display: flex;
   justify-content: center;

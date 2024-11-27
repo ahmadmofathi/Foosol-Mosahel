@@ -32,4 +32,11 @@ export class ListDegreeComponent {
     // Add custom logic for each action here (e.g., opening modals, handling downloads, etc.)
   }
 
+  buttons: string[] = ['كشف الحضور', 'كشف السلوكيات', 'كشف التفاعل', 'كشف المتابعة'];
+  activeButton: number = 3; // Default active button index (for example, the last button)
+
+  setActiveButton(index: number): void {
+    this.activeButton = index;
+  }
+
 }

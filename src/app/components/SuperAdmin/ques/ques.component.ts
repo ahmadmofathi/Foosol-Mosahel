@@ -9,9 +9,22 @@ export class QuesComponent {
 
   isMenuVisible: boolean = false; // Initially hidden
 
-  toggleMenu() {
-    this.isMenuVisible = !this.isMenuVisible; // Toggle the menu visibility
-  }
+  isNavbarOpen = false;
+isIconShow = false;
+isSettingBarOpen= false;
+
+openNav() {
+  this.isNavbarOpen = !this.isNavbarOpen;
+  this.showIcone();
+}
+
+showIcone(){
+  this.isIconShow =true;
+}
+
+openSetting(){
+  this.isSettingBarOpen = !this.isSettingBarOpen;
+}
 
 
   cards = Array(9).fill({});

@@ -700,4 +700,60 @@
    cursor: pointer;
    color: #224273; /* Highlight color */
  }
+
+  /* Dropdown container */
+.custom-dropdown {
+  position: relative;
+  /* width: 100%; */
+  border: 1px solid #001A72;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* padding: 5px; */
+  text-align: center;
+}
+
+/* Selected option */
+.selected-option {
+  padding: 5px;
+}
+
+/* Dropdown options list */
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  /* width: 100%; */
+  width: 100%;
+  background-color: white;
+  border: 1px solid #000;
+  border-radius: 5px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+/* Individual options */
+.dropdown-options li {
+  padding: 5px;
+  transition: background-color 0.2s ease;
+  
+}
+
+/* Hover effect */
+.dropdown-options li.hovered {
+  background-color: rgba(240, 240, 240, 0.8); /* Light gray with opacity */
+}
+
+.selected-option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align text and arrow to the left */
+  gap: 10px; /* Space between arrow and text */
+}
+
  

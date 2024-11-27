@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 @Component({
   selector: 'app-lesson',
@@ -7,26 +9,72 @@ import { Component } from '@angular/core';
 })
 export class LessonComponent {
 
-  isMenuVisible: boolean = false; // Initially hidden
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
-  toggleMenu() {
-    this.isMenuVisible = !this.isMenuVisible; // Toggle the menu visibility
+  public Editor = ClassicEditor;
+  public editorConfig = {
+    placeholder: 'قم بكتابة الرد في هذا الجزء',
+    toolbar: [
+      'heading', '|', 'bold', 'italic', 'link', '|',
+      'bulletedList', 'numberedList', 'blockQuote', '|',
+      'undo', 'redo'
+    ]
+  };
+
+isNavbarOpen = false;
+isIconShow = false;
+isSettingBarOpen= false;
+
+openNav() {
+  this.isNavbarOpen = !this.isNavbarOpen;
+  this.showIcone();
+}
+
+showIcone(){
+  this.isIconShow =true;
+}
+
+openSetting(){
+  this.isSettingBarOpen = !this.isSettingBarOpen;
+}
+
+questions = [
+  { title: '', answer: '', showAnswer: false },
+  { title: '', answer: '', showAnswer: false },
+];
+
+toggleAnswer(index: number) {
+  this.questions[index].showAnswer = !this.questions[index].showAnswer;
+}
+
+addNewQuestion() {
+  this.questions.push({
+    title: `سؤال ${this.questions.length + 1}`,
+    answer: '',
+    showAnswer: false,
+  });
+}
+
+saveQuestions() {
+  console.log('Questions saved:', this.questions);
+  alert('تم حفظ المعلومات بنجاح');
+}
+
+
+toggleStyle(event: any) {
+  const divElement = event.target.closest('.custom-box'); // Find the closest div with class 'custom-box'
+  
+  // Toggle styles
+  if (divElement.style.backgroundColor === 'rgb(0, 26, 114)') { // if it's already the '001A72'
+    divElement.style.backgroundColor = '#D9D9D9';
+    divElement.style.color = '#001A72';
+  } else {
+    divElement.style.backgroundColor = '#001A72';
+    divElement.style.color = '#D9D9D9';
   }
+}
 
-  toggleStyle(event: any) {
-    const divElement = event.target.closest('.custom-box'); // Find the closest div with class 'custom-box'
-    
-    // Toggle styles
-    if (divElement.style.backgroundColor === 'rgb(0, 26, 114)') { // if it's already the '001A72'
-      divElement.style.backgroundColor = '#D9D9D9';
-      divElement.style.color = '#001A72';
-    } else {
-      divElement.style.backgroundColor = '#001A72';
-      divElement.style.color = '#D9D9D9';
-    }
-  }
-
-  cards = [
+cards = [
     { title: 'رفع الدرس PDF' },
     { title: 'رفع الصور' },
     { title: 'رفع فيديو' },
@@ -78,5 +126,6 @@ export class LessonComponent {
     this.uploadedImages[cardIndex] = null;
   }
 
+  
 
 }

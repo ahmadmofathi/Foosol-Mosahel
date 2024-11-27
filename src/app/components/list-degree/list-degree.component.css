@@ -92,6 +92,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Optional: shadow for form */
     height: auto;
+    min-height: 600px;
+
     /* Fixed height */
 }
 .custom-form {
@@ -388,7 +390,8 @@ h3 {
     background-color: #E5E5E5;
     border: 2px solid #001A72;
     border-radius: 8px;
-    padding: 15px;
+    /* padding: 15px; */
+
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative; 
@@ -500,7 +503,7 @@ h3 {
     background-color: #E5E5E5;
     border: 2px solid #001A72;
     border-radius: 8px;
-    padding: 15px;
+    /* padding: 15px; */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative; 
@@ -596,4 +599,86 @@ h3 {
     background-color: #E5E5E5;
   }
   
+  .custom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff; /* Adjust as per your design */
+    direction: rtl;
+  }
+
   
+  
+  .header-dropdown {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-select {
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    direction: rtl; /* Ensures Arabic text aligns properly */
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 10px; /* Adds spacing between buttons */
+    direction: ltr;
+  }
+  
+  .header-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid #001A72; /* Blue border */
+    border-radius: 10px;
+    background-color: transparent;
+    color: #001A72;
+    cursor: pointer;
+  }
+  
+  .header-btn.active {
+    background-color: #001A72; 
+    color: #fff;
+  }
+  
+  .header-btn:hover {
+    background-color: #001A72;
+    color: #fff;
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between dropdown and search box */
+  }
+  .search-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .search-icon {
+    font-size: 16px;
+    color: #001A72;
+    position: absolute;
+    left: 10px; /* Adjust spacing between icon and input */
+    pointer-events: none; /* Makes the icon unclickable */
+  }
+  
+  .search-box {
+    font-size: 11px;
+    font-weight: bolder;
+    padding: 5px 10px 5px 30px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 200px;
+    direction: rtl;
+  }
+
+    
+  hr{
+    opacity: 1;
+  }

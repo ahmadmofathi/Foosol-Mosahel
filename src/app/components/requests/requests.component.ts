@@ -114,4 +114,19 @@ showIcone(){
   this.isIconShow =true;
 }
 
+dropdownOpen: boolean = false;
+status1: string = 'مفعل'; // Default selected option
+options: string[] = ['مفعل', 'معطل'];
+hoveredOption: string | null = null;
+
+toggleDropdown() {
+  this.dropdownOpen = !this.dropdownOpen;
+}
+
+selectOption(option: string) {
+  this.status1 = option;
+  this.dropdownOpen = false;
+}
+
+
 }

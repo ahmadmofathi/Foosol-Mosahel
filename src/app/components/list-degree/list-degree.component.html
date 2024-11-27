@@ -36,13 +36,49 @@
   
     <div class="custom-form">
       <div class="my-form">
+
           <div class="cotainer-fluid">
               <div class="row">
-                  <div class="col-12 float-end" routerLink="/transfer">
+                  <!-- <div class="col-12 float-end" routerLink="/transfer">
                       <button class="create-button float-end" >
                           <i class="fa-solid fa-plus"></i> انشاء تحويل
                       </button>
+                  </div> -->
+
+                  <div class="custom-header">
+                    <!-- Dropdown Menu -->
+                    <div class="header-controls">
+                      <select class="dropdown-select">
+                        <option selected disabled>الكل</option>
+                        <option>كشف المتابعة</option>
+                        <option>كشف التفاعل</option>
+                        <option>كشف السلوكيات</option>
+                        <option>كشف التحضير</option>
+                      </select>
+
+                      <div class="search-wrapper">
+                        <i class="fa fa-search search-icon"></i>
+                        <input
+                          type="text"
+                          class="search-box"
+                          placeholder="قم بالبحث هنا"
+                        />
+                      </div>
+                    </div>
+                  
+                    <!-- Buttons -->
+                    <div class="header-buttons">
+                      <button
+                        class="header-btn"
+                        *ngFor="let button of buttons; let i = index"
+                        [ngClass]="{ 'active': activeButton === i }"
+                        (click)="setActiveButton(i)"
+                      >
+                        {{ button }}
+                      </button>
+                    </div>
                   </div>
+                  
               </div>
           </div>
           
@@ -125,7 +161,7 @@
             <!-- Bottom section: Date label and input -->
             <div class="card-footer">
               <input type="date" id="date-{{ card.number }}" [(ngModel)]="card.date" />
-              <label for="date-{{ card.number }}">تاريخ البدء</label>
+              <label for="date-{{ card.number }}">تاريخ الانشاء</label>
             </div>
           </div>
         </div>

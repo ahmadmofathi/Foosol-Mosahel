@@ -26,6 +26,7 @@ export class MaterialComponent {
   currentSubjectId: string = '';
   addContractActive = true;
   exportPdfActive = false;
+  
 
 
   
@@ -87,47 +88,55 @@ export class MaterialComponent {
   openModalForAdd(): void {
     this.isEditMode = false; // Set mode to Add
     this.subjectForm.reset(); // Clear the form for adding new data
+    this.subjectForm.get('gradeId')?.enable(); // Enable gradeId field
+    this.currentSubjectId = ''; // Clear currentSubjectId for Add mode
+  
+    // Open the modal
+    const modalElement = document.getElementById('addModal');
+    if (modalElement) {
+      const modalInstance = Modal.getOrCreateInstance(modalElement); // Get or create instance
+      modalInstance.show(); // Show the modal
+    }
   }
   
   openModalForEdit(subject: any) {
-    // Set currentSubjectId from the selected subject
-    this.currentSubjectId = subject.subjectId;  // Make sure you're passing the correct id field
+    this.currentSubjectId = subject.subjectId; // Set the currentSubjectId from the selected subject
     this.isEditMode = true;
   
-    // Patch form with subject data for editing
+    // Patch the form with subjectName and disable gradeId
     this.subjectForm.patchValue({
       subjectName: subject.subjectName,
-      gradeId: subject.gradeId,
     });
-    // Show the modal
+  
+    // Disable the gradeId field to prevent it from being changed
+    this.subjectForm.get('gradeId')?.disable(); // Disable gradeId field
   }
   
   
-  onSubmit() {
+  
+  
+  onSubmit(): void {
     if (this.isEditMode) {
-      this.onSubmitUpdate(); // Call update function if in Edit mode
+      this.onSubmitUpdate(); // Handle update
     } else {
-      this.onSubmitAdd(); // Call add function if in Add mode
+      this.onSubmitAdd(); // Handle addition
     }
   }
+  
 
   onSubmitAdd() {
     if (this.subjectForm.valid) {
-      const formData = this.subjectForm.value;
-      console.log('Form Data:', formData); // Ensure levelId is correct
-  
+      const formData = this.subjectForm.value; // Extract form data
       this.subjectService.addSubject(formData.gradeId, formData).subscribe(
         () => {
-          this.toastr.success('تم إضافة الماده بنجاح!', 'نجاح' , {
-            timeOut: 1000, // Display for 2 seconds
+          this.toastr.success('تم إضافة الماده بنجاح!', 'نجاح', {
+            timeOut: 1000,
           });
-          this.getAllSubjects(); // Refresh list
-          this.closeModalById('addModal');
+          this.getAllSubjects(); // Refresh the subject list
+          this.closeModalById('addModal'); // Close modal
         },
         (error) => this.handleError(error)
       );
-    } else {
-      console.warn('Form is invalid:', this.subjectForm.errors);
     }
   }
   
@@ -135,26 +144,24 @@ export class MaterialComponent {
 
  onSubmitUpdate(): void {
   if (this.subjectForm.valid && this.currentSubjectId) {
-    const updatedRegion = { id: this.currentSubjectId, ...this.subjectForm.value };
-    this.subjectService.updateSubject(this.currentSubjectId, updatedRegion).subscribe(
-      (response) => {
-        const index = this.elements.findIndex((item) => item.id === this.currentSubjectId);
-        if (index !== -1) {
-          this.elements[index] = response; // Update the region in the list
-        }
-        this.toastr.success('تم تحديث الماده بنجاح!', 'نجاح', { timeOut: 2000 });
-        this.getAllSubjects();
+    // Extract the form data while excluding disabled fields like gradeId
+    const updatedData = {
+      subjectName: this.subjectForm.get('subjectName')?.value,
+    };
 
-        // Close the edit modal programmatically
-        this.closeModalById('editModal');
+    this.subjectService.updateSubject(this.currentSubjectId, updatedData).subscribe(
+      (response) => {
+        this.toastr.success('تم تحديث الماده بنجاح!', 'نجاح', {
+          timeOut: 2000,
+        });
+        this.getAllSubjects(); // Refresh the subject list
+        this.closeModalById('editModal'); // Close modal
       },
       (error) => {
-        this.toastr.error('خطأ أثناء تحديث المنطقة', 'خطأ', { timeOut: 2000 });
-        console.error('Update region error:', error);
+        this.toastr.error('خطأ أثناء تحديث الماده', 'خطأ', { timeOut: 2000 });
+        console.error('Update subject error:', error);
       }
     );
-  } else {
-    this.toastr.error('خطأ: لم يتم تحديد المنطقة للتحديث', 'خطأ', { timeOut: 2000 });
   }
 }
 
@@ -277,7 +284,6 @@ export class MaterialComponent {
     document.body.style.removeProperty('padding-right');
   }
   
-
   openAddModal() {
     // Reset the form fields to clear any previous data
     this.subjectForm.reset();
@@ -286,7 +292,10 @@ export class MaterialComponent {
     this.isEditMode = false;
   
     // Clear any selected grade ID, if any
-    this.currentSubjectId = ''; 
+    this.currentSubjectId = '';
+  
+    // Re-enable the gradeId field (in case it was disabled in edit mode)
+    this.subjectForm.get('gradeId')?.enable();
   
     // Open the modal using Bootstrap modal API
     const modalElement = document.getElementById('addModal');
@@ -297,20 +306,10 @@ export class MaterialComponent {
       console.error('Add modal element not found.');
     }
   }
+  
 
 
-  openEditModal(grade: any) {
-    this.isEditMode = true;
-    this.currentSubjectId = grade.subjectId; // Set the current region ID for updating
-    this.subjectForm.patchValue({ subjectName: grade.subjectName }); // Populate the form
-  
-    const modal = document.getElementById('editModal');
-    if (modal) {
-      const modalInstance = new Modal(modal);
-      modalInstance.show(); // Show the modal
-    }
-  }
-  
+
 
 
     // UI toggles

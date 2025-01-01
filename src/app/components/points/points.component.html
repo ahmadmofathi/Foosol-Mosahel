@@ -1,0 +1,616 @@
+<div class="background-container">
+  <!-- <div class="overlay"></div> -->
+
+  <div class="icon-container left-icons align-items-center">
+    
+    <div class="profile-container" (click)="toggleMenu()">
+      <img
+        src="../../../assets/images/human.png"
+        alt="Profile"
+        width="60px"
+        height="60px"
+      />
+    </div>
+  
+    <div 
+    class="nav_icon" 
+    [ngClass]="{ 'hovered': isHovered.bell }"
+    (mouseover)="changeIcon('bell', true)" 
+    (mouseout)="changeIcon('bell', false)"
+  >
+    <img 
+      [src]="currentIcons.bell" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+
+
+  
+    <!-- Dropdown Menu -->
+    <div
+      *ngIf="menuOpen"
+      class="dropdown-menu"
+    >
+      <div class="menu-item" routerLink="/profile">
+        ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
+      </div>
+      <div class="menu-item">
+         توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
+      </div>
+      <hr />
+      <div class="menu-item logout">
+       <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
+      </div>
+    </div>
+
+  
+  </div>
+
+  <div class="icon-container center-icons align-items-center">
+    <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      كشف النقاط
+    </h1>
+  </div>
+
+  <div class="icon-container right-icons align-items-center">
+    
+    <div 
+    class="nav_icon"
+    (click)="openSetting()"
+    [ngClass]="{ 'hovered': isHovered.settings }"
+    (mouseover)="changeIcon('settings', true)" 
+    (mouseout)="changeIcon('settings', false)"
+  >
+    <img 
+      [src]="currentIcons.settings" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+
+  <!-- (click)="openNav()" -->
+
+  <div 
+  class="nav_icon"
+  (click)="openNav()"
+  [ngClass]="{ 'hovered': isHovered.home }"
+  (mouseover)="changeIcon('home', true)" 
+  (mouseout)="changeIcon('home', false)"
+>
+  <img 
+    [src]="currentIcons.home" 
+    width="30px" 
+    height="30px"
+  />
+</div>
+
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+        <button class="close-btn" (click)="openNav()">&times;</button>
+    
+        <div class="nav-container">
+          <!-- Close Button -->
+    
+          <!-- Home Icon Section -->
+          <!-- <div class="home-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/home-1.svg"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="color: #001A72;">الرئيسية</span>
+            </div>
+          </div> -->
+    
+          <!-- Other Navigation Icons -->
+          <div class="nav-items">
+
+            <div class="nav-item first-item" >
+              <i class="">
+                <img
+                  src="../../../assets/images/home-black.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الرئيسية</span>
+            </div>
+
+            <div class="nav-item first-item" >
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-link.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الجدول</span>
+            </div>
+            <div class="nav-item" routerLink="/student">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الطلاب</span>
+            </div>
+            <div class="nav-item" routerLink="/studentPro">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>ملف الطالب</span>
+            </div>
+            <div class="nav-item" routerLink="/listDegree">
+              <i class="">
+                <img
+                  src="../../../assets/images/chart-vertical.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الكشوف</span>
+            </div>
+            <div class="nav-item" routerLink="/paper">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>اوراق العمل</span>
+            </div>
+            <div class="nav-item" routerLink="/exam">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الاختبارات</span>
+            </div>
+            <div class="nav-item" routerLink="/certificate">
+              <i class="">
+                <img
+                  src="../../../assets/images/crown-1.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الشهادات</span>
+            </div>
+            <div class="nav-item" routerLink="/reason">
+              <i class="">
+                <img
+                  src="../../../assets/images/user-warning.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>تحويل طالب</span>
+            </div>
+            <div class="nav-item" routerLink="/skills">
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-user.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>المهارات الاساسية</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../../assets/images/suitcase.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> البنك</span>
+            </div>
+            <div class="nav-item" routerLink="/curriculum">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> توزيع المنهج</span>
+            </div>
+
+          </div>
+        </div>
+      </div>    
+    </div>
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
+        <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+
+        <div class="settingNav-container">
+          <!-- <div class="setting-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plusBlue.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="font-size: small; color:#001A72">اعداد النقاط</span>
+            </div>
+          </div> -->
+
+           <div class="nav-items">
+
+            <div class="nav-item first-item" routerLink="/points">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد النقاط</span>
+            </div>
+
+            <div class="nav-item first-item" routerLink="/technical">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد الدرجات</span>
+            </div>
+
+            <div class="nav-item" routerLink="/permission">
+              <i class="">
+                <img
+                  src="../../../assets/images/headphones.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الدعم الفني</span>
+            </div>
+
+
+
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+  <div class="main-page">
+    <!-- Header -->
+    <!-- <div class="header">
+            <div class="user-profile">
+              <img src="../../../assets/images/human.png" alt="User Image" class="user-image">
+              <i class="fa fa-bell bell-icon"></i>
+            </div>
+            <div class="header-icons">
+              <i class="fa fa-cog"></i>
+              <i class="fa fa-home"></i>
+            </div>
+          </div> -->
+
+    <!-- Search and Filters -->
+    <div class="search-and-filters">
+      <div class="dropdown">
+        <button class="btn btn-filter">
+          <i class="fa-solid fa-circle-plus"></i>
+          اضف طالب
+        </button>
+        <div class="dropdown-content">
+          <a data-bs-toggle="modal" data-bs-target="#studentProfile"
+            >أضف طالب يدوي</a
+          >
+          <a href="#">إضافة عن طريق إكسل</a>
+        </div>
+      </div>
+
+      <div class="dropdown ">
+        <button class="btn btn-filter" style="padding: 5px 35px;">تصدير</button>
+        <div class="dropdown-content">
+          <a href="#">PDF</a>
+          <a href="#">Excel</a>
+        </div>
+      </div>
+
+      <div class="dropdown ">
+        <button class="btn btn-filter"><i class="fa-solid fa-chevron-down" style="padding-right: 5px;"></i>اخفاء اعمده</button>
+        <!-- <div class="dropdown-content">
+            <a href="#">PDF</a>
+            <a href="#">Excel</a>
+            </div> -->
+      </div>
+
+      <div class="search-container">
+        <input type="text" class="search-bar" placeholder="بحث عن طالب" />
+        <i class="fa fa-search search-icon"></i>
+      </div>
+
+      <div class="dropdown ms-2">
+        <button class="btn btn-filter">
+          <i class="fa-solid fa-sliders pe-2"></i>
+          فلتر
+        </button>
+        <div class="dropdown-content">
+          <a>فرز بحسب المركز</a>
+          <a>فرز بحسب الاسم</a>
+        </div>
+      </div>
+    </div>
+    <div class="class-section-info container">
+      <div class="row class-row">
+        <div class="col-md-3 class-all m-3">
+          <div class="class-info">
+            <div class="container">
+              <div class="row">
+                <span class="class-text">عدد الطلاب</span>
+              </div>
+              <div class="row" style="justify-content: center;">
+                <span class="class-value">55</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 class-all m-3">
+          <div class="class-info">
+            <div class="container">
+              <div class="row">
+                <span class="class-text">الفصل</span>
+              </div>
+              <div class="row" style="justify-content: center;">
+                <span class="class-value">{{this.className}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 class-all m-3">
+          <div class="class-info">
+            <div class="container">
+              <div class="row">
+                <span class="class-text">الصف</span>
+              </div>
+              <div class="row" style="justify-content: center;">
+                <span class="class-value"> {{this.gradeName}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Students List -->
+    <div class="students-list">
+      <div class="student-header">
+        <div>
+          <span class="student-header-head me-1"> النقاط</span>
+        </div>
+
+        <div class="student-icons">
+          <span class="student-header-head">رقم الهاتف</span>
+        </div>
+
+        <div class="student-icons">
+          <span class="student-header-head">كود الطالب</span>
+        </div>
+
+        <div class="student-info">
+          <span class="student-header-head">معلومات الطالب</span>
+        </div>
+
+        <div class="student-icons">
+          <span class="student-header-head">الرقم</span>
+        </div>
+      </div>
+      <div class="student" *ngFor="let student of studentData; let i = index">
+        <div>
+          <span class="student-grade me-1" 
+            >100 / 95</span
+          ><span >إجمالي النقاط</span>
+        </div>
+
+        <div class="student-info">
+          <span class="student-name">{{ student.phoneNumber }}</span>
+        </div>
+        <div class="student-info">
+          <span class="student-name">{{ student.code }}</span>
+        </div>
+
+        <div class="student-info" >
+          <span class="student-name">{{ student.firstName }} {{student.lastName}}</span>
+
+          <!-- <img
+            [src]="student.image"
+            alt="Student Image"
+            class="student-image"
+          /> -->
+
+    
+
+          <div class="student-icons">
+            <span class="badge">{{ i + 1 }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div
+  class="modal fade"
+  id="Edit"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content outer-container">
+      <div class="inner-container">
+        <div class="modal-header">
+          <h1 class="modal-title" id="staticBackdropLabel">السيرة الذاتية</h1>
+          <button
+            type="button"
+            class="close closebtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <img src="../../../assets/images/close.png" width="40px" />
+          </button>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn custombtn ms-4">حفظ</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="full-width-box custom-full-width-grid mt-3">
+          </div>
+
+          <div class="comment-box mt-4">
+            <div class="comment-header">
+              <button class="add-comment-btn">إضافة</button>
+              <div class="stars-rating">
+                <span class="rating-text ms-2">تقييم الدرس</span>
+                <span class="stars">
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                </span>
+              </div>
+            </div>
+
+            <textarea
+              class="comment-textarea"
+              placeholder="قم بكتابة تعليق"
+              rows="1"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Student Modal -->
+<div class="modal fade" id="studentProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content outer-container">
+      <div class="inner-container">
+        <div class="modal-header">
+          <h1 class="modal-title" id="staticBackdropLabel">معلومات الطالب</h1>
+          <button type="button" class="close closebtn" data-bs-dismiss="modal" aria-label="Close">
+            <img src="../../../assets/images/close.png" width="40px" />
+          </button>
+        </div>
+        <div class="modal-body full-width-box">
+          <div class="container">
+            <div class="row lineclass">
+              <div class="col-md-12 align-items-center justify-content-center">
+                <div class="user-img-container" (click)="fileInput.click()" *ngIf="studentFormType === 'new'">
+                  <img [src]="userImage || '../../../assets/images/user-plus.png'" alt="User Image" class="user-img" />
+                </div>
+                <input #fileInput type="file" accept="image/*" (change)="onImageSelected($event)" style="display: none" />
+                <button type="button" class="btn custombtn2"  [ngStyle]="{
+                  backgroundColor: selectedFormType === 'existing' ? '#03556B' : '#F1E8BF',
+                  color: selectedFormType === 'existing' ? 'white' : '#03556B',
+                  border: selectedFormType === 'existing' ? 'none' : '1px solid #03556B'
+                }" (click)="switchFormType('existing')" style="margin: 0px 9px 2px">تسجيل طالب موجود</button>
+
+                <button type="button" class="btn custombtn2"  [ngStyle]="{
+                  backgroundColor: selectedFormType === 'new' ? '#03556B' : '#F1E8BF',
+                  color: selectedFormType === 'new' ? 'white' : '#03556B',
+                  border: selectedFormType === 'new' ? 'none' : '1px solid #03556B'
+                }" (click)="switchFormType('new')" style="margin: 0px 9px 2px">تسجيل طالب جديد</button>
+              </div>
+            </div>
+
+            <!-- New Student Form -->
+            <div *ngIf="studentFormType === 'new'">
+              <form class="w-100 mt-4" [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+                <div class="row mb-3 justify-content-center">
+                  <div class="col-md-6 text-right">
+                    <label>الاسم الاول</label>
+                    <input type="text" class="form-control rounded-pill" formControlName="firstName" />
+                  </div>
+                  <div class="col-md-6 float-right">
+                    <label>الاسم الاخير</label>
+                    <input type="text" class="form-control rounded-pill" formControlName="lastName" />
+                  </div>
+                </div>
+                <div class="row mb-12 justify-content-center">
+                  <div class="form-group mb-3 text-right">
+                    <label class="label" for="phone">رقم الهاتف</label>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-flex align-items-center form-control rounded-pill" style="width: 110px">
+                        <img src="https://flagcdn.com/24x18/sa.png" alt="KSA Flag" width="20" />
+                        <span class="ml-2">+966</span>
+                      </div>
+                      <input type="text" class="form-control rounded-pill" id="phone" placeholder="اضف رقم الهاتف" required style="flex-grow: 1; margin-right: 10px" formControlName="phoneNumber" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3 justify-content-center">
+                  <div class="col-md-12 text-right">
+                    <label>رقم الطالب</label>
+                    <input type="text" class="form-control rounded-pill" formControlName="code" readonly  />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn custombtn">حفظ</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Existing Student Form -->
+            <div *ngIf="studentFormType === 'existing'">
+              <form class="w-100 mt-4" [formGroup]="existForm" (ngSubmit)="onSubmit()">
+                <div class="row mb-12 justify-content-center">
+                  <div class="form-group mb-3 text-right">
+                    <label class="label" for="phone">رقم الهاتف</label>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-flex align-items-center form-control rounded-pill" style="width: 110px">
+                        <img src="https://flagcdn.com/24x18/sa.png" alt="KSA Flag" width="20" />
+                        <span class="ml-2">+966</span>
+                      </div>
+                      <input type="text" class="form-control rounded-pill" id="phone" placeholder="اضف رقم الهاتف" required style="flex-grow: 1; margin-right: 10px" formControlName="studentPhoneNumber" />
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn custombtn">حفظ</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

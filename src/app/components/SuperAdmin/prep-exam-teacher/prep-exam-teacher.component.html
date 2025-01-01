@@ -56,12 +56,18 @@
                 </div>
            
             </div>
-            <div class="add-test float-end">
-              <span class="mytitle">إجمالي الاختبارات </span>
-              <br>
-              <span class="test-count">24</span>
+            
+            <div class="row" style="margin-bottom: 10px; text-align: end; direction: rtl;">
+              <div class="add-test float-end col-md-6" style="text-align: justify;">
+                <span class="mytitle">إجمالي الاختبارات </span>
+                <br>
+                <span class="test-count">24</span>
+              </div>
+              <div class=col-md-6>
+              <button class="add-test-btn mb-3" data-bs-toggle="modal" data-bs-target="#exam">+ إضافة اختبار</button>
             </div>
-            <button class="add-test-btn mb-3" data-bs-toggle="modal" data-bs-target="#exam">+ إضافة اختبار</button>
+            </div>
+
             <!-- Card Items -->
             <div *ngFor="let test of tests; let i = index" class="card-container">
               <span class="number-badge">{{ i + 1 }}</span>

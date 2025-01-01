@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 interface Skill {
   id: number;
@@ -16,6 +16,9 @@ interface Skill {
   styleUrls: ['./subscripe-details.component.css']
 })
 export class SubscripeDetailsComponent {
+
+  isMenuOpen: { [key: number]: boolean } = {};
+
 
   regions = [
     { id: 1, name: 'جدة', subscribers: 277, date: '2-11-2024', user: 'admin', isMenuOpen: false },
@@ -39,17 +42,11 @@ export class SubscripeDetailsComponent {
     // { id: 5, subjectName: 'Physical Education', className: 'Grade 4', description: 'Physical fitness and basic sports skills', isNew: false, showMenu: false },
   ];
 
-  isMenuOpen: boolean = false;
 
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
-    // Add a global event listener when the component is initialized
-    this.renderer.listen('document', 'click', (event: Event) => {
-      if (!this.elRef.nativeElement.contains(event.target)) {
-        this.isMenuOpen = false;
-      }
-    });
+ 
   }
 
   ngOnDestroy() {
@@ -57,9 +54,28 @@ export class SubscripeDetailsComponent {
     this.renderer.listen('document', 'click', () => {});
   }
 
-  // Function to toggle the dropdown menu
-  showMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const menus = document.querySelectorAll('.dropdown-menu');
+    const buttons = document.querySelectorAll('.ellipsis-btn');
+
+    let clickedInside = false;
+    menus.forEach((menu, index) => {
+      if (menu.contains(target) || buttons[index]?.contains(target)) {
+        clickedInside = true;
+      }
+    });
+
+    if (!clickedInside) {
+      this.regions.forEach(region => (region.isMenuOpen = false));
+    }
+  }
+
+  showMenu(index: number): void {
+    this.regions.forEach((region, i) => {
+      region.isMenuOpen = i === index ? !region.isMenuOpen : false;
+    });
   }
 
   currentPage = 1;

@@ -4,6 +4,7 @@ import { GradeService } from 'src/app/services/grade/grade.service';
 import { LevelService } from 'src/app/services/level/level.service';
 import { ToastrService } from 'ngx-toastr';
 import { Modal } from 'bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -23,6 +24,16 @@ export class ClassroomComponent {
   isEditMode = false;
   currentGradeId: string = '';
 
+   
+  pageNumber = 1; // Current page
+  itemsPerPage = 8; // Items per page
+  totalItems = 9; // Initial total items
+  maxVisiblePages = 5; // Maximum number of visible pages
+  pages: number[] = []; // Array to hold the visible pages
+  hasMoreData = true; // Flag to check if more data exists
+
+  
+
   
   @ViewChild('createModal', { static: true }) createModal!: ElementRef;
   private modalInstance!: Modal;
@@ -36,7 +47,10 @@ export class ClassroomComponent {
     private fb: FormBuilder,
     private gradeService: GradeService,
     private levelService: LevelService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+
   ) {
     this.gradeForm = this.fb.group({
       gradeName: ['', Validators.required],
@@ -45,17 +59,80 @@ export class ClassroomComponent {
   }
 
   ngOnInit() {
+   
     this.getAllgrades();
     this.getAllLevels();
 
-    this.globalClickListener = this.renderer.listen(
-      'document',
-      'click',
-      (event: Event) => {
-        this.handleOutsideClick(event);
-      }
-    );
   }
+
+  changePage(page: number): void {
+    // Ensure we are not navigating beyond the available pages
+    if (page >= 1 && page <= this.totalPages && page !== this.pageNumber) {
+      this.pageNumber = page;
+      this.getAllgrades();
+
+      // If on the last page, try to load more data
+      if (page === this.totalPages && this.hasMoreData) {
+        this.fetchMoreData();
+        this.getAllgrades();
+      }
+    }
+  }
+
+  // Simulate fetching more data
+  fetchMoreData(): void {
+    // Assuming that the total number of items won't exceed 20
+    if (this.totalItems < 20) {
+      this.addItems(4); // Add 4 more items to test
+    } else {
+      this.hasMoreData = false; // Stop adding more items
+    }
+  }
+
+  // Add items dynamically and update pagination
+  addItems(count: number): void {
+    this.totalItems += count;
+    this.updatePagination();
+  }
+
+  // Update pagination logic
+  updatePagination(): void {
+    const totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+    
+    // Dynamically update pages array based on actual data
+    this.pages = [];
+
+    if (totalPages <= this.maxVisiblePages) {
+      // If total pages are less than or equal to max visible pages, show all
+      this.pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    } else {
+      // If there are more pages, show the first 'maxVisiblePages' pages
+      this.pages = Array.from({ length: this.maxVisiblePages }, (_, i) => i + 1);
+    }
+  }
+
+  // Get total pages
+  get totalPages(): number {
+    return Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+
+  selectedGrade: any = null;
+
+
+  onSelectFocus() {
+    if (this.selectedGrade === null) {
+      this.selectedGrade = null;
+    }
+  }
+
+  onSelectBlur() {
+    if (!this.selectedGrade) {
+      this.selectedGrade = null;
+    }
+  }
+
+
 
 
   closeModalById(modalId: string): void {
@@ -118,15 +195,18 @@ export class ClassroomComponent {
   
 
   getAllgrades() {
-    this.gradeService.getAllGrades().subscribe(
-      (response) => {
-        this.elements = response; // Make sure response contains 'id' field
-        console.log('Fetched elements:', this.elements);
-      },
-      (error) => {
-        console.error('Error fetching grades:', error);
-      }
-    );
+
+
+  this.gradeService.getAllClasses(this.pageNumber, this.itemsPerPage).subscribe(
+    (response) => {
+      this.elements = response; // Ensure the response contains the required fields
+
+
+},
+    (error) => {
+      console.error('Error fetching grades:', error);
+    }
+  );
   }
 
   getAllLevels() {
@@ -148,25 +228,30 @@ export class ClassroomComponent {
   
 
   
-    onSubmitAdd(): void {
-      if (this.gradeForm.valid) {
-        const formData = this.gradeForm.value;
-        console.log('Form Data:', formData); // Ensure levelId is correct
-    
-        this.gradeService.addGrade(formData.levelId, formData).subscribe(
-          () => {
-            this.toastr.success('تم إضافة الصف بنجاح!', 'نجاح' , {
-              timeOut: 1000, // Display for 2 seconds
-            });
-            this.getAllgrades(); // Refresh list
-            this.closeModalById('addModal');
-          },
-          (error) => this.handleError(error)
-        );
-      } else {
-        console.warn('Form is invalid:', this.gradeForm.errors);
-      }
+  onSubmitAdd(): void {
+    if (this.gradeForm.invalid) {
+      // Check for specific errors in the form
+      this.toastr.error('يرجى تعبئة جميع الحقول المطلوبة!', 'خطأ', {
+        timeOut: 2000, // Display for 2 seconds
+      });
+      return; // Stop further processing if the form is invalid
+    }
+  
+    const formData = this.gradeForm.value;
+    console.log('Form Data:', formData); // Ensure levelId is correct
+  
+    this.gradeService.addGrade(formData.levelId, formData).subscribe(
+      () => {
+        this.toastr.success('تم إضافة الصف بنجاح!', 'نجاح', {
+          timeOut: 1000, // Display for 1 second
+        });
+        this.getAllgrades(); // Refresh list
+        this.closeModalById('addModal');
+      },
+      (error) => this.handleError(error)
+    );
   }
+  
  isUpdating = false;
 
   onSubmitUpdate(): void {
@@ -224,7 +309,7 @@ export class ClassroomComponent {
       (response) => {
         console.log('grade deleted successfully:', response);
         this.elements.splice(index, 1); // Remove the deleted region from the list
-        this.toastr.error('تم مسح هذا الصف بنجاح!', 'تم المسح', {
+        this.toastr.success('تم مسح هذا الصف بنجاح!', 'تم المسح', {
           timeOut: 1000, // Display for 2 seconds
         });
       },
@@ -233,6 +318,51 @@ export class ClassroomComponent {
         alert('Failed to delete grade');
       }
     );
+  }
+
+
+  selectedGradeId: number | null = null;
+  selectedGradeIndex: number | null = null;
+
+  openGradeConfirmModal(id: number, index: number): void {
+    this.selectedGradeId = id;
+    this.selectedGradeIndex = index;
+
+    const modalElement = document.getElementById('gradeConfirmModal');
+    if (modalElement) {
+      const modalInstance = new Modal(modalElement);
+      modalInstance.show();
+    }
+  }
+
+  // Confirm deletion
+  confirmDeletegrade(): void {
+    if (this.selectedGradeId != null && this.selectedGradeIndex != null) {
+      this.gradeService.deleteGrade(this.selectedGradeId).subscribe(
+        () => {
+          if (this.selectedGradeIndex !== null) {
+            this.elements.splice(this.selectedGradeIndex, 1);
+          }
+          this.toastr.success('تم مسح هذا الصف بنجاح!', 'تم المسح', { timeOut: 2000 });
+  
+          const modalElement = document.getElementById('gradeConfirmModal');
+          if (modalElement) {
+            const modalInstance = Modal.getInstance(modalElement);
+            modalInstance?.hide();
+          }
+  
+          this.selectedGradeId = null;
+          this.selectedGradeIndex = null;
+        },
+        (error) => {
+          this.toastr.error('خطأ في مسح المرحلةهذا الصف', 'خطأ', { timeOut: 2000 });
+          console.error('Error deleting level:', error);
+  
+          this.selectedGradeId = null;
+          this.selectedGradeIndex = null;
+        }
+      );
+    }
   }
 
   isModalVisible = false;
@@ -278,28 +408,8 @@ export class ClassroomComponent {
       this.isMenuOpen = {}; // Close all menus when clicking outside
     }
   }
-  currentPage = 1;
-  totalPages = 10; // Replace with the actual total pages
-  pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
 
-  goToPage(page: number) {
-    this.currentPage = page;
-    // Fetch or filter data based on the current page
-  }
 
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.goToPage(this.currentPage);
-    }
-  }
-
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.goToPage(this.currentPage);
-    }
-  }
 
   addContractActive: boolean = true; // Default the "إنشاء عقد جديد" button to active
   exportPdfActive: boolean = false; // Default the "تصدير PDF" button to inactive

@@ -17,6 +17,16 @@ export class RegionService {
     return this.http.get<any[]>(`${this.apiUrl}Region/GetAllRegions`); // Adjust the data type if needed
   }
 
+  getAllRe(pageNumber: number, pageSize: number): Observable<any> {
+ 
+    const url = `${this.apiUrl}Region/GetAllRegions/${pageNumber}/${pageSize}`;
+  
+    // Send the GET request without query parameters
+    return this.http.get(url);
+
+  }
+
+
   addRegion(element: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}Region/AddRegion`, element); // Adjust the data type if needed
   }

@@ -27,6 +27,14 @@ export class MaterialComponent {
   addContractActive = true;
   exportPdfActive = false;
   
+  pageNumber = 1; // Current page
+  itemsPerPage = 8; // Items per page
+  totalItems = 9; // Initial total items
+  maxVisiblePages = 5; // Maximum number of visible pages
+  pages: number[] = []; // Array to hold the visible pages
+  hasMoreData = true; // Flag to check if more data exists
+
+
 
 
   
@@ -71,16 +79,37 @@ export class MaterialComponent {
     private toastr: ToastrService,
     private subjectService:SubjectService
   ) {
+    this.updatePagination();
     this.subjectForm = this.fb.group({
       subjectName: ['', Validators.required],
-      gradeId: ['', Validators.required],
+      gradeId: [ Validators.required],
     });
+
   }
 
   ngOnInit() {
   this.getAllSubjects();
   this.getAllGrades();
 
+  }
+
+  selectedGrade: any = null;
+
+
+  onSelectFocus() {
+    // This function is triggered when the select element is focused
+    if (this.selectedGrade === null) {
+      // Ensure the placeholder is shown when the select is focused and empty
+      this.selectedGrade = null;
+    }
+  }
+
+  onSelectBlur() {
+    // This function is triggered when the select element loses focus
+    if (!this.selectedGrade) {
+      // Keep the placeholder visible if no grade is selected
+      this.selectedGrade = null;
+    }
   }
 
   isSubmitting = false;
@@ -125,7 +154,17 @@ export class MaterialComponent {
   
 
   onSubmitAdd() {
-    if (this.subjectForm.valid) {
+
+    if (this.subjectForm.invalid) {
+      // Check for specific errors in the form
+      this.toastr.error('يرجى تعبئة جميع الحقول المطلوبة!', 'خطأ', {
+        timeOut: 2000, // Display for 2 seconds
+      });
+      return; // Stop further processing if the form is invalid
+    }
+
+
+
       const formData = this.subjectForm.value; // Extract form data
       this.subjectService.addSubject(formData.gradeId, formData).subscribe(
         () => {
@@ -137,7 +176,7 @@ export class MaterialComponent {
         },
         (error) => this.handleError(error)
       );
-    }
+    
   }
   
 
@@ -170,7 +209,9 @@ export class MaterialComponent {
 
 
   getAllSubjects() {
-    this.subjectService.getAllSubjects().subscribe(
+
+
+    this.subjectService.getAllSub(this.pageNumber, this.itemsPerPage).subscribe(
       (response) => {
         this.elements = response; // Make sure response contains 'id' field
         console.log('Fetched elements:', this.elements);
@@ -182,30 +223,137 @@ export class MaterialComponent {
   }
 
   getAllGrades() {
-    this.gradeService.getAllGrades().subscribe((response) => {
-      this.grades = response;
-    }, this.handleError);
+
+ 
+
+    this.gradeService.getAllClasses(this.pageNumber, this.itemsPerPage).subscribe(
+      (response) => {
+        this.grades = response; // Ensure this is an array of grade objects
+        console.log('Grades:', this.grades); // Check if the grades are correctly assigned
+      },
+      (error) => {
+        this.handleError(error);
+      }
+    );
+  }
+  
+
+  changePage(page: number): void {
+    // Ensure we are not navigating beyond the available pages
+    if (page >= 1 && page <= this.totalPages && page !== this.pageNumber) {
+      this.pageNumber = page;
+      this.getAllSubjects();
+
+      // If on the last page, try to load more data
+      if (page === this.totalPages && this.hasMoreData) {
+        this.fetchMoreData();
+        this.getAllSubjects();
+      }
+    }
   }
 
+  // Simulate fetching more data
+  fetchMoreData(): void {
+    // Assuming that the total number of items won't exceed 20
+    if (this.totalItems < 20) {
+      this.addItems(4); // Add 4 more items to test
+    } else {
+      this.hasMoreData = false; // Stop adding more items
+    }
+  }
+
+  // Add items dynamically and update pagination
+  addItems(count: number): void {
+    this.totalItems += count;
+    this.updatePagination();
+  }
+
+  // Update pagination logic
+  updatePagination(): void {
+    const totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+    
+    // Dynamically update pages array based on actual data
+    this.pages = [];
+
+    if (totalPages <= this.maxVisiblePages) {
+      // If total pages are less than or equal to max visible pages, show all
+      this.pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    } else {
+      // If there are more pages, show the first 'maxVisiblePages' pages
+      this.pages = Array.from({ length: this.maxVisiblePages }, (_, i) => i + 1);
+    }
+  }
+
+  // Get total pages
+  get totalPages(): number {
+    return Math.ceil(this.totalItems / this.itemsPerPage);
+  }
 
    // Deletion
-   deleteSubject(subjectId: string, index: number) {
-    this.subjectService.deleteSubject(subjectId).subscribe(() => {
-      this.elements.splice(index, 1);
-      this.toastr.success('تم مسح هذه الماده بنجاح!', 'تم المسح', {
-          timeOut: 2000, // Display for 2 seconds
-        });
-    }, this.handleError);
-    this.closeModal()
+  //  deleteSubject(subjectId: string, index: number) {
+  //   this.subjectService.deleteSubject(subjectId).subscribe(() => {
+  //     this.elements.splice(index, 1);
+  //     this.toastr.success('تم مسح هذه الماده بنجاح!', 'تم المسح', {
+  //         timeOut: 2000, // Display for 2 seconds
+  //       });
+  //   }, this.handleError);
+  //   this.closeModal()
+  // }
+
+
+  selectedSubjectId: string | null = null;
+  selectedSubjectIndex: number | null = null;
+
+  // Open the confirmation modal
+  openSubjectConfirmModal(subjectId: string, index: number): void {
+    this.selectedSubjectId = subjectId;
+    this.selectedSubjectIndex = index;
+
+    const modalElement = document.getElementById('deleteSubjectModal');
+    if (modalElement) {
+      const modalInstance = new Modal(modalElement);
+      modalInstance.show();
+    }
+  }
+
+  // Confirm deletion of the subject
+  confirmDeleteSubject(): void {
+    if (this.selectedSubjectId != null && this.selectedSubjectIndex != null) {
+      this.subjectService.deleteSubject(this.selectedSubjectId).subscribe(
+        () => {
+          // Remove the subject from the list if deletion was successful
+          if (this.selectedSubjectIndex !== null) {
+            this.elements.splice(this.selectedSubjectIndex, 1);
+          }
+
+          // Show success toast
+          this.toastr.success('تم مسح هذه الماده بنجاح!', 'تم المسح', { timeOut: 2000 });
+
+          // Hide the modal after successful deletion
+          const modalElement = document.getElementById('deleteSubjectModal');
+          if (modalElement) {
+            const modalInstance = Modal.getInstance(modalElement);
+            modalInstance?.hide();
+          }
+
+          // Reset the selected subject variables
+          this.selectedSubjectId = null;
+          this.selectedSubjectIndex = null;
+        },
+        (error) => {
+          // Handle error and show error toast
+          this.toastr.error('خطأ في مسح المادة', 'خطأ', { timeOut: 2000 });
+          console.error('Error deleting subject:', error);
+
+          // Reset the selected subject variables in case of error
+          this.selectedSubjectId = null;
+          this.selectedSubjectIndex = null;
+        }
+      );
+    }
   }
 
 
-
-
-  // Pagination
-  currentPage = 1;
-  totalPages = 10; // Example total pages
-  pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
 
   // Navbar and settings state
   isNavbarOpen = false;
@@ -235,34 +383,6 @@ export class MaterialComponent {
   }
 
 
-
-
-  
-
-
-
-  stopPropagation(event: Event) {
-    event.stopPropagation();
-  }
-
-  // Pagination
-  goToPage(page: number) {
-    this.currentPage = page;
-  }
-
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.goToPage(this.currentPage);
-    }
-  }
-
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.goToPage(this.currentPage);
-    }
-  }
 
   // Error handling
   private handleError(error: any) {

@@ -8204,7 +8204,7 @@
       color: gray; }
   
   .form-control {
-    height: 48px;
+    height: 40px;
     background: rgba(0, 0, 0, 0.05);
     color: #000;
     font-size: 16px;
@@ -8376,3 +8376,23 @@
             background-color: #F0EBEB;
             color:black;
           }
+
+          .btn {
+  background: #fff;
+  border: 1px solid #021A3C;
+  color: #021A3C;
+  border: 1px solid #021A3C;
+}
+
+.btn:hover {
+  border: 1px solid #021A3C;
+  background: #fff;
+  color: #021A3C;
+}
+
+/* Active button style */
+.btn.active {
+  background: #021A3C;
+  color: #fff;
+  border: 1px solid #021A3C;
+}

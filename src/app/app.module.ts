@@ -74,6 +74,21 @@ import { TableComponent } from './components/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { ListDegreeComponent } from './components/list-degree/list-degree.component';
+import { FollowingComponent } from './components/following/following.component';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { InteractionComponent } from './components/interaction/interaction.component';
+import { LessonCardComponent } from './components/lesson-card/lesson-card.component';
+import { HorizontalScrollDirective } from './horizontal-scroll.directive';
+import { ContentEditablePlaceholderDirective } from './content-editable-placeholder.directive';
+import { PointsComponent } from './components/points/points.component';
+import { PrepPaperComponent } from './components/prep-paper/prep-paper.component';
+import { ActionsComponent } from './components/actions/actions/actions.component';
+import { BehaiveComponent } from './components/behaive/behaive/behaive.component';
+import { InteractionTableComponent } from './components/interaction-table/interaction-table.component';
 
 @NgModule({
   declarations: [
@@ -138,6 +153,16 @@ import { ListDegreeComponent } from './components/list-degree/list-degree.compon
     TechnicalComponent,
     TableComponent,
     ListDegreeComponent,
+    FollowingComponent,
+    InteractionComponent,
+    LessonCardComponent,
+    HorizontalScrollDirective,
+    ContentEditablePlaceholderDirective,
+    PointsComponent,
+    PrepPaperComponent,
+    ActionsComponent,
+    BehaiveComponent,
+    InteractionTableComponent,
  
   ],
   imports: [
@@ -156,9 +181,13 @@ import { ListDegreeComponent } from './components/list-degree/list-degree.compon
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
 
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

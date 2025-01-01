@@ -1,8 +1,6 @@
 <div class="background-container">
-
   <!-- Icons on the left side -->
   <div class="icon-container left-icons align-items-center">
-    
     <div class="profile-container" (click)="toggleMenu()">
       <img
         src="../../../assets/images/human.png"
@@ -11,52 +9,80 @@
         height="60px"
       />
     </div>
-  
-    <div class="nav_icon">
-      <img src="../../../assets/images/bell.svg" width="30px" height="30px">
+
+    <div
+      class="nav_icon"
+      [ngClass]="{ hovered: isHovered.bell }"
+      (mouseover)="changeIcon('bell', true)"
+      (mouseout)="changeIcon('bell', false)"
+    >
+      <img [src]="currentIcons.bell" width="30px" height="30px" />
     </div>
 
-
-  
     <!-- Dropdown Menu -->
-    <div
-      *ngIf="menuOpen"
-      class="dropdown-menu"
-    >
-      <div class="menu-item">
-        ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
+    <div *ngIf="menuOpen" class="dropdown-menu">
+      <div class="menu-item" routerLink="/profile">
+        ملف الشخصي
+        <img
+          src="../../../assets/images/user-check.png"
+          height="30px"
+          width="30px"
+        />
       </div>
       <div class="menu-item">
-         توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
+        توقيع المعلم
+        <img
+          src="../../../assets/images/edit-2.png"
+          height="30px"
+          width="30px"
+        />
       </div>
       <hr />
       <div class="menu-item logout">
-       <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
+        <img
+          src="../../../assets/images/logout.png"
+          height="30px"
+          width="30px"
+        />
+        تسجيل خروج
       </div>
     </div>
-
-  
   </div>
 
+  <!-- (click)="openSetting()" -->
+
   <div class="icon-container right-icons align-items-center">
-    <div class="nav_icon" (click)="openSetting()">
-        <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
+    <div
+      class="nav_icon"
+      (click)="openSetting()"
+      [ngClass]="{ hovered: isHovered.settings }"
+      (mouseover)="changeIcon('settings', true)"
+      (mouseout)="changeIcon('settings', false)"
+    >
+      <img [src]="currentIcons.settings" width="30px" height="30px" />
     </div>
 
-    <div class="nav_icon" (click)="openNav()">
-        <img src="../../../assets/images/home.svg" width="30px" height="30px" class="nav_icon">
-    </div>
+    <!-- (click)="openNav()" -->
 
+    <div
+      class="nav_icon"
+      (click)="openNav()"
+      [ngClass]="{ hovered: isHovered.home }"
+      (mouseover)="changeIcon('home', true)"
+      (mouseout)="changeIcon('home', false)"
+    >
+      <img [src]="currentIcons.home" width="30px" height="30px" />
+    </div>
 
     <div class="row container">
       <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
         <button class="close-btn" (click)="openNav()">&times;</button>
-    
+
         <div class="nav-container">
           <!-- Close Button -->
-    
+
           <!-- Home Icon Section -->
-          <div class="home-icon">
+          <!-- <div class="home-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -66,13 +92,22 @@
                 />
               </i>
               <span style="color: #001A72;">الرئيسية</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
-    
+          </div> -->
+
           <!-- Other Navigation Icons -->
           <div class="nav-items">
-            <div class="nav-item first-item" routerLink="/table">
+            <div class="nav-item" routerLink="/home">
+              <i class="">
+                <img
+                  src="../../../assets/images/home-black.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الرئيسية</span>
+            </div>
+            <div class="nav-item first-item">
               <i class="">
                 <img
                   src="../../../assets/images/calendar-link.png"
@@ -91,6 +126,16 @@
                 />
               </i>
               <span>الطلاب</span>
+            </div>
+            <div class="nav-item" routerLink="/studentPro">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>ملف الطالب</span>
             </div>
             <div class="nav-item" routerLink="/package">
               <i class="">
@@ -172,18 +217,23 @@
               </i>
               <span> توزيع المنهج</span>
             </div>
-
           </div>
         </div>
-      </div>    
+      </div>
     </div>
 
     <div class="row container">
-      <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
-        <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+      <div
+        class="col-12 nav-wrapper"
+        style="left: 70px; top: 24px"
+        *ngIf="isSettingBarOpen"
+      >
+        <button class="closeSetting-btn" (click)="openSetting()">
+          &times;
+        </button>
 
         <div class="settingNav-container">
-          <div class="setting-icon">
+          <!-- <div class="setting-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -193,16 +243,25 @@
                 />
               </i>
               <span style="font-size: small; color:#001A72">اعداد النقاط</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
-           <div class="nav-items">
+          <div class="nav-items">
+            <div class="nav-item first-item" routerLink="/">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد النقاط</span>
+            </div>
 
             <div class="nav-item first-item" routerLink="/technical">
               <i class="">
                 <img
-                src="../../../assets/images/document-plus.png"
+                  src="../../../assets/images/document-plus.png"
                   height="30px"
                   width="30px"
                 />
@@ -220,177 +279,191 @@
               </i>
               <span>الدعم الفني</span>
             </div>
-
-
-
-
-            </div>
+          </div>
         </div>
       </div>
     </div>
-
-</div>
-
-
+  </div>
 
   <div class="custom-form">
     <div class="my-form">
       <div class="form-group">
         <div class="container">
-          <div class="row header" style="justify-content: center; align-items: center;">
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
             <div class="col-md-1">
-              <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
-            </div>
-            <h3 class="col-md-11">الماده</h3>
-            
-          </div>
-        </div>
-
-        <div class="row payment-methods">
-    
-          <div class="col-md-1 custom-box-2">
-            <div class="container">
-              <div class="row">
-                <i class="fa-solid fa-angle-left"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6 >
-                  احياء
-                </h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row " >
-                <h6 style="text-align: center; margin: 0px; padding: 0px;">
-                  اللغة العربية
-                </h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6 >
-                  توحيد
-                </h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-1 custom-box-2">
-            <div class="container">
-              <div class="row">
-                <i class="fa-solid fa-angle-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="row header" style="justify-content: center; align-items: center;">
-            <div class="col-md-1">
-              <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
+              <i
+                class="fa-solid fa-bag-shopping"
+                style="
+                  padding: 10px;
+                  color: #fff;
+                  background-color: #001a72;
+                  border-radius: 50%;
+                "
+              ></i>
             </div>
             <h3 class="col-md-11">الصف</h3>
-            
           </div>
         </div>
 
         <div class="row payment-methods">
           <div class="col-md-1 custom-box-2">
-            <div class="container">
+            <div class="container" (click)="prevItemsGrades()">
               <div class="row">
                 <i class="fa-solid fa-angle-left"></i>
               </div>
             </div>
           </div>
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+          <!-- (click)="getSubjectByGradeId(grad.id); toggleStyleGeneric($event, grad.id, 'grade')" -->
+          <!-- Dynamic Subject Cards -->
+          <div
+            class="col-md-3 custom-box grade-box"
+            *ngFor="let grade of visibleGrades"
+            (click)="
+              toggleStyleGeneric($event, grade.id, 'grade');
+              getSubjectByGradeId(grade.id);
+              onGradeClick(grade)
+            "
+          >
             <div class="container">
               <div class="row">
-                <h6>
-                  ثالثة متوسط
-                </h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>
-                  أولي متوسط
-                </h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row">
-                <h6>
-                ثانية متوسط
-                </h6>
+                <h6>{{ grade.gradeName }}</h6>
               </div>
             </div>
           </div>
 
           <div class="col-md-1 custom-box-2">
-            <div class="container">
+            <div class="container" (click)="nextItemsGrade()">
               <div class="row">
                 <i class="fa-solid fa-angle-right"></i>
               </div>
             </div>
           </div>
         </div>
+
         <div class="container">
-          <div class="row header" style="justify-content: center; align-items: center;">
-            <div class="col-md-1" routerLink="/class">
-              <i class="fa-solid fa-plus" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;" ></i>
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
+            <div class="col-md-1">
+              <i
+                class="fa-solid fa-bag-shopping"
+                style="
+                  padding: 10px;
+                  color: #fff;
+                  background-color: #001a72;
+                  border-radius: 50%;
+                "
+              ></i>
             </div>
-            <h3 class="col-md-11">الفصل</h3>
-            
+            <h3 class="col-md-11">الماده</h3>
           </div>
         </div>
 
         <div class="row payment-methods">
           <div class="col-md-1 custom-box-2">
+            <div class="container" (click)="prevItems()">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Subject Cards -->
+          <div
+            class="col-md-3 custom-box subject-box"
+            *ngFor="let subject of visibleSubjects"
+            (click)="
+              toggleStyleGeneric($event, subject.subjectId, 'subject');
+              onSubjectClick(subject.subjectId)
+            "
+          >
+            <div class="container">
+              <div class="row">
+                <h6>{{ subject.subjectName }}</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-1 custom-box-2">
+            <div class="container" (click)="nextItems()">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
+            <div class="col-md-1" routerLink="/class">
+              <i
+                class="fa-solid fa-plus"
+                style="
+                  padding: 10px;
+                  color: #fff;
+                  background-color: #001a72;
+                  border-radius: 50%;
+                "
+              ></i>
+            </div>
+            <h3 class="col-md-11">الفصل</h3>
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2" (click)="preItemClasses()">
             <div class="container">
               <div class="row">
                 <i class="fa-solid fa-angle-left"></i>
               </div>
             </div>
           </div>
-          <div class="col-md-3 custom-box-2" >
+
+          <div
+            class="col-md-3 custom-box-2"
+            *ngFor="let class of visibleClasses"
+            (click)="
+              onClassClick(class.id, class.classsName); activeClassId = class.id
+            "
+          >
             <div class="container">
               <div class="row">
-                <h6 class="custom-box-text">3</h6>
+                <h6
+                  [ngClass]="{
+                    'custom-box-text': activeClassId !== class.id,
+                    'custom-box-text-active': activeClassId === class.id
+                  }"
+                >
+                  {{ class.classsName }}
+                </h6>
+                <!-- Display className here -->
               </div>
             </div>
           </div>
 
-          <div class="col-md-3 custom-box-2" >
+          <!-- <div class="col-md-3 custom-box-2" >
             <div class="container" >
               <div class="row">
                 <h6 class="custom-box-text">2</h6>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="col-md-3 custom-box-2" >
+          <!-- <div class="col-md-3 custom-box-2" >
             <div class="container">
               <div class="row">
                 <h6 class="custom-box-text">1</h6>
               </div>
             </div>
-          </div>
-          <div class="col-md-1 custom-box-2">
+          </div> -->
+          <div class="col-md-1 custom-box-2" (click)="nextItemsClasses()">
             <div class="container">
               <div class="row">
                 <i class="fa-solid fa-angle-right"></i>
@@ -398,53 +471,75 @@
             </div>
           </div>
         </div>
-        <div class="row header" style="justify-content: center; align-items: center;">
+
+        <div
+          class="row header"
+          style="justify-content: center; align-items: center"
+        >
+        <div style="display: flex;justify-content: space-between;">
           <div class="col-md-1">
             <div>
-              <button class="own-btn2"  data-bs-toggle="modal" data-bs-target="#Edit" width="100%">تعديل</button>
+              <button
+                class="own-btn2"
+                data-bs-toggle="modal"
+                data-bs-target="#Edit2"
+                width="100%"
+              >
+                تعديل
+              </button>
+
             </div>
+            
           </div>
-          <h3 class="col-md-11">الدرس</h3>          
+
+          <div class="col-md-1"   data-bs-toggle="modal"
+          data-bs-target="#Edit">
+            <i
+              class="fa-solid fa-plus"
+              style="
+                padding: 10px;
+                color: #fff;
+                background-color: #001a72;
+                border-radius: 50%;
+              "
+            ></i>
+          </div>
+
+          </div>
+          <h3 class="col-md-11">الدرس</h3>
         </div>
 
         <div class="row payment-methods2">
-          <div class="col-md-1 custom-box-2">
+          <div class="col-md-1 custom-box-2" (click)="prevItemLessons()">
             <div class="container">
               <div class="row">
                 <i class="fa-solid fa-angle-left"></i>
               </div>
             </div>
           </div>
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
+
+          <div
+            class="col-md-3 custom-box lesson-box"
+            *ngFor="let test of visibleLessons"
+            [ngStyle]="{
+              backgroundColor:
+                activeLessonId === test.lessonId ? '#001A72' : '#ffff',
+              color: activeLessonId === test.lessonId ? '#ffff' : '#001A72'
+            }"
+            (click)="
+              onLessonClick(test.lessonId);saveLessonName(test.lessonName); activeLessonId = test.lessonId
+            "
+          >
             <div class="container">
-              <div class="row ">
+              <div class="row">
                 <h6>
-                  وادي الكنانة
+                  {{ test.lessonName }}
                 </h6>
               </div>
             </div>
           </div>
 
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row ">
-                <h6>
-                    رساله الي ابني
-                </h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 custom-box" (click)="toggleStyle($event)">
-            <div class="container">
-              <div class="row ">
-                <h6>
-                  وادي الكنانة
-                </h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-1 custom-box-2">
+          <div class="col-md-1 custom-box-2" (click)="nextItemsLesson()">
             <div class="container">
               <div class="row">
                 <i class="fa-solid fa-angle-right"></i>
@@ -454,7 +549,7 @@
         </div>
 
         <div class="div-button">
-          <button class="own-btn">عرض</button>
+          <button class="own-btn" (click)="submitSelection()">عرض</button>
         </div>
       </div>
     </div>
@@ -464,96 +559,85 @@
 
 
 
-<div
-  class="modal fade"
-  id="Edit"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg">
+
+
+
+<!-- Add Modal -->
+
+<!-- Add Modal -->
+<div class="modal fade" id="Edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content outer-container">
       <div class="inner-container">
+        <!-- Modal Header -->
         <div class="modal-header">
-          <h1 class="modal-title" id="staticBackdropLabel" > قيام الدولة الاموية</h1>
-          <button
-          type="button"
-          class="close closebtn"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          >
-            <img src="../../../assets/images/close.png" width="40px">
+          <input type="text" [(ngModel)]="lessonName" class="lesson-title" placeholder="الدرس الاول : الدوله الامويه" />
+          <button type="button" class="close closebtn" data-bs-dismiss="modal" aria-label="Close">
+            <img src="../../../assets/images/close.png" width="40px" />
           </button>
         </div>
 
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="full-width-box custom-full-width-grid">
+            <div class="custom-card-wrapper" *ngFor="let card of cards; let index = index">
+              <div class="custom-card" [ngClass]="{ 'hide-card': hiddenCards[index] }">
+                <i class="fa-solid fa-times custom-close-icon" (click)="removeFile(index)"></i>
+                <div class="custom-card-body" (click)="openEditFileInput(index)">
+                  <h5 class="custom-card-title">{{ card.title }}</h5>
+                  <img *ngIf="editUploadedImages[index]" [src]="editUploadedImages[index]" alt="Uploaded Image" class="thumbnail-image" />
+                  <p *ngIf="editUploadedFiles[index] && !editUploadedImages[index]">File Attached: {{ editUploadedFiles[index]?.name }}</p>
+                </div>
+                <input type="file" #editFileInput style="display: none" (change)="onEditFileSelected($event, index)" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
         <div class="modal-footer">
-            <button class="btn custombtn ms-4">حفظ</button>
-          </div>
+          <button type="submit" class="btn custombtn ms-4" (click)="onSubmitLesson()">حفظ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-          <div class="modal-body">
-            <div class="full-width-box custom-full-width-grid ">
-          
-              <!-- 3x3 grid of cards -->
-              <div
-              class="custom-card-wrapper"
-              *ngFor="let card of cards; let cardIndex = index"
-            >
-              <div class="custom-card" [ngClass]="{'hide-card': hiddenCards[cardIndex]}">
-                <i
-                  class="fa-solid fa-times custom-close-icon"
-                  (click)="removeFile(cardIndex)"
-                ></i>
-                <div class="custom-card-body" (click)="openFileInput(cardIndex)">
-                  <h5 class="custom-card-title">Card Title</h5>
-            
-                  <!-- Show thumbnail image if uploaded -->
-                  <img *ngIf="uploadedImages[cardIndex]" [src]="uploadedImages[cardIndex]" alt="Uploaded Image" class="thumbnail-image" />
-            
-                  <p *ngIf="uploadedFiles[cardIndex] && !uploadedImages[cardIndex]">File Attached: {{ uploadedFiles[cardIndex]?.name }}</p>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="Edit2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content outer-container">
+      <div class="inner-container">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 style="color: white; font-size: larger;">{{LessonNameView}}</h6>
+          <button type="button" class="close closebtn" data-bs-dismiss="modal" aria-label="Close">
+            <img src="../../../assets/images/close.png" width="40px" />
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="full-width-box custom-full-width-grid">
+            <div class="custom-card-wrapper" *ngFor="let resource of lessonResources; let index = index">
+              <div class="custom-card" [ngClass]="{ 'hide-card': !resource.id }">
+                <i class="fa-solid fa-times custom-close-icon" *ngIf="resource.id" (click)="deleteResource(resource.id); $event.stopPropagation()"></i>
+                <div class="custom-card-body" (click)="openEdit2FileInput(index)">
+                  <img *ngIf="resource.resourceType.includes('.jpeg') || resource.resourceType.includes('.jpg') || resource.resourceType.includes('.png')" [src]="getResourcePath(resource.resource)" alt="Uploaded Image" class="thumbnail-image" />
+                  <i *ngIf="!resource.resourceType.includes('.jpeg') && !resource.resourceType.includes('.jpg') && !resource.resourceType.includes('.png')" class="fa {{ getFileTypeIcon(resource.resourceType) }} fa-2x"></i>
+                  <p *ngIf="!resource.resourceType.includes('.jpeg') && !resource.resourceType.includes('.jpg') && !resource.resourceType.includes('.png')">File: {{ resource.fileName }}</p>
                 </div>
-            
-                <!-- Hidden file input -->
-                <input
-                  type="file"
-                  #fileInput
-                  style="display: none;"
-                  accept="image/*"
-                  (change)="attachFile($event, cardIndex)"
-                />
+                <input type="file" #edit2FileInput style="display: none" (change)="onEdit2FileSelected($event, index)" />
               </div>
             </div>
-            
-          
-            </div>
-
-            <div class="comment-box mt-4">
-                <div class="comment-header">
-                  <button class="add-comment-btn">إضافة</button>
-                  <div class="stars-rating">
-                    <span class="rating-text ms-2">تقييم الدرس</span>
-                    <span class="stars">
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </span>
-                  </div>
-                </div>
-              
-                <textarea
-                  class="comment-textarea"
-                  placeholder="قم بكتابة تعليق"
-                  rows="1"
-                ></textarea>
-              </div>
-
-              
           </div>
-          
-     
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn custombtn ms-4" >حفظ</button>
+        </div>
       </div>
     </div>
   </div>

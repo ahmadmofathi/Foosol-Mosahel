@@ -1,150 +1,230 @@
 .background-container {
-    position: relative; /* Position context for child elements */
-    min-height: 100vh; /* Set a smaller height */
-    display: flex; /* For centering the form */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    overflow: hidden; /* Prevent scrolling within this container */
-    /* background-image: url('../../../assets/images/back.jpg'); */
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-size:contain;
-    padding: 50px;
-  }
-  
-  .overlay {
-    position: absolute; /* Overlay positioned absolutely */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-    z-index: 1; /* Ensure the overlay is above the background */
-  }
-  
-  .top-left {
-    position: absolute; /* Position it at the top left */
-    top: 20px; /* Adjust as necessary */
-    left: 20px; /* Adjust as necessary */
-    z-index: 2; /* Ensure it's above the overlay */
-  }
-  
-  .circle-image-container {
-    position: relative; /* Position context for the icon */
-    width: 50px; /* Set the size for the circle */
-    height: 50px; /* Set the size for the circle */
-  }
-  
-  .circle-image {
-    width: 100%; /* Full width of the container */
-    height: 100%; /* Full height of the container */
-    border-radius: 50%; /* Make it circular */
-  }
-  
-  .your-icon-class {
-    position: absolute; /* Position it over the circle image */
-    top: 50%; /* Center it vertically */
-    left: 50%; /* Center it horizontally */
-    transform: translate(-50%, -50%); /* Center the icon */
-    font-size: 20px; /* Adjust size as needed */
-    color: white; /* Adjust color as needed */
-  }
-  
-  .top-right {
-    position: absolute; /* Position it at the top right */
-    top: 20px; /* Adjust as necessary */
-    right: 20px; /* Adjust as necessary */
-    z-index: 2; /* Ensure it's above the overlay */
-  }
-  
-  .icon-container {
-    background-color: #224273; /* Blue background */
-    padding: 10px; /* Add padding */
-    border-radius: 5px; /* Rounded corners */
-    display: flex; /* Display icons in a row */
-    gap: 10px; /* Space between icons */
-  }
-  
-  .icon-class-1, .icon-class-2 {
-    font-size: 24px; /* Adjust size as needed */
-    color: white; /* Adjust color as needed */
-  }
-  
-  .my-form {
-    position: relative; /* This makes the form above the overlay */
-    z-index: 2; /* Ensure the form is above the overlay */
-    background-color: rgba(223, 206, 178, 0.7); /* Semi-transparent background */
-    padding: 20px; /* Adds some padding to the form */
-    border-radius: 30px; /* Optional: rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for form */
-    height: auto;
-   /* Fixed height */
-  }
-  
-  .custom-form{
-    width:700px;
-    
-  }
-
-  .custom-box{
-    background-color: #fff;
-    padding: 5px;
-    border-radius: 15px;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
-    color:#001A72;
-    font-size: large;
-    font-weight: bold;
-    display: flex; /* Apply Flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .payment-methods{
-    justify-content: center;
-    align-items: center; /* Center vertically */
-    text-align: center;
-    border-bottom: 3px solid white;
-
-}
-  
-  .header h3{
-    text-align: center;
-    color:#6C6355;
-    margin-bottom: 40px;
-    margin-top: 10px;
-  }
- 
-  .payment-methods2{
-    justify-content: center;
-    align-items: center; /* Center vertically */
-    text-align: center;
-
+  position: relative;
+  /* Position context for child elements */
+  min-height: 100vh;
+  /* Set a smaller height */
+  display: flex;
+  /* For centering the form */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  overflow: hidden;
+  /* Prevent scrolling within this container */
+  /* background-image: url('../../../assets/images/back.jpg'); */
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: contain;
+  padding: 50px;
+  background-color: #f2f2f2;
 }
 
-.own-btn{
-  background-color:#001A72 ;
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.image-wrapper:hover img {
+  opacity: 0.5; /* Reduce opacity on hover */
+}
+
+.image-wrapper:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black overlay */
+  z-index: 5; /* Ensure overlay appears above the image */
+}
+
+
+.top-left {
+  position: absolute;
+  /* Position it at the top left */
+  top: 20px;
+  /* Adjust as necessary */
+  left: 20px;
+  /* Adjust as necessary */
+  z-index: 2;
+  /* Ensure it's above the overlay */
+}
+
+.circle-image-container {
+  position: relative;
+  /* Position context for the icon */
+  width: 50px;
+  /* Set the size for the circle */
+  height: 50px;
+  /* Set the size for the circle */
+}
+
+.circle-image {
+  width: 100%;
+  /* Full width of the container */
+  height: 100%;
+  /* Full height of the container */
+  border-radius: 50%;
+  /* Make it circular */
+}
+
+.your-icon-class {
+  position: absolute;
+  /* Position it over the circle image */
+  top: 50%;
+  /* Center it vertically */
+  left: 50%;
+  /* Center it horizontally */
+  transform: translate(-50%, -50%);
+  /* Center the icon */
+  font-size: 20px;
+  /* Adjust size as needed */
+  color: white;
+  /* Adjust color as needed */
+}
+
+.top-right {
+  position: absolute; /* Position it at the top right */
+  top: 20px; /* Adjust as necessary */
+  right: 20px; /* Adjust as necessary */
+  z-index: 2; /* Ensure it's above the overlay */
+}
+
+.icon-container {
+  padding: 10px; /* Add padding */
+  border-radius: 5px; /* Rounded corners */
+  display: flex; /* Display icons in a row */
+  gap: 10px; /* Space between icons */
+  margin-top: 10px;
+}
+.nav_icon{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #001a72;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.nav_icon.hovered {
+  background-color: white;
+  border: 1px solid #001a72;
+}
+
+.center-icons {
+  /* right: 45%; */
+  /* Position on the right */
+  top: 4%;
+  /* Center vertically */
+  transform: translateY(-50%);
+
+}
+
+
+.icon-class-1,
+.icon-class-2 {
+  font-size: 24px;
+  /* Adjust size as needed */
+  color: white;
+  /* Adjust color as needed */
+}
+
+.my-form {
+  position: relative;
+  /* This makes the form above the overlay */
+  z-index: 2;
+  /* Ensure the form is above the overlay */
+  background-color: rgba(223, 206, 178, 0.7);
+  /* Semi-transparent background */
+  padding: 20px;
+  /* Adds some padding to the form */
+  border-radius: 30px;
+  /* Optional: rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Optional: shadow for form */
+  height: auto;
+  /* Fixed height */
+}
+
+.custom-form {
+  width: 700px;
+
+}
+
+.custom-box {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+  color: #001A72;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  /* Apply Flexbox */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.payment-methods {
+  justify-content: center;
+  align-items: center;
+  /* Center vertically */
+  text-align: center;
+  border-bottom: 3px solid white;
+
+}
+
+.header h3 {
+  text-align: center;
+  color: #6C6355;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.payment-methods2 {
+  justify-content: center;
+  align-items: center;
+  /* Center vertically */
+  text-align: center;
+
+}
+
+.own-btn {
+  background-color: #001A72;
   color: white;
   border-radius: 15px;
   padding: 1px 50px 1px 50px;
   text-align: center;
 }
 
-.own-btn2{
-  background-color:#001A72 ;
+.own-btn2 {
+  background-color: #001A72;
   color: white;
   border-radius: 15px;
   padding: 1px 50px 1px 50px;
   text-align: left;
 }
-.div-button2{
+
+.div-button2 {
   justify-content: left;
-  align-items: center; 
+  align-items: center;
   text-align: center;
 }
 
-.div-button{
+.div-button {
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   text-align: center;
 }
 
@@ -152,47 +232,61 @@
   position: absolute;
   z-index: 3;
   display: flex;
-  gap: 10px; /* Space between icons */
+  gap: 10px;
+  /* Space between icons */
 }
 
 .left-icons {
-  left: 25%; /* Position on the left */
-  top: 3%; /* Center vertically */
+  left: 4%;
+  top: 4%;
   transform: translateY(-50%);
 }
 
 .right-icons {
-  right: 25%; /* Position on the right */
-  top: 3%; /* Center vertically */
+  right: 4%;
+  top: 4%;
   transform: translateY(-50%);
 }
 
+
+.center-icons h1 {
+  font-family: "Almarai", sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  color: #001A72;
+}
+
 .icon-class {
-  font-size: 24px; /* Adjust size as needed */
-  color: white; /* Adjust color as needed */
+  font-size: 24px;
+  /* Adjust size as needed */
+  color: white;
+  /* Adjust color as needed */
   padding: 10px;
   border-radius: 50%;
 }
 
-.icon-container {
+/* .icon-container {
   background-color: #224273;
   padding: 10px;
   border-radius: 5px;
   display: flex;
   cursor: pointer;
-}
+} */
 
 /* Horizontal menu */
 .horizontal-menu {
-  background-color: #F1E8BF; /* Your desired background color */
+  background-color: #F1E8BF;
+  /* Your desired background color */
   position: absolute;
   top: 50px;
-  right: 0; /* Align to the right */
+  right: 0;
+  /* Align to the right */
   z-index: 3;
   border-radius: 5px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   display: block;
-  direction: rtl; /* Ensure right-to-left layout */
+  direction: rtl;
+  /* Ensure right-to-left layout */
 }
 
 
@@ -200,7 +294,8 @@
   list-style: none;
   padding: 0;
   display: flex;
-  flex-direction: row-reverse; /* Reverse the order of list items */
+  flex-direction: row-reverse;
+  /* Reverse the order of list items */
   margin: 0;
 }
 
@@ -216,43 +311,56 @@
 }
 
 .outer-container {
-  background-color: #F5B104; /* Outer background */
+  background-color: #F5B104;
+  /* Outer background */
   border-radius: 40px;
-  border: 5px solid #E45C00; /* Border around the modal */
-  padding: 15px; /* Padding around inner container */
+  border: 5px solid #E45C00;
+  /* Border around the modal */
+  padding: 15px;
+  /* Padding around inner container */
 }
 
 /* Inner container to give the effect of margin and background color #03556B */
 .inner-container {
-  background-color: #03556B; /* Inner background */
-  border-radius: 30px; /* Inner corner radius */
-  padding: 20px; /* Padding inside for content */
-  position: relative; /* To allow the close button positioning */
+  background-color: #03556B;
+  /* Inner background */
+  border-radius: 30px;
+  /* Inner corner radius */
+  padding: 20px;
+  /* Padding inside for content */
+  position: relative;
+  /* To allow the close button positioning */
 }
 
 /* Close button with red background and white X */
 .closebtn {
-  background-color: red; /* Red background */
-  color: white; /* White "X" icon */
+  background-color: red;
+  /* Red background */
+  color: white;
+  /* White "X" icon */
   font-weight: bold;
   border-radius: 50%;
   position: absolute;
   top: 25px;
   right: 15px;
   padding: 5px 10px;
-  border: none; /* Remove default borders */
-  cursor: pointer; /* Pointer cursor on hover */
+  border: none;
+  /* Remove default borders */
+  cursor: pointer;
+  /* Pointer cursor on hover */
 }
 
 /* Change background and text color on hover */
 .closebtn:hover {
-  background-color: red; /* White background on hover */
-  color: white; /* Red "X" on hover */
+  background-color: red;
+  /* White background on hover */
+  color: white;
+  /* Red "X" on hover */
 }
 
 .modal-title {
-  color:#FCF2BD;
-  font-size: larger;
+  color: white;
+  font-size: 25px !important;
   font-weight: bold;
   text-align: center;
 
@@ -261,151 +369,213 @@
 .custom-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #FCF2BD; /* Table background color */
-  color: black; /* Text color */
-  direction: rtl; /* RTL alignment for the table */
-  text-align: right; /* Left align the text */
-  border: 2px solid black; /* Outer border for the whole table */
-  border-radius: 15px; /* Rounded corners for the table */
+  background-color: #FCF2BD;
+  /* Table background color */
+  color: black;
+  /* Text color */
+  direction: rtl;
+  /* RTL alignment for the table */
+  text-align: right;
+  /* Left align the text */
+  border: 2px solid black;
+  /* Outer border for the whole table */
+  border-radius: 15px;
+  /* Rounded corners for the table */
 }
 
-.custom-table th, .custom-table td {
+.custom-table th,
+.custom-table td {
   padding: 10px;
-  border: none; /* No borders between the cells */
+  border: none;
+  /* No borders between the cells */
 }
 
 .custom-table th:first-child {
-  border-top-right-radius: 15px; /* Top-right corner */
+  border-top-right-radius: 15px;
+  /* Top-right corner */
 }
 
 .custom-table th:last-child {
-  border-top-left-radius: 15px; /* Top-left corner */
+  border-top-left-radius: 15px;
+  /* Top-left corner */
 }
 
 .custom-table tr:last-child td:first-child {
-  border-bottom-right-radius: 15px; /* Bottom-right corner */
+  border-bottom-right-radius: 15px;
+  /* Bottom-right corner */
 }
 
 .custom-table tr:last-child td:last-child {
-  border-bottom-left-radius: 15px; /* Bottom-left corner */
+  border-bottom-left-radius: 15px;
+  /* Bottom-left corner */
 }
 
-.custom-table, .custom-table th, .custom-table td {
-  border: 3px solid black; /* Black border for table, rows, and columns */
+.custom-table,
+.custom-table th,
+.custom-table td {
+  border: 3px solid black;
+  /* Black border for table, rows, and columns */
   border-radius: 5px;
   align-items: end;
   font-weight: bold;
 
 }
 
-.custom-table th, .custom-table td {
+.custom-table th,
+.custom-table td {
   padding: 10px;
   align-items: end;
 
 }
 
 .custom-table th {
-  background-color: #FCF2BD  }
+  background-color: #FCF2BD
+}
 
-  .form-input {
-      width: 100%;
-      padding: 5px;
-      border: none; /* Removes the default border */
-      border-radius: 5px;
-      background-color: #FCF2BD;
-      color: black;
-      font-size: 16px;
-      box-sizing: border-box; 
-    }
+.form-input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  /* Removes the default border */
+  border-radius: 5px;
+  background-color: #FCF2BD;
+  color: black;
+  font-size: 16px;
+  box-sizing: border-box;
+}
 
-    .form-input:focus {
-      outline: none; /* Removes the outline */
-      border: none; /* Ensures no border appears on focus */
-      box-shadow: none; /* Removes any shadow effect, if applicable */
-    }
-  .ck.ck-editor__editable {
-      background-color: #FCF2BD;
-  }
-  .custom-ckeditor {
-      background-color: #FCF2BD;
-  }
+.form-input:focus {
+  outline: none;
+  /* Removes the outline */
+  border: none;
+  /* Ensures no border appears on focus */
+  box-shadow: none;
+  /* Removes any shadow effect, if applicable */
+}
 
-  .full-width-box {
-      min-width: 100%; /* Take full width of modal body */
-      background-color: #FCF2BD; /* Background color */
-      border-radius: 6px;
-      border: 3px solid black; /* Black border */
-      box-sizing: border-box; /* Ensure padding doesn't affect width */
-      padding:100px 10px;
-      align-items: center;
+.ck.ck-editor__editable {
+  background-color: #FCF2BD;
+}
 
-    }
-    
-    .full-width-box h4{
-      color:#817B60;
-      align-items: center;
-      text-align: center;
-      font-size: 20px;
-    }
+.custom-ckeditor {
+  background-color: #FCF2BD;
+}
 
-    .modal-body ,.modal-footer ,.modal-header {
-      border: none; /* Removes the border */
-    }
-  
-    .modal-header h1{
-      text-align: center !important;
-      font-size: large;
-    }
-    .modal-header {
-      display: flex; /* or block */
-      justify-content: center; /* Center horizontally if using flex */
-    }    
+.full-width-box {
+  min-width: 100%;
+  /* Take full width of modal body */
+  background-color: #FCF2BD;
+  /* Background color */
+  border-radius: 6px;
+  border: 3px solid black;
+  /* Black border */
+  box-sizing: border-box;
+  /* Ensure padding doesn't affect width */
+  padding: 100px 10px;
+  align-items: center;
+
+}
+
+.full-width-box h4 {
+  color: #817B60;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+}
+
+.modal-body,
+.modal-footer,
+.modal-header {
+  border: none;
+  /* Removes the border */
+}
+
+.modal-header h1 {
+  text-align: center !important;
+  font-size: large;
+}
+
+.modal-header {
+  display: flex;
+  /* or block */
+  justify-content: center;
+  /* Center horizontally if using flex */
+}
 
 
-    /* Modal Close Button Styles */
+.almarai-regular {
+  font-family: "Almarai", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+span,
+h2,
+button ,
+th , td, h1 ,label,modal-title{
+  font-family: "Almarai", serif;
+  font-weight: bolde;
+  font-style: normal;
+  font-size: medium;
+}
+
+/* Modal Close Button Styles */
 .modal .close {
-position: absolute;
-top: 10px; /* Adjust as needed */
-right: 10px; /* Adjust as needed */
-background-color: #BC1010;  /* Red background */
-border-radius: 50%;      /* Make it circular */
-color: white;            /* White color for the icon */
-font-size: 40px;  
-font-weight: bolder;       /* Adjust size as needed */
-width: 32px;             /* Width of the circle */
-height: 32px;            /* Height of the circle */
-display: flex;
-justify-content: center;
-align-items: center;
-border: none;            /* Remove any default border */
-outline: none;           /* Remove outline on focus */
+  position: absolute;
+  top: 10px;
+  /* Adjust as needed */
+  right: 10px;
+  /* Adjust as needed */
+  background-color: #BC1010;
+  /* Red background */
+  border-radius: 50%;
+  /* Make it circular */
+  color: white;
+  /* White color for the icon */
+  font-size: 40px;
+  font-weight: bolder;
+  /* Adjust size as needed */
+  width: 32px;
+  /* Width of the circle */
+  height: 32px;
+  /* Height of the circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  /* Remove any default border */
+  outline: none;
+  /* Remove outline on focus */
 }
 
 .modal .close span {
-margin: 0;               /* Remove default margin */
+  margin: 0;
+  /* Remove default margin */
 }
 
 .custombtn {
   background-color: #F1E8BF;
   color: black;
   border-radius: 10px;
-  min-width:150px;
+  min-width: 150px;
   float: left;
   font-weight: bold;
 }
 
 .full-width-box {
-  min-width: 100%; /* Take full width of modal body */
-  background-color: #F1E8BF; /* Background color */
+  min-width: 100%;
+  /* Take full width of modal body */
+  background-color: #F1E8BF;
+  /* Background color */
   border-radius: 30px;
-  padding:20px 30px;
+  padding: 20px 30px;
   align-items: center;
   border: none;
 
 }
 
-.full-width-box h4{
-  color:#817B60;
+.full-width-box h4 {
+  color: #817B60;
   align-items: center;
   text-align: center;
   font-size: 20px;
@@ -414,14 +584,18 @@ margin: 0;               /* Remove default margin */
 
 .custom-full-width-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  gap: 20px; /* Space between the cards */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 equal columns */
+  gap: 20px;
+  /* Space between the cards */
 }
 
 .custom-card-wrapper {
   position: relative;
 }
-
+.grid-item{
+  margin-bottom: 10px;
+}
 .custom-card {
   background-color: #cec7b7;
   border-radius: 10px;
@@ -448,8 +622,8 @@ margin: 0;               /* Remove default margin */
   display: none;
 }
 
-.custom-card-title{
-  color:#817B60
+.custom-card-title {
+  color: #817B60
 }
 
 
@@ -469,7 +643,7 @@ margin: 0;               /* Remove default margin */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row-reverse; 
+  flex-direction: row-reverse;
 }
 
 .add-comment-btn {
@@ -522,281 +696,329 @@ margin: 0;               /* Remove default margin */
 
 
 .main-page {
-    background-color: #F8F9FD;
-    padding: 20px;
-    z-index: 2;
-    background-color: rgba(223, 206, 178, 0.7);
-    border-radius: 30px;
-    width:700px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .user-profile {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-image {
-    width: 50px;
-    border-radius: 50%;
-  }
-  
-  .bell-icon {
-    font-size: 24px;
-    color: #03556B;
-    margin-left: 10px;
-  }
-  
-  .header-icons i {
-    font-size: 24px;
-    color: #0E1E5B;
-    margin-left: 20px;
-  }
-  
-  .search-and-filters {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-bar {
-    width: 30%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  .filter-icons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .btn {
-    background-color: #03556B;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-  }
-  
-  .btn-add-excel {
-    background-color: #F8F9FD;
-    color: #0E1E5B;
-    border: 1px solid #0E1E5B;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .class-section-info {
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  .class-all{
-    background-color: #03556B;
-    color: white;
-    border-radius: 10px;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .class-row{
-    justify-content: center;
-    align-items: center;
-  }
-  /* .class-info, .section-info, .students-count {
+  background-color: #F8F9FD;
+  padding: 20px;
+  z-index: 2;
+  background-color: rgba(223, 206, 178, 0.7);
+  border-radius: 30px;
+  width: 800px;
+  margin-top: 2%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.bell-icon {
+  font-size: 24px;
+  color: #03556B;
+  margin-left: 10px;
+}
+
+.header-icons i {
+  font-size: 24px;
+  color: #0E1E5B;
+  margin-left: 20px;
+}
+
+.search-and-filters {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 30%;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.filter-icons {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  background-color: #03556B;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+
+.btn2 {
+  background-color: #001A72;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+
+.btn-add-excel {
+  background-color: #F8F9FD;
+  color: #0E1E5B;
+  border: 1px solid #0E1E5B;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.class-section-info {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.class-all {
+  background-color: #03556B;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.class-row {
+  justify-content: center;
+  align-items: center;
+}
+
+/* .class-info, .section-info, .students-count {
     background-color: #03556B;
     color: white;
     padding: 10px;
     border-radius: 10px;
   } */
-  
-  .students-list {
-   /* background-color: #F1E8BF; */
-    border-radius: 30px;
-    padding: 10px;
-    margin-bottom:10px;
 
-  }
-  
-  .student {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #F1E8BF;
-    padding: 10px;
-    border-radius: 25px;
-    margin-bottom: 15px; /* Add margin to create space between each student */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Optional: add subtle shadow */
-  }
-  
-  .student-grade {
-    background-color: #CEB887;
-    padding: 3px;
-    border-radius: 5px;
-    color: #000;
-  }
-  
-  .student-info {
-    display: flex;
-    align-items: center;
-   
-  }
-  
-  .student-image {
-    width: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .student-name {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .student-icons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .badge {
-    background-color: #CEB887;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-right: 5px;
-  }
-  
-  .fa-info-circle, .fa-envelope, .fa-star {
-    font-size: 18px;
-    margin-left: 10px;
-  }
-  
+.students-list {
+  /* background-color: #F1E8BF; */
+  border-radius: 30px;
+  padding: 10px;
+  margin-bottom: 10px;
 
-  .search-container {
-    position: relative;
-    width: 50%;
-  }
-  
-  .search-bar {
-    width: 100%;
-    padding: 10px 40px 10px 10px; /* Adjust padding to make space for the icon */
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    box-sizing: border-box; /* Ensure padding doesn't affect width */
-  }
-  
-  .search-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px; /* Position the icon inside the input box */
-    transform: translateY(-50%);
-    font-size: 20px;
-    color: #ccc;
-  }
-  
+}
 
-  .btn-filter{
-    border-radius: 30px;
-   
-  }
+.student {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F1E8BF;
+  padding: 10px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  /* Add margin to create space between each student */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  /* Optional: add subtle shadow */
+}
 
-  .students-value,.section-value,.class-value{
-    background-color: #F1E8BF;
-    color:#03556B;
-    padding: 5px;
-    border-radius: 20px;
-    margin-top: 5px;
-  }
-  .dropdown-menu {
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: none;
-  }
-  
-  .dropdown-menu.show {
-    display: block; /* Show dropdown */
-  }
-  
-  .dropdown-item {
-    display: block;
-    padding: 5px;
-    color: black;
-    text-decoration: none;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f1f1f1;
-  }
+.student-grade {
+  background-color: #CEB887;
+  padding: 3px;
+  border-radius: 5px;
+  color: #000;
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+
+}
+
+.student-image {
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.student-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.student-icons {
+  display: flex;
+  align-items: center;
+}
+
+.badge {
+  background-color: #CEB887;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.fa-info-circle,
+.fa-envelope,
+.fa-star {
+  font-size: 18px;
+  margin-left: 10px;
+}
 
 
-  
-  .modal-body ,.modal-footer ,.modal-header {
-    border: none; /* Removes the border */
-  }
+.search-container {
+  position: relative;
+  width: 50%;
+}
 
-  .modal-header h1{
-    text-align: center !important;
-    font-size: large;
-  }
-  .modal-header {
-    display: flex; /* or block */
-    justify-content: center; /* Center horizontally if using flex */
-  }    
+.search-bar {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  /* Adjust padding to make space for the icon */
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  /* Ensure padding doesn't affect width */
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  /* Position the icon inside the input box */
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #ccc;
+}
 
 
-  /* Modal Close Button Styles */
+.btn-filter {
+  border-radius: 30px;
+
+}
+
+.students-value,
+.section-value,
+.class-value {
+  background-color: #F1E8BF;
+  color: #001A72;
+  padding: 5px;
+  border-radius: 20px;
+  margin-top: 5px;
+  font-size: small;
+}
+
+.select-all-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+
+
+.dropdown-menu {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+  /* Show dropdown */
+}
+
+.dropdown-item {
+  display: block;
+  padding: 5px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+.modal-body,
+.modal-footer,
+.modal-header {
+  border: none;
+  /* Removes the border */
+}
+
+.modal-header h1 {
+  text-align: center !important;
+  font-size: large;
+}
+
+.modal-header {
+  display: flex;
+  /* or block */
+  justify-content: center;
+  /* Center horizontally if using flex */
+}
+
+
+/* Modal Close Button Styles */
 .modal .close {
-position: absolute;
-top: 10px; /* Adjust as needed */
-right: 10px; /* Adjust as needed */
-background-color: #BC1010;  /* Red background */
-border-radius: 50%;      /* Make it circular */
-color: white;            /* White color for the icon */
-font-size: 40px;  
-font-weight: bolder;       /* Adjust size as needed */
-width: 32px;             /* Width of the circle */
-height: 32px;            /* Height of the circle */
-display: flex;
-justify-content: center;
-align-items: center;
-border: none;            /* Remove any default border */
-outline: none;           /* Remove outline on focus */
+  position: absolute;
+  top: 10px;
+  /* Adjust as needed */
+  right: 10px;
+  /* Adjust as needed */
+  background-color: #BC1010;
+  /* Red background */
+  border-radius: 50%;
+  /* Make it circular */
+  color: white;
+  /* White color for the icon */
+  font-size: 40px;
+  font-weight: bolder;
+  /* Adjust size as needed */
+  width: 32px;
+  /* Width of the circle */
+  height: 32px;
+  /* Height of the circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  /* Remove any default border */
+  outline: none;
+  /* Remove outline on focus */
 }
 
 .modal .close span {
-margin: 0;               /* Remove default margin */
+  margin: 0;
+  /* Remove default margin */
 }
 
 
@@ -829,57 +1051,366 @@ margin: 0;               /* Remove default margin */
   margin-right: 10px;
 }
 
-label{
-  text-align: right important!;
+label {
+  text-align: right important !;
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  }
+}
 
-  form {
-    direction: rtl; /* Ensures the form is right-to-left */
-  }
+form {
+  direction: rtl;
+  /* Ensures the form is right-to-left */
+}
 
-  input#phone {
-    flex-grow: 1; /* Makes the input grow to take up available space */
-  }
-  
-  .form-control[style*="width: 110px"] {
-    width: 110px !important; /* Ensures the width for the flag and code container */
-  }
+input#phone {
+  flex-grow: 1;
+  /* Makes the input grow to take up available space */
+}
 
-
-  .custombtn{
-    background-color:#F1E8BF ;
-    color:black;
-    font-weight: bold;
-  }
+.form-control[style*="width: 110px"] {
+  width: 110px !important;
+  /* Ensures the width for the flag and code container */
+}
 
 
-  .user-img-container {
-    position: relative;
-    background-color: #03556B; /* Circle background color */
-    border-radius: 50%;
-    padding: 10px;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
+.custombtn {
+  background-color: #F1E8BF;
+  color: black;
+  font-weight: bold;
+}
+
+
+.user-img-container {
+  position: relative;
+  background-color: #03556B;
+  /* Circle background color */
+  border-radius: 50%;
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* Optional shadow */
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.lineclass {
+  border-bottom: 3px solid #03556B;
+  padding: 25px;
+
+}
+
+/* User Image */
+.user-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+
+.checkbox-list {
+  display: flex;
+  /* Use flexbox to layout items */
+  flex-wrap: wrap;
+  /* Allow items to wrap if necessary */
+  gap: 10px;
+  /* Space between checkboxes */
+  margin-top: 1rem;
+  /* Space above the checkbox list */
+}
+
+.checkbox-item {
+  display: flex;
+  /* Ensure the label and input are aligned */
+  align-items: center;
+  /* Vertically center the items */
+}
+
+.checkbox-item input {
+  margin-right: 5px;
+  /* Space between checkbox and label */
+}
+
+.checkbox-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: none; /* Hide checkbox by default */
+  z-index: 10; /* Ensure checkbox appears above the overlay */
+}
+
+.checkbox-container input[type="checkbox"] {
+  accent-color: #007bff; /* Checkbox color */
+  width: 20px;
+  height: 20px;
+}
+
+.image-wrapper:hover .checkbox-container {
+  display: block; /* Show checkbox on hover */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 70px; /* Adjust based on your profile image height */
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  /* width: 200px; */
+  text-align: right;
+  z-index: 1000;
+  display: block;
+}
+
+.menu-item {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+.logout {
+  color: #980101;
+}
+
+hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 2px solid #000;
+}
+.nav-wrapper {
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  overflow-x: visible;
+  background: transparent;
+  padding: 10px 0;
+}
+
+/* Navigation Container */
+.nav-container {
+  position: relative;
+  background-color: #fcf2bd;
+  border-radius: 15px;
+  width: auto;
+  /* max-width: 40%; */
+  min-width: 400px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+  margin-right: 27px;
+  margin-top: 7px;
+}
+
+/* Hide the scrollbar */
+.nav-container::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+/* Close Button */
+.close-btn {
+  z-index: 2;
+  position: absolute;
+  top: 7%;
+  right: -1px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #ff0000; /* Darker red on hover */
+}
+
+/* Home Icon Section */
+.home-icon {
+  position: absolute;
+  top: -35%;
+  right: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10; /* Ensure it's above the navigation */
+}
+
+/* Circle Styling */
+.home-icon .circle,
+.setting-icon .circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fcf2bd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.6),
+    0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid white;
+  z-index: 11; /* Keep it above other elements */
+}
+
+.home-icon i,
+.setting-icon i {
+  font-size: 32px;
+  color: #224273;
+}
+
+.home-icon span {
+  margin-top: 5px; /* Adjust to position the text under the icon */
+  font-size: 14px;
+  font-family: 'AGA Mashq Bold', Arial, sans-serif;
+  color: #000;
+}
+
+/* Navigation Items */
+.nav-items {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  /* padding-right: 60px; */
+  flex-wrap: nowrap;
+}
+
+/* .nav-item.first-item {
+  padding-right: 60px; 
+} */
+
+.nav-item {
+display: flex;
+    flex-direction: column;
     align-items: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
-    margin: 0 auto;
-    cursor: pointer;
-  }
-  
-  .lineclass{
-    border-bottom: 3px solid #03556B;
-    padding: 25px;
+    justify-content: center;
+    margin: 0 10px;
+    font-family: 'AGA Mashq Bold', Arial, sans-serif;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+    white-space: nowrap;
+}
 
-  }
-  /* User Image */
-  .user-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+/* .nav-item.first-item {
+  padding-right: 60px;
+} */
+
+.nav-item i {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.nav-item span {
+  font-size: 12px;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  color: #224273; /* Highlight color */
+}
+
+.active-nav-item {
+  border: 2px solid black; /* Blue border */
+  border-radius: 10px; /* Rounded edges */
+  box-shadow: 0 4px 10px rgba(34, 66, 115, 0.3); /* Subtle shadow */
+  background-color: #fcf2bd; /* Optional: Highlight background */
+  padding: 10px; /* Adjust spacing for better visuals */
+  color: black; /* Active color */
+}
+
+
+/* Optional: Active Icon Styling */
+.active-nav-item i img {
+  transform: scale(1.1); /* Slightly enlarge the icon */
+  transition: transform 0.2s ease; /* Smooth scaling effect */
+}
+
+/* Optional: Active Span Styling */
+.active-nav-item span {
+  font-weight: bold; /* Highlight text */
+}
+
+ /* // Setting NAv */
+
+ .setting-icon {
+  position: absolute;
+  top: -43%;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.settingNav-container{
+  position: relative;
+  background-color: #fcf2bd;
+  border-radius: 15px;
+  width: auto;
+  /* max-width: 40%; */
+  height: auto;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  padding: 10px 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+  margin-right: 148px;
+  margin-top: -26px;
+
+}
+
+.closeSetting-btn {
+  z-index: 2;
+  position: absolute;
+  top: -41%;
+  right: 119px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+

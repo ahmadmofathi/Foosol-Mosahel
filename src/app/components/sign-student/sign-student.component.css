@@ -7347,10 +7347,12 @@
   .bg-primary {
     background: #f35588 !important; }
   
-  .ftco-section {
-    padding-top: 7em ; 
-    height:auto;
-  }
+  
+    .ftco-section {
+      /* margin-top: 20px; */
+      overflow-y: hidden;
+   
+    }
   
   .ftco-no-pt {
     padding-top: 0; }
@@ -7403,7 +7405,7 @@
       color: gray; }
   
   .form-control {
-    height: 48px;
+    height: 40px;
     background: rgba(0, 0, 0, 0.05);
     color: #000;
     font-size: 16px;
@@ -7504,34 +7506,34 @@
     .checkbox-primary input:checked ~ .checkmark:after {
       color: #f35588; }
   
-  .btn {
-    cursor: pointer;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    font-size: 15px;
-    /* padding:  20px; */
-    border-radius: 50px; }
-    .btn:hover, .btn:active, .btn:focus {
-      outline: none; }
-    .btn.btn-primary {
-      background: #004183;
-      border: 1px solid #021A3C;
-      color: #fff;
-    }
-     
-      .btn.btn-primary:hover {
-        border: 1px solid #021A3C;
-        background: #fff;
-        color: #021A3C; }
-
-      .btn.btn-primary.btn-outline-primary {
-        border: 1px solid #f35588;
-        background: transparent;
-        color: #f35588; }
-        .btn.btn-primary.btn-outline-primary:hover {
-          border: 1px solid transparent;
-          background: #f35588;
-          color: #fff; }
+      .btn {
+        cursor: pointer;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        font-size: 15px;
+        padding: 10px 20px;
+        border-radius: 50px; }
+        .btn:hover, .btn:active, .btn:focus {
+          outline: none; }
+        .btn.btn-primary {
+          background: #021A3C;
+          border: 1px solid #021A3C;
+          color: #fff;
+        }
+         
+          .btn.btn-primary:hover {
+            border: 1px solid #021A3C;
+            background: #fff;
+            color: #021A3C; }
+    
+          .btn.btn-primary.btn-outline-primary {
+            border: 1px solid #f35588;
+            background: transparent;
+            color: #f35588; }
+            .btn.btn-primary.btn-outline-primary:hover {
+              border: 1px solid transparent;
+              background: #f35588;
+              color: #fff; }
     .btn.btn-white {
       background: #fff;
       border: 1px solid #fff;
@@ -7572,3 +7574,24 @@
             margin-top: 23px;
            
           }
+
+          .btn {
+            background: #fff;
+            border: 1px solid #021A3C;
+            color: #021A3C;
+            border: 1px solid #021A3C;
+          }
+          
+          .btn:hover {
+            border: 1px solid #021A3C;
+            background: #fff;
+            color: #021A3C;
+          }
+          
+          /* Active button style */
+          .btn.active {
+            background: #021A3C;
+            color: #fff;
+            border: 1px solid #021A3C;
+          }
+          

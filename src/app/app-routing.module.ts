@@ -60,6 +60,14 @@ import { CommonQuestionComponent } from './components/common-question/common-que
 import { TechnicalComponent } from './components/technical/technical.component';
 import { TableComponent } from './components/table/table.component';
 import { ListDegreeComponent } from './components/list-degree/list-degree.component';
+import { FollowingComponent } from './components/following/following.component';
+import { InteractionComponent } from './components/interaction/interaction.component';
+import { LessonCardComponent } from './components/lesson-card/lesson-card.component';
+import { PointsComponent } from './components/points/points.component';
+import { PrepPaperComponent } from './components/prep-paper/prep-paper.component';
+import { ActionsComponent } from './components/actions/actions/actions.component';
+import { BehaiveComponent } from './components/behaive/behaive/behaive.component';
+import { InteractionTableComponent } from './components/interaction-table/interaction-table.component';
 
 const routes: Routes = [
   {path:'login', component:SignupFormComponent},
@@ -82,7 +90,6 @@ const routes: Routes = [
   {path:'policy',component:PolicyComponent},
   {path:'degree',component:DegreeComponent},
   {path:'covenants',component:CovenantsComponent},
-  {path:'prepExam',component:PrepExamComponent},
   {path:'examPaper',component:ExamPaperComponent},
   {path:'adminForm',component:AdminComponent},
   {path:'skills',component:SkillsComponent},
@@ -123,8 +130,17 @@ const routes: Routes = [
   {path:'technical',component:TechnicalComponent},
   {path:'table',component:TableComponent},
   {path:'listDegree',component:ListDegreeComponent},
-  {path:'',component:LoginFormComponent},
-  {path:'**',component:LoginFormComponent}
+  {path:'actions',component:ActionsComponent},
+  {path:'behaive',component:BehaiveComponent},
+  {path:'following',component:FollowingComponent},
+  {path:'behaiveTable',component:InteractionTableComponent},
+  {path:'interaction',component:InteractionComponent},
+  {path:'lessonCard',component:LessonCardComponent},
+  {path:'points',component:PointsComponent},
+  {path:'examinig',component:PrepExamComponent},
+  {path:'prepPaper',component:PrepPaperComponent},
+  {path:'',component:SignupFormComponent},
+  {path:'**',component:SignupFormComponent}
 ];
 
 @NgModule({

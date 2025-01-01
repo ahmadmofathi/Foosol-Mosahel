@@ -1,5 +1,5 @@
 <div
-  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; "
+  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height:100%"
 >
   <div class="container-fluid">
     <div class="row">
@@ -42,7 +42,7 @@
           <!-- Close Button -->
     
           <!-- Home Icon Section -->
-          <div class="home-icon">
+          <!-- <div class="home-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -52,9 +52,8 @@
                 />
               </i>
               <span>الرئيسية</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
     
           <!-- Other Navigation Icons -->
           <div class="nav-items">
@@ -158,7 +157,7 @@
               </i>
               <span> التقيمات</span>
             </div>
-            <div class="nav-item" routerLink="/subscripe">
+            <div class="nav-item active-nav-item" routerLink="/subscripe">
               <i class="">
                 <img
                   src="../../assets/images/location-med-2.png"
@@ -168,7 +167,7 @@
               </i>
               <span> المناطق</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" routerLink="/lessons">
               <i class="">
                 <img
                   src="../../assets/images/screen-share.png"
@@ -219,7 +218,7 @@
         <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
 
         <div class="settingNav-container">
-          <div class="setting-icon">
+          <!-- <div class="setting-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -229,9 +228,8 @@
                 />
               </i>
               <span>الاعدادات</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
            <div class="nav-items">
 
@@ -381,7 +379,7 @@
                   >
                       <i class="fa-solid fa-cog"></i> تعديل
                     </button>
-                    <button class="dropdown-item delete-btn" (click)="deleteRegion(item.id)">
+                    <button class="dropdown-item delete-btn"  data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="openConfirmModal(item.id)">
                       <i class="fa-solid fa-trash"></i> حذف
                     </button>
                   </div>
@@ -421,7 +419,7 @@
 </div>
 
 <!-- Create Modal -->
-<div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true" #createModal>
+<div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true" #createModal >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -443,7 +441,7 @@
           </div>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">إلغاء</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  (click)="closeModalById('addModal')">إلغاء</button>
           <button type="submit" class="btn export-pdf-btn">إضافة</button>
         </div>
       </form>
@@ -474,10 +472,31 @@
           </div>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">إلغاء</button>
+          <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModalById('editModal')">إلغاء</button>
           <button type="submit" class="btn export-pdf-btn">حفظ</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+
+<!-- Delete Modal -->
+
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">تأكيد الحذف</h1>
+      </div>
+      <div class="modal-body">
+       <h1 style="text-align: center;"> هل أنت متأكد أنك تريد مسح هذه المنطقة؟</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()">حذف</button>
+      </div>
+    </div>
+  </div>
+</div>
+

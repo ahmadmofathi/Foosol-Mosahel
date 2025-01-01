@@ -1,9 +1,10 @@
-<section class="ftco-section">
+<section class="ftco-section" style="background-color: #F2F2F2;height: 100%;">
   <div class="container">
     <div class="row justify-content-center"></div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin:50px;">
       <div class="col-md-12 col-lg-10">
-        <div class="wrap d-md-flex">
+        <div class="wrap d-md-flex"  style="background-color: #fff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);">
           <div
             class="text-wrap p-4 text-center order-md-last" style="margin-bottom: 0; padding-bottom: 0;"
           >
@@ -13,21 +14,31 @@
           <div class="login-wrap p-4 p-lg-5">
             <div class="d-flex">
               <div class="w-100">
-                <h3 class="mb-4 text-end">تسجيل دخول</h3>
+                <h3 class="mb-4 text-end"> انشاء حساب</h3>
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-6">
-                <button class="form-control btn btn-primary3">المعلم</button>
+                <button 
+                  class="form-control btn" 
+                  [class.active]="selectedRole === 'teacher'" 
+                  (click)="selectRole('teacher')">
+                  المعلم
+                </button>
               </div>
               <div class="col-md-6">
-                <button class="form-control btn btn-primary2">الطالب</button>
+                <button 
+                  class="form-control btn" 
+                  [class.active]="selectedRole === 'student'" 
+                  (click)="selectRole('student')">
+                  الطالب
+                </button>
               </div>
             </div>
 
             <form action="#" class="signin-form">
-              <div class="form-group mb-3 text-md-right">
+              <div class="form-group mb-1 text-md-right">
                 <label class="label" for="name"> رمز الدخول</label>
                 <input
                   type="text"
@@ -37,7 +48,7 @@
                 />
               </div>
 
-              <div class="form-group mb-3 text-md-right">
+              <div class="form-group mb-1 text-md-right">
                 <label class="label" for="name">رقم الهاتف</label>
                 <input
                   type="text"
@@ -47,7 +58,7 @@
                 />
               </div>
 
-              <div class="form-group mb-3 text-md-right row">
+              <div class="form-group mb-1 text-md-right row">
                 <div class="col-md-6">
                   <label class="label" for="password">تأكيد كلمه السر </label>
                   <input
@@ -70,13 +81,8 @@
               </div>
 
               <div class="form-group" style="margin-top: 50px">
-                <button
-                  type="submit"
-                  class="form-control btn btn-primary submit px-3"
-                  routerLink="/home"
-                >
-                  تسجيل دخول
-                </button>
+                <button type="submit" class="form-control btn btn-primary submit px-3" > انشاء حساب</button>
+
               </div>
 
 

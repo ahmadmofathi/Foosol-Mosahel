@@ -1,126 +1,437 @@
 <div class="background-container">
-  <div class="overlay"></div>
+
+  <div class="icon-container left-icons align-items-center">
+    
+    <div class="profile-container" (click)="toggleMenu()">
+      <img
+        src="../../../assets/images/human.png"
+        alt="Profile"
+        width="60px"
+        height="60px"
+      />
+    </div>
+  
+    <div 
+    class="nav_icon" 
+    [ngClass]="{ 'hovered': isHovered.bell }"
+    (mouseover)="changeIcon('bell', true)" 
+    (mouseout)="changeIcon('bell', false)"
+  >
+    <img 
+      [src]="currentIcons.bell" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+
+
+  
+    <!-- Dropdown Menu -->
+    <div
+      *ngIf="menuOpen"
+      class="dropdown-menu"
+    >
+      <div class="menu-item" routerLink="/profile">
+        ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
+      </div>
+      <div class="menu-item">
+         توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
+      </div>
+      <hr />
+      <div class="menu-item logout">
+       <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
+      </div>
+    </div>
+
+  
+  </div>
+
+  <div class="icon-container center-icons align-items-center">
+    <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size:35px">
+درجات الطلاب    </h1>
+  </div>
+
+  <div class="icon-container right-icons align-items-center">
+    
+    <div 
+    class="nav_icon"
+    (click)="openSetting()"
+    [ngClass]="{ 'hovered': isHovered.settings }"
+    (mouseover)="changeIcon('settings', true)" 
+    (mouseout)="changeIcon('settings', false)"
+  >
+    <img 
+      [src]="currentIcons.settings" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+
+  <!-- (click)="openNav()" -->
+
+  <div 
+  class="nav_icon"
+  (click)="openNav()"
+  [ngClass]="{ 'hovered': isHovered.home }"
+  (mouseover)="changeIcon('home', true)" 
+  (mouseout)="changeIcon('home', false)"
+>
+  <img 
+    [src]="currentIcons.home" 
+    width="30px" 
+    height="30px"
+  />
+</div>
+
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+        <button class="close-btn" (click)="openNav()">&times;</button>
+    
+        <div class="nav-container">
+          <!-- Close Button -->
+    
+          <!-- Home Icon Section -->
+          <!-- <div class="home-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/home-1.svg"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="color: #001A72;">الرئيسية</span>
+            </div>
+          </div> -->
+    
+          <!-- Other Navigation Icons -->
+          <div class="nav-items">
+            <div class="nav-item " routerLink="/home">
+              <i class="">
+                <img
+                  src="../../../assets/images/home-black.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الرئيسية</span>
+            </div>
+            <div class="nav-item first-item" >
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-link.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الجدول</span>
+            </div>
+            <div class="nav-item" routerLink="/student">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الطلاب</span>
+            </div>
+            <div class="nav-item" routerLink="/studentPro">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>ملف الطالب</span>
+            </div>
+            <div class="nav-item" routerLink="/package">
+              <i class="">
+                <img
+                  src="../../../assets/images/chart-vertical.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الكشوف</span>
+            </div>
+            <div class="nav-item" routerLink="/paper">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>اوراق العمل</span>
+            </div>
+            <div class="nav-item" routerLink="/exam">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الاختبارات</span>
+            </div>
+            <div class="nav-item" routerLink="/certificate">
+              <i class="">
+                <img
+                  src="../../../assets/images/crown-1.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الشهادات</span>
+            </div>
+            <div class="nav-item" routerLink="/reason">
+              <i class="">
+                <img
+                  src="../../../assets/images/user-warning.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>تحويل طالب</span>
+            </div>
+            <div class="nav-item" routerLink="/skills">
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-user.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>المهارات الاساسية</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../../assets/images/suitcase.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> البنك</span>
+            </div>
+            <div class="nav-item" routerLink="/curriculum">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> توزيع المنهج</span>
+            </div>
+
+          </div>
+        </div>
+      </div>    
+    </div>
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
+        <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+
+        <div class="settingNav-container">
+          <!-- <div class="setting-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plusBlue.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="font-size: small; color:#001A72">اعداد النقاط</span>
+            </div>
+          </div> -->
+
+           <div class="nav-items">
+
+            
+            <div class="nav-item first-item" routerLink="/">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد النقاط</span>
+            </div>
+
+            <div class="nav-item first-item" routerLink="/technical">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد الدرجات</span>
+            </div>
+
+            <div class="nav-item" routerLink="/permission">
+              <i class="">
+                <img
+                  src="../../../assets/images/headphones.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الدعم الفني</span>
+            </div>
+
+
+
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+</div>
 
   <div class="main-page">
     <!-- Header -->
-    <!-- <div class="header">
-          <div class="user-profile">
-            <img src="../../../assets/images/human.png" alt="User Image" class="user-image">
-            <i class="fa fa-bell bell-icon"></i>
-          </div>
-          <div class="header-icons">
-            <i class="fa fa-cog"></i>
-            <i class="fa fa-home"></i>
-          </div>
-        </div> -->
 
     <!-- Search and Filters -->
     <div class="search-and-filters">
-        <div class="dropdown">
-            <button class="btn btn-filter">
-            <i class="fa-solid fa-circle-plus"></i>
-            اضف طالب
-            </button>
-            <div class="dropdown-content">
-            <a data-bs-toggle="modal" data-bs-target="#studentProfile" >أضف طالب يدوي</a>
-            <a href="#">إضافة عن طريق إكسل</a>
-            </div>
-        </div>
-
-        <div class="dropdown ms-2">
-            <button class="btn btn-filter">تصدير</button>
-            <div class="dropdown-content">
-            <a href="#">PDF</a>
-            <a href="#">Excel</a>
-            </div>
-        </div>
-
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="بحث عن طالب" />
-            <i class="fa fa-search search-icon"></i>
-        </div>
-
-        <div class="dropdown ms-2">
-          <button class="btn btn-filter"><i class="fa-solid fa-sliders pe-2"></i>
-            فلتر
-            
-          </button>
-          <div class="dropdown-content">
-          <a href="#">فرز بحسب المركز</a>
+      <div class="dropdown ms-2">
+        <button class="btn btn-filter">
+          <i class="fa-solid fa-sliders pe-2"></i>
+          فلتر
+        </button>
+        <div class="dropdown-content">
+          <a href="#">فرز بحسب الدرجات</a>
           <a href="#">فرز بحسب الاسم</a>
-          <a href="#">فرز بحسب النوع</a>
-          </div>
-      </div>  
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="btn btn-filter" style="width: 120px">تصدير</button>
+        <div class="dropdown-content">
+          <a href="#">PDF</a>
+          <a href="#">Excel</a>
+        </div>
+      </div>
 
      
+      <!-- data-bs-dismiss="modal" -->
 
+      <!-- data-bs-toggle="modal"
+      data-bs-target="#studentProfile" -->
 
+      <div class="dropdown">
+        <button
+          class="btn btn-filter"
+          data-bs-toggle="modal" data-bs-target="#exampleModal"
+        >
+          <img
+            src="../../../assets/images/crownWhite.png"
+            width="20px"
+            height="20px"
+          />
+          منح شهاده
+        </button>
+      </div>
+
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="بحث عن طالب"
+          style="text-align: center"
+        />
+        <i class="fa fa-search search-icon" [style.color]="'#001A72'"></i>
+      </div>
     </div>
     <div class="class-section-info container">
-        <div class="row class-row">
-            <div class="col-md-3 class-all m-3">
-                <div class="class-info">
-                    <div class="container">
-                        <div class="row">
-                            <span class="class-text">عدد الطلاب</span>
-                        </div>
-                        <div class="row">
-                            <span class="class-value">55</span>
-                        </div>
-                    </div>
-                </div>
+      <div class="row class-row">
+        <div class="col-md-2 class-all m-3">
+          <div class="class-info">
+            <div class="container">
+              <div class="row">
+                <span class="class-text">تاريخ الاختبار</span>
+              </div>
+              <div class="row">
+                <span class="class-value"> 1-11-2024</span>
+              </div>
             </div>
-            
-            <div class="col-md-3 class-all m-3">
-                <div class="class-info">
-                    <div class="container">
-                        <div class="row">
-                            <span class="class-text">الفصل</span>
-                        </div>
-                        <div class="row">
-                            <span class="class-value">2</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 class-all m-3">
-                <div class="class-info">
-                    <div class="container">
-                        <div class="row">
-                            <span class="class-text">الصف</span>
-                        </div>
-                        <div class="row">
-                            <span class="class-value">الأول الابتدائي</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="col-md-2 class-all m-3">
+          <div class="class-info">
+            <div class="container">
+              <div class="row">
+                <span class="class-text">نوع الاختبار</span>
+              </div>
+              <div class="row">
+                <span class="class-value">اختبار اخر الشهر</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2 class-all m-3">
+          <div class="class-info">
+            <div class="container">
+              <div class="row">
+                <span class="class-text">الفصل</span>
+              </div>
+              <div class="row">
+                <span class="class-value">2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 class-all m-3">
+          <div class="class-info">
+            <div class="container">
+              <div class="row">
+                <span class="class-text">الصف</span>
+              </div>
+              <div class="row">
+                <span class="class-value">الأول الابتدائي</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Students List -->
     <div class="students-list">
       <div class="student" *ngFor="let student of students; let i = index">
-        <div >
-          <span class="student-grade me-1" (click)="toggleDropdown(i)" >100 / 95</span><span (click)="toggleDropdown(i)">إجمالي النقاط</span>
+        <div>
+          <span class="student-grade me-1" (click)="toggleDropdown(i)"
+            >100 / 95</span
+          ><span (click)="toggleDropdown(i)">إجمالي النقاط</span>
         </div>
-    
+
         <div class="student-info" (click)="toggleDropdown(i)">
           <span class="student-name">{{ student.name }}</span>
-    
+
           <img
             [src]="student.image"
             alt="Student Image"
             class="student-image"
           />
-    
+
           <!-- Dropdown Menu -->
           <div *ngIf="dropdownIndex === i" class="dropdown-menu show">
             <button type="button" class="dropdown-item" disabled>
               الملف الشخصي
               <i class="fa-regular fa-user"></i>
             </button>
-            <a class="dropdown-item" href="#"> تعديل الطالب
+            <a class="dropdown-item" href="#">
+              تعديل الطالب
               <i class="fa-regular fa-pen-to-square"></i>
             </a>
             <a class="dropdown-item" href="#">
@@ -128,23 +439,17 @@
               <i class="fa-solid fa-trash"></i>
             </a>
           </div>
-    
+
           <div class="student-icons">
             <span class="badge">{{ i + 1 }}</span>
           </div>
         </div>
-
-
       </div>
     </div>
-    
-    
-
-
   </div>
 </div>
 
-<div
+<!-- <div
   class="modal fade"
   id="Edit"
   data-bs-backdrop="static"
@@ -174,7 +479,6 @@
 
         <div class="modal-body">
           <div class="full-width-box custom-full-width-grid mt-3">
-            <!-- 3x3 grid of cards -->
           </div>
 
           <div class="comment-box mt-4">
@@ -202,128 +506,176 @@
       </div>
     </div>
   </div>
-</div>
-
-
-
-
-
-
+</div> -->
 
 <!-- Student Modal -->
 <div
-  class="modal fade"
-  id="studentProfile"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
+class="modal fade"
+id="studentProfile"
+data-bs-backdrop="static"
+data-bs-keyboard="false"
+tabindex="-1"
+aria-labelledby="staticBackdropLabel"
+aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
-          <h1 class="modal-title" id="staticBackdropLabel">
-            معلومات الطالب
-          </h1>
+          <h1 class="modal-title" id="CertificateModal">منح شهاده</h1>
           <button
-          type="button"
-          class="close closebtn"
-          data-bs-dismiss="modal"
-          aria-label="Close"
+            type="button"
+            class="close closebtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
           >
-            <img src="../../../assets/images/close.png" width="40px">
+            <img src="../../../assets/images/close.png" width="40px" />
           </button>
         </div>
 
-        <div class="modal-body full-width-box">
+        <div class="modal-body">
 
-          <div class="container">
 
-            <!-- <div class="row lineclass">
-              <div class="col-md-12 align-items-center justify-content-center">
-                <div class="user-img-container">
-                  <img src="../../../assets/images/user-plus.png" alt="User Image" class="user-img" />
-                </div>
+          <div class="modal-footer" style="justify-content: space-between;">
+            <button
+            class="btn custombtn"
+         
+          >
+            إختار الشهادة
+          </button>
+
+            <button class="btn custombtn">
+            <input
+            type="checkbox"
+            id="selectAll"
+            (change)="selectAllCheckboxes($event)"
+            [checked]="isAllSelected"
+          />
+          <label for="selectAll" style="float:inline-end">تحديد الكل</label>
+          </button>
+
+         
+          </div>
+
+          <!-- <div class="select-all-container" style="margin-bottom: 15px;">
+            <input
+              type="checkbox"
+              id="selectAll"
+              (change)="selectAllCheckboxes($event)"
+              [checked]="isAllSelected"
+            />
+            <label for="selectAll">تحديد الكل</label>
+          </div> -->
+
+
+          <div class="students-list">
+            <div class="student" style="padding: 8px">
+              <div class="student-icons">
+                <img src="../../../assets/images/first.png" width="25px;" />
               </div>
-            </div>  -->
-            
 
-            <div class="row lineclass">
-              <div class="col-md-12 align-items-center justify-content-center">
-                <div class="user-img-container" (click)="fileInput.click()">
-                  <img [src]="userImage || '../../../assets/images/user-plus.png'" alt="User Image" class="user-img" />
-                </div>
-                <!-- Hidden file input for image upload -->
-                <input #fileInput type="file" accept="image/*" (change)="onImageSelected($event)" style="display: none;" />
+              <div class="student-info">
+                <span class="student-name">أسامة علي ال سعود </span>
+
+                <img
+                  src="../../../assets/images/human.png"
+                  alt="Student Image"
+                  class="student-image"
+                />
+
+                <input
+                class="form-check-input"
+                type="checkbox"
+                [checked]="student1Selected"
+                (change)="toggleCheckbox('student1', $event)"
+              />
               </div>
             </div>
 
-            <div class="row">
-              <form class="w-100 mt-4 ">
-                
-                <div class="row mb-3 justify-content-center">
-                
-                  <div class="col-md-6 text-right">
-                    <label>الاسم الاول</label>
-                    <input type="text" class="form-control rounded-pill" />
-                  </div>
-    
-                  <div class="col-md-6 float-right">
-                    <label >الاسم الاخير</label>
-                    <input type="text" class="form-control rounded-pill" />
-                  </div>
-                  
-                </div>
-            
-                <div class="row mb-3 justify-content-center">
-                  <div class="col-md-12 text-right">
-                    <label>البريد الإلكتروني</label>
-                    <input type="email" class="form-control rounded-pill" />
-                  </div>
-                </div>
-            
-                <div class="row mb-12 justify-content-center">
-                  <div class="form-group mb-3 text-right">
-                    <label class="label" for="phone">رقم الهاتف</label>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="d-flex align-items-center form-control rounded-pill" style="width: 110px;">
-                        <img src="https://flagcdn.com/24x18/sa.png" alt="KSA Flag" width="20" />
-                        <span class="ml-2">+966</span>
-                      </div>
-                
-                      <input type="text" class="form-control rounded-pill" id="phone" placeholder="اضف رقم الهاتف" required style="flex-grow: 1; margin-right: 10px;" />
-                    </div>
-                  </div>
-                </div>
-                
-    
-                  <div class="col-md-12 text-right mb-3">
-                    <label>النوع</label>
-                    <select class="form-control rounded-pill">
-                      <option>ذكر</option>
-                      <option>أنثى</option>
-                    </select>
-                  </div>
-            
-                <div class="row mb-3 justify-content-center">
-                  <div class="col-md-12 text-right">
-                    <label>رقم الطالب</label>
-                    <input type="text" class="form-control rounded-pill" disabled value="4566" />
-                  </div>
-                </div>
-            
-            
-              </form> 
-            </div> 
+            <div class="student" style="padding: 8px">
+              <div class="student-icons">
+                <img src="../../../assets/images/sec.png" width="25px;" />
+              </div>
+
+              <div class="student-info">
+                <span class="student-name">أسامة علي ال سعود </span>
+
+                <img
+                  src="../../../assets/images/human.png"
+                  alt="Student Image"
+                  class="student-image"
+                />
+
+                <input
+                class="form-check-input"
+                type="checkbox"
+                [checked]="student2Selected"
+                (change)="toggleCheckbox('student2', $event)"
+              />
+              </div>
+            </div>
+
+            <div class="student" style="padding: 8px">
+              <div class="student-icons">
+                <img src="../../../assets/images/third.png" width="25px;" />
+              </div>
+
+              <div class="student-info">
+                <span class="student-name">أسامة علي ال سعود </span>
+
+                <img
+                  src="../../../assets/images/human.png"
+                  alt="Student Image"
+                  class="student-image"
+                />
+
+                <input
+                class="form-check-input"
+                type="checkbox"
+                [checked]="student3Selected"
+                (change)="toggleCheckbox('student3', $event)"
+              />
+              </div>
+            </div>
           </div>
-          
-        </div>
-        <div class="modal-footer">
-          <button class="btn custombtn">حفظ</button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Certificate Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="exampleModalLabel" style="color:black">حدد الشهادة</h2>
+      </div>
+
+      <div style="float:right;border-bottom: 2px solid black;
+    padding-bottom: 15px;"> 
+      <button type="button" class="btn2 btn-primary" (click)="submitSelection()" style="float: right; margin-right: 10px;">
+        <img src="../../../assets/images/send-1.png" width="30px" height="30px" alt="Send Icon" />
+        إرسال
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="grid-container row">
+        <div class="grid-item col-4" *ngFor="let certificate of certificates; let i = index">
+          <!-- Image Container -->
+          <div class="image-wrapper">
+            <img [src]="certificate.imgSrc" [alt]="'Certificate ' + (i + 1)" />
+            <!-- Checkbox -->
+            <div class="checkbox-container">
+              <input type="checkbox" [(ngModel)]="certificate.selected" id="cert{{ i }}" />
+              <label for="cert{{ i }}"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

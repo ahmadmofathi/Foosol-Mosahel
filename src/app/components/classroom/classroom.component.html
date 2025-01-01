@@ -1,4 +1,4 @@
-<div style="background-color: #f2f2f2; padding: 0px 70px 70px 70px">
+<div style="background-color: #f2f2f2; padding: 0px 70px 70px 70px;height: 100%;">
   <div class="container-fluid">
     <div class="row">
       <div class="top-nav">
@@ -40,7 +40,7 @@
           <!-- Close Button -->
 
           <!-- Home Icon Section -->
-          <div class="home-icon">
+          <!-- <div class="home-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -50,13 +50,12 @@
                 />
               </i>
               <span>الرئيسية</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
           <!-- Other Navigation Icons -->
           <div class="nav-items">
-            <div class="nav-item first-item" routerLink="/subscripeDetails">
+            <div class="nav-item first-item " routerLink="/subscripeDetails" routerLinkActive="active-nav-item">
               <i class="">
                 <img
                   src="../../assets/images/users-more.png"
@@ -76,7 +75,7 @@
               </i>
               <span>الفواتير</span>
             </div>
-            <div class="nav-item" routerLink="/package">
+            <div class="nav-item " routerLink="/package" routerLinkActive="active-nav-item">
               <i class="">
                 <img
                   src="../../assets/images/crown-2.png"
@@ -106,7 +105,7 @@
               </i>
               <span>المراحل</span>
             </div>
-            <div class="nav-item" routerLink="/classroom">
+            <div class="nav-item active-nav-item" routerLink="/classroom">
               <i class="">
                 <img
                   src="../../assets/images/document-filled.png"
@@ -218,7 +217,7 @@
         </button>
 
         <div class="settingNav-container">
-          <div class="setting-icon">
+          <!-- <div class="setting-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -228,9 +227,8 @@
                 />
               </i>
               <span>الاعدادات</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
           <div class="nav-items">
             <div class="nav-item first-item" routerLink="/technical">
@@ -375,7 +373,7 @@
                     </button>
                     <button
                       class="dropdown-item delete-btn"
-                      (click)="deletegrade(item.id, i)"
+                      (click)="openGradeConfirmModal(item.id, i)"
                     >
                       <i class="fa-solid fa-trash"></i> حذف
                     </button>
@@ -397,20 +395,35 @@
         </div>
 
         <div class="custom-pagination">
-          <button (click)="previousPage()" [disabled]="currentPage === 1">
+          <!-- Previous Button -->
+          <button
+            (click)="changePage(pageNumber - 1)"
+            [disabled]="pageNumber === 1"
+            aria-label="Previous"
+          >
             ‹
           </button>
+        
+          <!-- Page Numbers -->
           <button
             *ngFor="let page of pages"
-            (click)="goToPage(page)"
-            [class.active]="page === currentPage"
+            (click)="changePage(page)"
+            [class.active]="page === pageNumber"
           >
             {{ page }}
           </button>
-          <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        
+          <!-- Next Button -->
+          <button
+            (click)="changePage(pageNumber + 1)"
+            [disabled]="pageNumber === totalPages || !hasMoreData"
+            aria-label="Next"
+          >
             ›
           </button>
         </div>
+        
+        
       </div>
     </div>
   </div>
@@ -443,12 +456,11 @@
                       >المرحله</label
                     >
                     <div class="input-group">
-                      <select
-                      class="form-control"
-                      formControlName="levelId"
-                    >
-                      <option value="" disabled selected>قم باختيار المرحله</option>
-                      <option *ngFor="let item of levels" [value]="item.id">
+                      <select class="form-control" formControlName="levelId" 
+                      (focus)="onSelectFocus()" (blur)="onSelectBlur()">
+
+                    <option [ngValue]="null" disabled selected *ngIf="!selectedGrade">قم باختيار المرحله</option>
+                    <option *ngFor="let item of levels" [value]="item.id">
                         {{ item.levelName }}
                       </option>
                     </select>
@@ -562,6 +574,26 @@ class="modal fade" id="editModal" tabindex="-1" aria-hidden="true" #editModal
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete Modal -->
+
+<div class="modal fade" id="gradeConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">تأكيد الحذف</h1>
+      </div>
+      <div class="modal-body">
+       <h1 style="text-align: center;"> هل أنت متأكد أنك تريد مسح هذا الصف ؟</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDeletegrade()">حذف</button>
       </div>
     </div>
   </div>

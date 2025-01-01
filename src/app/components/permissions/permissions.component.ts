@@ -83,15 +83,21 @@ toggleExportPdf() {
 
 isNavbarOpen = false;
 isIconShow = false;
+isSettingBarOpen = false;
 
 openNav() {
   this.isNavbarOpen = !this.isNavbarOpen;
-  this.showIcone();
+  this.showIcon();
 }
 
-showIcone(){
-  this.isIconShow =true;
+openSetting() {
+  this.isSettingBarOpen = !this.isSettingBarOpen;
 }
+
+showIcon() {
+  this.isIconShow = true;
+}
+
 
 
 }

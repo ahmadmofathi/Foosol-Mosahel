@@ -1,5 +1,5 @@
 <div
-  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height: 100%"
+  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px;height: 100%; "
 >
 <div class="container-fluid">
   <div class="row">
@@ -34,15 +34,17 @@
       </div>
     </div>
   </div>
+
+  
   <div class="row container">
     <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
       <button class="close-btn" (click)="openNav()">&times;</button>
   
-      <div class="nav-container">
+      <div class="nav-container" appHorizontalScroll>
         <!-- Close Button -->
   
         <!-- Home Icon Section -->
-        <div class="home-icon">
+        <!-- <div class="home-icon">
           <div class="circle">
             <i class="">
               <img
@@ -52,9 +54,8 @@
               />
             </i>
             <span>الرئيسية</span>
-            <!-- Move the span inside the circle -->
           </div>
-        </div>
+        </div> -->
   
         <!-- Other Navigation Icons -->
         <div class="nav-items">
@@ -78,7 +79,7 @@
             </i>
             <span>الفواتير</span>
           </div>
-          <div class="nav-item" routerLink="/package">
+          <div class="nav-item active-nav-item" routerLink="/package">
             <i class="">
               <img
                 src="../../assets/images/crown-2.png"
@@ -168,7 +169,7 @@
             </i>
             <span> المناطق</span>
           </div>
-          <div class="nav-item">
+          <div class="nav-item" routerLink="/lessons">
             <i class="">
               <img
                 src="../../assets/images/screen-share.png"
@@ -217,8 +218,8 @@
     <div class="col-12 nav-wrapper" *ngIf="isSettingBarOpen">
       <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
 
-      <div class="settingNav-container">
-        <div class="setting-icon">
+      <div class="settingNav-container" appHorizontalScroll>
+        <!-- <div class="setting-icon">
           <div class="circle">
             <i class="">
               <img
@@ -228,9 +229,8 @@
               />
             </i>
             <span>الاعدادات</span>
-            <!-- Move the span inside the circle -->
           </div>
-        </div>
+        </div> -->
 
          <div class="nav-items">
 
@@ -354,26 +354,26 @@
                 <th>الاجراء</th>
                 <th>المستخدم <i class="fa-solid fa-sort"></i></th>
                 <th>تاريخ الانشاء <i class="fa-solid fa-sort"></i></th>
-                <th>تاريخ الانتهاء <i class="fa-solid fa-sort"></i></th>
-                <th>تاريخ البدء <i class="fa-solid fa-sort"></i></th>
+                <th>مده الباقة <i class="fa-solid fa-sort"></i></th>
+                <!-- <th>تاريخ البدء <i class="fa-solid fa-sort"></i></th> -->
                 <th>اسم الباقه <i class="fa-solid fa-sort"></i></th>
                 <th>رقم الباقه <i class="fa-solid fa-sort"></i></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr  *ngFor="let item of elements; let i = index">
                 <td class="actions">
                   <i
                     class="ellipsis-btn fa-solid fa-ellipsis"
-                    (click)="showMenu()"
+                    (click)="showMenu(i)"
                   ></i>
 
                   <!-- Dropdown menu -->
-                  <div class="dropdown-menu" [class.open]="isMenuOpen">
+                  <div class="dropdown-menu" [class.open]="item.isMenuOpen">
                     <button class="dropdown-item edit-btn">
                       <i class="fa-solid fa-cog"></i> تعديل
                     </button>
-                    <button class="dropdown-item delete-btn">
+                    <button class="dropdown-item delete-btn" (click)="onDeletePackage(item.id)">
                       <i class="fa-solid fa-trash"></i> حذف
                     </button>
                   </div>
@@ -382,45 +382,14 @@
                 <td>admin</td>
 
                 <td>2-11-2024</td>
-                <td>2-11-2024</td>
+                <td>{{item.days}}</td>
 
-                <td>277</td>
-                <td>جده</td>
-                <td>1</td>
+                <!-- <td>{{item.startDate | date: 'MM/dd/yyyy'}}</td> -->
+                <td>{{item.name}}</td>
+                <td>{{item.id}}</td>
               </tr>
-              <tr>
-                <td class="actions">
-                  <!-- <button class="ellipsis-btn" (click)="showMenu()"> -->
-                  <i
-                    class="ellipsis-btn fa-solid fa-ellipsis"
-                    (click)="showMenu()"
-                  ></i>
-                </td>
-                <td>admin</td>
-
-                <td>2-11-2024</td>
-                <td>2-11-2024</td>
-
-                <td>399</td>
-                <td>الرياض</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td class="actions">
-                  <i
-                    class="ellipsis-btn fa-solid fa-ellipsis"
-                    (click)="showMenu()"
-                  ></i>
-                </td>
-                <td>admin</td>
-
-                <td>2-11-2024</td>
-                <td>2-11-2024</td>
-
-                <td>590</td>
-                <td>مكة المكرمة</td>
-                <td>3</td>
-              </tr>
+           
+             
             </tbody>
           </table>
 
@@ -456,6 +425,8 @@
         </h1>
       </div>
       <div class="modal-body">
+        <form [formGroup]="packageForm" (ngSubmit)="addPackage()">
+
         <div class="row">
           <div class="col-md-12">
             <div class="mb-3">
@@ -468,6 +439,7 @@
                 type="text"
                 class="form-control"
                 id="exampleFormControlInput1"
+                formControlName="name"
                 placeholder="قم بكتابه اسم الباقه"
               />
             </div>
@@ -477,48 +449,33 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="mb-3">
               <div class="container">
                 <div class="row justify-content-end">
               <label for="exampleFormControlInput1" class="form-label"
-                >تاريخ الانتهاء</label
+                >مده الباقه</label
               >
               <input
-                type="text"
+              type="number" formControlName="days"
                 class="form-control"
                 id="exampleFormControlInput1"
-                placeholder="قم باضافه تاريخ الانتهاء"
+                placeholder="قم باضافه مده الباقه"
               />
             </div>
             </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <div class="container">
-                <div class="row justify-content-end">
-              <label for="exampleFormControlInput1" class="form-label"
-                >تاريخ البدء</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="قم باضافه تاريخ البدء"
-              />
-            </div>
-            </div>
-            </div>
-          </div>
+  
         </div>
-      </div>
+      <!-- </div> -->
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           إلغاء
         </button>
-        <button type="button" class="btn export-pdf-btn">اضافة</button>
+        <button type="submit" [disabled]="packageForm.invalid" class="btn export-pdf-btn">اضافة</button>
       </div>
+    </form>
     </div>
   </div>
 </div>

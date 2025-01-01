@@ -104,6 +104,7 @@ toggleExportPdf() {
 
 isNavbarOpen = false;
 isIconShow = false;
+isSettingBarOpen= false;
 
 openNav() {
   this.isNavbarOpen = !this.isNavbarOpen;
@@ -112,6 +113,10 @@ openNav() {
 
 showIcone(){
   this.isIconShow =true;
+}
+
+openSetting(){
+  this.isSettingBarOpen = !this.isSettingBarOpen;
 }
 
 dropdownOpen: boolean = false;

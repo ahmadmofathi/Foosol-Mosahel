@@ -611,7 +611,7 @@
 }
 
 .center-icons {
-    right: 50%;
+    /* right: 50%; */
     /* Position on the right */
     top: 4%;
     /* Center vertically */
@@ -714,8 +714,9 @@
     font-weight: bold;
    align-items: center;
    text-align: center;
-   margin-right: 10px;
+   margin-right: 60px;
 }
+
 
 .add-test-btn {
     background-color: #001A72;
@@ -731,7 +732,7 @@
 .mytitle{
     font-weight: bold;
 padding-right: 30px;
-text-align: center;
+/* text-align: center; */
 }
 
 /* Card Items */

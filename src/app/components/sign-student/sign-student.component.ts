@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-student.component.css']
 })
 export class SignStudentComponent {
+  selectedRole: string = 'student'; // Default selected role
+
+  selectRole(role: string) {
+    this.selectedRole = role;
+  }
 
 }

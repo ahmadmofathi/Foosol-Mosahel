@@ -9,8 +9,9 @@ export class UsersComponent {
 
   regions = [
     { id: 1, name: 'جدة', status: 'مفعل', subscribers: 277, date: '2-11-2024', user: 'admin', isMenuOpen: false },
-    { id: 2, name: 'الرياض', status: 'مفعل', subscribers: 399, date: '2-11-2024', user: 'admin', isMenuOpen: false },
-    { id: 3, name: 'مكة المكرمة', status: 'مفعل', subscribers: 590, date: '2-11-2024', user: 'admin', isMenuOpen: false },
+    { id: 2, name: 'الرياض', subscribers: 399, date: '2-11-2024', user: 'admin', isMenuOpen: false },
+    { id: 3, name: 'مكة المكرمة', subscribers: 590, date: '2-11-2024', user: 'admin', isMenuOpen: false },
+   
     // Add more data as needed
   ];
   
@@ -107,6 +108,7 @@ toggleExportPdf() {
 
   isNavbarOpen = false;
 isIconShow = false;
+isSettingBarOpen= false;
 
 openNav() {
   this.isNavbarOpen = !this.isNavbarOpen;
@@ -115,6 +117,10 @@ openNav() {
 
 showIcone(){
   this.isIconShow =true;
+}
+
+openSetting(){
+  this.isSettingBarOpen = !this.isSettingBarOpen;
 }
 
 dropdownOpen: boolean = false;

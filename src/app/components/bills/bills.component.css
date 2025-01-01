@@ -35,7 +35,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 8px 20px;
+
     color: white;
     /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   }
@@ -58,7 +59,7 @@
     cursor: pointer;
   }
   .nav_icon2{
-    padding: 10px;
+    padding: 8px;
     background-color: #001A72;
     border-radius: 10px;
     cursor: pointer;
@@ -389,8 +390,8 @@
     /* padding: 30px; */
     /* background-color: #f8f9fa; */
     /* border-bottom: 1px solid #ddd; */
-    padding-bottom: 30px;
-    margin-top: 30px;
+    padding-bottom: 20px;
+    margin-top: 20px;
   }
   
   /* Left buttons */
@@ -503,7 +504,7 @@
   }
   /* start here */
   .form-group{
-    min-height: 500px;
+    min-height: 450px;
     position: relative;
     /* Allow the pagination to be positioned relative to this container */
     display: flex;
@@ -596,42 +597,49 @@
   
 /* Wrapper to hold the navigation */
 .nav-wrapper {
-  position: fixed; /* Fixed to stay within the viewport */
-  top: 20px; /* Adjusted to add pixel values */
+  position: fixed;
+  top: -10px;
   left: 0;
-  width: 100%; /* Full width of the viewport */
-  z-index: 999; /* Keep it on top */
+  width: 100%;
+  z-index: 999;
   display: flex;
   justify-content: end;
-  align-items: center; /* Vertically center */
-  overflow-x: visible; /* Allow horizontal overflow if needed */
-  background: transparent; /* Optional: make the wrapper background transparent */
-  padding: 10px 0; /* Ensure the bar has some padding */
+  align-items: center;
+  overflow-x: visible;
+  background: transparent;
+  padding: 10px 0;
 }
 
 /* Navigation Container */
 .nav-container {
   position: relative;
-  background-color: #fcf2bd; /* Light yellow background */
+  background-color: #fcf2bd;
   border-radius: 15px;
-  width: auto; /* Let the content dictate the width */
-  max-width: 70%; /* Optional: Prevent it from getting too wide */
+  width: auto;
+  max-width: 40%;
   height: auto;
   display: flex;
   align-items: center;
-  overflow: visible; /* Enable horizontal scrolling for icons */
-  padding: 10px 20px; /* Add some padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  direction: rtl; /* Keep the layout aligned for RTL */
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  direction: rtl;
   margin-right: 50px;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
+/* Hide the scrollbar */
+.nav-container::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
 /* Close Button */
 .close-btn {
   z-index: 2;
   position: absolute;
-  top: 5%;
+  top: 10%;
   right: 23px;
   background-color: red;
   color: white;
@@ -639,10 +647,9 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
@@ -652,10 +659,7 @@
   background-color: #ff0000; /* Darker red on hover */
 }
 
-/* Slide-In Animation */
-
- /* Home Icon Section */
-
+/* Home Icon Section */
 .home-icon {
   position: absolute;
   top: -35%;
@@ -667,7 +671,7 @@
 }
 
 /* Circle Styling */
-.home-icon .circle ,
+.home-icon .circle,
 .setting-icon .circle {
   width: 80px;
   height: 80px;
@@ -683,64 +687,84 @@
   z-index: 11; /* Keep it above other elements */
 }
 
-.home-icon i ,
-.setting-icon i{
-   font-size: 32px;
-   color: #224273;
- }
- 
- .home-icon span {
-   margin-top: 5px; /* Adjust to position the text under the icon */
-   font-size: 14px;
-   font-family: 'AGA Mashq Bold', Arial, sans-serif;
-   color: #000;
- }
- 
- /* Navigation Items */
- .nav-items {
-   display: flex;
-   align-items: center;
-   flex-grow: 1;
-   overflow-x: auto;
-   padding-right: 60px;
- }
- 
- .nav-item.first-item {
-   padding-right: 60px; /* Extra padding for the first item */
- }
- 
- 
- .nav-item {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   margin: 0 15px;
-   font-family: 'AGA Mashq Bold', Arial, sans-serif;
-   text-align: center;
-   color: #000;
-   font-size: 14px;
- }
- 
- .nav-item.first-item {
-   padding-right: 60px; /* Extra padding for the first item */
- }
- 
- .nav-item i {
-   font-size: 24px;
-   margin-bottom: 5px;
-   color: #000;
- }
- 
- .nav-item span {
-   font-size: 12px;
- }
- 
- .nav-item:hover {
-   cursor: pointer;
-   color: #224273; /* Highlight color */
- }
- 
+.home-icon i,
+.setting-icon i {
+  font-size: 32px;
+  color: #224273;
+}
+
+.home-icon span {
+  margin-top: 5px; /* Adjust to position the text under the icon */
+  font-size: 14px;
+  font-family: 'AGA Mashq Bold', Arial, sans-serif;
+  color: #000;
+}
+
+/* Navigation Items */
+.nav-items {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  /* padding-right: 60px; */
+  flex-wrap: nowrap;
+}
+
+/* .nav-item.first-item {
+  padding-right: 60px; 
+} */
+
+.nav-item {
+display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    font-family: 'AGA Mashq Bold', Arial, sans-serif;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* .nav-item.first-item {
+  padding-right: 60px;
+} */
+
+.nav-item i {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.nav-item span {
+  font-size: 12px;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  color: #224273; /* Highlight color */
+}
+
+.active-nav-item {
+  border: 2px solid black; /* Blue border */
+  border-radius: 10px; /* Rounded edges */
+  box-shadow: 0 4px 10px rgba(34, 66, 115, 0.3); /* Subtle shadow */
+  background-color: #fcf2bd; /* Optional: Highlight background */
+  padding: 10px; /* Adjust spacing for better visuals */
+  color: black; /* Active color */
+}
+
+
+/* Optional: Active Icon Styling */
+.active-nav-item i img {
+  transform: scale(1.1); /* Slightly enlarge the icon */
+  transition: transform 0.2s ease; /* Smooth scaling effect */
+}
+
+/* Optional: Active Span Styling */
+.active-nav-item span {
+  font-weight: bold; /* Highlight text */
+}
 
  /* // Setting NAv */
 
@@ -768,21 +792,22 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   direction: rtl;
   margin-right: 130px;
-  margin-top: 10px;
+  margin-top: 8px;
+
 }
 
 .closeSetting-btn {
   z-index: 2;
   position: absolute;
-  top: 1%;
-  right: 105px;
+  top: 9%;
+  right: 101px;
   background-color: red;
   color: white;
   border: none;
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   display: flex;
   justify-content: center;

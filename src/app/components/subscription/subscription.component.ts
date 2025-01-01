@@ -27,6 +27,12 @@ export class SubscriptionComponent implements OnInit, OnDestroy, AfterViewInit {
   isIconShow = false;
   isSettingBarOpen = false;
 
+  pageNumber = 1; // Current page
+  itemsPerPage = 8; // Items per page
+  totalItems = 9; // Initial total items
+  maxVisiblePages = 5; // Maximum number of visible pages
+  hasMoreData = true; // Flag to check if more data exists
+
   @ViewChild('createModal', { static: true }) createModal!: ElementRef;
   private modalInstance!: Modal;
 
@@ -68,7 +74,7 @@ export class SubscriptionComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getAllRegions() {
-    this.regionService.getAllRegions().subscribe(
+    this.regionService.getAllRe(this.pageNumber, this.itemsPerPage).subscribe(
       (response) => {
         this.elements = response;
         console.log('Regions:', this.elements);
@@ -88,14 +94,8 @@ export class SubscriptionComponent implements OnInit, OnDestroy, AfterViewInit {
           this.toastr.success('تم إضافة المنطقة بنجاح!', 'نجاح', { timeOut: 2000 });
           this.getAllRegions();
 
-          const modalElement = document.getElementById('createModal');
-          if (modalElement) {
-            const modalInstance = Modal.getInstance(modalElement);
-            modalInstance?.hide();  // Close the modal programmatically
-          }
-  
-          // Close the add modal programmatically
-          this.closeModalById('addModal');
+          // Close the modal programmatically
+          this.closeModal();
         },
         (error) => {
           this.toastr.error('خطأ أثناء إضافة المنطقة', 'خطأ', { timeOut: 2000 });
@@ -103,6 +103,24 @@ export class SubscriptionComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       );
     }
+  }
+
+  cleanUpModalStyles(): void {
+    // Remove any backdrop divs from the page.
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+  
+    // Remove the 'modal-open' class from the body, which prevents scrolling when the modal is open.
+    document.body.classList.remove('modal-open');
+  
+    // Remove any inline styles for overflow and padding-right that Bootstrap adds to the body.
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('padding-right');
+  }
+  
+
+  closeModal(): void {
+    this.modalInstance.hide();  // Close the modal using the Bootstrap modal instance
+    this.cleanUpModalStyles();
   }
   
 
@@ -131,31 +149,62 @@ export class SubscriptionComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  closeModalById(modalId: string): void {
-  const modalElement = document.getElementById(modalId);
-  if (modalElement) {
-    const modalInstance = Modal.getInstance(modalElement);
-    modalInstance?.hide(); // Close the modal
+
+
+  // deleteRegion(id: number): void {
+  //   this.regionService.deleteRegion(id).subscribe(
+  //     () => {
+  //       this.elements = this.elements.filter(item => item.id !== id);
+  //       this.toastr.success('تم مسح هذه المنطقة بنجاح!', 'تم المسح', { timeOut: 2000 });
+  //     },
+  //     (error) => {
+  //       this.toastr.error('خطأ في مسح المنطقة', 'خطأ', { timeOut: 2000 });
+  //       console.error('Delete region error:', error);
+  //     }
+  //   );
+  // }
+
+  // deleteRegion(id: number): void {
+  //   const userConfirmed = confirm('هل أنت متأكد أنك تريد مسح هذه المنطقة؟');
+  //   if (userConfirmed) {
+  //     this.regionService.deleteRegion(id).subscribe(
+  //       () => {
+  //         this.elements = this.elements.filter(item => item.id !== id);
+  //         this.toastr.success('تم مسح هذه المنطقة بنجاح!', 'تم المسح', { timeOut: 2000 });
+  //       },
+  //       (error) => {
+  //         this.toastr.error('خطأ في مسح المنطقة', 'خطأ', { timeOut: 2000 });
+  //         console.error('Delete region error:', error);
+  //       }
+  //     );
+  //   }
+  // }
+  isModalOpen: boolean = false;
+  selectedRegionId: number | null = null;
+  
+  openConfirmModal(id: number): void {
+    this.selectedRegionId = id;
   }
-  // Clean up Bootstrap modal styles
-  document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
-  document.body.classList.remove('modal-open');
-  document.body.style.removeProperty('overflow');
-  document.body.style.removeProperty('padding-right');
-}
 
+  confirmDelete(): void {
+    if (this.selectedRegionId != null) {
+      this.regionService.deleteRegion(this.selectedRegionId).subscribe(
+        () => {
+          this.elements = this.elements.filter(item => item.id !== this.selectedRegionId);
+          this.toastr.success('تم مسح هذه المنطقة بنجاح!', 'تم المسح', { timeOut: 2000 });
 
-  deleteRegion(id: number): void {
-    this.regionService.deleteRegion(id).subscribe(
-      () => {
-        this.elements = this.elements.filter(item => item.id !== id);
-        this.toastr.success('تم مسح هذه المنطقة بنجاح!', 'تم المسح', { timeOut: 2000 });
-      },
-      (error) => {
-        this.toastr.error('خطأ في مسح المنطقة', 'خطأ', { timeOut: 2000 });
-        console.error('Delete region error:', error);
-      }
-    );
+          // Close the modal using imported Bootstrap Modal
+         this.closeModalById('deleteModal')
+
+          this.selectedRegionId = null;
+        },
+        (error) => {
+          this.toastr.error('خطأ في مسح المنطقة', 'خطأ', { timeOut: 2000 });
+          console.error('Delete region error:', error);
+          this.selectedRegionId = null;
+        }
+      );
+    }
   }
 
   openEditModal(region: any) {
@@ -171,27 +220,42 @@ export class SubscriptionComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   
 
+
   openAddModal() {
-    this.isEditMode = false;
-    this.currentRegionId = null; // Clear the current region ID
-    this.regionForm.reset(); // Reset the form
+    this.regionForm.reset();
   
-    const modal = document.getElementById('addModal');
-    if (modal) {
-      const modalInstance = new Modal(modal);
+    // Set the flag to false since this is "Add" mode, not "Edit"
+    this.isEditMode = false;
+  
+    // Clear any selected grade ID, if any
+    this.currentRegionId = ''; 
+  
+    // Open the modal using Bootstrap modal API
+    const modalElement = document.getElementById('addModal');
+    if (modalElement) {
+      const modalInstance = Modal.getOrCreateInstance(modalElement); // Get or create instance
       modalInstance.show(); // Show the modal
+    } else {
+      console.error('Add modal element not found.');
     }
   }
-  closeModal(): void {
-    if (this.modalInstance) {
-      this.modalInstance.hide();
+
+  closeModalById(modalId: string): void {
+    const modalElement = document.getElementById(modalId);
+    if (modalElement) {
+      const modalInstance = Modal.getInstance(modalElement);
+      if (modalInstance) {
+        modalInstance.hide(); // Close the modal properly
+      }
     }
+  
+    // Clean up Bootstrap modal styles
     document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
     document.body.classList.remove('modal-open');
     document.body.style.removeProperty('overflow');
     document.body.style.removeProperty('padding-right');
-    this.modalInstance = undefined!;
   }
+  
 
   // toggleMenu(item: any): void {
   //   this.elements.forEach(region => (region.isMenuOpen = false)); // Close other menus

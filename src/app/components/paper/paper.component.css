@@ -10,15 +10,11 @@
     background-position-x: center;
     background-size:contain;
     padding: 50px;
+    background-color: #F2F2F2;
+
   }
   
-  .overlay {
-    position: absolute; /* Overlay positioned absolutely */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-    z-index: 1; /* Ensure the overlay is above the background */
-  }
+
   .navbar {
     position: relative;
     z-index: 2; /* Ensure the navbar is above the overlay */
@@ -77,14 +73,15 @@
    /* Fixed height */
   }
   
-  .custom-form{
-    width:700px;
-    
-  }
+  .custom-form {
+    width: 65%;
+    margin-top: 3%;
+
+}
 
   .custom-box{
     background-color: #fff;
-    padding: 5px;
+    padding: 10px;
     border-radius: 15px;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
     color:#001A72;
@@ -655,4 +652,278 @@ h3{
   font-weight: bolder;
   font-style:normal;
   font-size: 30px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 60px; /* Adjust based on your profile image height */
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  /* width: 200px; */
+  text-align: right;
+  z-index: 1000;
+  display: block;
+}
+
+.menu-item {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+.logout {
+  color: #980101;
+}
+
+hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 2px solid #000;
+}
+.nav-wrapper {
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  overflow-x: visible;
+  background: transparent;
+  padding: 10px 0;
+}
+
+/* Navigation Container */
+.nav-container {
+  position: relative;
+  background-color: #fcf2bd;
+  border-radius: 15px;
+  width: auto;
+  min-width: 400px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+  margin-right: 17px;
+  margin-top: -3px;
+}
+
+/* Hide the scrollbar */
+.nav-container::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+/* Close Button */
+.close-btn {
+  z-index: 2;
+  position: absolute;
+  top: -5%;
+  right: -14px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #ff0000; /* Darker red on hover */
+}
+
+/* Home Icon Section */
+.home-icon {
+  position: absolute;
+  top: -35%;
+  right: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10; /* Ensure it's above the navigation */
+}
+
+/* Circle Styling */
+.home-icon .circle,
+.setting-icon .circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fcf2bd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.6),
+    0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid white;
+  z-index: 11; /* Keep it above other elements */
+}
+
+.home-icon i,
+.setting-icon i {
+  font-size: 32px;
+  color: #224273;
+}
+
+.home-icon span {
+  margin-top: 5px; /* Adjust to position the text under the icon */
+  font-size: 14px;
+  font-family: 'AGA Mashq Bold', Arial, sans-serif;
+  color: #000;
+}
+
+/* Navigation Items */
+.nav-items {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  /* padding-right: 60px; */
+  flex-wrap: nowrap;
+}
+
+/* .nav-item.first-item {
+  padding-right: 60px; 
+} */
+
+.nav-item {
+display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    font-family: 'AGA Mashq Bold', Arial, sans-serif;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* .nav-item.first-item {
+  padding-right: 60px;
+} */
+
+.nav-item i {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.nav-item span {
+  font-size: 12px;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  color: #224273; /* Highlight color */
+}
+
+.active-nav-item {
+  border: 2px solid black; /* Blue border */
+  border-radius: 10px; /* Rounded edges */
+  box-shadow: 0 4px 10px rgba(34, 66, 115, 0.3); /* Subtle shadow */
+  background-color: #fcf2bd; /* Optional: Highlight background */
+  padding: 10px; /* Adjust spacing for better visuals */
+  color: black; /* Active color */
+}
+
+
+/* Optional: Active Icon Styling */
+.active-nav-item i img {
+  transform: scale(1.1); /* Slightly enlarge the icon */
+  transition: transform 0.2s ease; /* Smooth scaling effect */
+}
+
+/* Optional: Active Span Styling */
+.active-nav-item span {
+  font-weight: bold; /* Highlight text */
+}
+
+ /* // Setting NAv */
+
+ .setting-icon {
+  position: absolute;
+  top: -43%;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.settingNav-container{
+  position: relative;
+  background-color: #fcf2bd;
+  border-radius: 15px;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  padding: 10px 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+  margin-right: 137px;
+  margin-top: -39px;
+
+}
+
+.closeSetting-btn {
+  z-index: 2;
+  position: absolute;
+  top: -65%;
+  right: 107px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.nav_icon.hovered {
+  background-color: white;
+  border: 1px solid #001a72;
+}
+
+.left-icons {
+  left: 4%;
+  top: 4%;
+  transform: translateY(-50%);
+}
+
+.right-icons {
+  right: 4%;
+  top: 4%;
+  transform: translateY(-50%);
 }

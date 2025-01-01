@@ -1,5 +1,5 @@
 <div
-  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height: 100%"
+  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px;height: 100%;"
 >
 <div class="container-fluid">
   <div class="row">
@@ -38,11 +38,11 @@
     <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
       <button class="close-btn" (click)="openNav()">&times;</button>
   
-      <div class="nav-container">
+      <div class="nav-container" appHorizontalScroll>
         <!-- Close Button -->
   
         <!-- Home Icon Section -->
-        <div class="home-icon">
+        <!-- <div class="home-icon">
           <div class="circle">
             <i class="">
               <img
@@ -52,9 +52,8 @@
               />
             </i>
             <span>الرئيسية</span>
-            <!-- Move the span inside the circle -->
           </div>
-        </div>
+        </div> -->
   
         <!-- Other Navigation Icons -->
         <div class="nav-items">
@@ -128,7 +127,7 @@
             </i>
             <span>المواد</span>
           </div>
-          <div class="nav-item" routerLink="/questions">
+          <div class="nav-item active-nav-item" routerLink="/questions">
             <i class="">
               <img
                 src="../../assets/images/suitcase.png"
@@ -168,7 +167,7 @@
             </i>
             <span> المناطق</span>
           </div>
-          <div class="nav-item">
+          <div class="nav-item" routerLink="/lessons">
             <i class="">
               <img
                 src="../../assets/images/screen-share.png"
@@ -217,8 +216,8 @@
     <div class="col-12 nav-wrapper" *ngIf="isSettingBarOpen">
       <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
 
-      <div class="settingNav-container">
-        <div class="setting-icon">
+      <div class="settingNav-container" appHorizontalScroll>
+        <!-- <div class="setting-icon">
           <div class="circle">
             <i class="">
               <img
@@ -228,9 +227,8 @@
               />
             </i>
             <span>الاعدادات</span>
-            <!-- Move the span inside the circle -->
           </div>
-        </div>
+        </div> -->
 
          <div class="nav-items">
 

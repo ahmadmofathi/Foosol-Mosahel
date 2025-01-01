@@ -1,41 +1,299 @@
 <div class="background-container">
-    <div class="overlay"></div>
+    <!-- <div class="overlay"></div> -->
 
 
     <div class="icon-container left-icons align-items-center">
     
-      <img src="../../../assets/images/human.png" width="60px" height="60px" >
-      <div class="nav_icon">
-        <img src="../../../assets/images/bell.svg" width="30px" height="30px">
+      <div class="profile-container" (click)="toggleMenu()">
+        <img
+          src="../../../assets/images/human.png"
+          alt="Profile"
+          width="60px"
+          height="60px"
+        />
+      </div>
+    
+      <div 
+      class="nav_icon" 
+      [ngClass]="{ 'hovered': isHovered.bell }"
+      (mouseover)="changeIcon('bell', true)" 
+      (mouseout)="changeIcon('bell', false)"
+    >
+      <img 
+        [src]="currentIcons.bell" 
+        width="30px" 
+        height="30px"
+      />
+    </div>
+  
+  
+    
+      <!-- Dropdown Menu -->
+      <div
+        *ngIf="menuOpen"
+        class="dropdown-menu"
+      >
+        <div class="menu-item" routerLink="/profile">
+          ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
+        </div>
+        <div class="menu-item">
+           توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
+        </div>
+        <hr />
+        <div class="menu-item logout">
+         <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
+        </div>
       </div>
   
     
     </div>
   
-    <!-- Icons on the right side -->
-    <div class="icon-container right-icons align-items-center" >
-      <div class="nav_icon">
-        <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
-      </div>
-      <div class="nav_icon" (click)="toggleMenu()">
-        <img src="../../../assets/images/home.svg" width="30px" height="30px" class="nav_icon">
-      </div>
+    <div class="icon-container right-icons align-items-center">
+    
+      <div 
+      class="nav_icon"
+      (click)="openSetting()"
+      [ngClass]="{ 'hovered': isHovered.settings }"
+      (mouseover)="changeIcon('settings', true)" 
+      (mouseout)="changeIcon('settings', false)"
+    >
+      <img 
+        [src]="currentIcons.settings" 
+        width="30px" 
+        height="30px"
+      />
     </div>
-
-      <!-- Horizontal menu that is shown or hidden based on the boolean value -->
-  <div class="horizontal-menu" *ngIf="isMenuVisible">
-    <ul>
-     
-      <li routerLink="/profile"><i class="fa-solid fa-user" ></i> ملف الانجاز</li>
-      <li routerLink="/student"><i class="fa-solid fa-cog" ></i> الطلبه</li>
-      <li routerLink="/teacherDash"><i class="fa-solid fa-sign-out-alt" ></i> السبوره</li>
-      <li routerLink="/paper"><i class="fa-solid fa-sign-out-alt" ></i> ورقه عمل</li>
-      <li routerLink="/exam"><i class="fa-solid fa-sign-out-alt" ></i>الاختبار</li>
-
-
-
-    </ul>
+  
+    <!-- (click)="openNav()" -->
+  
+    <div 
+    class="nav_icon"
+    (click)="openNav()"
+    [ngClass]="{ 'hovered': isHovered.home }"
+    (mouseover)="changeIcon('home', true)" 
+    (mouseout)="changeIcon('home', false)"
+  >
+    <img 
+      [src]="currentIcons.home" 
+      width="30px" 
+      height="30px"
+    />
   </div>
+  
+  
+      <div class="row container">
+        <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+          <button class="close-btn" (click)="openNav()">&times;</button>
+      
+          <div class="nav-container">
+            <!-- Close Button -->
+      
+            <!-- Home Icon Section -->
+            <!-- <div class="home-icon">
+              <div class="circle">
+                <i class="">
+                  <img
+                    src="../../assets/images/home-1.svg"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span style="color: #001A72;">الرئيسية</span>
+              </div>
+            </div> -->
+      
+            <!-- Other Navigation Icons -->
+            <div class="nav-items">
+              <div class="nav-item " routerLink="/home">
+                <i class="">
+                  <img
+                    src="../../../assets/images/home-black.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الرئيسية</span>
+              </div>
+              <div class="nav-item first-item" >
+                <i class="">
+                  <img
+                    src="../../../assets/images/calendar-link.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الجدول</span>
+              </div>
+              <div class="nav-item" routerLink="/student">
+                <i class="">
+                  <img
+                    src="../../../assets/images/users-more.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الطلاب</span>
+              </div>
+              <div class="nav-item" routerLink="/studentPro">
+                <i class="">
+                  <img
+                    src="../../../assets/images/users-more.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>ملف الطالب</span>
+              </div>
+              <div class="nav-item" routerLink="/package">
+                <i class="">
+                  <img
+                    src="../../../assets/images/chart-vertical.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الكشوف</span>
+              </div>
+              <div class="nav-item" routerLink="/paper">
+                <i class="">
+                  <img
+                    src="../../assets/images/document-filled.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>اوراق العمل</span>
+              </div>
+              <div class="nav-item" routerLink="/exam">
+                <i class="">
+                  <img
+                    src="../../assets/images/document-filled.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الاختبارات</span>
+              </div>
+              <div class="nav-item" routerLink="/certificate">
+                <i class="">
+                  <img
+                    src="../../../assets/images/crown-1.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الشهادات</span>
+              </div>
+              <div class="nav-item" routerLink="/reason">
+                <i class="">
+                  <img
+                    src="../../../assets/images/user-warning.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>تحويل طالب</span>
+              </div>
+              <div class="nav-item" routerLink="/skills">
+                <i class="">
+                  <img
+                    src="../../../assets/images/calendar-user.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>المهارات الاساسية</span>
+              </div>
+              <div class="nav-item">
+                <i class="">
+                  <img
+                    src="../../../assets/images/suitcase.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> البنك</span>
+              </div>
+              <div class="nav-item" routerLink="/curriculum">
+                <i class="">
+                  <img
+                    src="../../../assets/images/document-plus.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> توزيع المنهج</span>
+              </div>
+  
+            </div>
+          </div>
+        </div>    
+      </div>
+  
+      <div class="row container">
+        <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
+          <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+  
+          <div class="settingNav-container">
+            <!-- <div class="setting-icon">
+              <div class="circle">
+                <i class="">
+                  <img
+                    src="../../../assets/images/document-plusBlue.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span style="font-size: small; color:#001A72">اعداد النقاط</span>
+              </div>
+            </div> -->
+  
+             <div class="nav-items">
+  
+              <div class="nav-item first-item" routerLink="/">
+                <i class="">
+                  <img
+                  src="../../../assets/images/document-plus.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> اعداد النقاط</span>
+              </div>
+  
+              <div class="nav-item first-item" routerLink="/technical">
+                <i class="">
+                  <img
+                  src="../../../assets/images/document-plus.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> اعداد الدرجات</span>
+              </div>
+  
+              <div class="nav-item" routerLink="/permission">
+                <i class="">
+                  <img
+                    src="../../../assets/images/headphones.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الدعم الفني</span>
+              </div>
+  
+  
+  
+  
+              </div>
+          </div>
+        </div>
+      </div>
+  
+  </div>
+  
+ 
 
 
     <div class="custom-form">
@@ -220,7 +478,7 @@
           </div>
   
           <div class="div-button">
-            <button class="own-btn" style="font-weight: bold;font-size: large;">إعداد ورقة عمل</button>
+            <button class="own-btn" style="font-weight: bold;font-size: large;" routerLink="/prepPaper">إعداد ورقة عمل</button>
           </div>
         </div>
       </div>

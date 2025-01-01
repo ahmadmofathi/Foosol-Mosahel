@@ -42,7 +42,7 @@
         <!-- Close Button -->
   
         <!-- Home Icon Section -->
-        <div class="home-icon">
+        <!-- <div class="home-icon">
           <div class="circle">
             <i class="">
               <img
@@ -52,13 +52,12 @@
               />
             </i>
             <span>الرئيسية</span>
-            <!-- Move the span inside the circle -->
           </div>
-        </div>
+        </div> -->
   
         <!-- Other Navigation Icons -->
         <div class="nav-items">
-          <div class="nav-item first-item" routerLink="/subscripeDetails">
+          <div class="nav-item first-item active-nav-item" routerLink="/subscripeDetails">
             <i class="">
               <img
                 src="../../assets/images/users-more.png"
@@ -168,7 +167,7 @@
             </i>
             <span> المناطق</span>
           </div>
-          <div class="nav-item">
+          <div class="nav-item" routerLink="/lessons">
             <i class="">
               <img
                 src="../../assets/images/screen-share.png"
@@ -218,7 +217,7 @@
       <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
 
       <div class="settingNav-container">
-        <div class="setting-icon">
+        <!-- <div class="setting-icon">
           <div class="circle">
             <i class="">
               <img
@@ -228,9 +227,8 @@
               />
             </i>
             <span>الاعدادات</span>
-            <!-- Move the span inside the circle -->
           </div>
-        </div>
+        </div> -->
 
          <div class="nav-items">
 
@@ -338,7 +336,7 @@
           <table class="skills-table">
             <thead>
               <tr class="header-row">
-                <th>
+                <th style="width: 50px; padding-left: 40px;">
                   <i
                     class="fa-solid fa-arrow-right-arrow-left"
                     (click)="toggleList()"
@@ -401,18 +399,18 @@
                       />
                       اسم المعلم
                     </label>
-                    <label>
+                    <!-- <label>
                       <input
                         type="checkbox"
                         [(ngModel)]="columnsVisibility.teacherNumber"
                         (change)="updateVisibility('teacherNumber')"
                       />
                       رقم المعلم
-                    </label>
+                    </label> -->
                   </div>
                 </th>
 
-                <th>الاجراء</th>
+                <th style="width: 50px; padding-left: 40px;">الاجراء</th>
                 <th *ngIf="columnsVisibility.subject">الماده</th>
                 <th *ngIf="columnsVisibility.class">الصف</th>
                 <th *ngIf="columnsVisibility.stage">المرحله</th>
@@ -429,22 +427,22 @@
                 <th *ngIf="columnsVisibility.teacher">
                   اسم المعلم <i class="fa-solid fa-sort"></i>
                 </th>
-                <th *ngIf="columnsVisibility.teacherNumber">
+                <th style="text-align: end; padding-right: 50px;">
                   رقم المعلم <i class="fa-solid fa-sort"></i>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let item of regions; let i = index">
                 <td></td>
-                <td class="actions">
+                <td class="actions" style="width: 50px; padding-left: 40px;">
                   <i
                     class="ellipsis-btn fa-solid fa-ellipsis"
-                    (click)="showMenu()"
+                    (click)="showMenu(i)"
                   ></i>
 
                   <!-- Dropdown menu -->
-                  <div class="dropdown-menu" [class.open]="isMenuOpen">
+                  <div class="dropdown-menu" [class.open]="item.isMenuOpen">
                     <button class="dropdown-item edit-btn">
                       <i class="fa-solid fa-cog"></i> تعديل
                     </button>
@@ -461,15 +459,14 @@
                 <td *ngIf="columnsVisibility.creationDate">2-11-2024</td>
                 <td *ngIf="columnsVisibility.phone">277</td>
                 <td *ngIf="columnsVisibility.teacher">احمد علي</td>
-                <td *ngIf="columnsVisibility.teacherNumber">1</td>
+                <td *ngIf="columnsVisibility.teacherNumber" style="text-align: end; padding-right: 80px;">1</td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td></td>
-                <td class="actions">
-                  <!-- <button class="ellipsis-btn" (click)="showMenu()"> -->
+                <td class="actions" style="width: 50px; padding-left: 40px;">
                   <i
                     class="ellipsis-btn fa-solid fa-ellipsis"
-                    (click)="showMenu()"
+                    (click)="showMenu(i)"
                   ></i>
                 </td>
                 <td *ngIf="columnsVisibility.subject">العربيه</td>
@@ -479,8 +476,8 @@
                 <td *ngIf="columnsVisibility.creationDate">2-11-2024</td>
                 <td *ngIf="columnsVisibility.phone">277</td>
                 <td *ngIf="columnsVisibility.teacher">احمد علي</td>
-                <td *ngIf="columnsVisibility.teacherNumber">1</td>
-              </tr>
+                <td *ngIf="columnsVisibility.teacherNumber" style="text-align: end; padding-right: 80px;">1</td>
+              </tr> -->
             </tbody>
           </table>
 

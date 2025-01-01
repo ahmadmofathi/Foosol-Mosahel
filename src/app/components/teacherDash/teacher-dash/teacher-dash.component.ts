@@ -1,4 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { StudentsService } from 'src/app/services/students/students.service';
+import { WhiteboardService } from 'src/app/services/whiteboard/whiteboard.service';
 
 @Component({
   selector: 'app-teacher-dash',
@@ -8,6 +11,269 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild }
 export class TeacherDashComponent  implements AfterViewInit {
 
   isStudentListVisible = false;
+  isH2Visible: boolean = true;
+  isH3Visible: boolean = true;
+  isClockVisible:boolean = true
+  isTimerVisible:boolean = true;
+  isDateVisible:boolean = true;
+  isProgressVisible:boolean = true;
+  isStudentPhotoVisible:boolean = true;
+  isTeacherPhotoVisible:boolean = true;
+
+
+  remainingMinutes: number = 0;
+  remainingTime: string | null = null;  // Countdown timer
+
+
+  remainingSeconds: number = 0;
+  remainingTimeSec: number  =0; 
+  remainingTime2: string | null = null;
+
+  time: string = '';
+
+ 
+
+
+  constructor(private lectureService:WhiteboardService ,private toastr: ToastrService ,private studentService: StudentsService){}
+
+  saveStudentId(studentId: string) {
+    console.log('Selected student ID:', studentId);
+    localStorage.setItem('StudentSelectedId',studentId)
+    // Save the student ID as needed
+    // For example, save it in a variable or send it to a service
+  }
+
+  boards: { id: number; state: string }[] = [
+    { id: 1, state: '' }, // Default board with ID 1
+  ];
+  
+  activeBoard: number = 1;
+
+
+  initializeCanvas() {
+    const canvasEl = this.canvasRef.nativeElement;
+    this.ctx = canvasEl.getContext('2d')!;
+  }
+
+
+  saveBoardState() {
+    const currentBoard = this.boards.find((board) => board.id === this.activeBoard);
+    if (currentBoard) {
+      const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+      if (canvas) {
+        currentBoard.state = canvas.toDataURL(); // Save the canvas content as data URL
+      }
+    }
+  }
+  
+
+  // Load the selected board's state
+  loadBoardState(boardId: number) {
+    const selectedBoard = this.boards.find((board) => board.id === boardId);
+    const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+    const ctx = canvas?.getContext('2d');
+  
+    if (selectedBoard && ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+      if (selectedBoard.state) {
+        const img = new Image();
+        img.src = selectedBoard.state;
+        img.onload = () => ctx.drawImage(img, 0, 0);
+      }
+    }
+  }
+  
+  // Switch between boards
+  switchBoard(boardId: number) {
+    if (this.activeBoard !== boardId) {
+      this.saveBoardState(); // Save the current board's state
+      this.activeBoard = boardId; // Update the active board
+      this.loadBoardState(boardId); // Load the selected board's state
+    }
+  }
+
+  // Add a new board and switch to it
+  addNewBoard() {
+    const newId = this.boards.length + 1; // Generate a new board ID
+    this.boards.push({ id: newId, state: '' }); // Add a new board with an empty state
+    this.switchBoard(newId); // Switch to the newly created board
+  }
+  
+  isLectureStarted = false; 
+
+  onStartLecture() {
+    this.onSubmitLecture();
+  }
+
+  onEndLecture() {
+    this.isLectureStarted = false;
+    console.log('Lecture ended');
+    this.SetStatas();
+    this.stopCountdown()
+  }
+
+
+  logStatusValue(statusValue: number): void
+   { 
+    console.log('Status value:', statusValue ); 
+  }
+
+  onSubmitLecture(): void {
+    const classId = localStorage.getItem('selectedClassId');
+    const lessonId = localStorage.getItem('selectedLessonId');
+  
+    // Validate inputs
+    if (!classId || !lessonId) {
+      this.toastr.error('تاكد انك قمت باختيار كلا من الفصل و الدرس لبدء الحصه', 'خطأ', {
+        timeOut: 2000,
+      });
+      return;
+    }
+  
+    if (!this.remainingMinutes || this.remainingMinutes <= 0) {
+      this.toastr.error('قم بادخال الوقت بطريقه صحيحه (الدقائق)!', 'خطأ', {
+        timeOut: 1000,
+      });
+      return;
+    }
+  
+    const periodInMinutes = this.remainingMinutes; // Store the time entered
+  
+    // Call the service to create the lecture
+    this.lectureService.createLecture(classId, lessonId, periodInMinutes).subscribe(
+      (response) => {
+        console.log('Lecture created successfully:', response);
+  
+        // Assuming the response contains the created lecture ID, save it in localStorage
+        const lectureId = response.lectureId; // Adjust this based on your API's response structure
+        if (lectureId) {
+          localStorage.setItem('createdLectureId', lectureId);
+          console.log('Lecture ID saved to localStorage:', lectureId);
+        }
+  
+        this.toastr.success('تم بدء الحصة بنجاح!', 'نجاح', {
+          timeOut: 1000,
+        });
+        
+        this.isLectureStarted = true;
+        this.startCountdown();
+      },
+      (error) => {
+        console.error('Error creating lecture:', error);
+        this.toastr.error('خطا في انشاء الحصه', 'خطأ', {
+          timeOut: 1000,
+        });
+      }
+    );
+  }
+
+  SetStatas() : void{
+    const studentId = localStorage.getItem('StudentSelectedId'); // Get student ID from localStorage
+    if (!studentId) {
+      console.error('Student ID is missing from localStorage');
+      return;
+    }
+
+    const selectedAttendanceStatus = this.students[0].statusIcons.find(icon => icon.value === 2); // Mock selected value 2
+    const selectedEngagementStatus = this.students3[0].statusIcons.find(icon => icon.value === 1); // Mock selected value 1
+    const selectedBehaviors = this.students2[0].statusIcons.filter(icon => icon.value >= 0 && icon.value <= 4); // Mock selected all values
+
+    // Extracting the actual selected values
+    const attendance = selectedAttendanceStatus ? selectedAttendanceStatus.value : null;
+    const engagement = selectedEngagementStatus ? selectedEngagementStatus.value : null;
+    const behaviors = selectedBehaviors.map(icon => icon.value);
+
+
+    
+
+    const statusData = [
+      {
+        studentId: studentId,
+        attendance: attendance,
+        behaviors: behaviors,
+        engagement: engagement,
+        addedPoints: 0
+      }
+    ];
+  console.log('Data sent to API:', statusData); // Log the data sent to the API
+
+    this.lectureService.setStatus(statusData).subscribe({
+      next: (response) => {
+        try {
+          const responseBody = typeof response.body === 'string' ? JSON.parse(response.body) : response.body;
+          console.log('Status set successfully:', responseBody);
+        } catch (e) {
+          console.log('Status set successfully:', response.body);
+        }
+      },
+      error: (error) => {
+        console.error('Error setting status:', error);
+      }
+    });
+  }
+  
+  onBlur() {
+    // This triggers the countdown when the input loses focus
+    if (this.remainingMinutes > 0) {
+      // this.startCountdown();
+    }
+  }
+
+
+  onBlur2(){
+    if (this.remainingTimeSec >0){
+      this.startCountdownInSeconds()
+    }
+  }
+
+  startCountdownInSeconds() {
+    if (this.remainingTimeSec > 0) {
+      this.remainingTime2 = `${this.remainingTimeSec}`; // Set initial countdown in seconds
+  
+      const timer = setInterval(() => {
+        if (this.remainingTimeSec <= 0) {
+          clearInterval(timer);
+          this.remainingTime2 = '00'; // Set timer to 00 when done
+        } else {
+          const seconds = this.remainingTimeSec;
+          this.remainingTime2 = `${Math.floor(seconds / 60)}:${(seconds % 60).toString().padStart(2, '0')}`;
+          this.remainingTimeSec--; // Decrement seconds
+        }
+      }, 1000);
+    }
+  }
+  
+
+  startCountdown(): void {
+    if (this.remainingMinutes > 0) {
+      this.remainingTime = `${this.remainingMinutes}`;  // Set initial countdown
+
+      // Convert minutes to seconds
+      let totalSeconds = this.remainingMinutes * 60;
+
+      // Countdown logic
+      this.timer = setInterval(() => {
+        if (totalSeconds <= 0) {
+          clearInterval(this.timer);
+          this.remainingTime = '00';  // Set timer to 00 when done
+        } else {
+          const minutes = Math.floor(totalSeconds / 60);
+          const seconds = totalSeconds % 60;
+          this.remainingTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+          totalSeconds--;
+        }
+      }, 1000);
+    }
+  }
+
+  private timer: any; // To store the interval ID
+
+  stopCountdown(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.remainingTime = '00';  
+    }
+  }
 
   toggleStudentList() {
     this.isStudentListVisible = !this.isStudentListVisible;
@@ -33,61 +299,42 @@ export class TeacherDashComponent  implements AfterViewInit {
     }
   }
 
+  
+
+  isOneActive: boolean = true;
+  isTwoActive: boolean = false;
+  isThreeActive: boolean = false;
+
+
+  toggleButtonNumber(button: string) {
+    if (button === 'one') {
+      this.isOneActive = true;
+      this.isTwoActive = false;
+      this.isThreeActive = false;
+    } else if (button === 'two') {
+      this.isOneActive = false;
+      this.isTwoActive = true;
+      this.isThreeActive = false;
+    
+    } else if (button === 'three') {
+      this.isOneActive = false;
+      this.isTwoActive = false;
+      this.isThreeActive = true;
+    }
+  }
+
+
   students = [
     {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
+      
       statusIcons: [
-        { label: 'غ', class: 'late غائب' },
-        { label: 'ح', class: 'present حاضر' },
-        { label: 'م', class: 'excused  مستأذن' },
-        { label: 'ه', class: 'absent هروب' },
-        { label: 'ت', class: 'sleep متاخر' }
+        { label: 'غ', class: 'late غائب',value: 1},
+        { label: 'ح', class: 'present حاضر' ,value: 0},
+        { label: 'م', class: 'excused  مستأذن' ,value:3 },
+        { label: 'ه', class: 'absent هروب' ,value:4 },
+        { label: 'ت', class: 'sleep متاخر' ,value:2 }
       ]
     },
-    {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'غ', class: 'late غائب' },
-        { label: 'ح', class: 'present حاضر' },
-        { label: 'م', class: 'excused  مستأذن' },
-        { label: 'ه', class: 'absent هروب' },
-        { label: 'ت', class: 'sleep متاخر' }
-      ]
-    },
-    {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'غ', class: 'late غائب' },
-        { label: 'ح', class: 'present حاضر' },
-        { label: 'م', class: 'excused  مستأذن' },
-        { label: 'ه', class: 'absent هروب' },
-        { label: 'ت', class: 'sleep متاخر' }
-      ]
-    }, {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'غ', class: 'late غائب' },
-        { label: 'ح', class: 'present حاضر' },
-        { label: 'م', class: 'excused  مستأذن' },
-        { label: 'ه', class: 'absent هروب' },
-        { label: 'ت', class: 'sleep متاخر' }
-      ]
-    }, {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'غ', class: 'late غائب' },
-        { label: 'ح', class: 'present حاضر' },
-        { label: 'م', class: 'excused  مستأذن' },
-        { label: 'ه', class: 'absent هروب' },
-        { label: 'ت', class: 'sleep متاخر' }
-      ]
-    },
-    // Add more students as needed
   ];
 
 
@@ -96,56 +343,14 @@ export class TeacherDashComponent  implements AfterViewInit {
       name: 'أسامه علي صالح',
       image: '../../../../assets/images/student.svg',
       statusIcons: [
-        { label: 'ن', class: 'late نائم' },
-        { label: 'د', class: 'present عدم احضار الادوات' },
-        { label: 'ك', class: 'excused عدم احضار الكتاب' },
-        { label: 'س', class: 'absent سارح' },
-        { label: 'ش', class: 'sleep مشاغب' }
+        { label: 'ن', class: 'late نائم' ,value:4},
+        { label: 'د', class: 'present عدم احضار الادوات' ,value:3 },
+        { label: 'ك', class: 'excused عدم احضار الكتاب'  ,value:2},
+        { label: 'س', class: 'absent سارح' ,value:1 },
+        { label: 'ش', class: 'sleep مشاغب' ,value:0 }
       ]
     },
-    {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'ن', class: 'late نائم' },
-        { label: 'د', class: 'present عدم احضار الادوات' },
-        { label: 'ك', class: 'excused عدم احضار الكتاب' },
-        { label: 'س', class: 'absent سارح' },
-        { label: 'ش', class: 'sleep مشاغب' }
-      ]
-    },
-    {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'ن', class: 'late نائم' },
-        { label: 'د', class: 'present عدم احضار الادوات' },
-        { label: 'ك', class: 'excused عدم احضار الكتاب' },
-        { label: 'س', class: 'absent سارح' },
-        { label: 'ش', class: 'sleep مشاغب' }
-      ]
-    }, {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'ن', class: 'late نائم' },
-        { label: 'د', class: 'present عدم احضار الادوات' },
-        { label: 'ك', class: 'excused عدم احضار الكتاب' },
-        { label: 'س', class: 'absent سارح' },
-        { label: 'ش', class: 'sleep مشاغب' }
-      ]
-    }, {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'ن', class: 'late نائم' },
-        { label: 'د', class: 'present عدم احضار الادوات' },
-        { label: 'ك', class: 'excused عدم احضار الكتاب' },
-        { label: 'س', class: 'absent سارح' },
-        { label: 'ش', class: 'sleep مشاغب' }
-      ]
-    },
-    // Add more students as needed
+
   ];
 
   
@@ -154,48 +359,41 @@ export class TeacherDashComponent  implements AfterViewInit {
       name: 'أسامه علي صالح',
       image: '../../../../assets/images/student.svg',
       statusIcons: [
-        { label: 'غ', class: 'late غير متفاعل' },
-        { label: 'م', class: 'present متفاعل' },
+        { label: 'غ', class: 'late غير متفاعل' , value:1 },
+        { label: 'م', class: 'present متفاعل' , value:0 },
        
       ]
     },
-    {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'غ', class: 'late غير متفاعل' },
-        { label: 'م', class: 'present متفاعل' },
-       
-      ]
-    },
-    {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'غ', class: 'late غير متفاعل' },
-        { label: 'م', class: 'present متفاعل' },
-      ]
-    }, {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'غ', class: 'late غير متفاعل' },
-        { label: 'م', class: 'present متفاعل' },
-      ]
-    }, {
-      name: 'أسامه علي صالح',
-      image: '../../../../assets/images/student.svg',
-      statusIcons: [
-        { label: 'غ', class: 'late غير متفاعل' },
-        { label: 'م', class: 'present متفاعل' },
-      ]
-    },
-    // Add more students as needed
+
   ];
+
+  statuses = {
+    حاضر: 0, // present
+    غائب: 1, // late
+    متاخر: 2, // sleep
+    مستأذن: 3, // excused
+    هروب: 4 // absent
+  };
+  
+  statuses2 = {
+    مشاغب: 0, // naughty
+    سارح: 1, // distracted
+    'عدم احضار الكتاب': 2, // no book
+    'عدم احضار الادوات': 3, // no tools
+    نائم: 4 // sleeping
+  };
+  
+  engagementStatuses = {
+    متفاعل: 0, // active
+    'غير متفاعل': 1 // inactive
+  };
+  
 
 
 
   displayedStudents = this.students; // Initialize with the first group
+
+
   colorLegend = this.getColorLegend(2);
   // Method to change the displayed student group based on the button clicked
   showBehavior(group: string) {
@@ -274,7 +472,8 @@ export class TeacherDashComponent  implements AfterViewInit {
 
   }
   @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
-  ctx!: CanvasRenderingContext2D | null;
+  ctx: CanvasRenderingContext2D | null = null;
+  // private ctx: CanvasRenderingContext2D;
   x = 0;
   y = 0;
   mDown = false;
@@ -296,12 +495,85 @@ export class TeacherDashComponent  implements AfterViewInit {
   startY = 0; // Starting Y for text
   private isDrawing = false;
   canDraw: boolean = true; // Control drawing state
+  private canvasHistory: string[] = [];
+  private historyIndex = -1;
+
+  className: string | null = '';
+  gradeName: string | null = '';
+
 
   ngOnInit() {
+    this.resizeCanvas();
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext('2d');
+
+    this.getStudentInClass();
+
+    this.className = localStorage.getItem('selectedClassName');
+    this.gradeName = localStorage.getItem('selectedGradeName');
   }
 
+   
+   studentData: any[] = [];
+  displayedStudentsR: any[] = [];
+  selectedStudent: any;
+
+
+  studentData2 = [
+    {
+      id: 'b533f02e-977b-4dd6-9130-cdce1ea404fc',
+      firstName: 'Ahmed',
+      lastName: 'Ali',
+      attendanceIcons: [
+        { label: 'غ', class: 'late غائب', value: 1 },
+        { label: 'ح', class: 'present حاضر', value: 0 },
+        { label: 'م', class: 'excused مستأذن', value: 3 },
+        { label: 'ه', class: 'absent هروب', value: 4 },
+        { label: 'ت', class: 'sleep متاخر', value: 2 }
+      ],
+      engagementIcons: [
+        { label: 'غ', class: 'late غير متفاعل', value: 1 },
+        { label: 'م', class: 'present متفاعل', value: 0 }
+      ],
+      behaviorIcons: [
+        { label: 'ن', class: 'late نائم', value: 4 },
+        { label: 'د', class: 'present عدم احضار الادوات', value: 3 },
+        { label: 'ك', class: 'excused عدم احضار الكتاب', value: 2 },
+        { label: 'س', class: 'absent سارح', value: 1 },
+        { label: 'ش', class: 'sleep مشاغب', value: 0 }
+      ]
+    }
+    // Add more students as needed
+  ];
+
+  currentView: string = 'attendance';
+  // isBehaviorActive = false;
+  isEngagementActive = false;
+  // isPreparationActive = false;
+
+  getStudentInClass(){
+     const classId = localStorage.getItem('selectedClassId'); 
+
+    // Fetch student data
+    if (classId) {
+      this.studentService.getStudentByClassId(classId).subscribe(
+        data => {
+          this.studentData = data;
+          this.displayedStudentsR = data;
+          console.log('Student Data:', this.studentData);
+        },
+        error => {
+          console.error('Error fetching student data:', error);
+        }
+      );
+    }
+  }
+
+  chooseRandomStudent() {
+    const randomIndex = Math.floor(Math.random() * this.studentData.length);
+    this.selectedStudent = this.studentData[randomIndex];
+  }
+  
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
@@ -377,6 +649,7 @@ export class TeacherDashComponent  implements AfterViewInit {
 
   mouseUp() {
     this.mDown = false;
+    this.saveState();
   }
 
   mouseMove(event: MouseEvent) {
@@ -392,6 +665,42 @@ export class TeacherDashComponent  implements AfterViewInit {
     }
   }
 
+  saveState() {
+    if (this.historyIndex < this.canvasHistory.length - 1) {
+      this.canvasHistory = this.canvasHistory.slice(0, this.historyIndex + 1);
+    }
+
+    this.canvasHistory.push(this.canvasRef.nativeElement.toDataURL());
+    this.historyIndex++;
+  }
+
+
+  undo() {
+    if (this.historyIndex <= 0) return;
+    this.historyIndex--;
+    this.restoreState(this.canvasHistory[this.historyIndex]);
+  }
+
+  // Redo the undone action
+  redo() {
+    if (this.historyIndex >= this.canvasHistory.length - 1) return;
+    this.historyIndex++;
+    this.restoreState(this.canvasHistory[this.historyIndex]);
+  }
+
+  restoreState(state: string) {
+    const img = new Image();
+    img.src = state;
+    img.onload = () => {
+      if (this.ctx) { // Check if ctx is initialized
+        this.ctx.clearRect(0, 0, this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
+        this.ctx.drawImage(img, 0, 0);
+      } else {
+        console.error('Canvas context is not initialized.');
+      }
+    };
+  }
+  
   touchStart(event: TouchEvent) {
     if (!this.canDraw || !this.ctx) return;
     event.preventDefault();

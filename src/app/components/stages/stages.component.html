@@ -1,9 +1,15 @@
-<div style="background-color: #f2f2f2; padding: 0px 70px 70px 70px">
+<div style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height:100%">
   <div class="container-fluid">
     <div class="row">
       <div class="top-nav">
         <!-- Left Icons -->
         <div class="left-icons">
+          <div  class="nav_icon">
+            <div *ngIf="userName">
+              <span class="nav-item">{{ userName }}</span>
+              <small class="nav-item">{{ userRole }}</small>
+            </div>
+          </div>
           <div class="nav_icon">
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
@@ -13,6 +19,14 @@
         </div>
         <!-- Right Icons -->
         <div class="right-icons">
+          <div class="nav_icon2" routerLink="/main">
+            <img
+              src="../../../assets/images/human.png"
+              width="30px"
+              height="30px"
+              class="nav-icon"
+            />
+          </div>
           <div class="nav_icon2" (click)="openSetting()">
             <img
               src="../../../assets/images/settings.svg"
@@ -29,10 +43,12 @@
               class="nav-icon"
             />
           </div>
+
+    
         </div>
       </div>
     </div>
-    <div class="row container">
+    <div class="row container scroll-buttons-container">
       <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
         <button class="close-btn" (click)="openNav()">&times;</button>
 
@@ -40,7 +56,7 @@
           <!-- Close Button -->
 
           <!-- Home Icon Section -->
-          <div class="home-icon">
+          <!-- <div class="home-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -50,9 +66,8 @@
                 />
               </i>
               <span>الرئيسية</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
           <!-- Other Navigation Icons -->
           <div class="nav-items">
@@ -64,7 +79,7 @@
                   width="20px"
                 />
               </i>
-              <span>معلومات الاشتراك</span>
+              <span style="width:max-content;">معلومات الاشتراك</span>
             </div>
             <div class="nav-item" routerLink="/bills">
               <i class="">
@@ -96,7 +111,7 @@
               </i>
               <span>أسعار المواد</span>
             </div>
-            <div class="nav-item" routerLink="/stages">
+            <div class="nav-item active-nav-item" routerLink="/stages">
               <i class="">
                 <img
                   src="../../assets/images/document-filled.png"
@@ -218,7 +233,7 @@
         </button>
 
         <div class="settingNav-container">
-          <div class="setting-icon">
+          <!-- <div class="setting-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -228,9 +243,8 @@
                 />
               </i>
               <span>الاعدادات</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
           <div class="nav-items">
             <div class="nav-item first-item" routerLink="/technical">
@@ -374,7 +388,7 @@
                     </button>
                     <button
                       class="dropdown-item delete-btn"
-                      (click)="deleteLevel(item.id, i)"
+                      (click)="openLevelConfirmModal(item.id, i)"
                     >
                       <i class="fa-solid fa-trash"></i> حذف
                     </button>
@@ -505,6 +519,25 @@
             <button type="submit" class="btn export-pdf-btn"> حفظ التعديلات</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+
+<div class="modal fade" id="levelConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">تأكيد الحذف</h1>
+      </div>
+      <div class="modal-body">
+       <h1 style="text-align: center;"> هل أنت متأكد أنك تريد مسح هذه المرحله؟</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDeleteLevel()">حذف</button>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <div
-  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; "
+  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height:100%"
 >
   <div class="container-fluid">
     <div class="row">
@@ -15,7 +15,7 @@
         </div>
         <!-- Right Icons -->
         <div class="right-icons">
-          <div class="nav_icon2">
+          <div class="nav_icon2" (click)="openSetting()">
             <img
               src="../../../assets/images/settings.svg"
               width="30px"
@@ -38,11 +38,11 @@
       <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
         <button class="close-btn" (click)="openNav()">&times;</button>
 
-        <div class="nav-container">
+        <div class="nav-container" appHorizontalScroll>
           <!-- Close Button -->
 
           <!-- Home Icon Section -->
-          <div class="home-icon">
+          <!-- <div class="home-icon">
             <div class="circle">
               <i class="">
                 <img
@@ -52,9 +52,8 @@
                 />
               </i>
               <span>الرئيسية</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
           <!-- Other Navigation Icons -->
           <div class="nav-items">
@@ -178,7 +177,7 @@
               </i>
               <span> بطاقة الدرس</span>
             </div>
-            <div class="nav-item" routerLink="/users">
+            <div class="nav-item active-nav-item" routerLink="/users">
               <i class="">
                 <img
                   src="../../assets/images/users-more.png"
@@ -209,6 +208,87 @@
               <span> طلبات الموافقة</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isSettingBarOpen">
+        <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+  
+        <div class="settingNav-container" appHorizontalScroll>
+          <!-- <div class="setting-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/settingsBlue.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الاعدادات</span>
+            </div>
+          </div> -->
+  
+           <div class="nav-items">
+  
+            <div class="nav-item first-item" routerLink="/technical">
+              <i class="">
+                <img
+                  src="../../../assets/images/headphones.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الدعم الفني</span>
+            </div>
+  
+            <div class="nav-item" routerLink="/permission">
+              <i class="">
+                <img
+                  src="../../../assets/images/shield-empty.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الصلاحيات</span>
+            </div>
+  
+            <div class="nav-item" routerLink="/covenants">
+              <i class="">
+                <img
+                src="../../../assets/images/list-left-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>العهود والمواثيق</span>
+            </div>
+  
+            <div class="nav-item " routerLink="/policy">
+              <i class="">
+                <img
+                  src="../../../assets/images/list-left-1.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الشروط الاحكام</span>
+            </div>
+  
+            <div class="nav-item" routerLink="/commonq">
+              <i class="">
+                <img
+                  src="../../../assets/images/question-circle.png"
+                  height="20px"
+                  width="20px"
+                />
+              </i>
+              <span>الاسئلة الشائعه</span>
+            </div>
+  
+  
+            </div>
         </div>
       </div>
     </div>

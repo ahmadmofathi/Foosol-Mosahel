@@ -1,0 +1,509 @@
+<div class="background-container">
+    <div class="overlay"></div>
+  
+    <div class="icon-container left-icons align-items-center">
+    
+      <div class="profile-container" (click)="toggleMenu()">
+        <img
+          src="../../../assets/images/human.png"
+          alt="Profile"
+          width="60px"
+          height="60px"
+        />
+      </div>
+    
+      <div 
+      class="nav_icon" 
+      [ngClass]="{ 'hovered': isHovered.bell }"
+      (mouseover)="changeIcon('bell', true)" 
+      (mouseout)="changeIcon('bell', false)"
+    >
+      <img 
+        [src]="currentIcons.bell" 
+        width="30px" 
+        height="30px"
+      />
+    </div>
+  
+  
+    
+      <!-- Dropdown Menu -->
+      <div
+        *ngIf="menuOpen"
+        class="dropdown-menu"
+      >
+        <div class="menu-item" routerLink="/profile">
+          ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
+        </div>
+        <div class="menu-item">
+           توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
+        </div>
+        <hr />
+        <div class="menu-item logout">
+         <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
+        </div>
+      </div>
+  
+    
+    </div>
+  
+    <div class="icon-container center-icons align-items-center">
+      <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        كشف الدرجات
+      </h1>
+    </div>
+  
+    <!-- Icons on the right side -->
+    <div class="icon-container right-icons align-items-center">
+    
+      <div 
+      class="nav_icon"
+      (click)="openSetting()"
+      [ngClass]="{ 'hovered': isHovered.settings }"
+      (mouseover)="changeIcon('settings', true)" 
+      (mouseout)="changeIcon('settings', false)"
+    >
+      <img 
+        [src]="currentIcons.settings" 
+        width="30px" 
+        height="30px"
+      />
+    </div>
+  
+    <!-- (click)="openNav()" -->
+  
+    <div 
+    class="nav_icon"
+    (click)="openNav()"
+    [ngClass]="{ 'hovered': isHovered.home }"
+    (mouseover)="changeIcon('home', true)" 
+    (mouseout)="changeIcon('home', false)"
+  >
+    <img 
+      [src]="currentIcons.home" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+  
+  
+      <div class="row container">
+        <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+          <button class="close-btn" (click)="openNav()">&times;</button>
+      
+          <div class="nav-container">
+            <!-- Close Button -->
+      
+            <!-- Home Icon Section -->
+            <!-- <div class="home-icon">
+              <div class="circle">
+                <i class="">
+                  <img
+                    src="../../assets/images/home-1.svg"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span style="color: #001A72;">الرئيسية</span>
+              </div>
+            </div> -->
+      
+            <!-- Other Navigation Icons -->
+            <div class="nav-items">
+                  <div class="nav-item " routerLink="/home">
+                  <i class="">
+                    <img
+                      src="../../../assets/images/home-black.png"
+                      height="30px"
+                      width="30px"
+                    />
+                  </i>
+                  <span>الرئيسية</span>
+                </div>
+              <div class="nav-item first-item" >
+                <i class="">
+                  <img
+                    src="../../../assets/images/calendar-link.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الجدول</span>
+              </div>
+              <div class="nav-item" routerLink="/student">
+                <i class="">
+                  <img
+                    src="../../../assets/images/users-more.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الطلاب</span>
+              </div>
+              <div class="nav-item" routerLink="/studentPro">
+                <i class="">
+                  <img
+                    src="../../../assets/images/users-more.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>ملف الطالب</span>
+              </div>
+              <div class="nav-item" routerLink="/listDegree">
+                <i class="">
+                  <img
+                    src="../../../assets/images/chart-vertical.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الكشوف</span>
+              </div>
+              <div class="nav-item" routerLink="/paper">
+                <i class="">
+                  <img
+                    src="../../assets/images/document-filled.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>اوراق العمل</span>
+              </div>
+              <div class="nav-item" routerLink="/exam">
+                <i class="">
+                  <img
+                    src="../../assets/images/document-filled.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الاختبارات</span>
+              </div>
+              <div class="nav-item" routerLink="/certificate">
+                <i class="">
+                  <img
+                    src="../../../assets/images/crown-1.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الشهادات</span>
+              </div>
+              <div class="nav-item" routerLink="/reason">
+                <i class="">
+                  <img
+                    src="../../../assets/images/user-warning.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>تحويل طالب</span>
+              </div>
+              <div class="nav-item" routerLink="/skills">
+                <i class="">
+                  <img
+                    src="../../../assets/images/calendar-user.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>المهارات الاساسية</span>
+              </div>
+              <div class="nav-item">
+                <i class="">
+                  <img
+                    src="../../../assets/images/suitcase.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> البنك</span>
+              </div>
+              <div class="nav-item" routerLink="/curriculum">
+                <i class="">
+                  <img
+                    src="../../../assets/images/document-plus.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> توزيع المنهج</span>
+              </div>
+  
+            </div>
+          </div>
+        </div>    
+      </div>
+  
+      <div class="row container">
+        <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
+          <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+  
+          <div class="settingNav-container">
+            <!-- <div class="setting-icon">
+              <div class="circle">
+                <i class="">
+                  <img
+                    src="../../../assets/images/document-plusBlue.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span style="font-size: small; color:#001A72">اعداد النقاط</span>
+              </div>
+            </div> -->
+  
+             <div class="nav-items">
+  
+              <div class="nav-item first-item" routerLink="/points">
+                <i class="">
+                  <img
+                  src="../../../assets/images/document-plus.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> اعداد النقاط</span>
+              </div>
+  
+              <div class="nav-item first-item" routerLink="/technical">
+                <i class="">
+                  <img
+                  src="../../../assets/images/document-plus.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> اعداد الدرجات</span>
+              </div>
+  
+              <div class="nav-item" routerLink="/permission">
+                <i class="">
+                  <img
+                    src="../../../assets/images/headphones.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الدعم الفني</span>
+              </div>
+  
+  
+  
+  
+              </div>
+          </div>
+        </div>
+      </div>
+  
+  </div>
+  
+    <div class="custom-form">
+      <div class="my-form">
+
+          <div class="cotainer-fluid">
+              <div class="row">
+                  <!-- <div class="col-12 float-end" routerLink="/transfer">
+                      <button class="create-button float-end" >
+                          <i class="fa-solid fa-plus"></i> انشاء تحويل
+                      </button>
+                  </div> -->
+
+                  <div class="custom-header">
+                    <!-- Dropdown Menu -->
+                    <div class="header-controls">
+                      <!-- <select class="dropdown-select">
+                        <option selected disabled>الكل</option>
+                        <option>كشف المتابعة</option>
+                        <option>كشف التفاعل</option>
+                        <option>كشف السلوكيات</option>
+                        <option>كشف التحضير</option>
+                      </select> -->
+
+                      <div class="search-wrapper">
+                        <i class="fa fa-search search-icon"></i>
+                        <input
+                          type="text"
+                          class="search-box"
+                          placeholder="قم بالبحث هنا"
+                        />
+                      </div>
+                    </div>
+                  
+                    <!-- Buttons -->
+                    <div class="header-buttons">
+                      <button
+                        class="header-btn"
+                        *ngFor="let button of buttons; let i = index"
+                        [ngClass]="{ 'active': activeButton === i }"
+                        (click)="setActiveButton(i)"
+                        [routerLink]="getRouterLink(i)"
+                      >
+                        {{ button }}
+                      </button>
+                    </div>
+                  </div>
+                  
+              </div>
+          </div>
+          
+  
+        <hr class="separator" />
+
+<div class="compoRow">
+        <div class="container-fluid  d-flex justify-content-between align-items-center" style="direction: rtl;">
+            <div class="right-content">
+              <h2 class="title text-end">كشف التفاعل</h2>
+            </div>
+          
+            <div class="left-content">
+                <button
+                id="addContractBtn"
+                class="button add-contract-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#createModal"
+                [ngClass]="{
+                  active: addContractActive,
+                  inactive: !addContractActive
+                }"
+                (click)="toggleDateRow()"
+              >
+              فلترة <i class="fa-solid fa-sliders me-2"></i> 
+              </button>
+          
+            </div>
+
+          </div>
+
+          
+          <div class="row" *ngIf="isDateShow" >
+            <div class="col-12">
+              <!-- Date Fields -->
+              <div class="date-fields">
+                <div class="date-field">
+                  
+                  <div class="input-group">
+                    <input
+                      type="date"
+                      id="endDate"
+                      class="form-control custom-date"
+                      placeholder="00/00/0000"
+                      #endDate
+                    />
+                  </div>
+                  <label for="endDate" class="date-label">الي تاريخ</label>
+                </div>
+              
+                <div class="date-field">
+                  
+                  <div class="input-group">
+                    <input
+                      type="date"
+                      id="startDate"
+                      class="form-control custom-date"
+                      placeholder="00/00/0000"
+                      #startDate
+                    />
+                  </div>
+                  <label for="startDate" class="date-label">من تاريخ</label>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+
+          
+     
+  
+        
+         
+        <div class="card-grid">
+          <div class="card" *ngFor="let card of cards">
+              <div class="overlay">
+  
+                  <div class="overlay-buttons">
+                      <button
+                        class="overlay-button"
+                        [ngClass]="{ active: card.activeButton === 'view' }"
+                        (click)="onButtonClick(card, 'view')"
+                        data-bs-toggle="modal"
+                        data-bs-target="#viewModal"
+                      >
+                        عرض
+                      </button>
+                      <button
+                        class="overlay-button"
+                        [ngClass]="{ active: card.activeButton === 'send' }"
+                        (click)="onButtonClick(card, 'send')"
+                      >
+                      pdf تصدير 
+                      </button>
+                    </div>
+  
+                    <img
+                    src="../../../assets/images/whiteCross.png"
+                    width="30px"
+                    height="30px"
+                    class="x-icon"
+                    (click)="toggleMenu2(card)"
+                  />
+                  <div *ngIf="card.isMenuOpen" class="small-menu">
+                      <button
+                        (click)="menuAction('Delete')"
+                        class="me-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                      >
+                        <img
+                          src="../../../assets/images/trash-2.png"
+                          width="20px"
+                          height="20px"
+                        />
+                      </button>
+                      <button (click)="menuAction('Edit')" class="me-2">
+                        <img
+                          src="../../../assets/images/edit-4.png"
+                          width="20px"
+                          height="20px"
+                        />
+                      </button>
+                      <!-- <button>
+                        <img
+                          src="../../../assets/images/calendar-link.png"
+                          width="20px"
+                          height="20px"
+                        />
+                      </button> -->
+                    </div>
+  
+                  </div>
+            <!-- Top section: Number and Label -->
+            <div class="card-header">
+              <span class="card-number">{{ card.number }}</span>
+              <span class="card-label">{{ card.label }}</span>
+            </div>
+        
+            <!-- Center content: Main text -->
+            <div class="card-content">
+           الفترة الاولي
+            </div>
+        
+            <!-- Bottom section: Date label and input -->
+            <div class="card-footer">
+              <input type="date" id="date-{{ card.number }}" [(ngModel)]="card.date" />
+              <label for="date-{{ card.number }}">تاريخ الانشاء</label>
+            </div>
+          </div>
+        </div>
+        
+            
+  
+         
+    
+      </div>
+    </div>
+  </div>
+  

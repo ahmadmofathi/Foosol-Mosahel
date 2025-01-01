@@ -1,6 +1,4 @@
 
-  
-  
   .my-form {
     position: relative; /* This makes the form above the overlay */
     z-index: 2; /* Ensure the form is above the overlay */
@@ -88,7 +86,7 @@
   .header {
     text-align: center;
     color:#6C6355;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     margin-top: 10px;
   }
  
@@ -797,7 +795,7 @@ border :1px solid #CEC7B7;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -806,7 +804,7 @@ border :1px solid #CEC7B7;
   align-items: center; /* Center vertically */
   text-align: center;
   width:auto;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
 }
 .custom-box-2 .fa-solid{
@@ -978,56 +976,49 @@ h3 {
 /* Wrapper to hold the navigation */
 .nav-wrapper {
   position: fixed;
-  /* Fixed to stay within the viewport */
-  top: 20px;
-  /* Adjusted to add pixel values */
+  top: -10px;
   left: 0;
   width: 100%;
-  /* Full width of the viewport */
   z-index: 999;
-  /* Keep it on top */
   display: flex;
   justify-content: end;
   align-items: center;
-  /* Vertically center */
   overflow-x: visible;
-  /* Allow horizontal overflow if needed */
   background: transparent;
-  /* Optional: make the wrapper background transparent */
   padding: 10px 0;
-  /* Ensure the bar has some padding */
 }
 
 /* Navigation Container */
 .nav-container {
   position: relative;
   background-color: #fcf2bd;
-  /* Light yellow background */
   border-radius: 15px;
   width: auto;
-  /* Let the content dictate the width */
-  max-width: 70%;
-  /* Optional: Prevent it from getting too wide */
+  max-width: 40%;
   height: auto;
   display: flex;
   align-items: center;
-  overflow: visible;
-  /* Enable horizontal scrolling for icons */
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: hidden; 
+  scroll-behavior: smooth;
   padding: 10px 20px;
-  /* Add some padding */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Add a subtle shadow */
   direction: rtl;
-  /* Keep the layout aligned for RTL */
   margin-right: 50px;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
+/* Hide the scrollbar */
+.nav-container::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
 /* Close Button */
 .close-btn {
   z-index: 2;
   position: absolute;
-  top: 5%;
+  top: 10%;
   right: 23px;
   background-color: red;
   color: white;
@@ -1038,20 +1029,19 @@ h3 {
   font-size: 18px;
   font-weight: bold;
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
+
 .close-btn:hover {
-  background-color: #ff0000;
-  /* Darker red on hover */
+  background-color: #ff0000; /* Darker red on hover */
 }
 
 /* Slide-In Animation */
 
-/* Home Icon Section */
+ /* Home Icon Section */
 
 .home-icon {
   position: absolute;
@@ -1060,12 +1050,11 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 10;
-  /* Ensure it's above the navigation */
+  z-index: 10; /* Ensure it's above the navigation */
 }
 
 /* Circle Styling */
-.home-icon .circle,
+.home-icon .circle ,
 .setting-icon .circle {
   width: 80px;
   height: 80px;
@@ -1078,78 +1067,91 @@ h3 {
   box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.6),
     0px 4px 6px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid white;
-  z-index: 11;
-  /* Keep it above other elements */
+  z-index: 11; /* Keep it above other elements */
 }
 
-.home-icon i,
-.setting-icon i {
-  font-size: 32px;
-  color: #224273;
-}
-
-
-.home-icon span {
-  margin-top: 5px;
-  /* Adjust to position the text under the icon */
-  font-size: 14px;
-  font-family: 'AGA Mashq Bold', Arial, sans-serif;
-  color: #000;
-}
-
-/* Navigation Items */
-.nav-items {
+.home-icon i ,
+.setting-icon i{
+   font-size: 32px;
+   color: #224273;
+ }
+ 
+ 
+ .home-icon span {
+   margin-top: 5px; /* Adjust to position the text under the icon */
+   font-size: 14px;
+   font-family: 'AGA Mashq Bold', Arial, sans-serif;
+   color: #000;
+ }
+ 
+ /* Navigation Items */
+ .nav-items {
   display: flex;
   align-items: center;
   flex-grow: 1;
-  overflow-x: auto;
-  padding-right: 60px;
+  /* padding-right: 60px; */
+  flex-wrap: nowrap;
 }
 
-.nav-item.first-item {
-  padding-right: 60px;
-  /* Extra padding for the first item */
+ 
+ /* .nav-item.first-item {
+   padding-right: 60px; 
+ } */
+ 
+ 
+ .nav-item {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   margin: 0 15px;
+   font-family: 'AGA Mashq Bold', Arial, sans-serif;
+   text-align: center;
+   color: #000;
+   font-size: 14px;
+ }
+ 
+ 
+ .nav-item i {
+   font-size: 24px;
+   margin-bottom: 5px;
+   color: #000;
+ }
+ 
+ .nav-item span {
+   font-size: 12px;
+ }
+ 
+ .nav-item:hover {
+   cursor: pointer;
+   color: #224273; /* Highlight color */
+ }
+ 
+.active-nav-item {
+  border: 2px solid black; /* Blue border */
+  border-radius: 10px; /* Rounded edges */
+  box-shadow: 0 4px 10px rgba(34, 66, 115, 0.3); /* Subtle shadow */
+  background-color: #fcf2bd; /* Optional: Highlight background */
+  padding: 10px; /* Adjust spacing for better visuals */
+  color: black; /* Active color */
 }
 
 
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 15px;
-  font-family: 'AGA Mashq Bold', Arial, sans-serif;
-  text-align: center;
-  color: #000;
-  font-size: 14px;
+/* Optional: Active Icon Styling */
+.active-nav-item i img {
+  transform: scale(1.1); /* Slightly enlarge the icon */
+  transition: transform 0.2s ease; /* Smooth scaling effect */
 }
 
-.nav-item.first-item {
-  padding-right: 60px;
-  /* Extra padding for the first item */
+/* Optional: Active Span Styling */
+.active-nav-item span {
+  font-weight: bold; /* Highlight text */
 }
+ /* // Setting NAv */
 
-.nav-item i {
-  font-size: 24px;
-  margin-bottom: 5px;
-  color: #000;
-}
-
-.nav-item span {
-  font-size: 12px;
-}
-
-.nav-item:hover {
-  cursor: pointer;
-  color: #224273;
-  /* Highlight color */
-}
-
-/* // Setting NAv */
-
-.setting-icon {
+ .setting-icon {
   position: absolute;
-  top: -43%;
+  top: -55%;
   right: 14px;
   display: flex;
   flex-direction: column;
@@ -1157,7 +1159,7 @@ h3 {
   z-index: 10;
 }
 
-.settingNav-container {
+.settingNav-container{
   position: relative;
   background-color: #fcf2bd;
   border-radius: 15px;
@@ -1171,14 +1173,15 @@ h3 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   direction: rtl;
   margin-right: 130px;
-  margin-top: 10px;
+  margin-top: 8px;
+
 }
 
 .closeSetting-btn {
   z-index: 2;
   position: absolute;
-  top: 1%;
-  right: 105px;
+  top: 9%;
+  right: 101px;
   background-color: red;
   color: white;
   border: none;
@@ -1192,7 +1195,6 @@ h3 {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
-
 
 
 

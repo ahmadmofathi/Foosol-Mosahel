@@ -1,79 +1,378 @@
 <div class="background-container">
-  <div class="overlay"></div>
-  <nav class="navbar">
-    <div class="container"></div>
-  </nav>
+  <!-- <div class="overlay"></div> -->
+  <div class="icon-container left-icons align-items-center">
+    
+    <div class="profile-container" (click)="toggleMenu()">
+      <img
+        src="../../../assets/images/human.png"
+        alt="Profile"
+        width="60px"
+        height="60px"
+      />
+    </div>
+  
+    <div 
+    class="nav_icon" 
+    [ngClass]="{ 'hovered': isHovered.bell }"
+    (mouseover)="changeIcon('bell', true)" 
+    (mouseout)="changeIcon('bell', false)"
+  >
+    <img 
+      [src]="currentIcons.bell" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+
+
+  
+    <!-- Dropdown Menu -->
+    <div
+      *ngIf="menuOpen"
+      class="dropdown-menu"
+    >
+      <div class="menu-item" routerLink="/profile">
+        ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
+      </div>
+      <div class="menu-item">
+         توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
+      </div>
+      <hr />
+      <div class="menu-item logout">
+       <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
+      </div>
+    </div>
+
+  
+  </div>
+
+
+   <!-- Icons on the right side -->
+   <div class="icon-container right-icons align-items-center">
+    
+    <div 
+    class="nav_icon"
+    (click)="openSetting()"
+    [ngClass]="{ 'hovered': isHovered.settings }"
+    (mouseover)="changeIcon('settings', true)" 
+    (mouseout)="changeIcon('settings', false)"
+  >
+    <img 
+      [src]="currentIcons.settings" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+
+  <!-- (click)="openNav()" -->
+
+  <div 
+  class="nav_icon"
+  (click)="openNav()"
+  [ngClass]="{ 'hovered': isHovered.home }"
+  (mouseover)="changeIcon('home', true)" 
+  (mouseout)="changeIcon('home', false)"
+>
+  <img 
+    [src]="currentIcons.home" 
+    width="30px" 
+    height="30px"
+  />
+</div>
+
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+        <button class="close-btn" (click)="openNav()">&times;</button>
+    
+        <div class="nav-container">
+          <!-- Close Button -->
+    
+          <!-- Home Icon Section -->
+          <!-- <div class="home-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/home-1.svg"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="color: #001A72;">الرئيسية</span>
+            </div>
+          </div> -->
+    
+          <!-- Other Navigation Icons -->
+          <div class="nav-items">
+                <div class="nav-item " routerLink="/home">
+                <i class="">
+                  <img
+                    src="../../../assets/images/home-black.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الرئيسية</span>
+              </div>
+            <div class="nav-item first-item" >
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-link.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الجدول</span>
+            </div>
+            <div class="nav-item" routerLink="/student">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الطلاب</span>
+            </div>
+            <div class="nav-item" routerLink="/studentPro">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>ملف الطالب</span>
+            </div>
+            <div class="nav-item" routerLink="/listDegree">
+              <i class="">
+                <img
+                  src="../../../assets/images/chart-vertical.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الكشوف</span>
+            </div>
+            <div class="nav-item" routerLink="/paper">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>اوراق العمل</span>
+            </div>
+            <div class="nav-item" routerLink="/exam">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الاختبارات</span>
+            </div>
+            <div class="nav-item" routerLink="/certificate">
+              <i class="">
+                <img
+                  src="../../../assets/images/crown-1.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الشهادات</span>
+            </div>
+            <div class="nav-item" routerLink="/reason">
+              <i class="">
+                <img
+                  src="../../../assets/images/user-warning.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>تحويل طالب</span>
+            </div>
+            <div class="nav-item" routerLink="/skills">
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-user.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>المهارات الاساسية</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../../assets/images/suitcase.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> البنك</span>
+            </div>
+            <div class="nav-item" routerLink="/curriculum">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> توزيع المنهج</span>
+            </div>
+
+          </div>
+        </div>
+      </div>    
+    </div>
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
+        <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+
+        <div class="settingNav-container">
+          <!-- <div class="setting-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plusBlue.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="font-size: small; color:#001A72">اعداد النقاط</span>
+            </div>
+          </div> -->
+
+           <div class="nav-items">
+
+            <div class="nav-item first-item" routerLink="/points">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد النقاط</span>
+            </div>
+
+            <div class="nav-item first-item" routerLink="/technical">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد الدرجات</span>
+            </div>
+
+            <div class="nav-item" routerLink="/permission">
+              <i class="">
+                <img
+                  src="../../../assets/images/headphones.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الدعم الفني</span>
+            </div>
+
+
+
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+
+
+
   <div class="custom-form">
     <div class="my-form">
       <div class="form-group">
-
-        <div class="flex-container">
-
-          <div class="box add-class">
-            <img
-              src="../../../assets/images/plus-circle2.png"
-              alt="Add Class"
-              data-bs-toggle="modal" data-bs-target="#class"
-            />
-            <p>إضافة فصل جديد</p>
-          </div>
-
-
-
-          <div class="outline">
-          <div class="box2 class-details">
-            <div>
-              <div class="header-container">
-                <div (click)="toggleNav()" class="icon-container">
-                  <img
-                    src="../../../assets/images/settings.svg"
-                    alt="Settings"
-                    width="30px"
-                    height="20px"
-                  />
-                </div>
-                <p class="header-text">فصل رابعه اول</p>
-              </div>
-
-              <div class="small-nav" *ngIf="navOpen">
-                <!-- Edit Icon and Text -->
-                <div class="nav-item">
-                  <img src="../../../assets/images/edit-4.png" alt="Edit" />
-                  <span>تعديل الفصل</span>
-                  <!-- Arabic text for "Edit class" -->
-                </div>
-
-                <!-- Delete Icon and Text -->
-                <div class="nav-item">
-                  <img src="../../../assets/images/trash-2.png" alt="Delete" />
-                  <span>حذف الفصل</span>
-                  <!-- Arabic text for "Delete class" -->
-                </div>
-              </div>
-
-              <div class="student-info-container">
-                <div class="text-container">
-                    <p class="student-text">عدد الطلاب</p>
-                    <p class="student-number">35</p>
-                </div>
-                <div class="image-container">
-                    <img src="../../../assets/images/class.png" alt="students" width="50px" height="50px">
-                </div>
-                
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="box add-class">
+              <div style="margin:20%"> 
+              <img
+                src="../../../assets/images/plus-circle2.png"
+                alt="Add Class"
+                data-bs-toggle="modal" data-bs-target="#class"
+              />
+              <p>إضافة فصل جديد</p>
             </div>
-
-            <button class="students-button" routerLink="/student">الطلاب</button>
-
-
-
+            </div>
+            <div class="outline" *ngFor="let class of classes" >
+              <div
+                class="box2 class-details classes-container"
+               
+              >
+                <div>
+                  <div class="header-container">
+                    <div (click)="toggleNav()" class="icon-container2">
+                      <img
+                        src="../../../assets/images/settings.svg"
+                        alt="Settings"
+                        width="30px"
+                        height="20px"
+                      />
+                    </div>
+                    <p class="header-text">فصل : {{ class.classsName }}</p>
+                  </div>
+  
+                  <div class="small-nav" *ngIf="navOpen">
+                    <!-- Edit Icon and Text -->
+                    <div class="nav-item2">
+                      <img src="../../../assets/images/edit-4.png" alt="Edit" />
+                      <span>تعديل الفصل</span>
+                      <!-- Arabic text for "Edit class" -->
+                    </div>
+  
+                    <!-- Delete Icon and Text -->
+                    <div class="nav-item2">
+                      <img
+                        src="../../../assets/images/trash-2.png"
+                        alt="Delete"
+                      />
+                      <span>حذف الفصل</span>
+                      <!-- Arabic text for "Delete class" -->
+                    </div>
+                  </div>
+  
+                  <div class="student-info-container">
+                    <div class="text-container">
+                      <p class="student-text">عدد الطلاب</p>
+                      <p class="student-number">35</p>
+                    </div>
+                    <div class="image-container">
+                      <img
+                        src="../../../assets/images/class.png"
+                        alt="students"
+                        width="50px"
+                        height="50px"
+                      />
+                    </div>
+                  </div>
+  
+                  <button class="students-button" routerLink="/points">
+                    الطلاب
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
+  
         </div>
-
-          
-        </div>
-
-
       </div>
     </div>
   </div>
@@ -83,100 +382,67 @@
 
 
 <!-- Class Modal -->
-<div
-  class="modal fade"
-  id="class"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
->
+<div class="modal fade"  id="class" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <div class="modal-header">
-          <h1 class="modal-title" id="staticBackdropLabel">
-          اضافة فصل
-          </h1>
-          <button
-          type="button"
-          class="close closebtn"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          >
-            <img src="../../../assets/images/close.png" width="40px">
+          <h1 class="modal-title" id="staticBackdropLabel">اضافة فصل</h1>
+          <button type="button" class="close closebtn" data-bs-dismiss="modal" aria-label="Close">
+            <img src="../../../assets/images/close.png" width="40px" />
           </button>
         </div>
 
         <div class="modal-body full-width-box">
-          <div class="container">
-            <!-- <div class="row lineclass">
-              <div class="col-md-12 align-items-center justify-content-center">
-                <div class="user-img-container">
-                  <img src="../../../assets/images/user-plus.png" alt="User Image" class="user-img" />
+          <form class="w-100 " [formGroup]="classForm" (ngSubmit)="onSubmit()">
+            <div class="row mb-1 justify-content-center" style="background-color: #FCF2BD;
+            padding: 10px 10px 40px;
+            border-radius: 20px;">
+              <div class="col-md-12 text-right">
+                <label>اسم الفصل</label>
+                <input type="text" class="form-control rounded-pill" formControlName="className" />
+                <div *ngIf="classForm.get('className')?.invalid && classForm.get('className')?.touched" class="text-danger">
+                  اسم الفصل مطلوب
                 </div>
               </div>
-            </div>  -->
-            <div class="row">
-              <form class="w-100 mt-4 ">
-                
-                <div class="row mb-3 justify-content-center">
-                
-                  <div class="col-md-12 text-right">
-                    <label> اسم الفصل</label>
-                    <input type="text" class="form-control rounded-pill" />
-                  </div>
-
-
-                  <div class="col-md-12 text-right mt-3">
-                    <label>المواد المطلوبة</label>
-                    
-                    <div class="chip-input form-control rounded-pill" (click)="inputField.focus()">
-                      <!-- Display selected skills as chips inside the input field -->
-                      <ng-container *ngFor="let selectedSkill of selectedSkills">
-                        <mat-chip [removable]="true" (removed)="removeSkill(selectedSkill)">
-                          {{ selectedSkill }}
-                          <mat-icon matChipRemove>close</mat-icon>
-                        </mat-chip>
-                      </ng-container>
-                      
-                      <!-- Input field for adding new skills -->
-                      <input #inputField
-                             type="text"
-                             class="form-control rounded-pill"
-                           
-                             (keydown.enter)="addSkill(inputField.value); inputField.value='';"
-                             (blur)="inputField.value='';" />
-                    </div>
-                  </div>
-                  
-                  <div class="checkbox-list">
-                    <!-- Checkbox list for skills selection -->
-                    <div *ngFor="let skill of allSkills">
-                      <label>
-                        <input type="checkbox" (change)="onSkillSelect(skill, $event)" />
-                        {{ skill }}
-                      </label>
-                    </div>
-                  </div>
-                  
-                  
-
-    
-                </div>
-            
-
-              </form> 
-            </div> 
-          </div>
-          
-        </div>
-        <div class="modal-footer">
-          <button class="btn custombtn">حفظ</button>
+            </div>
+            <div class="modal-footer" style="float: right;">
+              <button class="custombtn2" type="submit" [disabled]="classForm.invalid" >حفظ</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+
+<!-- 
+<div class="col-md-12 text-right mt-3">
+  <label>المواد المطلوبة</label>
+  
+  <div class="chip-input form-control rounded-pill" (click)="inputField.focus()">
+    <ng-container *ngFor="let selectedSkill of selectedSkills">
+      <mat-chip [removable]="true" (removed)="removeSkill(selectedSkill)">
+        {{ selectedSkill }}
+        <mat-icon matChipRemove>close</mat-icon>
+      </mat-chip>
+    </ng-container>
+    
+    <input #inputField
+           type="text"
+           class="form-control rounded-pill"
+         
+           (keydown.enter)="addSkill(inputField.value); inputField.value='';"
+           (blur)="inputField.value='';" />
+  </div>
+</div>
+
+<div class="checkbox-list">
+  <div *ngFor="let skill of allSkills">
+    <label>
+      <input type="checkbox" (change)="onSkillSelect(skill, $event)" />
+      {{ skill }}
+    </label>
+  </div>
+</div> -->

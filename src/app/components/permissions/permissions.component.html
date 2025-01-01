@@ -1,5 +1,5 @@
 <div
-  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height: 100%"
+  style="background-color: #f2f2f2; padding: 0px 70px 70px 70px;"
 >
 <div class="container-fluid">
   <div class="row">
@@ -15,7 +15,7 @@
       </div>
       <!-- Right Icons -->
       <div class="right-icons">
-        <div class="nav_icon2">
+        <div class="nav_icon2" (click)="openSetting()">
           <img
             src="../../../assets/images/settings.svg"
             width="30px"
@@ -212,6 +212,87 @@
       </div>
     </div>    
   </div>
+
+  <div class="row container">
+    <div class="col-12 nav-wrapper" *ngIf="isSettingBarOpen">
+      <button class="closeSetting-btn" (click)="openSetting()">
+        &times;
+      </button>
+
+      <div class="settingNav-container">
+        <div class="setting-icon">
+          <div class="circle">
+            <i class="">
+              <img
+                src="../../assets/images/settingsBlue.png"
+                height="30px"
+                width="30px"
+              />
+            </i>
+            <span>الاعدادات</span>
+            <!-- Move the span inside the circle -->
+          </div>
+        </div>
+
+        <div class="nav-items">
+          <div class="nav-item first-item" routerLink="/technical">
+            <i class="">
+              <img
+                src="../../../assets/images/headphones.png"
+                height="30px"
+                width="30px"
+              />
+            </i>
+            <span>الدعم الفني</span>
+          </div>
+
+          <div class="nav-item" routerLink="/permission">
+            <i class="">
+              <img
+                src="../../../assets/images/shield-empty.png"
+                height="30px"
+                width="30px"
+              />
+            </i>
+            <span>الصلاحيات</span>
+          </div>
+
+          <div class="nav-item" routerLink="/covenants">
+            <i class="">
+              <img
+                src="../../../assets/images/list-left-1.png"
+                height="30px"
+                width="30px"
+              />
+            </i>
+            <span>العهود والمواثيق</span>
+          </div>
+
+          <div class="nav-item" routerLink="/policy">
+            <i class="">
+              <img
+                src="../../../assets/images/list-left-1.png"
+                height="30px"
+                width="30px"
+              />
+            </i>
+            <span>الشروط الاحكام</span>
+          </div>
+
+          <div class="nav-item" routerLink="/commonq">
+            <i class="">
+              <img
+                src="../../../assets/images/question-circle.png"
+                height="30px"
+                width="30px"
+              />
+            </i>
+            <span>الاسئلة الشائعه</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   
 </div>
 
@@ -342,12 +423,13 @@
             </tbody>
           </table>
 
-          <!-- <div class="custom-pagination">
+ 
+        </div>
+                 <div class="custom-pagination">
                   <button (click)="previousPage()" [disabled]="currentPage === 1">‹</button>
                   <button *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage">{{ page }}</button>
                   <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
-                </div> -->
-        </div>
+                </div>
       </div>
     </div>
   </div>

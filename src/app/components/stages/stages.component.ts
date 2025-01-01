@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LevelService } from 'src/app/services/level/level.service';
 import { Modal } from 'bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -21,16 +22,26 @@ export class StagesComponent {
   isEditMode = false;
   currentLevelId: string | null = null;
 
+
+  userName: string | null = null;
+  userRole: string | null = null;
+
+
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
     private fb: FormBuilder,
     private levelService: LevelService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService :AuthService
   ) {
     this.levelForm = this.fb.group({
       levelName: ['', Validators.required],
     });
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggin();
   }
 
   @ViewChild('createModal', { static: true }) createModal!: ElementRef;
@@ -38,11 +49,13 @@ export class StagesComponent {
 
   ngOnInit() {
     this.getAllLevels();
-
-    this.globalClickListener = this.renderer.listen('document', 'click', (event: Event) => {
-      this.handleOutsideClick(event);
-    });
+const userDetails = this.authService.getUserDetail();
+    if (userDetails) {
+      this.userName = userDetails.fullName;
+      this.userRole = userDetails.role;
+    }
   }
+  
 
   getAllLevels() {
     this.levelService.getAllLevels().subscribe(
@@ -149,22 +162,65 @@ export class StagesComponent {
   
 
 
-  deleteLevel(id: number, index: number): void {
-    // Call the service to delete the region
-    this.levelService.deleteLEvel(id).subscribe(
-      (response) => {
-        console.log('level deleted successfully:', response);
-        this.elements.splice(index, 1); // Remove the deleted region from the list
-        this.toastr.success('تم مسح هذه المرحله بنجاح!', 'تم المسح', { timeOut: 2000 });
-      },
-      (error) => {
-        this.toastr.error('خطأ في مسح المرحلة', 'خطأ', { timeOut: 2000 });
-        console.error('Error deleting level:', error);
+  // deleteLevel(id: number, index: number): void {
+  //   // Call the service to delete the region
+  //   this.levelService.deleteLEvel(id).subscribe(
+  //     (response) => {
+  //       console.log('level deleted successfully:', response);
+  //       this.elements.splice(index, 1); // Remove the deleted region from the list
+  //       this.toastr.success('تم مسح هذه المرحله بنجاح!', 'تم المسح', { timeOut: 2000 });
+  //     },
+  //     (error) => {
+  //       this.toastr.error('خطأ في مسح المرحلة', 'خطأ', { timeOut: 2000 });
+  //       console.error('Error deleting level:', error);
        
-      }
-    );
+  //     }
+  //   );
+  // }
+
+  selectedLevelId: number | null = null;
+  selectedLevelIndex: number | null = null;
+
+  openLevelConfirmModal(id: number, index: number): void {
+    this.selectedLevelId = id;
+    this.selectedLevelIndex = index;
+
+    const modalElement = document.getElementById('levelConfirmModal');
+    if (modalElement) {
+      const modalInstance = new Modal(modalElement);
+      modalInstance.show();
+    }
   }
 
+  // Confirm deletion
+  confirmDeleteLevel(): void {
+    if (this.selectedLevelId != null && this.selectedLevelIndex != null) {
+      this.levelService.deleteLEvel(this.selectedLevelId).subscribe(
+        () => {
+          if (this.selectedLevelIndex !== null) {
+            this.elements.splice(this.selectedLevelIndex, 1);
+          }
+          this.toastr.success('تم مسح هذه المرحلة بنجاح!', 'تم المسح', { timeOut: 2000 });
+  
+          const modalElement = document.getElementById('levelConfirmModal');
+          if (modalElement) {
+            const modalInstance = Modal.getInstance(modalElement);
+            modalInstance?.hide();
+          }
+  
+          this.selectedLevelId = null;
+          this.selectedLevelIndex = null;
+        },
+        (error) => {
+          this.toastr.error('خطأ في مسح المرحلة', 'خطأ', { timeOut: 2000 });
+          console.error('Error deleting level:', error);
+  
+          this.selectedLevelId = null;
+          this.selectedLevelIndex = null;
+        }
+      );
+    }
+  }
   
   
   openEditModal(region: any) {

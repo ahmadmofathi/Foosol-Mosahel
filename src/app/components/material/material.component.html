@@ -1,4 +1,4 @@
-<div style="background-color: #f2f2f2; padding: 0px 70px 70px 70px">
+<div style="background-color: #f2f2f2; padding: 0px 70px 70px 70px; height:100%">
   <div class="container-fluid">
     <div class="row">
       <div class="top-nav">
@@ -37,23 +37,22 @@
       <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
         <button class="close-btn" (click)="openNav()">&times;</button>
 
-        <div class="nav-container">
+        <div class="nav-container" appHorizontalScroll>
           <!-- Close Button -->
 
           <!-- Home Icon Section -->
-          <div class="home-icon">
+          <!-- <div class="home-icon">
             <div class="circle">
               <i class="">
                 <img
                   src="../../assets/images/home-1.svg"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الرئيسية</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
           <!-- Other Navigation Icons -->
           <div class="nav-items">
@@ -61,8 +60,8 @@
               <i class="">
                 <img
                   src="../../assets/images/users-more.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>معلومات الاشتراك</span>
@@ -71,8 +70,8 @@
               <i class="">
                 <img
                   src="../../assets/images/coin-1.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الفواتير</span>
@@ -81,8 +80,8 @@
               <i class="">
                 <img
                   src="../../assets/images/crown-2.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الباقات</span>
@@ -91,8 +90,8 @@
               <i class="">
                 <img
                   src="../../assets/images/coin-1.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>أسعار المواد</span>
@@ -101,8 +100,8 @@
               <i class="">
                 <img
                   src="../../assets/images/document-filled.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>المراحل</span>
@@ -111,18 +110,18 @@
               <i class="">
                 <img
                   src="../../assets/images/document-filled.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الصفوف</span>
             </div>
-            <div class="nav-item" routerLink="/material">
+            <div class="nav-item active-nav-item" routerLink="/material">
               <i class="">
                 <img
                   src="../../assets/images/document-filled.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>المواد</span>
@@ -131,8 +130,8 @@
               <i class="">
                 <img
                   src="../../assets/images/suitcase.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>البنك</span>
@@ -141,8 +140,8 @@
               <i class="">
                 <img
                   src="../../assets/images/document-plus.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>توزيع المنهج</span>
@@ -151,8 +150,8 @@
               <i class="">
                 <img
                   src="../../assets/images/offer.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span> التقيمات</span>
@@ -161,8 +160,8 @@
               <i class="">
                 <img
                   src="../../assets/images/location-med-2.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span> المناطق</span>
@@ -171,8 +170,8 @@
               <i class="">
                 <img
                   src="../../assets/images/screen-share.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span> بطاقة الدرس</span>
@@ -181,8 +180,8 @@
               <i class="">
                 <img
                   src="../../assets/images/users-more.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span> المستخدمين</span>
@@ -191,8 +190,8 @@
               <i class="">
                 <img
                   src="../../assets/images/calendar-user.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span> المهارات الاساسية</span>
@@ -201,8 +200,8 @@
               <i class="">
                 <img
                   src="../../assets/images/like.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span> طلبات الموافقة</span>
@@ -219,27 +218,26 @@
         </button>
 
         <div class="settingNav-container">
-          <div class="setting-icon">
+          <!-- <div class="setting-icon">
             <div class="circle">
               <i class="">
                 <img
                   src="../../assets/images/settingsBlue.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الاعدادات</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
           <div class="nav-items">
             <div class="nav-item first-item" routerLink="/technical">
               <i class="">
                 <img
                   src="../../../assets/images/headphones.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الدعم الفني</span>
@@ -249,8 +247,8 @@
               <i class="">
                 <img
                   src="../../../assets/images/shield-empty.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الصلاحيات</span>
@@ -260,8 +258,8 @@
               <i class="">
                 <img
                   src="../../../assets/images/list-left-1.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>العهود والمواثيق</span>
@@ -271,8 +269,8 @@
               <i class="">
                 <img
                   src="../../../assets/images/list-left-1.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الشروط الاحكام</span>
@@ -282,8 +280,8 @@
               <i class="">
                 <img
                   src="../../../assets/images/question-circle.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الاسئلة الشائعه</span>
@@ -300,27 +298,26 @@
         </button>
 
         <div class="settingNav-container">
-          <div class="setting-icon">
+          <!-- <div class="setting-icon">
             <div class="circle">
               <i class="">
                 <img
                   src="../../assets/images/settingsBlue.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الاعدادات</span>
-              <!-- Move the span inside the circle -->
             </div>
-          </div>
+          </div> -->
 
           <div class="nav-items">
             <div class="nav-item first-item" routerLink="/technical">
               <i class="">
                 <img
                   src="../../../assets/images/headphones.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الدعم الفني</span>
@@ -330,8 +327,8 @@
               <i class="">
                 <img
                   src="../../../assets/images/shield-empty.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الصلاحيات</span>
@@ -341,8 +338,8 @@
               <i class="">
                 <img
                   src="../../../assets/images/list-left-1.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>العهود والمواثيق</span>
@@ -352,8 +349,8 @@
               <i class="">
                 <img
                   src="../../../assets/images/list-left-1.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الشروط الاحكام</span>
@@ -363,8 +360,8 @@
               <i class="">
                 <img
                   src="../../../assets/images/question-circle.png"
-                  height="30px"
-                  width="30px"
+                  height="20px"
+                  width="20px"
                 />
               </i>
               <span>الاسئلة الشائعه</span>
@@ -433,6 +430,7 @@
                 <th>المستخدم <i class="fa-solid fa-sort"></i></th>
                 <th>تاريخ الانشاء <i class="fa-solid fa-sort"></i></th>
                 <th>المرحله <i class="fa-solid fa-sort"></i></th>
+                <th>الصف <i class="fa-solid fa-sort"></i></th>
                 <th>اسم الماده <i class="fa-solid fa-sort"></i></th>
                 <th>رقم الماده <i class="fa-solid fa-sort"></i></th>
               </tr>
@@ -457,7 +455,8 @@
                     </button>
                     <button
                       class="dropdown-item delete-btn"
-                      (click)="deleteSubject(item.subjectId, i)"
+                      (click)="openSubjectConfirmModal(item.subjectId, i)"
+
                     >
                       <i class="fa-solid fa-trash"></i> حذف
                     </button>
@@ -469,14 +468,86 @@
                 <td>{{ item.createdOn }}</td>
 
                 <td>{{ item.levelName }}</td>
-                <td>{{ item.subjectName }}</td>
+                <td>{{item.gradeName}}</td>
+                <td>{{ item.subjectName}}</td>
 
                 <td>{{ item.subjectId }}</td>
               </tr>
             </tbody>
           </table>
 
+
           <div class="custom-pagination">
+            <!-- Previous Button -->
+            <button
+              (click)="changePage(pageNumber - 1)"
+              [disabled]="pageNumber === 1"
+              aria-label="Previous"
+            >
+              ‹
+            </button>
+          
+            <!-- Page Numbers -->
+            <button
+              *ngFor="let page of pages"
+              (click)="changePage(page)"
+              [class.active]="page === pageNumber"
+            >
+              {{ page }}
+            </button>
+          
+            <!-- Next Button -->
+            <button
+              (click)="changePage(pageNumber + 1)"
+              [disabled]="pageNumber === totalPages || !hasMoreData"
+              aria-label="Next"
+            >
+              ›
+            </button>
+          </div>
+          
+          
+          
+          <!-- Add More Items -->
+       
+          
+          
+          
+          
+    
+          
+          
+
+          <!-- <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+              <li class="page-item" [class.disabled]="pageNumber === 1">
+                <a class="page-link" href="#" (click)="changePage(pageNumber - 1)" tabindex="-1" [attr.aria-disabled]="pageNumber === 1 ? true : null">&laquo;</a>
+              </li>
+          
+              <li class="page-item" [class.active]="pageNumber === 1">
+                <a class="page-link" (click)="changePage(1)">1</a>
+              </li>
+              <li class="page-item" [class.active]="pageNumber === 2">
+                <a class="page-link" (click)="changePage(2)">2</a>
+              </li>
+              <li class="page-item" [class.active]="pageNumber === 3">
+                <a class="page-link" (click)="changePage(3)">3</a>
+              </li>
+              <li class="page-item" [class.active]="pageNumber === 4">
+                <a class="page-link" (click)="changePage(4)">4</a>
+              </li>
+              <li class="page-item" [class.active]="pageNumber === 5">
+                <a class="page-link" (click)="changePage(5)">5</a>
+              </li>
+          
+              <li class="page-item"><a class="page-link">...</a></li>
+          
+              <li class="page-item">
+                <a class="page-link" (click)="changePage(pageNumber + 1)">&raquo;</a>
+              </li>
+            </ul>
+          </nav> -->
+          <!-- <div class="custom-pagination">
             <button (click)="previousPage()" [disabled]="currentPage === 1">
               ‹
             </button>
@@ -493,7 +564,7 @@
             >
               ›
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -538,12 +609,24 @@ id="addModal" tabindex="-1" aria-hidden="true"
                     <label for="exampleFormControlInput1" class="form-label"
                       >الصف</label
                     >
-                    <select class="form-select form-control custom-input" formControlName="gradeId"  [disabled]="isEditMode">
-                      <option value="" disabled selected>قم باختيار الصف</option>
+                    <!-- <select class="form-control" formControlName="gradeId"  (focus)="onSelectFocus()" (blur)="onSelectBlur()">
+                      <option [ngValue]="null" disabled selected *ngIf="!selectedGrade">قم باختيار الصف</option>
                       <option *ngFor="let grade of grades" [value]="grade.id">
                         {{ grade.gradeName }}
                       </option>
+                    </select> -->
+
+                    <div class="input-group">
+                      <select class="form-control" formControlName="gradeId" 
+                      (focus)="onSelectFocus()" (blur)="onSelectBlur()">
+
+                    <option [ngValue]="null" disabled selected *ngIf="!selectedGrade">قم باختيار الصف</option>
+                    <option *ngFor="let grade of grades" [value]="grade.id">
+                        {{  grade.gradeName  }}
+                      </option>
                     </select>
+                    
+                    </div>
                   </div>
                 </div>
               </div>
@@ -666,6 +749,26 @@ class="modal fade" id="editModal" tabindex="-1" aria-hidden="true" #editModal
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="deleteSubjectModal" tabindex="-1" aria-labelledby="deleteSubjectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteSubjectModalLabel">تأكيد الحذف</h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+        <h1 style="text-align: center;"> هل أنت متأكد أنك تريد حذف هذه المادة؟</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDeleteSubject()">حذف</button>
       </div>
     </div>
   </div>

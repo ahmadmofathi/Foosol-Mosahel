@@ -1,0 +1,558 @@
+<div class="background-container">
+  <!-- <div class="overlay"></div> -->
+
+  <div class="icon-container left-icons align-items-center">
+    
+    <div class="profile-container" (click)="toggleMenu()">
+      <img
+        src="../../../assets/images/human.png"
+        alt="Profile"
+        width="60px"
+        height="60px"
+      />
+    </div>
+  
+    <div 
+    class="nav_icon" 
+    [ngClass]="{ 'hovered': isHovered.bell }"
+    (mouseover)="changeIcon('bell', true)" 
+    (mouseout)="changeIcon('bell', false)"
+  >
+    <img 
+      [src]="currentIcons.bell" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+
+
+  
+    <!-- Dropdown Menu -->
+    <div
+      *ngIf="menuOpen"
+      class="dropdown-menu"
+    >
+      <div class="menu-item" routerLink="/profile">
+        ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
+      </div>
+      <div class="menu-item">
+         توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
+      </div>
+      <hr />
+      <div class="menu-item logout">
+       <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
+      </div>
+    </div>
+
+  
+  </div>
+
+
+  <div class="icon-container center-icons align-items-center">
+    <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      كشف المتابعة
+    </h1>
+  </div>
+
+  <!-- Icons on the right side -->
+  <div class="icon-container right-icons align-items-center">
+    
+    <div 
+    class="nav_icon"
+    (click)="openSetting()"
+    [ngClass]="{ 'hovered': isHovered.settings }"
+    (mouseover)="changeIcon('settings', true)" 
+    (mouseout)="changeIcon('settings', false)"
+  >
+    <img 
+      [src]="currentIcons.settings" 
+      width="30px" 
+      height="30px"
+    />
+  </div>
+
+  <!-- (click)="openNav()" -->
+
+  <div 
+  class="nav_icon"
+  (click)="openNav()"
+  [ngClass]="{ 'hovered': isHovered.home }"
+  (mouseover)="changeIcon('home', true)" 
+  (mouseout)="changeIcon('home', false)"
+>
+  <img 
+    [src]="currentIcons.home" 
+    width="30px" 
+    height="30px"
+  />
+</div>
+
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+        <button class="close-btn" (click)="openNav()">&times;</button>
+    
+        <div class="nav-container">
+          <!-- Close Button -->
+    
+          <!-- Home Icon Section -->
+          <!-- <div class="home-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../assets/images/home-1.svg"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="color: #001A72;">الرئيسية</span>
+            </div>
+          </div> -->
+    
+          <!-- Other Navigation Icons -->
+          <div class="nav-items">
+                <div class="nav-item " routerLink="/home">
+                <i class="">
+                  <img
+                    src="../../../assets/images/home-black.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الرئيسية</span>
+              </div>
+            <div class="nav-item first-item" >
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-link.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الجدول</span>
+            </div>
+            <div class="nav-item" routerLink="/student">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الطلاب</span>
+            </div>
+            <div class="nav-item" routerLink="/studentPro">
+              <i class="">
+                <img
+                  src="../../../assets/images/users-more.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>ملف الطالب</span>
+            </div>
+            <div class="nav-item" routerLink="/listDegree">
+              <i class="">
+                <img
+                  src="../../../assets/images/chart-vertical.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الكشوف</span>
+            </div>
+            <div class="nav-item" routerLink="/paper">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>اوراق العمل</span>
+            </div>
+            <div class="nav-item" routerLink="/exam">
+              <i class="">
+                <img
+                  src="../../assets/images/document-filled.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الاختبارات</span>
+            </div>
+            <div class="nav-item" routerLink="/certificate">
+              <i class="">
+                <img
+                  src="../../../assets/images/crown-1.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الشهادات</span>
+            </div>
+            <div class="nav-item" routerLink="/reason">
+              <i class="">
+                <img
+                  src="../../../assets/images/user-warning.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>تحويل طالب</span>
+            </div>
+            <div class="nav-item" routerLink="/skills">
+              <i class="">
+                <img
+                  src="../../../assets/images/calendar-user.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>المهارات الاساسية</span>
+            </div>
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../../assets/images/suitcase.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> البنك</span>
+            </div>
+            <div class="nav-item" routerLink="/curriculum">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> توزيع المنهج</span>
+            </div>
+
+          </div>
+        </div>
+      </div>    
+    </div>
+
+    <div class="row container">
+      <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
+        <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
+
+        <div class="settingNav-container">
+          <!-- <div class="setting-icon">
+            <div class="circle">
+              <i class="">
+                <img
+                  src="../../../assets/images/document-plusBlue.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span style="font-size: small; color:#001A72">اعداد النقاط</span>
+            </div>
+          </div> -->
+
+           <div class="nav-items">
+
+            <div class="nav-item first-item" routerLink="/points">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد النقاط</span>
+            </div>
+
+            <div class="nav-item first-item" routerLink="/technical">
+              <i class="">
+                <img
+                src="../../../assets/images/document-plus.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span> اعداد الدرجات</span>
+            </div>
+
+            <div class="nav-item" routerLink="/permission">
+              <i class="">
+                <img
+                  src="../../../assets/images/headphones.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الدعم الفني</span>
+            </div>
+
+
+
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+  <div class="custom-form">
+    <div class="container-fluid edit-nav">
+      <div class="row">
+        <div class="col-1 mb-3" style="margin-right: 30px;">
+          <button class="edit-button" style="padding: 5px 30px;">تعديل</button>
+        </div>
+        <div class="col-2 mb-3">
+            <button class="edit-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">رصد درجات الطلاب</button>
+          </div>
+      </div>
+    </div>
+
+    <div class="my-form">
+      <div class="logo-header">
+        <div class="left-icon">
+          <!-- Placeholder for the circular icon on the left side -->
+          <div class="circle-icon">?</div>
+        </div>
+        <div class="center-logo">
+          <div class="ministry-text-c">
+            <input type="text" class="school-input" />
+            <span> : العام الدراسي</span>
+          </div>
+          <div class="ministry-text-c">
+            <input type="text" class="school-input" />
+            <span> : الفصل الدراسي</span>
+          </div>
+          <div class="ministry-text-c">
+            <input type="text" class="school-input" />
+            <span> : الصف</span>
+          </div>
+          <div class="ministry-text-c">
+            <input type="text" class="school-input" />
+            <span> : القسم</span>
+          </div>
+          <div class="ministry-text-c">
+            <input type="text" class="school-input" />
+            <span> : الفصل</span>
+          </div>
+        </div>
+
+        <div class="center-logo">
+          <!-- Vision 2030 Logo and Ministry of Education text -->
+          <img
+            src="../../../assets/images/logo2030.png"
+            alt="Vision 2030"
+            class="vision-logo"
+          />
+          <h6 style="color:#000; font-size: 16px; margin: 10px 00px;">سجل المتابعة</h6>
+          <h6 class="h6_c">(
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="form-check-label" for="inlineCheckbox1">الفصلي</label>
+            </div>
+            ،
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineCheckbox2">الثانية</label>
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+
+            </div>
+            ،
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineCheckbox3">الأولي</label>
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+            </div>
+          ) الفترة
+          </h6>
+          <div class="ministry-text">
+            <input type="text" class="school-input" />
+            <span> : المادة</span>
+          </div>
+        </div>
+
+        <div class="right-details">
+          <!-- Ministry of Education text and school details in the same div -->
+          <div class="ministry-text">
+            <span  style="font-size: 18px; font-weight: bold;">المملكة العربية السعودية<br />
+              وزارة التعليم</span>
+          </div>
+          <div class="ministry-text">
+            <span>الادارة العامة للتعليم بمنطقة</span>
+            <input type="text" class="school-input" />
+          </div>
+          <div class="ministry-text">
+          </div>
+          <div class="ministry-text">
+            <span>معلم المادة</span>
+            <input type="text" class="school-input" />
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="styled-table">
+          <thead>
+            <!-- Row 1: Main Headers -->
+            <tr>
+              <th rowspan="3" style="width: 25px">م</th>
+              <th rowspan="3" style="width: 150px">اسم الطالب</th>
+              <th colspan="12">المهام الأدائية</th>
+              <th colspan="12">المشاركة والتفاعل</th>
+
+              <th rowspan="2" style="width: 50px">اختبار تحريري قصير</th>
+              <th rowspan="2" style="width: 50px">اختبار نهاية الفصل</th>
+              <th rowspan="2" style="width: 50px">المجموع</th>
+            </tr>
+
+            <!-- Row 2: Subsection Headers -->
+            <tr>
+              <th colspan="6">الواجبات</th>
+              <th colspan="6">بحوث مشروعات تقارير</th>
+              <th colspan="6">تطبيقات أنشطة صفية</th>
+              <th colspan="6">مشاركة</th>
+            </tr>
+
+            <!-- Row 3: Detailed Headers -->
+            <tr>
+              <!-- المهام الأدائية: الواجبات Columns -->
+              <th colspan="5">الدرجة</th>
+              <th style="width: 30px; background-color: #d9d9d9">5</th>
+              <th colspan="5">الدرجة</th>
+              <th style="width: 30px; background-color: #d9d9d9">5</th>
+
+              <!-- المشاركة والتفاعل: تطبيقات أنشطة صفية Columns -->
+              <th colspan="5">الدرجة</th>
+              <th style="width: 30px; background-color: #d9d9d9">5</th>
+              <th colspan="5">الدرجة</th>
+              <th style="width: 30px; background-color: #d9d9d9">5</th>
+              <th>الدرجة:</th>
+              <th>الدرجة:</th>
+              <th>الدرجة:</th>
+            </tr>
+          </thead>
+
+          <!-- Body Rows -->
+          <tbody>
+            <tr *ngFor="let row of rows">
+                <td><input type="text"  /></td>
+
+              <!-- <td><input type="text" [value]="row" /></td> -->
+              <td><input type="text" /></td>
+
+              <!-- المهام الأدائية: الواجبات Section -->
+              <td *ngFor="let i of [1, 2, 3, 4, 5]" style="width: 30px">
+                <input type="text" />
+              </td>
+              <td style="background-color: #d9d9d9"><input type="text" /></td>
+
+              <!-- المهام الأدائية: بحوث مشروعات تقارير Section -->
+              <td *ngFor="let i of [1, 2, 3, 4, 5]" style="width: 30px">
+                <input type="text" />
+              </td>
+              <td style="background-color: #d9d9d9"><input type="text" /></td>
+
+              <!-- المشاركة والتفاعل: تطبيقات أنشطة صفية Section -->
+              <td *ngFor="let i of [1, 2, 3, 4, 5]" style="width: 30px">
+                <input type="text" />
+              </td>
+              <td style="background-color: #d9d9d9"><input type="text" /></td>
+
+              <!-- المشاركة والتفاعل: مشاركة Section -->
+              <td *ngFor="let i of [1, 2, 3, 4, 5]" style="width: 30px">
+                <input type="text" />
+              </td>
+              <td style="background-color: #d9d9d9"><input type="text" /></td>
+
+              <!-- المجموع Column -->
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal  -->
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog ">
+    <div class="modal-content custom-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">رصد درجات الطلاب</h5>
+      </div>
+      <div class="modal-body">
+        <!-- PDF and Excel Buttons -->
+        <div class="export-buttons">
+          <button class="btn btn-outline-primary">pdf</button>
+          <button class="btn btn-outline-primary">Excel</button>
+        </div>
+
+        <!-- Period Buttons -->
+        <div class="period-buttons">
+          <button class="btn btn-outline-primary">الفترة الفصلي</button>
+          <button class="btn btn-outline-primary">الفترة الثانية</button>
+          <button class="btn btn-outline-primary">الفترة الأولى</button>
+
+         
+        </div>
+
+        <!-- Divider -->
+        <hr />
+
+        <!-- Date Fields -->
+        <div class="date-fields">
+     
+          <div class="date-field">
+            <label for="endDate">تاريخ الانتهاء</label>
+            <div class="input-group">
+           
+              <input 
+                type="date" 
+                id="endDate" 
+                class="form-control custom-date" 
+                placeholder="00/00/0000" 
+                #endDate />
+            </div>
+          </div>
+    
+
+          <div class="date-field">
+            <label for="startDate">تاريخ البدء</label>
+            <div class="input-group">
+           
+              <input 
+                type="date" 
+                id="startDate" 
+                class="form-control custom-date" 
+                placeholder="00/00/0000" 
+                #startDate />
+            </div>
+          </div>
+          
+
+
+        </div>
+      </div>
+      <div class="modal-footer period-buttons">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" style="padding: 8px 35px;">إلغاء</button>
+        <button type="button" class="btn btn-primary" style="color:white">رصد الدرجات</button>
+      </div>
+    </div>
+  </div>
+</div>

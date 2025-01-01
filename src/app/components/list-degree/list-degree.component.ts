@@ -6,6 +6,66 @@ import { Component } from '@angular/core';
   styleUrls: ['./list-degree.component.css']
 })
 export class ListDegreeComponent {
+  isMenuOpen = false;
+  isNavbarOpen = false;
+  isIconShow = false;
+  isSettingBarOpen = false;
+  menuOpen = false;
+
+  currentIcons = {
+    bell: '../../../assets/images/bell.svg',
+    settings: '../../../assets/images/settings.svg',
+    home: '../../../assets/images/home.svg',
+  };
+
+  // Track hover state
+  isHovered = {
+    bell: false,
+    settings: false,
+    home: false,
+  };
+
+  changeIcon(iconType: string, hover: boolean) {
+    switch (iconType) {
+      case 'bell':
+        this.currentIcons.bell = hover
+          ? '../../../assets/images/bellblue.png'
+          : '../../../assets/images/bell.svg';
+        this.isHovered.bell = hover;
+        break;
+      case 'settings':
+        this.currentIcons.settings = hover
+          ? '../../../assets/images/settingsBlue.png'
+          : '../../../assets/images/settings.svg';
+        this.isHovered.settings = hover;
+        break;
+      case 'home':
+        this.currentIcons.home = hover
+          ? '../../../assets/images/home-1.png'
+          : '../../../assets/images/home.svg';
+        this.isHovered.home = hover;
+        break;
+    }
+  }
+
+  openNav() {
+    this.isNavbarOpen = !this.isNavbarOpen;
+    this.showIcone();
+  }
+
+  showIcone() {
+    this.isIconShow = true;
+  }
+
+  openSetting() {
+    this.isSettingBarOpen = !this.isSettingBarOpen;
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+    console.log('Menu Open State:', this.menuOpen); // Debugging
+  }
+
 
   cards = [
     { number: '1', label: 'كشف متابعه ', content: ' الفتره الاولي', date: '' , activeButton: '' ,  isMenuOpen: false},
@@ -22,8 +82,8 @@ export class ListDegreeComponent {
   }
 
   
-  toggleMenu(card: any): void {
-    card.isMenuOpen = !card.isMenuOpen; // Toggle the `isMenuOpen` flag
+  toggleMenu2(card: any): void {
+    card.isMenuOpen = !card.isMenuOpen; 
   }
 
   // Method to handle menu actions (Delete, Edit, Download)
@@ -34,9 +94,13 @@ export class ListDegreeComponent {
 
   buttons: string[] = ['كشف الحضور', 'كشف السلوكيات', 'كشف التفاعل', 'كشف المتابعة'];
   activeButton: number = 3; // Default active button index (for example, the last button)
+  routes: string[] = ['/', '/behaive', '/actions', '/following'];
 
   setActiveButton(index: number): void {
     this.activeButton = index;
   }
 
+  getRouterLink(index: number): string {
+    return this.routes[index] || '/';
+  }
 }

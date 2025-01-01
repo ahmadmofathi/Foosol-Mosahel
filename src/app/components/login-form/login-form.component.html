@@ -1,10 +1,11 @@
-<section class="ftco-section">
+<section class="ftco-section" style="background-color: #F2F2F2;height: 100%;">
     <div class="container">
       <div class="row justify-content-center">
       </div>
-      <div class="row justify-content-center">
+      <div class="row justify-content-center" style="margin:50px;">
         <div class="col-md-12 col-lg-10">
-          <div class="wrap d-md-flex">
+          <div class="wrap d-md-flex" style="background-color: #fff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);">
             <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
                 <!-- <div class="text w-100">
                     <h2>Welcome to login</h2>
@@ -15,75 +16,112 @@
             <div class="login-wrap p-1 p-lg-2">
               <div class="d-flex">
                 <div class="w-100 ">
-                    <h3 class="mb-4 text-end ">تسجيل دخول</h3>
+                    <h3 class="mb-4 text-end ">انشاء حساب</h3>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <button class="form-control btn btn-primary2">المعلم</button>
+                  <button 
+                    class="form-control btn" 
+                    [class.active]="selectedRole === 'teacher'" 
+                    (click)="selectRole('teacher')">
+                    المعلم
+                  </button>
                 </div>
                 <div class="col-md-6">
-                  <button class="form-control btn btn-primary3">الطالب</button>
+                  <button 
+                    class="form-control btn" 
+                    [class.active]="selectedRole === 'student'" 
+                    (click)="selectRole('student')">
+                    الطالب
+                  </button>
                 </div>
-
               </div>
-              <form action="#" class="signin-form">
-                <div class="form-group mb-1 text-md-right">
-                  <label class="label" for="name">الاسم بالكامل</label>
-                  <input type="text" class="form-control text-md-right" placeholder="اضف الاسم" required>
-                </div>
+              
+              <form class="signin-form" (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
+
+             <div class="form-row mb-1 text-md-right">
+              <div class="form-group col-md-6">
+                <label class="label" for="lastName">اسم العائلة</label>
+                <input type="text" class="form-control text-md-right" formControlName="lastName" placeholder="اضف اسم العائلة" required>
+              </div>
+    <div class="form-group col-md-6">
+      <label class="label" for="lastName">اسم الاول</label>
+      <input type="text" class="form-control text-md-right" formControlName="firstName" placeholder="اضف اسم العائلة" required>
+    </div>
+  </div>
+
                 <div class="form-group mb-1 text-md-right">
                   <label class="label" for="phone">رقم الجوال</label>
                   <div class="d-flex justify-content-between align-items-center">
-                    <!-- Phone Number Input -->
-                    <input type="text" class="form-control" id="phone" placeholder="اضف رقم الهاتف" required>
-                    <!-- Country Code and Flag -->
+                    <input type="text" class="form-control" formControlName="phoneNumber" id="phone" placeholder="اضف رقم الهاتف" required style="text-align: end;">
                     <div class="country-code-box d-flex align-items-center ml-3">
                       <img src="https://flagcdn.com/24x18/sa.png" alt="KSA Flag" width="20">
                       <span class="ml-2">+966</span>
                     </div>
                   </div>
                 </div>      
-                <div class="form-group mb-1 text-md-right">
+                <div class="form-group mb-1 text-md-right position-relative">
                   <label class="label" for="password">كلمه السر</label>
-                  <input type="password" class="form-control text-md-right" placeholder="*********" required>
+                  <input
+                    [type]="showPassword ? 'text' : 'password'"
+                    class="form-control text-md-right"
+                    formControlName="password"
+                    placeholder="*********"
+                    required
+                  />
+                  <i
+                    class="bi"
+                    [class.bi-eye-slash]="showPassword"
+                    [class.bi-eye]="!showPassword"
+                    (click)="togglePasswordVisibility()"
+                    style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); cursor: pointer;"
+                  ></i>
                 </div>
+                <div class="form-group mb-1 text-md-right position-relative">
+                  <label class="label" for="confirmPassword">تاكيد كلمه المرور</label>
+                  <input
+                    [type]="showConfirmPassword ? 'text' : 'password'"
+                    class="form-control text-md-right"
+                    formControlName="confirmPassword"
+                    placeholder="*********"
+                    required
+                  />
+                  <i
+                    class="bi bi-eye position-absolute"
+                    [class.bi-eye-slash]="showConfirmPassword"
+                    [class.bi-eye]="!showConfirmPassword"
+                    (click)="toggleConfirmPasswordVisibility()"
+                    style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"
+                  ></i>
+                </div>
+          
                 <div class="form-group mb-1 text-md-right">
-                  <label class="label" for="password">تاكيد كلمه المرور</label>
-                  <input type="password" class="form-control text-md-right" placeholder="*********" required>
+                  <label class="label" for="name">اضافه توقيع</label>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <input type="text" class="form-control text-md-right" formControlName="signature"  #inputSignature placeholder="اضف التوقيع" required>
+                    <div class="country-code-box d-flex align-items-center ml-3" data-bs-toggle="modal" data-bs-target="#canvasModal" style="cursor: pointer;">
+                     
+                      <span class="ml-2">
+                        انشاء 
+                      </span>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                   <label class="form-check-label float-end" for="flexCheckDefault" style="margin-right: 1.5rem;">
                     <p>
                       الموافقه علي 
-                      <a routerLink="/policy" class="text-primary"> الشروط والاحكام </a>
+                      <a data-bs-toggle="modal" data-bs-target="#policyModal" class="text-primary"> الشروط والاحكام </a>
                       وايضا الموافقه علي 
-                      <a routerLink="/covenants"  class="text-primary">العهود و المواثيق </a>
+                      <a data-bs-toggle="modal" data-bs-target="#covenantsModal" class="text-primary">العهود و المواثيق </a>
                     </p>                    
                   </label>
                 </div>
-                <!-- <div class="row">
-                  <div class="col-12">
-                    
-                  </div>
-                  <div class="col-10 float-end">
-                    <label
-                    class="form-check-label" 
-                    for="flexCheckChecked" 
-                    style="font-size: small;">
-                    
-                    </label>
-                  </div>
-                  <div class="col-2">
-                    <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    id="flexCheckChecked">
-                  </div>
-                </div> -->
                 <div class="form-group mt-1">
-                  <button type="submit" class="form-control btn btn-primary submit px-3"> انشاء حساب</button>
+                  <button type="submit" class="form-control btn btn-primary submit px-3" (click)="onSubmit()">انشاء حساب</button>
                 </div>
                 <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
                   <p class="text-center">
@@ -92,9 +130,174 @@
                   </p>
                 </div>
               </form>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
 </section>
+
+<div class="modal fade" id="policyModal" tabindex="-1" aria-labelledby="policyModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="min-width: 650px;">
+      <div class="text-center py-2" style="background-color: #f3f3f3; border-radius: 10px 10px 0 0;">
+        <h5 class="modal-title" id="policyModalLabel" style="color: #8C8C8C;">السياسة والخصوصية</h5>
+      </div>
+      <div class="modal-body text-center" style="background-color: #E6E6E6; border-radius: 10px; margin: 5px 20px 20px; padding: 20px;">
+        <p style="line-height: 1.8; color: black;">
+          هذا النص هو مثال النص يمكن أن يستبدل في نفس المساحة، حيث يمكنك أن تولد مثل هذا النص. هذا النص
+          هو مثال النص يمكن أن يستبدل في نفس المساحة، حيث يمكنك أن تولد مثل هذا النص. هذا النص هو مثال النص
+          يمكن أن يستبدل في نفس المساحة، حيث يمكنك أن تولد مثل هذا النص. هذا النص هو مثال النص يمكن أن
+          يستبدل في نفس المساحة.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="covenantsModal" tabindex="-1" aria-labelledby="covenantsModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="min-width: 650px;">
+      <div class="text-center py-2" style="background-color: #f3f3f3; border-radius: 10px 10px 0 0;">
+        <h5 class="modal-title" id="policyModalLabel" style="color: #8C8C8C;"> التعهدات و المواثيق
+        </h5>
+      </div>
+      <div class="modal-body text-center" style="background-color: #E6E6E6; border-radius: 10px; margin: 5px 20px 20px; padding: 20px;">
+        <p style="line-height: 1.8; color: black;">
+          هذا النص هو مثال النص يمكن أن يستبدل في نفس المساحة، حيث يمكنك أن تولد مثل هذا النص. هذا النص
+          هو مثال النص يمكن أن يستبدل في نفس المساحة، حيث يمكنك أن تولد مثل هذا النص. هذا النص هو مثال النص
+          يمكن أن يستبدل في نفس المساحة، حيث يمكنك أن تولد مثل هذا النص. هذا النص هو مثال النص يمكن أن
+          يستبدل في نفس المساحة.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal HTML -->
+<div
+  class="modal fade"
+  id="canvasModal"
+  tabindex="-1"
+  aria-labelledby="canvasModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header customBack" style="border-bottom: none;display: block;">
+        <h5 class="modal-title" id="canvasModalLabel" style="text-align: center;">قم بالتوقيع هنا</h5>
+  
+      </div>
+      <div class="modal-body customBack">
+        <!-- Writing Board 1 -->
+        <div class="col_c1">
+          <div class="container">
+            <div class="row justify-content-center align-items-center" style="padding: 0 px; background-color: #fff; border-radius: 10px">
+              <!-- Left Tool Panel -->
+              <div class="tools-panel justify-content-center align-items-center">
+                <div class="container-fluid align-items-center justify-content-center">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-12 justify-content-center align-items-center">
+                      <button
+                        class="c_btn"
+                        (click)="togglePen()"
+                        style="width: 100%; display: flex; justify-content: center"
+                        src="https://i.ibb.co/9q6ZxqX/pencil.png"
+                        alt="Pen"
+                        title="Pen"
+                      >
+                        <img
+                          src="../../../../assets/images/pen (1).png"
+                          style="width: 20px"
+                          alt="Pencil Icon"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-12 justify-content-center align-items-center">
+                      <button
+                        class="c_btn"
+                        (click)="fileInput.click()"
+                        style="width: 100%; display: flex; justify-content: center"
+                      >
+                        <img
+                          src="../../../../assets/images/img.png"
+                          alt="Pencil Icon"
+                          style="width: 20px"
+                        />
+                        <input
+                          type="file"
+                          #fileInput
+                          accept="image/*"
+                          (change)="onImageSelected($event)"
+                          hidden
+                        />
+                        <!-- <input type="file" #fileInput accept="image/*" (change)="addImage($event)"  /> -->
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-12 justify-content-center align-items-center">
+                      <button
+                        class="c_btn"
+                        (click)="clear()"
+                        style="width: 100%; display: flex; justify-content: center"
+                      >
+                        <img
+                          src="../../../../assets/images/remove.png"
+                          style="width: 20px"
+                          alt="remove Icon"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="" style="width: 80%">
+                <div class="container-fluid">
+                  <canvas
+                    #canvas
+                    id="canvas"
+                    (mousedown)="mouseDown($event)"
+                    (mouseup)="mouseUp()"
+                    (mousemove)="mouseMove($event)"
+                    (touchstart)="touchStart($event)"
+                    (touchmove)="touchMove($event)"
+                    (touchend)="touchEnd()"
+                    [style.cursor]="cursorStyle"
+                    style="
+                      background-color: #fff;
+                      width: 100%;
+                      height: auto;
+                      padding: 0px;
+                    "
+                  ></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer customBack" style="border-top: none;">
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-dismiss="modal"
+          (click)="saveSignature()"
+        >
+          حفظ
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

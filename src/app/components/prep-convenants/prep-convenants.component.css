@@ -128,14 +128,15 @@
     padding: 10px;
     border-radius: 50%;
   }
-  
+  .all{
+    margin-top: 20px;
+  }
   .nav_icon{
     padding: 5px;
     border-radius: 10px;
     background-color: #001a72;
   }
   .center-icons {
-    right: 50%;
     /* Position on the right */
     top: 4%;
     /* Center vertically */

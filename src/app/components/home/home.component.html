@@ -1,23 +1,273 @@
 <div class="background-container">
-  <div class="overlay"></div>
-
-  <div class="icon-container left-icons align-items-center">
-    
-    <img src="../../../assets/images/human.png" width="60px" height="60px" >
-    <div class="nav_icon">
-      <img src="../../../assets/images/bell.svg" width="30px" height="30px">
+  <!-- <div class="overlay"></div> -->
+  <div class="navbar-icons">
+    <div class="icon-container left-icons align-items-center">
+      <div class="profile-container" (click)="toggleMenu()">
+        <img
+          src="../../../assets/images/human.png"
+          alt="Profile"
+          width="60px"
+          height="60px"
+        />
+      </div>
+      <div
+        class="nav_icon"
+        [ngClass]="{ hovered: isHovered.bell }"
+        (mouseover)="changeIcon('bell', true)"
+        (mouseout)="changeIcon('bell', false)"
+      >
+        <img [src]="currentIcons.bell" width="30px" height="30px" />
+      </div>
     </div>
 
-  
-  </div>
+    <!-- Icons on the right side -->
+    <div class="icon-container right-icons align-items-center">
+      <div
+        class="nav_icon"
+        (click)="openSetting()"
+        [ngClass]="{ hovered: isHovered.settings }"
+        (mouseover)="changeIcon('settings', true)"
+        (mouseout)="changeIcon('settings', false)"
+      >
+        <img [src]="currentIcons.settings" width="30px" height="30px" />
+      </div>
+      <div
+        class="nav_icon"
+        (click)="openNav()"
+        [ngClass]="{ hovered: isHovered.home }"
+        (mouseover)="changeIcon('home', true)"
+        (mouseout)="changeIcon('home', false)"
+      >
+        <img [src]="currentIcons.home" width="30px" height="30px" />
+      </div>
 
-  <!-- Icons on the right side -->
-  <div class="icon-container right-icons align-items-center" >
-    <div class="nav_icon">
-      <img src="../../../assets/images/settings.svg" width="30px" height="30px" class="nav_icon">
+      <div class="row container">
+        <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
+          <button class="close-btn" (click)="openNav()">&times;</button>
+
+          <div class="nav-container">
+            <!-- Close Button -->
+
+            <!-- Home Icon Section -->
+            <!-- <div class="home-icon">
+              <div class="circle">
+                <i class="">
+                  <img
+                    src="../../assets/images/home-1.svg"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span style="color: #001A72;">الرئيسية</span>
+              </div>
+            </div> -->
+
+            <!-- Other Navigation Icons -->
+            <div class="nav-items">
+              <div class="nav-item " routerLink="/home">
+                <i class="">
+                  <img
+                    src="../../../assets/images/home-black.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الرئيسية</span>
+              </div>
+              <div class="nav-item first-item">
+                <i class="">
+                  <img
+                    src="../../../assets/images/calendar-link.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الجدول</span>
+              </div>
+              <div class="nav-item" routerLink="/student">
+                <i class="">
+                  <img
+                    src="../../../assets/images/users-more.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الطلاب</span>
+              </div>
+              <div class="nav-item" routerLink="/studentPro">
+                <i class="">
+                  <img
+                    src="../../../assets/images/users-more.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>ملف الطالب</span>
+              </div>
+              <div class="nav-item" routerLink="/package">
+                <i class="">
+                  <img
+                    src="../../../assets/images/chart-vertical.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الكشوف</span>
+              </div>
+              <div class="nav-item" routerLink="/paper">
+                <i class="">
+                  <img
+                    src="../../assets/images/document-filled.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>اوراق العمل</span>
+              </div>
+              <div class="nav-item" routerLink="/exam">
+                <i class="">
+                  <img
+                    src="../../assets/images/document-filled.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الاختبارات</span>
+              </div>
+              <div class="nav-item" routerLink="/certificate">
+                <i class="">
+                  <img
+                    src="../../../assets/images/crown-1.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الشهادات</span>
+              </div>
+              <div class="nav-item" routerLink="/reason">
+                <i class="">
+                  <img
+                    src="../../../assets/images/user-warning.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>تحويل طالب</span>
+              </div>
+              <div class="nav-item" routerLink="/skills">
+                <i class="">
+                  <img
+                    src="../../../assets/images/calendar-user.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>المهارات الاساسية</span>
+              </div>
+              <div class="nav-item">
+                <i class="">
+                  <img
+                    src="../../../assets/images/suitcase.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> البنك</span>
+              </div>
+              <div class="nav-item" routerLink="/curriculum">
+                <i class="">
+                  <img
+                    src="../../../assets/images/document-plus.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> توزيع المنهج</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row container">
+        <div
+          class="col-12 nav-wrapper"
+          style="left: 70px; top: 24px"
+          *ngIf="isSettingBarOpen"
+        >
+          <button class="closeSetting-btn" (click)="openSetting()">
+            &times;
+          </button>
+
+          <div class="settingNav-container">
+            <!-- <div class="setting-icon">
+              <div class="circle">
+                <i class="">
+                  <img
+                    src="../../../assets/images/document-plusBlue.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span style="font-size: small; color:#001A72">اعداد النقاط</span>
+              </div>
+            </div> -->
+
+            <div class="nav-items">
+              <div class="nav-item first-item" routerLink="/technical">
+                <i class="">
+                  <img
+                    src="../../../assets/images/document-plus.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span> اعداد الدرجات</span>
+              </div>
+
+              <div class="nav-item" routerLink="/permission">
+                <i class="">
+                  <img
+                    src="../../../assets/images/headphones.png"
+                    height="30px"
+                    width="30px"
+                  />
+                </i>
+                <span>الدعم الفني</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="nav_icon">
-      <img src="../../../assets/images/home.svg" width="30px" height="30px" class="nav_icon">
+
+    <!-- Dropdown Menu -->
+    <div *ngIf="menuOpen" class="dropdown-menu">
+      <div class="menu-item" routerLink="/profile">
+        ملف الشخصي
+        <img
+          src="../../../assets/images/user-check.png"
+          height="30px"
+          width="30px"
+        />
+      </div>
+      <div class="menu-item">
+        توقيع المعلم
+        <img
+          src="../../../assets/images/edit-2.png"
+          height="30px"
+          width="30px"
+        />
+      </div>
+      <hr />
+      <div class="menu-item logout">
+        <img
+          src="../../../assets/images/logout.png"
+          height="30px"
+          width="30px"
+        />
+        تسجيل خروج
+      </div>
     </div>
   </div>
 
@@ -39,475 +289,184 @@
                 <span class="remain">3</span>
               </div>
             </div>
-        </div>
-        <h4 class="text-end">المنطقه</h4>
-        <div class="select-container" dir="rtl">
-          <select
-            id="custom-select"
-            class="form-select form-select-lg mb-3"
-            dir="rtl"
-          >
-            <option selected disabled> قم باختيار المنطقه</option>
-            <option value="1" class="option">منطقة الرياض</option>
-            <option value="2" class="option">منطقة مكة المكرمة</option>
-            <option value="3" class="option">منطقة الشرقية</option>
-            <option value="4" class="option">منطقة المدينة</option>
-          </select>
-        </div>
-
-        <h4 class="text-end">المرحلة</h4>
-        <div class="row stage">
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleSec()"
-                />  
-              </div>
+          </div>
+          <h4 class="text-end">المنطقه</h4>
+          <!-- <div class="select-container" dir="rtl">
+            <select
+              id="custom-select"
+              class="form-select form-select-lg mb-3"
+              dir="rtl"
+            >
+              <option selected disabled>قم باختيار المنطقه</option>
+              <option value="1" class="option">منطقة الرياض</option>
+              <option value="2" class="option">منطقة مكة المكرمة</option>
+              <option value="3" class="option">منطقة الشرقية</option>
+              <option value="4" class="option">منطقة المدينة</option>
+            </select>
+          </div> -->
+          <div class="dropdown-container" dir="rtl">
+            <!-- Dropdown Header -->
+            <div class="dropdown-header" (click)="toggleDropdown()">
+              <span>{{ selectedRegion || "قم باختيار المنطقة" }}</span>
+              <span class="arrow">&#9660;</span>
             </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-              المرحلة الثانوية
-            </label>
+
+            <!-- Dropdown Options -->
+       
+              <ul *ngIf="isDropdownOpen" class="dropdown-options">
+                <li
+                  *ngFor="let region of elements; let i = index"
+                  (click)="selectRegion(region)"
+                >
+                  <div class="region-info">
+                    <ng-container *ngIf="region.teacherCount > 0 && region.medalType !== 'none'; else placeholder">
+                      <!-- <img [src]="medals[region.medalType]" alt="Medal" class="medal-icon" /> -->
+                      <!-- <img *ngIf="region.medalType" [src]="medals[region.medalType]" alt="Medal" class="medal-icon"  /> -->
+                    </ng-container>
+                    <ng-template #placeholder>
+                      <!-- Placeholder for spacing -->
+                      <span class="medal-placeholder"></span>
+                    </ng-template>
+                    <span class="region-name">{{ region.regionName }}</span>
+                  </div>
+                  <span class="subscribers">
+                    <span style="color: black; font-size: large">عدد المشتركين:</span>
+                    {{ region.teacherCount }}
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+
+          <h4 class="text-end">المرحلة</h4>
+          <div class="row stage">
+            <!-- Dynamically render levels -->
+            <div
+              class="col-md-3 custom-box mx-2"
+              *ngFor="let level of levels"
+              (click)="toggleLevel(level.id)"
+            >
+              <div class="container">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [checked]="displayedGrades[level.id]"
+                  [id]="level.id"
+                  (click)="$event.stopPropagation()"
+                />
+              </div>
+              <label class="form-check-label" [for]="level.id">
+                {{ level.levelName }}
+              </label>
+            </div>
           </div>
 
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleprep()"
-                />  
+          <h4 class="text-end mt-3" *ngIf="isHeaderShow">الصف</h4>
+          <div *ngFor="let level of levels">
+            <div class="row classes mt-3" *ngIf="displayedGrades[level.id]">
+              <div
+                class="col-md-3 custom-box mx-2"
+                *ngFor="let grade of grades[level.id]"
+                (click)="toggleGrade(grade.id)"
+              >
+                <div class="container">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [id]="grade.id"
+                    (click)="$event.stopPropagation();getSubjectsByGradeId(grade.id)"
+                  />
+                </div>
+                <label class="form-check-label" [for]="grade.id">
+                  {{ grade.gradeName }}
+                </label>
               </div>
             </div>
-            <label class="form-check-label" for="flexCheckDefault2">
-              المرحلة المتوسطة
-            </label>
           </div>
 
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="togglePrimary()"
-                />  
+      
+          <!-- end sec -->
+
+          <h4 class="text-end mt-3" *ngIf="isHeaderMAterialShow">المواد</h4> 
+          <div *ngFor="let subject of subjects"> 
+            <div class="row classes mt-3" >
+              <div
+                class="col-md-3 custom-box mx-2"
+              >
+                <div class="container">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [id]="subject.subjectId" (click)="$event.stopPropagation()"
+                  />
+                </div>
+                <label class="form-check-label" [for]="subject.subjectId">
+                  {{ subject.subjectName }}
+                                </label>
               </div>
             </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-              المرحلة الإبتدائية
-            </label>
-          </div>
-        </div>
+               </div> 
+  
+          
+          
 
+          <h4 class="text-end mt-3">مده الاشتراك</h4>
 
-        <h4 class="text-end mt-3" *ngIf="isHeaderShow">الصف</h4>
-
-
-<!--start primary  -->
-
-        <div class="row classes" *ngIf="isPrimaryClick">
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
+          <div class="row duration">
+            <div class="col-md-3 custom-box mx-2">
+              <div class="container">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault3"
+                  />
+                </div>
               </div>
+              <label class="form-check-label" for="flexCheckDefault1">
+                الفصل الدراسي الثالث
+              </label>
             </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-              السادس الابتدائئ
-            </label>
-          </div>
 
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
+            <div class="col-md-3 custom-box mx-2">
+              <div class="container">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault3"
+                  />
+                </div>
               </div>
+              <label class="form-check-label" for="flexCheckDefault2">
+                الفصل الدراسي الثاني
+              </label>
             </div>
-            <label class="form-check-label" for="flexCheckDefault2">
-              الخامس الابتدائئ
-            </label>
-          </div>
 
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
+            <div class="col-md-3 custom-box mx-2">
+              <div class="container">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault3"
+                  />
+                </div>
               </div>
+              <label class="form-check-label" for="flexCheckDefault3">
+                الفصل الدراسي الاول
+              </label>
             </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-              الرابع الابتدائئ
-            </label>
           </div>
 
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-              الثالث الابتدائئ
-            </label>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-light mt-3" routerLink="/payment">
+              حدد طريقة الدفع
+            </button>
           </div>
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-              الثاني الابتدائئ
-            </label>
-          </div>
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-              الاول الابتدائئ
-            </label>
-          </div>
-        </div>
-
-        <!-- end primary -->
-
-
-
-        <!-- start prep -->
-
-
-        <div class="row classes mt-3" *ngIf="isPrepClick">
-
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-             الثالث المتوسط
-            </label>
-          </div>
-
-
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-             الثاني المتوسط
-            </label>
-          </div>
-
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-             الاول المتوسط
-            </label>
-          </div>
-
-        </div>
-
-
-        <!-- end prep -->
-
-
-        <!-- start sec -->
-
-        <div class="row classes mt-3" *ngIf="isSecClick">
-
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-             الثالث الثانوي
-            </label>
-          </div>
-
-
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-             الثاني الثانوي
-            </label>
-          </div>
-
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                (click)="toggleMatrial()"
-
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-             الاول الثانوي
-            </label>
-          </div>
-
-        </div>
-
-        <!-- end sec -->
-
-        <h4 class="text-end mt-3" *ngIf="isHeaderMAterialShow">المواد</h4>
-
-        <div class="row materials" *ngIf="isMaterailShow">
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-               الرياضيات
-            </label>
-          </div>
-
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault2">
-               الفلسفه
-            </label>
-          </div>
-
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-               اللغه الانجليزيه
-            </label>
-          </div>
-
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-               الاحياء
-            </label>
-          </div>
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-الدراسات الاجتماعيه         
-   </label>
-          </div>
-          <div class="col-md-1 custom-box2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-             اللغه العربيه
-            </label>
-          </div>
-        </div>
-
-        <h4 class="text-end mt-3" >مده الاشتراك</h4>
-
-        <div class="row duration" >
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault1">
-              الفصل الدراسي الثالث
-            </label>
-          </div>
-
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault2">
-              الفصل الدراسي الثاني
-            </label>
-          </div>
-
-          <div class="col-md-3 custom-box mx-2">
-            <div class="container">
-              <div >
-                <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault3"
-                />  
-              </div>
-            </div>
-            <label class="form-check-label" for="flexCheckDefault3">
-               الفصل الدراسي الاول
-            </label>
-          </div>
-        </div>
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end" >
-          <button class="btn btn-light mt-3 " routerLink="/payment">حدد طريقة الدفع</button>
-        </div>
 
           <!-- <div class="col-lg-1 col-md-1 col-sm-1">
           </div>
@@ -526,7 +485,7 @@
                 <h5 class="final-price col-lg-4 col-md-4 col-sm-4">95<span>ر.س</span></h5>
               </div>
             </div> -->
-
+        </div>
       </div>
     </div>
   </div>

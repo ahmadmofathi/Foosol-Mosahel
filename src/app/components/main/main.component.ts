@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +15,6 @@ import { SubjectService } from 'src/app/services/subject/subject.service';
 import { SupscriptionService } from 'src/app/services/supscription/supscription.service';
 import { Modal } from 'bootstrap';
 
-
 export interface LessonResource {
   id: string;
   resource: string;
@@ -17,8 +22,6 @@ export interface LessonResource {
   fileName: string;
   isTeacherSet: boolean;
 }
-
-
 
 @Component({
   selector: 'app-main',
@@ -30,15 +33,14 @@ export class MainComponent {
   @ViewChildren('edit2FileInput') edit2FileInputs!: QueryList<ElementRef>;
 
   // For Edit modal
-uploadedFilesEdit: File[] = [];
-uploadedImagesEdit: string[] = [];
-hiddenCardsEdit: boolean[] = [];
+  uploadedFilesEdit: File[] = [];
+  uploadedImagesEdit: string[] = [];
+  hiddenCardsEdit: boolean[] = [];
 
-// For Edit2 modal
-uploadedFilesEdit2: File[] = [];
-uploadedImagesEdit2: string[] = [];
-hiddenCardsEdit2: boolean[] = [];
-
+  // For Edit2 modal
+  uploadedFilesEdit2: File[] = [];
+  uploadedImagesEdit2: string[] = [];
+  hiddenCardsEdit2: boolean[] = [];
 
   // cards = Array(9).fill({});
   hiddenCards = Array(9).fill(false);
@@ -64,7 +66,7 @@ hiddenCardsEdit2: boolean[] = [];
   classStartIndex = 0;
 
   pageNumber = 1; // Current page
-  itemsPerPage = 8; // Items per page
+  itemsPerPage = 100; // Items per page
   totalItems = 9; // Initial total items
   maxVisiblePages = 5; // Maximum number of visible pages
   pages: number[] = []; // Array to hold the visible pages
@@ -83,14 +85,13 @@ hiddenCardsEdit2: boolean[] = [];
 
   lessonForm: FormGroup;
 
-    // Separate state for Edit modal
-    editUploadedFiles: (File | null)[] = Array(9).fill(null);
-    editUploadedImages: (string | null)[] = Array(9).fill(null);
-  
-    // Separate state for Edit2 modal
-    edit2UploadedFiles: (File | null)[] = Array(9).fill(null);
-    edit2UploadedImages: (string | null)[] = Array(9).fill(null);
-  
+  // Separate state for Edit modal
+  editUploadedFiles: (File | null)[] = Array(9).fill(null);
+  editUploadedImages: (string | null)[] = Array(9).fill(null);
+
+  // Separate state for Edit2 modal
+  edit2UploadedFiles: (File | null)[] = Array(9).fill(null);
+  edit2UploadedImages: (string | null)[] = Array(9).fill(null);
 
   menuItems = [
     { icon: '../../../assets/images/student.svg', label: 'الطلاب' },
@@ -168,37 +169,36 @@ hiddenCardsEdit2: boolean[] = [];
 
     this.lessonForm = this.fb.group({
       lessonName: ['', Validators.required],
-      subjectId : [ Validators.required],
+      subjectId: [Validators.required],
     });
   }
 
   lessonName: string = '';
 
-
   onSubmitLesson() {
     const lessonResources = this.uploadedFiles
-      .filter(file => file !== null)
-      .map(file => file as File);
-  
+      .filter((file) => file !== null)
+      .map((file) => file as File);
+
     this.lessonService.uploadLesson(this.lessonName, lessonResources).subscribe(
       (response) => {
         this.toastr.success('لقد تم اضافه الدرس بنجاح !', 'نجاح', {
           timeOut: 2000,
         });
-  
+
         // Reset the form and variables
         this.lessonForm.reset();
         this.lessonName = '';
         this.uploadedFiles = [];
         this.uploadedImages = [];
         this.hiddenCards = [];
-  
+
         // Close the modal
         this.closeModalById('Edit');
-  
+
         // Refresh lessons
         this.getAllLessons();
-  
+
         console.log('Lesson saved successfully:', response);
       },
       (error) => {
@@ -206,7 +206,6 @@ hiddenCardsEdit2: boolean[] = [];
       }
     );
   }
-  
 
   openEditModal() {
     this.lessonForm.reset(); // Reset the form
@@ -216,43 +215,41 @@ hiddenCardsEdit2: boolean[] = [];
     this.hiddenCards = []; // Reset hidden cards
   }
   closeModalById(modalId: string): void {
-  const modalElement = document.getElementById(modalId);
-  if (modalElement) {
-    const modalInstance = Modal.getInstance(modalElement);
-    modalInstance?.hide(); // Close the modal
+    const modalElement = document.getElementById(modalId);
+    if (modalElement) {
+      const modalInstance = Modal.getInstance(modalElement);
+      modalInstance?.hide(); // Close the modal
+    }
+
+    // Clean up Bootstrap modal styles and backdrops
+    document
+      .querySelectorAll('.modal-backdrop')
+      .forEach((backdrop) => backdrop.remove());
+    document.body.classList.remove('modal-open');
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('padding-right');
   }
-
-  // Clean up Bootstrap modal styles and backdrops
-  document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
-  document.body.classList.remove('modal-open');
-  document.body.style.removeProperty('overflow');
-  document.body.style.removeProperty('padding-right');
-}
-  
-
 
   // lessonData = { LessonName: '' };
 
-//   onSubmitLesson(){
-//   this.lessonService.createLesson(this.lessonForm.value).subscribe({
-//     next: (response) => {
-//       console.log('Lesson created successfully:', response);
-//       console.log('Sending lessonData:', this.lessonForm);
-//     },
-//     error: (error) => {
-//       console.error('Error creating lesson:', error);
-//     },
-//   });
-// }
-  
-  
+  //   onSubmitLesson(){
+  //   this.lessonService.createLesson(this.lessonForm.value).subscribe({
+  //     next: (response) => {
+  //       console.log('Lesson created successfully:', response);
+  //       console.log('Sending lessonData:', this.lessonForm);
+  //     },
+  //     error: (error) => {
+  //       console.error('Error creating lesson:', error);
+  //     },
+  //   });
+  // }
 
   ngOnInit() {
     // this.getAllSubjects();
     this.getAllgrades();
     this.getAllLessons();
     this.checkSelectionStatus();
-    this.fetchLessonResources()
+    this.fetchLessonResources();
     // this.loadClasses();
 
     //   const storedSubjectId = localStorage.getItem('selectedSubjectId'); // Retrieve Subject ID
@@ -288,7 +285,7 @@ hiddenCardsEdit2: boolean[] = [];
 
   LessonNameView: string | null = null;
 
-  saveLessonName(LessonNameView :string):void{
+  saveLessonName(LessonNameView: string): void {
     console.log('Selected Lesson Name:', LessonNameView);
     localStorage.setItem('LessonName', LessonNameView);
     this.getLessonName();
@@ -459,15 +456,21 @@ hiddenCardsEdit2: boolean[] = [];
     this.lessonService.getLessonResources().subscribe({
       next: (response) => {
         this.lessonResources = response;
-         // Ensure the lessonResources array has 9 elements, filling gaps with empty objects
+        // Ensure the lessonResources array has 9 elements, filling gaps with empty objects
         while (this.lessonResources.length < 9) {
-          this.lessonResources.push({ id: '', resource: '', resourceType: '', fileName: '', isTeacherSet: false });
+          this.lessonResources.push({
+            id: '',
+            resource: '',
+            resourceType: '',
+            fileName: '',
+            isTeacherSet: false,
+          });
         }
         console.log('Lesson resources:', this.lessonResources);
       },
       error: (error) => {
         console.error('Error fetching lesson resources:', error);
-      }
+      },
     });
   }
 
@@ -497,28 +500,39 @@ hiddenCardsEdit2: boolean[] = [];
           this.toastr.success('لقد تم حذف الملف بنجاح !', 'نجاح', {
             timeOut: 2000,
           });
-          
-          this.closeModalById('Edit2');
 
+          this.closeModalById('Edit2');
         } catch (e) {
           console.log('Resource deleted successfully:', response);
-          this.toastr.error('لقد حدث خطأ اثناء حذف الملف ربما ليس من صلحياتك حذفه !', 'خطأ', {
-            timeOut: 3000,
-          });
+          this.toastr.error(
+            'لقد حدث خطأ اثناء حذف الملف ربما ليس من صلحياتك حذفه !',
+            'خطأ',
+            {
+              timeOut: 3000,
+            }
+          );
         }
-        this.lessonResources = this.lessonResources.filter((resource: LessonResource) => resource.id !== resourceId);
+        this.lessonResources = this.lessonResources.filter(
+          (resource: LessonResource) => resource.id !== resourceId
+        );
         // Ensure the lessonResources array has 9 elements, filling gaps with empty objects
         while (this.lessonResources.length < 9) {
-          this.lessonResources.push({ id: '', resource: '', resourceType: '', fileName: '', isTeacherSet: false });
+          this.lessonResources.push({
+            id: '',
+            resource: '',
+            resourceType: '',
+            fileName: '',
+            isTeacherSet: false,
+          });
         }
       },
       error: (error) => {
         console.error('Error deleting resource:', error);
-      }
+      },
     });
   }
 
-  newResourceFile: File | null = null;  // Initialize as null
+  newResourceFile: File | null = null; // Initialize as null
 
   addResource(index: number, modal: 'edit' | 'edit2'): void {
     if (this.newResourceFile) {
@@ -551,24 +565,15 @@ hiddenCardsEdit2: boolean[] = [];
         },
         error: (error) => {
           console.error('Error adding resource:', error);
-        }
+        },
       });
     } else {
       console.error('No file selected');
     }
   }
-  
-  
-    
-    
-    
-    
-    
-    
-    
 
   getResourcePath(resource: string): string {
-    const baseUrl = 'https://mousahel2-001-site3.ptempurl.com/'; // Replace with your actual base URL
+    const baseUrl = 'https://teeefa-001-site1.ntempurl.com/api/'; // Replace with your actual base URL
     return `${baseUrl}${resource.replace(/\\/g, '/')}`;
   }
 
@@ -601,8 +606,6 @@ hiddenCardsEdit2: boolean[] = [];
     }
   }
 
-
-  
   openEdit2FileInput(index: number): void {
     this.cdr.detectChanges(); // Ensure QueryList is updated
     const fileInputArray = this.edit2FileInputs.toArray();
@@ -623,7 +626,7 @@ hiddenCardsEdit2: boolean[] = [];
   //     console.error('No file selected');
   //   }
   // }
-onEditFileSelected(event: any, index: number): void {
+  onEditFileSelected(event: any, index: number): void {
     const file = event.target.files[0];
     if (file) {
       this.newResourceFile = file;
@@ -633,7 +636,7 @@ onEditFileSelected(event: any, index: number): void {
       console.error('No file selected');
     }
   }
-  
+
   // openEditFileInput(index: number): void {
   //   const fileInputArray = this.editFileInputs.toArray();
   //   if (fileInputArray[index]) {
@@ -642,7 +645,6 @@ onEditFileSelected(event: any, index: number): void {
   //     console.error('File input is undefined at index', index);
   //   }
   // }
-  
 
   // onEdit2FileSelected(event: any, index: number): void {
   //   const file = event.target.files[0];
@@ -654,7 +656,6 @@ onEditFileSelected(event: any, index: number): void {
   //     console.error('No file selected');
   //   }
   // }
-
 
   addLesson(): void {
     if (this.lessonForm.invalid) {
@@ -688,8 +689,6 @@ onEditFileSelected(event: any, index: number): void {
       }
     );
   }
-
-
 
   onSubjectClick(subjectId: string) {
     this.selectedSubjectId = subjectId;
@@ -817,7 +816,7 @@ onEditFileSelected(event: any, index: number): void {
   //     console.error('File input is undefined at index', index);
   //   }
   // }
-  
+
   // Handles file attachment
   attachFile(event: Event, cardIndex: number) {
     const fileInput = event.target as HTMLInputElement;

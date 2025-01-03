@@ -4,13 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StudentsService {
+  private apiUrl = environment.apiUrl;
 
-  private apiUrl = environment.apiUrl; 
-
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // addStudent(element: any): Observable<any> {
   //   const token = localStorage.getItem('authToken'); // Replace 'authToken' with your actual token key
@@ -22,20 +21,27 @@ export class StudentsService {
   //   return this.http.post<any>(`${this.apiUrl}Auth/AddStudent`, element, { headers });
   // }
 
-  
   addStudent(formData: FormData): Observable<any> {
+    console.log('formData', formData);
+
     const url = `${this.apiUrl}Auth/AddStudent`; // Adjust the endpoint as needed
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('authToken')}`, // Retrieve token from localStorage
+      // Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Retrieve token from localStorage
+      Authorization: `Bearer ${environment.authToken}`,
     });
     return this.http.post(url, formData, { headers });
   }
 
-  addExitStudent(body: { studentPhoneNumber: string, classId: string, subjectIds: string[] }): Observable<any> {
+  addExitStudent(body: {
+    studentPhoneNumber: string;
+    classId: string;
+    subjectIds: string[];
+  }): Observable<any> {
     const url = `${this.apiUrl}Auth/AssignStudentToClass`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+      // Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      Authorization: `Bearer ${environment.authToken}`,
     });
     return this.http.post(url, body, { headers });
   }
@@ -44,12 +50,9 @@ export class StudentsService {
     const url = `${this.apiUrl}Auth/GetStudentsInClass/${classId}`;
     const headers = new HttpHeaders({
       // Add any required headers here if needed (e.g., Authorization header)
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
 
     return this.http.get<any>(url, { headers });
   }
-
-
-  
 }

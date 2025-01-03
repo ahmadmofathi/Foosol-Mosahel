@@ -1,10 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubjectService } from 'src/app/services/subject/subject.service';
 import { ToastrService } from 'ngx-toastr';
 import { StudentsService } from 'src/app/services/students/students.service';
 import { Modal } from 'bootstrap';
 import { ClassesService } from 'src/app/services/classes/classes.service';
+import { GenerateStdIdService } from './generate-std-id.service';
 
 @Component({
   selector: 'app-points',
@@ -20,10 +21,10 @@ export class PointsComponent {
   menuOpen = false;
   pageNumber = 1;
   itemsPerPage = 100;
-  classesStudents :any[] = [];
+  classesStudents: any[] = [];
 
   addStudentForm!: FormGroup;
-  existForm!:FormGroup;
+  existForm!: FormGroup;
   allSubjects: any[] = []; // Array to hold fetched subjects
   selectedSubjects: any[] = [];
 
@@ -38,48 +39,31 @@ export class PointsComponent {
     { value: 0, label: 'أنثي' },
   ];
 
-  students: any[] = [
-    {
-      name: 'أسامة علي ال سعود',
-      image: '../../../assets/images/human.png',
-      code: '1365',
-      phone: '011234567',
-    },
-    {
-      name: 'أسامة علي ال سعود',
-      image: '../../../assets/images/human.png',
-      code: '1365',
-      phone: '011234567',
-    },
-    {
-      name: 'أسامة علي ال سعود',
-      image: '../../../assets/images/human.png',
-      code: '1365',
-      phone: '011234567',
-    },
-    // add more students
-  ];
-
+  generateStdIdService = inject(GenerateStdIdService);
   constructor(
     private subjectService: SubjectService,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private studentService: StudentsService,
-    private classService :ClassesService
+    private classService: ClassesService
   ) {
     this.studentForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', [Validators.required]],
-      code: [{ value: this.generateCode(), disabled: true }, Validators.required] ,
+      code: [
+        {
+          value: this.generateStdIdService.generateUniqueID(),
+          disabled: true,
+        },
+        Validators.required,
+      ],
       profileImage: [null],
     });
 
     this.existForm = this.fb.group({
       studentPhoneNumber: ['', [Validators.required]],
-
-    })
-  
+    });
   }
 
   studentForm!: FormGroup;
@@ -91,12 +75,7 @@ export class PointsComponent {
   switchFormType(type: 'new' | 'existing'): void {
     this.studentFormType = type;
     this.studentForm.reset(); // Reset the form when switching
-    this.switchFormType2(type)
-  }
-
-  generateCode(): string {
-    // Generate a 6-digit random number as a string
-    return Math.floor(100000 + Math.random() * 900000).toString();
+    this.switchFormType2(type);
   }
 
   onSubmit(): void {
@@ -110,25 +89,29 @@ export class PointsComponent {
   submitNewStudent() {
     if (this.studentForm.valid) {
       const formData = new FormData();
-      formData.append('firstName', this.studentForm.get('firstName')?.value);
-      formData.append('lastName', this.studentForm.get('lastName')?.value);
+      formData.append('FirstName', this.studentForm.get('firstName')?.value);
+      formData.append('LastName', this.studentForm.get('lastName')?.value);
       formData.append(
-        'phoneNumber',
+        'PhoneNumber',
         this.studentForm.get('phoneNumber')?.value
       );
-      formData.append('code', this.studentForm.get('code')?.value);
+      formData.append('Code', this.studentForm.get('code')?.value);
 
       const levelId = localStorage.getItem('selectedLevelId');
       const gradeId = localStorage.getItem('selectedGradeId');
       const classId = localStorage.getItem('selectedClassId');
-      const subjectIds = localStorage.getItem('selectedSubjectIds');
+      const subjectIds = localStorage.getItem('selectedSubjectId');
+      console.log(subjectIds);
 
-      if (levelId) formData.append('levelId', levelId);
-      if (gradeId) formData.append('gradeId', gradeId);
-      if (classId) formData.append('classId', classId);
-      if (subjectIds)
-        formData.append('subjectIds', JSON.stringify(subjectIds.split(',')));
-
+      if (levelId) formData.append('LevelId', levelId);
+      if (gradeId) formData.append('GradeId', gradeId);
+      if (classId) formData.append('ClassId', classId);
+      // if (subjectIds) {
+      //   formData.append(
+      //     'SubjectIds',
+      //     JSON.stringify(['subjectId', 'subjectId', 'subjectId'])
+      //   );
+      // }
       if (this.selectedFile) {
         formData.append(
           'profileImage',
@@ -137,6 +120,9 @@ export class PointsComponent {
         );
       }
 
+      // Debugging FormData
+      console.log('FormData contents:', formData.get('firstName'));
+
       this.studentService.addStudent(formData).subscribe({
         next: (response) => {
           console.log('Student added successfully:', response);
@@ -144,10 +130,9 @@ export class PointsComponent {
             timeOut: 1000,
           });
 
-          this.studentForm.reset;
+          this.studentForm.reset();
           this.closeModalById('studentProfile');
           this.getStudentInClass();
-
         },
         error: (error) => {
           console.error('Error adding student:', error);
@@ -160,21 +145,22 @@ export class PointsComponent {
 
   submitExistingStudent(): void {
     if (this.existForm.valid) {
-      const studentPhoneNumber = this.existForm.get('studentPhoneNumber')?.value; // Use existForm here
+      const studentPhoneNumber =
+        this.existForm.get('studentPhoneNumber')?.value; // Use existForm here
       const classId = localStorage.getItem('selectedClassId');
       const subjectIds = localStorage.getItem('selectedSubjectId');
-  
+
       if (!classId || !subjectIds) {
         console.error('Class ID or Subject IDs are missing');
         return; // or handle the error appropriately
       }
-  
+
       const body = {
         studentPhoneNumber: studentPhoneNumber,
         classId: classId,
         subjectIds: subjectIds.split(','), // Convert string to array
       };
-  
+
       this.studentService.addExitStudent(body).subscribe({
         next: (response) => {
           console.log('Student assigned to class successfully:', response);
@@ -194,32 +180,30 @@ export class PointsComponent {
     }
   }
 
-
   firstName: string = '';
-  lastName: string ='';
+  lastName: string = '';
 
   openEditModal() {
     this.studentForm.reset(); // Reset the form
     this.firstName = ''; // Reset lesson name
-    this.lastName =''
-  
+    this.lastName = '';
   }
-  
+
   closeModalById(modalId: string): void {
     const modalElement = document.getElementById(modalId);
     if (modalElement) {
       const modalInstance = Modal.getInstance(modalElement);
       modalInstance?.hide(); // Close the modal
     }
-  
+
     // Clean up Bootstrap modal styles and backdrops
-    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    document
+      .querySelectorAll('.modal-backdrop')
+      .forEach((backdrop) => backdrop.remove());
     document.body.classList.remove('modal-open');
     document.body.style.removeProperty('overflow');
     document.body.style.removeProperty('padding-right');
   }
-  
-  
 
   onFileSelect(event: any) {
     const file = event.target.files[0];
@@ -249,9 +233,6 @@ export class PointsComponent {
       );
     }
   }
-
-
-
 
   className: string | null = '';
   gradeName: string | null = '';

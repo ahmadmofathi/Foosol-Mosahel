@@ -16,6 +16,7 @@ export class SupscriptionService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      // Authorization: `Bearer ${environment.authToken}`,
     });
 
     return this.http.post(url, payload, { headers });

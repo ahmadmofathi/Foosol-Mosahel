@@ -44,7 +44,8 @@ export class MainComponent {
 
   // cards = Array(9).fill({});
   hiddenCards = Array(9).fill(false);
-  uploadedFiles: (File | null)[] = Array(9).fill(null);
+  uploadedFiles: any[] = Array(9).fill(null);
+  // uploadedFiles: (File | null)[] = Array(9).fill(null);
   uploadedImages: (string | null)[] = Array(9).fill(null);
   isMenuOpen = false;
   isNavbarOpen = false;
@@ -176,9 +177,10 @@ export class MainComponent {
   lessonName: string = '';
 
   onSubmitLesson() {
-    const lessonResources = this.uploadedFiles
+    const lessonResources = this.editUploadedFiles
       .filter((file) => file !== null)
       .map((file) => file as File);
+    console.log(lessonResources);
 
     this.lessonService.uploadLesson(this.lessonName, lessonResources).subscribe(
       (response) => {
@@ -410,9 +412,9 @@ export class MainComponent {
 
     // Proceed with the submission logic
     const payload = {
-      levelId: localStorage.getItem('selectedLevelId'),
-      gradeId: localStorage.getItem('selectedGradeId'),
-      subjectId: localStorage.getItem('selectedSubjectId'),
+      levelIds: [localStorage.getItem('selectedLevelId')],
+      gradeIds: [localStorage.getItem('selectedGradeId')],
+      subjectIds: [localStorage.getItem('selectedSubjectId')],
     };
 
     this.supscriptionService.addSelection(payload).subscribe(
@@ -628,6 +630,7 @@ export class MainComponent {
   // }
   onEditFileSelected(event: any, index: number): void {
     const file = event.target.files[0];
+    console.log('file', file);
     if (file) {
       this.newResourceFile = file;
       this.editUploadedFiles[index] = this.newResourceFile; // Store the file at the given index
@@ -658,10 +661,10 @@ export class MainComponent {
   // }
 
   addLesson(): void {
-    if (this.lessonForm.invalid) {
-      console.error('Form is invalid. Please provide valid data.');
-      return;
-    }
+    // if (this.lessonForm.invalid) {
+    //   console.error('Form is invalid. Please provide valid data.');
+    //   return;
+    // }
 
     const subjectId = localStorage.getItem('selectedSubjectId');
     if (!subjectId) {
@@ -833,21 +836,23 @@ export class MainComponent {
     }
   }
 
-  onSubmit() {
-    const lessonResources = this.uploadedFiles
-      .filter((file) => file !== null)
-      .map((file) => file as File);
+  // onSubmit() {
+  //   // const lessonResources = this.editUploadedFiles
+  //   //   .filter((file) => file !== null)
+  //   //   .map((file) => file as File);
+  //   const lessonResources = this.editUploadedFiles;
+  //   console.log(lessonResources);
 
-    this.lessonService.uploadLesson(this.lessonName, lessonResources).subscribe(
-      (response) => {
-        alert('لقد تم الاضافه');
-        console.log('Lesson saved successfully:', response);
-      },
-      (error) => {
-        console.error('Error saving lesson:', error);
-      }
-    );
-  }
+  //   this.lessonService.uploadLesson(this.lessonName, lessonResources).subscribe(
+  //     (response) => {
+  //       alert('لقد تم الاضافه');
+  //       console.log('Lesson saved successfully:', response);
+  //     },
+  //     (error) => {
+  //       console.error('Error saving lesson:', error);
+  //     }
+  //   );
+  // }
 
   removeFile(cardIndex: number) {
     this.uploadedFiles[cardIndex] = null;

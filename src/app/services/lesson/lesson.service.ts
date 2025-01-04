@@ -56,9 +56,13 @@ export class LessonService {
     const url = `${this.apiUrl}Lesson/CreateLesson/${subjectId}`;
     const formData = new FormData();
     formData.append('LessonName', lessonName);
-    lessonResources.forEach((file) => {
-      formData.append('lessonResources', file, file.name);
-    });
+    console.log('lessonResources:', lessonResources);
+
+    if (lessonResources.length > 0) {
+      lessonResources.forEach((file) => {
+        formData.append('lessonResources', file, file.name);
+      });
+    }
     const headers = { 'Content-Type': 'application/json' };
     // Set responseType to 'text'
     return this.http.post(url, formData, { responseType: 'text' });
@@ -79,8 +83,8 @@ export class LessonService {
     const url = `${this.apiUrl}Lesson/GetTeacherResources/${teacherId}/${lessonId}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      // Authorization: `Bearer ${authToken}`,
-      Authorization: `Bearer ${environment.authToken}`,
+      Authorization: `Bearer ${authToken}`,
+      // Authorization: `Bearer ${environment.authToken}`,
     });
 
     return this.http.get(url, { headers });
@@ -97,8 +101,8 @@ export class LessonService {
     const url = `${this.apiUrl}Lesson/TeacherDeleteResource/${teacherId}/${resourceId}/true`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      // Authorization: `Bearer ${authToken}`,
-      Authorization: `Bearer ${environment.authToken}`,
+      Authorization: `Bearer ${authToken}`,
+      // Authorization: `Bearer ${environment.authToken}`,
     });
 
     return this.http.delete(url, {
@@ -121,8 +125,8 @@ export class LessonService {
 
     const url = `${this.apiUrl}Lesson/AddTeacherResource/${teacherId}/${lessonId}`;
     const headers = new HttpHeaders({
-      // Authorization: `Bearer ${authToken}`,
-      Authorization: `Bearer ${environment.authToken}`,
+      Authorization: `Bearer ${authToken}`,
+      // Authorization: `Bearer ${environment.authToken}`,
     });
 
     return this.http.post(url, formData, { headers, responseType: 'text' });

@@ -476,35 +476,31 @@
           class="row header"
           style="justify-content: center; align-items: center"
         >
-        <div style="display: flex;justify-content: space-between;">
-          <div class="col-md-1">
-            <div>
-              <button
-                class="own-btn2"
-                data-bs-toggle="modal"
-                data-bs-target="#Edit2"
-                width="100%"
-              >
-                تعديل
-              </button>
-
+          <div style="display: flex; justify-content: space-between">
+            <div class="col-md-1">
+              <div>
+                <button
+                  class="own-btn2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#Edit2"
+                  width="100%"
+                >
+                  تعديل
+                </button>
+              </div>
             </div>
-            
-          </div>
 
-          <div class="col-md-1"   data-bs-toggle="modal"
-          data-bs-target="#Edit">
-            <i
-              class="fa-solid fa-plus"
-              style="
-                padding: 10px;
-                color: #fff;
-                background-color: #001a72;
-                border-radius: 50%;
-              "
-            ></i>
-          </div>
-
+            <div class="col-md-1" data-bs-toggle="modal" data-bs-target="#Edit">
+              <i
+                class="fa-solid fa-plus"
+                style="
+                  padding: 10px;
+                  color: #fff;
+                  background-color: #001a72;
+                  border-radius: 50%;
+                "
+              ></i>
+            </div>
           </div>
           <h3 class="col-md-11">الدرس</h3>
         </div>
@@ -527,7 +523,9 @@
               color: activeLessonId === test.lessonId ? '#ffff' : '#001A72'
             }"
             (click)="
-              onLessonClick(test.lessonId);saveLessonName(test.lessonName); activeLessonId = test.lessonId
+              onLessonClick(test.lessonId);
+              saveLessonName(test.lessonName);
+              activeLessonId = test.lessonId
             "
           >
             <div class="container">
@@ -556,23 +554,35 @@
   </div>
 </div>
 
-
-
-
-
-
-
 <!-- Add Modal -->
 
 <!-- Add Modal -->
-<div class="modal fade" id="Edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="Edit"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <!-- Modal Header -->
         <div class="modal-header">
-          <input type="text" [(ngModel)]="lessonName" class="lesson-title" placeholder="الدرس الاول : الدوله الامويه" />
-          <button type="button" class="close closebtn" data-bs-dismiss="modal" aria-label="Close">
+          <input
+            type="text"
+            [(ngModel)]="lessonName"
+            class="lesson-title"
+            placeholder="الدرس الاول : الدوله الامويه"
+          />
+          <button
+            type="button"
+            class="close closebtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
             <img src="../../../assets/images/close.png" width="40px" />
           </button>
         </div>
@@ -580,15 +590,43 @@
         <!-- Modal Body -->
         <div class="modal-body">
           <div class="full-width-box custom-full-width-grid">
-            <div class="custom-card-wrapper" *ngFor="let card of cards; let index = index">
-              <div class="custom-card" [ngClass]="{ 'hide-card': hiddenCards[index] }">
-                <i class="fa-solid fa-times custom-close-icon" (click)="removeFile(index)"></i>
-                <div class="custom-card-body" (click)="openEditFileInput(index)">
+            <div
+              class="custom-card-wrapper"
+              *ngFor="let card of cards; let index = index"
+            >
+              <div
+                class="custom-card"
+                [ngClass]="{ 'hide-card': hiddenCards[index] }"
+              >
+                <i
+                  class="fa-solid fa-times custom-close-icon"
+                  (click)="removeFile(index)"
+                ></i>
+                <div
+                  class="custom-card-body"
+                  (click)="openEditFileInput(index)"
+                >
                   <h5 class="custom-card-title">{{ card.title }}</h5>
-                  <img *ngIf="editUploadedImages[index]" [src]="editUploadedImages[index]" alt="Uploaded Image" class="thumbnail-image" />
-                  <p *ngIf="editUploadedFiles[index] && !editUploadedImages[index]">File Attached: {{ editUploadedFiles[index]?.name }}</p>
+                  <img
+                    *ngIf="editUploadedImages[index]"
+                    [src]="editUploadedImages[index]"
+                    alt="Uploaded Image"
+                    class="thumbnail-image"
+                  />
+                  <p
+                    *ngIf="
+                      editUploadedFiles[index] && !editUploadedImages[index]
+                    "
+                  >
+                    File Attached: {{ editUploadedFiles[index]?.name }}
+                  </p>
                 </div>
-                <input type="file" #editFileInput style="display: none" (change)="onEditFileSelected($event, index)" />
+                <input
+                  type="file"
+                  #editFileInput
+                  style="display: none"
+                  (change)="onEditFileSelected($event, index)"
+                />
               </div>
             </div>
           </div>
@@ -596,23 +634,41 @@
 
         <!-- Modal Footer -->
         <div class="modal-footer">
-          <button type="submit" class="btn custombtn ms-4" (click)="onSubmitLesson()">حفظ</button>
+          <button
+            type="submit"
+            class="btn custombtn ms-4"
+            (click)="onSubmitLesson()"
+          >
+            حفظ
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
 <!-- Edit Modal -->
-<div class="modal fade" id="Edit2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="Edit2"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content outer-container">
       <div class="inner-container">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h6 style="color: white; font-size: larger;">{{LessonNameView}}</h6>
-          <button type="button" class="close closebtn" data-bs-dismiss="modal" aria-label="Close">
+          <h6 style="color: white; font-size: larger">{{ LessonNameView }}</h6>
+          <button
+            type="button"
+            class="close closebtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
             <img src="../../../assets/images/close.png" width="40px" />
           </button>
         </div>
@@ -620,15 +676,61 @@
         <!-- Modal Body -->
         <div class="modal-body">
           <div class="full-width-box custom-full-width-grid">
-            <div class="custom-card-wrapper" *ngFor="let resource of lessonResources; let index = index">
-              <div class="custom-card" [ngClass]="{ 'hide-card': !resource.id }">
-                <i class="fa-solid fa-times custom-close-icon" *ngIf="resource.id" (click)="deleteResource(resource.id); $event.stopPropagation()"></i>
-                <div class="custom-card-body" (click)="openEdit2FileInput(index)">
-                  <img *ngIf="resource.resourceType.includes('.jpeg') || resource.resourceType.includes('.jpg') || resource.resourceType.includes('.png')" [src]="getResourcePath(resource.resource)" alt="Uploaded Image" class="thumbnail-image" />
-                  <i *ngIf="!resource.resourceType.includes('.jpeg') && !resource.resourceType.includes('.jpg') && !resource.resourceType.includes('.png')" class="fa {{ getFileTypeIcon(resource.resourceType) }} fa-2x"></i>
-                  <p *ngIf="!resource.resourceType.includes('.jpeg') && !resource.resourceType.includes('.jpg') && !resource.resourceType.includes('.png')">File: {{ resource.fileName }}</p>
+            <div
+              class="custom-card-wrapper"
+              *ngFor="let resource of lessonResources; let index = index"
+            >
+              <div
+                class="custom-card"
+                [ngClass]="{ 'hide-card': !resource.id }"
+              >
+                <i
+                  class="fa-solid fa-times custom-close-icon"
+                  *ngIf="resource.id"
+                  (click)="
+                    deleteResource(resource.id); $event.stopPropagation()
+                  "
+                ></i>
+                <div
+                  class="custom-card-body"
+                  (click)="openEdit2FileInput(index)"
+                >
+                  <img
+                    *ngIf="
+                      resource.resourceType.includes('.jpeg') ||
+                      resource.resourceType.includes('.jpg') ||
+                      resource.resourceType.includes('.png')
+                    "
+                    [src]="getResourcePath(resource.resource)"
+                    alt="Uploaded Image"
+                    class="thumbnail-image"
+                  />
+                  <i
+                    *ngIf="
+                      !resource.resourceType.includes('.jpeg') &&
+                      !resource.resourceType.includes('.jpg') &&
+                      !resource.resourceType.includes('.png')
+                    "
+                    class="fa {{
+                      getFileTypeIcon(resource.resourceType)
+                    }} fa-2x"
+                  ></i>
+                  <p
+                    *ngIf="
+                      !resource.resourceType.includes('.jpeg') &&
+                      !resource.resourceType.includes('.jpg') &&
+                      !resource.resourceType.includes('.png')
+                    "
+                  >
+                    File: {{ resource.fileName }}
+                  </p>
                 </div>
-                <input type="file" #edit2FileInput style="display: none" (change)="onEdit2FileSelected($event, index)" />
+                <input
+                  type="file"
+                  #edit2FileInput
+                  style="display: none"
+                  (change)="onEdit2FileSelected($event, index)"
+                />
               </div>
             </div>
           </div>
@@ -636,7 +738,7 @@
 
         <!-- Modal Footer -->
         <div class="modal-footer">
-          <button type="submit" class="btn custombtn ms-4" >حفظ</button>
+          <button type="submit" class="btn custombtn ms-4">حفظ</button>
         </div>
       </div>
     </div>

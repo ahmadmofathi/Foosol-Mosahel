@@ -1,0 +1,37 @@
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div
+      *ngFor="let img of images; let index = index"
+      class="carousel-item"
+      ngClass="{{ index === 0 ? 'active' : '' }}"
+    >
+      <img
+        [src]="img"
+        class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+        width="800"
+        height="400"
+        role="img"
+        preserveAspectRatio="xMidYMid slice"
+        focusable="false"
+      />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

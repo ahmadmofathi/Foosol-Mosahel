@@ -26,8 +26,8 @@ export class StudentsService {
 
     const url = `${this.apiUrl}Auth/AddStudent`; // Adjust the endpoint as needed
     const headers = new HttpHeaders({
-      // Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Retrieve token from localStorage
-      Authorization: `Bearer ${environment.authToken}`,
+      Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Retrieve token from localStorage
+      // Authorization: `Bearer ${environment.authToken}`,
     });
     return this.http.post(url, formData, { headers });
   }
@@ -40,8 +40,8 @@ export class StudentsService {
     const url = `${this.apiUrl}Auth/AssignStudentToClass`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      // Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-      Authorization: `Bearer ${environment.authToken}`,
+      Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      // Authorization: `Bearer ${environment.authToken}`,
     });
     return this.http.post(url, body, { headers });
   }

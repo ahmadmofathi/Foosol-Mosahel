@@ -3,10 +3,17 @@
   <div class="row justify-content-between user-navbar">
     <!-- Left Box -->
     <div class="col-2 box left-box justify-content-center align-items-center">
-      <div class="container-fluid justify-content-center align-items-center" *ngIf="isTeacherPhotoVisible">
+      <div
+        class="container-fluid justify-content-center align-items-center"
+        *ngIf="isTeacherPhotoVisible"
+      >
         <div class="row justify-content-between">
           <div class="col-12 justify-content-between">
-            <img src="../../../../assets/images/human.png" class="c_img" style="width: 56%;" />
+            <img
+              src="../../../../assets/images/human.png"
+              class="c_img"
+              style="width: 56%"
+            />
           </div>
         </div>
         <div class="row">
@@ -37,18 +44,18 @@
         <!-- Button Section: Right -->
         <div class="start-btn text-end">
           <button
-    class="btn btn-primary"
-    [ngStyle]="{
-      'background-color': '#F9EFBC',
-      color: 'black',
-      'font-weight': 'bold',
-      border: '1px solid #fa6707',
-      'border-radius': '0'
-    }"
-  (click)="isLectureStarted ? onEndLecture() : onStartLecture()"
-  >
-    {{ isLectureStarted ? 'انهاء الحصة' : 'ابدأ الحصة' }}
-  </button>
+            class="btn btn-primary"
+            [ngStyle]="{
+              'background-color': '#F9EFBC',
+              color: 'black',
+              'font-weight': 'bold',
+              border: '1px solid #fa6707',
+              'border-radius': '0'
+            }"
+            (click)="isLectureStarted ? onEndLecture() : onStartLecture()"
+          >
+            {{ isLectureStarted ? "انهاء الحصة" : "ابدأ الحصة" }}
+          </button>
         </div>
       </div>
 
@@ -84,7 +91,6 @@
           (blur)="onBlur()"
           placeholder="Enter minutes"
         />
-        
 
         <span *ngIf="remainingTime !== null" class="countdown-timer">
           {{ remainingTime }} د
@@ -127,26 +133,37 @@
 
     <!-- Right Box -->
     <div class="col-2 box right-box justify-content-center align-items-center">
-      <div class="container-fluid justify-content-center align-items-center" *ngIf="isStudentPhotoVisible">
+      <div
+        class="container-fluid justify-content-center align-items-center"
+        *ngIf="isStudentPhotoVisible"
+      >
         <div class="row justify-content-between">
-          <div class="col-12 justify-content-between" style="margin-top: 9%;">
-            <img src="../../../../assets/images/student.png" class="c_img"  *ngIf="selectedStudent" style="border: 9px solid white;
-            margin-bottom: 9px;
-            border-radius: 14px;
-            width: 60%;
-        "/>
+          <div class="col-12 justify-content-between" style="margin-top: 9%">
+            <img
+              src="../../../../assets/images/student.png"
+              class="c_img"
+              *ngIf="selectedStudent"
+              style="
+                border: 9px solid white;
+                margin-bottom: 9px;
+                border-radius: 14px;
+                width: 60%;
+              "
+            />
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-
             <div *ngIf="selectedStudent">
-              <p>الطالب: {{ selectedStudent.firstName }} {{ selectedStudent.lastName }}</p>
+              <p>
+                الطالب: {{ selectedStudent.firstName }}
+                {{ selectedStudent.lastName }}
+              </p>
             </div>
             <!-- <p class="align-items-center text-end">----- : الطالب</p> -->
 
             <!-- <div class="timer-section text-center" >
-            
+
               <input
                 type="number"
                 class="time-remaining"
@@ -156,13 +173,13 @@
                 style="max-width: 90px;
                 border-radius: 15px;
                 padding-top: 0px;"
-             
+
               />
-              
+
               <span *ngIf="remainingTimeSec !== null" class="countdown-timer">
                 {{ remainingTimeSec }} ث
               </span>
-           
+
             </div> -->
           </div>
         </div>
@@ -177,15 +194,17 @@
             <!-- btn for white board -->
             <div class="container-fluid">
               <div class="row justify-content-between">
-
                 <div class="btn_r">
-                  <div class="c_btnl justify-content-center" *ngFor="let board of boards">
+                  <div
+                    class="c_btnl justify-content-center"
+                    *ngFor="let board of boards"
+                  >
                     <button
                       class="btn custom-button"
                       [ngClass]="{ active: activeBoard === board.id }"
                       (click)="switchBoard(board.id)"
                     >
-                    {{ board.id }}
+                      {{ board.id }}
                     </button>
                   </div>
                   <!-- <div class="c_btnl justify-content-center">
@@ -198,9 +217,7 @@
                     </button>
                   </div> -->
                   <div class="c_btnl justify-content-center">
-                    <button
-                      class="btn custom-button"
-                      (click)="addNewBoard()"                    >
+                    <button class="btn custom-button" (click)="addNewBoard()">
                       +
                     </button>
                   </div>
@@ -216,14 +233,20 @@
                 </div>
 
                 <div class="btn_l">
-
+                  <div class="c_btnr justify-content-center">
+                    <img
+                      src="../../../../assets/images/cross.png"
+                      width="25px;"
+                      style="margin: 4px"
+                    />
+                  </div>
 
                   <div class="c_btnr justify-content-center">
-                    <img src="../../../../assets/images/cross.png" width="25px;" style="margin: 4px;" >
-                   </div>
-
-                  <div class="c_btnr justify-content-center">
-                   <img src="../../../../assets/images/check.png" width="25px;" style="margin: 4px;" >
+                    <img
+                      src="../../../../assets/images/check.png"
+                      width="25px;"
+                      style="margin: 4px"
+                    />
                   </div>
 
                   <div class="c_btnr justify-content-center">
@@ -424,7 +447,7 @@
                   </button>
                 </div>
               </div>
-                    <div class="row justify-content-center align-items-center">
+              <div class="row justify-content-center align-items-center">
                 <div class="col-12 justify-content-center align-items-center">
                   <button
                     class="c_btn"
@@ -526,11 +549,11 @@
           <div class="col-12">
             <div class="row">
               <!-- <div class="student-list">
-                
+
                 <ul class="list-group ">
                   <div class="student-list-container col-12" [ngClass]="{ 'show': isStudentListVisible, 'hide': !isStudentListVisible }">
                     <div class="row" >
-                      <div class="student-item" 
+                      <div class="student-item"
                       *ngFor="let student of displayedStudents; let i = index"
                       [ngClass]="{ 'from-top': i % 2 === 0, 'from-bottom': i % 2 !== 0 }"
                       [ngStyle]="{ 'animation-delay': (i * 0.3) + 's' }">
@@ -565,7 +588,10 @@
                       hide: !isStudentListVisible
                     }"
                   >
-                    <div class="row" *ngFor="let students of studentData; let i = index">
+                    <div
+                      class="row"
+                      *ngFor="let students of studentData; let i = index"
+                    >
                       <div
                         class="student-item"
                         *ngFor="let student of displayedStudents; let i = index"
@@ -579,13 +605,19 @@
                           <span
                             *ngFor="let status of student.statusIcons"
                             [ngClass]="status.class"
-                            (click)="logStatusValue(status.value)" 
+                            (click)="logStatusValue(status.value)"
                           >
                             {{ status.label }}
                           </span>
                         </div>
-                        <div class="student-info"  (click)="saveStudentId(students.id)">
-                          <span class="student-name">{{ students.firstName }} {{ students.lastName }}</span>
+                        <div
+                          class="student-info"
+                          (click)="saveStudentId(students.id)"
+                        >
+                          <span class="student-name"
+                            >{{ students.firstName }}
+                            {{ students.lastName }}</span
+                          >
                           <!-- <img
                             [src]="student.image"
                             alt="student"
@@ -594,8 +626,6 @@
                         </div>
                       </div>
                     </div>
-
-
                   </div>
                 </ul>
               </div>
@@ -668,7 +698,11 @@
             </div>
           </div>
 
-          <div class="icon-container">
+          <div
+            class="icon-container"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop2"
+          >
             <div class="icon-bg">
               <img
                 src="../../../../assets/images/dash.png"
@@ -690,7 +724,11 @@
             </div>
           </div>
 
-          <div class="icon-container">
+          <div
+            class="icon-container"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop3"
+          >
             <div class="icon-bg">
               <img
                 src="../../../../assets/images/video.svg"
@@ -732,7 +770,9 @@
           <i class="fa-solid fa-arrow-right"></i>
         </button>
 
-        <button class="btn custom-button3 mx-1" (click)="chooseRandomStudent()">إختر</button>
+        <button class="btn custom-button3 mx-1" (click)="chooseRandomStudent()">
+          إختر
+        </button>
 
         <button class="btn custom-button2 mx-1" (click)="toggleStudentList()">
           <i
@@ -1022,19 +1062,39 @@
                 <div class="row align-items-center sc-set">
                   <!-- Radio Button Group -->
                   <div class="radio-container col-2">
-                    <input type="radio" id="option1" name="options1" value="option1" />
+                    <input
+                      type="radio"
+                      id="option1"
+                      name="options1"
+                      value="option1"
+                    />
                     <label for="option1">بوربــوينت</label>
                   </div>
                   <div class="radio-container col-2">
-                    <input type="radio" id="option2" name="options1" value="option2" />
+                    <input
+                      type="radio"
+                      id="option2"
+                      name="options1"
+                      value="option2"
+                    />
                     <label for="option2">فيــديو</label>
                   </div>
                   <div class="radio-container col-3">
-                    <input type="radio" id="option3" name="options1" value="option3" />
+                    <input
+                      type="radio"
+                      id="option3"
+                      name="options1"
+                      value="option3"
+                    />
                     <label for="option3">اوراق عمل</label>
                   </div>
                   <div class="radio-container col-2">
-                    <input type="radio" id="option4" name="options1" value="option4" />
+                    <input
+                      type="radio"
+                      id="option4"
+                      name="options1"
+                      value="option4"
+                    />
                     <label for="option4">الصور</label>
                   </div>
                   <!-- Checkbox -->
@@ -1043,23 +1103,43 @@
                     <input type="checkbox" id="checkbox1" />
                   </div>
                 </div>
-                
+
                 <div class="row align-items-center sc-set mt-3">
                   <!-- Radio Button Group -->
                   <div class="radio-container col-2">
-                    <input type="radio" id="option5" name="options2" value="option5" />
+                    <input
+                      type="radio"
+                      id="option5"
+                      name="options2"
+                      value="option5"
+                    />
                     <label for="option5">بوربــوينت</label>
                   </div>
                   <div class="radio-container col-2">
-                    <input type="radio" id="option6" name="options2" value="option6" />
+                    <input
+                      type="radio"
+                      id="option6"
+                      name="options2"
+                      value="option6"
+                    />
                     <label for="option6">فيــديو</label>
                   </div>
                   <div class="radio-container col-3">
-                    <input type="radio" id="option7" name="options2" value="option7" />
+                    <input
+                      type="radio"
+                      id="option7"
+                      name="options2"
+                      value="option7"
+                    />
                     <label for="option7">اوراق عمل</label>
                   </div>
                   <div class="radio-container col-2">
-                    <input type="radio" id="option8" name="options2" value="option8" />
+                    <input
+                      type="radio"
+                      id="option8"
+                      name="options2"
+                      value="option8"
+                    />
                     <label for="option8">الصور</label>
                   </div>
                   <!-- Checkbox -->
@@ -1069,7 +1149,6 @@
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
           <!-- <div class="row">
@@ -1194,19 +1273,39 @@
                 <div class="row align-items-center sc-set">
                   <!-- Radio Button Group -->
                   <div class="radio-container col-2">
-                    <input type="radio" id="option1" name="options1" value="option1" />
+                    <input
+                      type="radio"
+                      id="option1"
+                      name="options1"
+                      value="option1"
+                    />
                     <label for="option1">بوربــوينت</label>
                   </div>
                   <div class="radio-container col-2">
-                    <input type="radio" id="option2" name="options1" value="option2" />
+                    <input
+                      type="radio"
+                      id="option2"
+                      name="options1"
+                      value="option2"
+                    />
                     <label for="option2">فيــديو</label>
                   </div>
                   <div class="radio-container col-3">
-                    <input type="radio" id="option3" name="options1" value="option3" />
+                    <input
+                      type="radio"
+                      id="option3"
+                      name="options1"
+                      value="option3"
+                    />
                     <label for="option3">اوراق عمل</label>
                   </div>
                   <div class="radio-container col-2">
-                    <input type="radio" id="option4" name="options1" value="option4" />
+                    <input
+                      type="radio"
+                      id="option4"
+                      name="options1"
+                      value="option4"
+                    />
                     <label for="option4">الصور</label>
                   </div>
                   <!-- Checkbox -->
@@ -1215,23 +1314,43 @@
                     <input type="checkbox" id="checkbox1" />
                   </div>
                 </div>
-                
+
                 <div class="row align-items-center sc-set mt-3">
                   <!-- Radio Button Group -->
                   <div class="radio-container col-2">
-                    <input type="radio" id="option5" name="options2" value="option5" />
+                    <input
+                      type="radio"
+                      id="option5"
+                      name="options2"
+                      value="option5"
+                    />
                     <label for="option5">بوربــوينت</label>
                   </div>
                   <div class="radio-container col-2">
-                    <input type="radio" id="option6" name="options2" value="option6" />
+                    <input
+                      type="radio"
+                      id="option6"
+                      name="options2"
+                      value="option6"
+                    />
                     <label for="option6">فيــديو</label>
                   </div>
                   <div class="radio-container col-3">
-                    <input type="radio" id="option7" name="options2" value="option7" />
+                    <input
+                      type="radio"
+                      id="option7"
+                      name="options2"
+                      value="option7"
+                    />
                     <label for="option7">اوراق عمل</label>
                   </div>
                   <div class="radio-container col-2">
-                    <input type="radio" id="option8" name="options2" value="option8" />
+                    <input
+                      type="radio"
+                      id="option8"
+                      name="options2"
+                      value="option8"
+                    />
                     <label for="option8">الصور</label>
                   </div>
                   <!-- Checkbox -->
@@ -1241,7 +1360,6 @@
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
           <!-- <div class="row">
@@ -1327,6 +1445,64 @@
             </div>
           </div> -->
         </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            حفظ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="staticBackdrop2"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" style="max-width: 60%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">صور الدرس</h1>
+      </div>
+      <div class="modal-body p-0">
+        <app-images-viewer [images]="images" />
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            حفظ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="staticBackdrop3"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" style="max-width: 60%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">صور الدرس</h1>
+      </div>
+      <div class="modal-body p-0">
+        <app-videos-viewer [videos]="videos" />
         <div class="modal-footer">
           <button
             type="button"

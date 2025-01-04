@@ -13,7 +13,7 @@ import { ApprovPaymentComponent } from './components/payment/approv-payment/appr
 import { TeacherDashComponent } from './components/teacherDash/teacher-dash/teacher-dash.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import {CKEditorModule} from '@ckeditor/ckeditor5-angular'
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './components/main/main.component';
 import { StudentComponent } from './components/student/student.component';
@@ -89,6 +89,9 @@ import { PrepPaperComponent } from './components/prep-paper/prep-paper.component
 import { ActionsComponent } from './components/actions/actions/actions.component';
 import { BehaiveComponent } from './components/behaive/behaive/behaive.component';
 import { InteractionTableComponent } from './components/interaction-table/interaction-table.component';
+import { PdfViewerComponent } from './components/pdf-viewer/pdf-viewer.component';
+import { ImagesViewerComponent } from './components/images-viewer/images-viewer.component';
+import { VideosViewerComponent } from './videos-viewer/videos-viewer.component';
 
 @NgModule({
   declarations: [
@@ -163,7 +166,9 @@ import { InteractionTableComponent } from './components/interaction-table/intera
     ActionsComponent,
     BehaiveComponent,
     InteractionTableComponent,
- 
+    PdfViewerComponent,
+    ImagesViewerComponent,
+    VideosViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -185,9 +190,8 @@ import { InteractionTableComponent } from './components/interaction-table/intera
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
-
   ],
   providers: [MatDatepickerModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

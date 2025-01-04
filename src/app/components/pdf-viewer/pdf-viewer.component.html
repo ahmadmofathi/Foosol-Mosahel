@@ -1,0 +1,25 @@
+<div class="pdf-viewer">
+  <object [data]="pdfData" type="application/pdf"></object>
+  <div *ngIf="loadingError" class="error-message"></div>
+  <div class="controls">
+    <button (click)="goToPreviousPage()">Previous</button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="goToNextPage()">Next</button>
+  </div>
+</div>
+<div class="controls">
+  <div class="page-navigation">
+    <label for="pageInput">Go to Page:</label>
+    <input
+      id="pageInput"
+      type="number"
+      min="1"
+      max="{{ totalPages }}"
+      [(ngModel)]="currentPage"
+    />
+    <button (click)="goToPage()">Go</button>
+  </div>
+  <button (click)="zoomOut()">Zoom Out</button>
+  <span>{{ zoomLevel }}%</span>
+  <button (click)="zoomIn()">Zoom In</button>
+</div>

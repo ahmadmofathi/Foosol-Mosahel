@@ -141,7 +141,7 @@
     z-index: 999;
     /* Keep it on top */
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     /* Vertically center */
     overflow-x: visible;

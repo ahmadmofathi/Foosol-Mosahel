@@ -783,7 +783,7 @@ h3 {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
-  justify-content: end;
+  justify-content: flex-end;
 
 
 }

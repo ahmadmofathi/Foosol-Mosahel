@@ -114,6 +114,7 @@ export class TeacherDashComponent implements AfterViewInit {
 
   onEndLecture() {
     this.isLectureStarted = false;
+    this.remainingTime = null;
     console.log('Lecture ended');
     this.SetStatas();
     this.stopCountdown();
@@ -497,7 +498,7 @@ export class TeacherDashComponent implements AfterViewInit {
   canDraw: boolean = true; // Control drawing state
   private canvasHistory: string[] = [];
   private historyIndex = -1;
-  images!: string[];
+  images: string[] =[];
   videos!: string[];
   className: string | null = '';
   gradeName: string | null = '';
@@ -582,7 +583,7 @@ export class TeacherDashComponent implements AfterViewInit {
     const canvas = this.canvasRef.nativeElement;
     const parentWidth = canvas.parentElement?.clientWidth || 0;
     this.canvasWidth = parentWidth;
-    this.canvasHeight = this.canvasWidth * (500 / 700);
+    this.canvasHeight = this.canvasWidth * (280 / 700);
     canvas.width = this.canvasWidth;
     canvas.height = this.canvasHeight;
     this.ctx = canvas.getContext('2d');
@@ -726,6 +727,8 @@ export class TeacherDashComponent implements AfterViewInit {
 
   clear() {
     if (this.ctx) {
+      this.toolsDisabled = false;
+      this.canDraw = true;
       const canvas = this.canvasRef.nativeElement;
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
@@ -815,6 +818,142 @@ export class TeacherDashComponent implements AfterViewInit {
       }
     }
   }
+
+  currentIndex: number = 0; // Track the current image index
+  toolsDisabled = false; // State to disable tools
+  isImagesLoaded = false;
+  drawImageOnCanvas() {
+    this.toolsDisabled = true;
+    this.togglenotdraw();
+    if (this.images.length === 0 || !this.ctx) return;
+  
+    const imageUrl = this.images[this.currentIndex];
+    const img = new Image();
+    img.src = imageUrl; // Directly using the image URL
+    this.isImagesLoaded = true;
+    img.onload = () => {
+      const canvas = this.canvasRef.nativeElement;
+      this.ctx!.clearRect(0, 0, canvas.width, canvas.height);
+      this.ctx!.drawImage(img, 0, 0, canvas.width, canvas.height); // Draw the image
+    };
+    img.onerror = () => {
+      console.error('Error loading the image.');
+    };
+  }
+    
+  nextImage() {
+    if (this.images.length === 0) return;
+    this.currentIndex = (this.currentIndex + 1) % this.images.length; // Wrap around to the first image
+    this.drawImageOnCanvas();
+  }
+
+  // Navigate to the previous image
+  previousImage() {
+    if (this.images.length === 0) return;
+    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length; // Wrap around to the last image
+    this.drawImageOnCanvas();
+  }
+
+  currentVideoIndex: number = 0;
+  isVideoPlaying: boolean = false;
+  videoElement:any;
+  // Videos 
+  displayVideo(index: number = 0) {
+    const videoUrl = this.videos[index];
+    
+    this.addNewBoard();
+    
+    // Create and configure the video element
+    this.videoElement = document.createElement('video');
+    this.videoElement.src = videoUrl;
+    this.videoElement.autoplay = true;
+    this.videoElement.loop = false;
+    this.videoElement.muted = false;
+    this.videoElement.controls = true;
+  
+    this.videoElement.onplay = () => {
+      this.isVideoPlaying = true;
+      this.drawVideoOnCanvas(this.videoElement);
+    };
+  
+    this.videoElement.onpause = () => {
+      this.isVideoPlaying = false;
+    };
+  
+    this.videoElement.onerror = () => {
+      console.error('Error loading video:', videoUrl);
+    };
+  }
+  
+
+  // Draw the video frame-by-frame onto the canvas
+  drawVideoOnCanvas(video: HTMLVideoElement) {
+    const canvas = this.canvasRef.nativeElement;
+    if (!this.ctx) {
+      this.ctx = canvas.getContext('2d')!;
+    }
+  
+    const drawFrame = () => {
+      if (!this.isVideoPlaying) return;
+  
+      this.ctx?.clearRect(0, 0, canvas.width, canvas.height);
+      this.ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
+      requestAnimationFrame(drawFrame);
+    };
+  
+    drawFrame();
+  }
+  
+  removeBoard(boardId: number) {
+    const boardIndex = this.boards.findIndex(board => board.id === boardId);
+  
+    if (boardIndex === -1) {
+      console.warn(`Board with ID ${boardId} does not exist.`);
+      return;
+    }
+    
+    // Prevent removal if there's only one board remaining
+    if (this.boards.length === 1) {
+      console.warn("Cannot remove the last remaining board.");
+      return;
+    }
+    if (boardId === 2 && this.videoElement) {
+    this.videoElement.pause();
+    this.videoElement.src = ""; // Unload video
+    this.videoElement = null;  // Remove reference to video element
+    this.isVideoPlaying = false;
+    console.log("Video playback stopped and resources cleared for board.");
+  }
+    this.clearBoardResources(boardId);
+    // Remove the board from the list
+    this.boards.splice(boardIndex, 1);
+  
+    // Handle focus after removing a board
+    if (this.boards.length > 0) {
+      const newActiveBoardIndex = boardIndex > 0 ? boardIndex - 1 : 0;
+      this.switchBoard(this.boards[newActiveBoardIndex].id);
+    }
+  
+    console.log(`Board with ID ${boardId} has been removed.`);
+  }
+  clearBoardResources(boardId: number) {
+    if (this.activeBoard === boardId) {
+      // Clear the canvas
+      if (this.ctx) {
+        this.ctx.clearRect(0, 0, this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
+      }
+  
+      // Stop and remove the video element if playing
+      if (this.videoElement) {
+        this.videoElement.pause();
+        this.videoElement.src = ""; // Unload the video source
+        this.videoElement = null;  // Remove reference to the video element
+      }
+  
+      console.log(`Resources for board ID ${boardId} have been cleared.`);
+    }
+  }
+
   getLessonRecourses() {
     const lessonId = localStorage.getItem('selectedLessonId');
     if (lessonId) {
@@ -824,9 +963,11 @@ export class TeacherDashComponent implements AfterViewInit {
           this.images = response
             .filter((res: any) => this.lessonDataService.isImage(res.resource))
             .map((res: any) => `${environment.resourceUrl}${res.resource}`);
+            console.log(this.images)
           this.videos = response
             .filter((res: any) => this.lessonDataService.isVideo(res.resource))
             .map((res: any) => `${environment.resourceUrl}${res.resource}`);
+            console.log(this.videos)
         },
         error: (error) => {
           console.error('Error fetching lesson images:', error);
@@ -835,3 +976,4 @@ export class TeacherDashComponent implements AfterViewInit {
     }
   }
 }
+

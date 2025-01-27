@@ -14,6 +14,9 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "../publish",
+            "allowedCommonJsDependencies": [
+              "@ckeditor/ckeditor5-build-classic"
+            ],
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [

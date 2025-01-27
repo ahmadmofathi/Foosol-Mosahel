@@ -256,7 +256,7 @@
 
 .content-container2 {
     display: flex;                     /* Use Flexbox for layout */
-    justify-content: end;          /* Center the content horizontally */
+    justify-content: flex-end;          /* Center the content horizontally */
     align-items: center;              
     margin-bottom: 100px;
     
@@ -264,7 +264,7 @@
 
 .content-container3 {
     display: flex;                     /* Use Flexbox for layout */
-    justify-content: end;          /* Center the content horizontally */
+    justify-content: flex-end;          /* Center the content horizontally */
     align-items: center;              
     margin-bottom: 10px;
     

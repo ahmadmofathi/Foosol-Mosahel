@@ -142,7 +142,7 @@
   }
   .modal-header{
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
   }
   /* 
   
@@ -493,7 +493,7 @@
   }
   
   /* .custom-pagination{
-    justify-content: end;
+    justify-content: flex-end;
     padding: 20px 20px;
     font-size: small;
   }
@@ -535,7 +535,7 @@
   }
 
   .custom-pagination{
-    justify-content: end;
+    justify-content: flex-end;
     padding: 20px 20px;
     font-size: small;
   }
@@ -557,7 +557,7 @@
   width: 100%; /* Full width of the viewport */
   z-index: 999; /* Keep it on top */
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center; /* Vertically center */
   overflow-x: visible; /* Allow horizontal overflow if needed */
   background: transparent; /* Optional: make the wrapper background transparent */

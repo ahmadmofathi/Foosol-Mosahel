@@ -7,18 +7,16 @@
         class="container-fluid justify-content-center align-items-center"
         *ngIf="isTeacherPhotoVisible"
       >
-        <div class="row justify-content-between">
-          <div class="col-12 justify-content-between">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-6">
+            <p class="align-items-center">----- : المعلم</p>
+          </div>
+          <div class="col-6 justify-content-between">
             <img
               src="../../../../assets/images/human.png"
               class="c_img"
-              style="width: 56%"
+              style="width: 45%"
             />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <p class="align-items-center">----- : المعلم</p>
           </div>
         </div>
       </div>
@@ -34,68 +32,52 @@
           <span class="am-pm">ص</span>
         </div>
 
+        <div class="time" *ngIf="isDateVisible">
+          <span class="current-date mx-1">11/9/2024</span>
+        </div>
         <!-- Heading and Button: Center -->
         <div class="text-center flex-grow-1">
+          <h3
+            *ngIf="isH3Visible"
+            style="color: #918b73; font-size: medium;margin: 0;"
+          >
+            الدرس الثاني : قيام الدولة الأموية
+          </h3>
+        </div>
+        <div class="text-center flex-grow-1 m-0">
           <h2 *ngIf="isH2Visible" class="arabic-text">
             بسم الله الرحمن الرحيم
           </h2>
         </div>
 
         <!-- Button Section: Right -->
-        <div class="start-btn text-end">
-          <button
-            class="btn btn-primary"
-            [ngStyle]="{
-              'background-color': '#F9EFBC',
-              color: 'black',
-              'font-weight': 'bold',
-              border: '1px solid #fa6707',
-              'border-radius': '0'
-            }"
-            (click)="isLectureStarted ? onEndLecture() : onStartLecture()"
-          >
-            {{ isLectureStarted ? "انهاء الحصة" : "ابدأ الحصة" }}
-          </button>
-        </div>
+        <div class="timer-section text-center m-0 mx-1" *ngIf="isTimerVisible">
+          <img
+            src="../../../../assets/images/clock.png"
+            alt="Clock Icon"
+            class="clock-icon"
+          />
+          <input
+            type="number"
+            class="time-remaining"
+            *ngIf="!isLectureStarted"
+            [(ngModel)]="remainingMinutes"
+            (blur)="onBlur()"
+            placeholder="Enter minutes"
+          />
+          <input
+            type="text"
+            disabled
+            class="time-remaining"
+            *ngIf="remainingTime!=null && isLectureStarted"
+            [(ngModel)]="remainingTime"
+            (blur)="onBlur()"
+            placeholder="Enter minutes"
+          />
       </div>
-
-      <!-- Second Line -->
-      <div class="d-flex justify-content-between align-items-center mb-1">
-        <!-- Date Section: Left -->
-        <div class="time" *ngIf="isDateVisible">
-          <span class="current-date">11/9/2024</span>
-        </div>
-
-        <!-- Lesson Name: Center -->
-        <div class="text-center flex-grow-1">
-          <h3
-            *ngIf="isH3Visible"
-            style="color: #918b73; font-size: larger; padding-right: 80px"
-          >
-            الدرس الثاني : قيام الدولة الأموية
-          </h3>
-        </div>
-      </div>
-
-      <!-- Third Line: Timer -->
-      <div class="timer-section text-center" *ngIf="isTimerVisible">
-        <img
-          src="../../../../assets/images/clock.png"
-          alt="Clock Icon"
-          class="clock-icon"
-        />
-        <input
-          type="number"
-          class="time-remaining"
-          [(ngModel)]="remainingMinutes"
-          (blur)="onBlur()"
-          placeholder="Enter minutes"
-        />
-
-        <span *ngIf="remainingTime !== null" class="countdown-timer">
-          {{ remainingTime }} د
-        </span>
-      </div>
+    </div>
+    
+    
 
       <!-- Progress Bar Section -->
       <div class="progress-container" *ngIf="isProgressVisible">
@@ -103,8 +85,8 @@
           <div class="progress-icon" id="step2">
             <img
               src="../../../../assets/images/closeBox.png"
-              width="50px"
-              height="30px"
+              width="20px"
+              height="15px"
             />
           </div>
         </div>
@@ -113,8 +95,8 @@
           <div class="progress-icon" id="step3">
             <img
               src="../../../../assets/images/closeBox.png"
-              width="50px"
-              height="30px"
+              width="20px"
+              height="15px"
             />
           </div>
         </div>
@@ -123,11 +105,27 @@
           <div class="progress-icon" id="step1">
             <img
               src="../../../../assets/images/openBox.png"
-              width="50px"
-              height="30px"
+              width="25px"
+              height="15px"
             />
           </div>
         </div>
+      </div>
+      <div class="start-btn text-end my-2">
+        <button
+          class="btn btn-primary"
+          [ngStyle]="{
+            'background-color': '#F9EFBC',
+            color: 'black',
+            'font-weight': 'bold',
+            border: '1px solid #fa6707',
+            'border-radius': '0',
+            'font-size': '10px'
+          }"
+          (click)="isLectureStarted ? onEndLecture() : onStartLecture()"
+        >
+          {{ isLectureStarted ? "انهاء الحصة" : "ابدأ الحصة" }}
+        </button>
       </div>
     </div>
 
@@ -174,14 +172,14 @@
                 border-radius: 15px;
                 padding-top: 0px;"
 
-              />
-
-              <span *ngIf="remainingTimeSec !== null" class="countdown-timer">
-                {{ remainingTimeSec }} ث
-              </span>
-
-            </div> -->
-          </div>
+                />
+                
+                <span *ngIf="remainingTimeSec !== null" class="countdown-timer">
+                  {{ remainingTimeSec }} ث
+                </span>
+                
+              </div> -->
+            </div>
         </div>
       </div>
     </div>
@@ -226,7 +224,7 @@
                       <img
                         src="../../../../assets/images/undoB.png"
                         alt="Right Icon"
-                        width="30px"
+                        width="25px"
                       />
                     </div>
                   </div>
@@ -234,33 +232,52 @@
 
                 <div class="btn_l">
                   <div class="c_btnr justify-content-center">
+                    <!-- <div style="margin-top: 10px; text-align: center;">
+                      <button (click)="previousVideo()" [disabled]="currentVideoIndex === 0">
+                        Previous
+                      </button>
+                      <button (click)="this.videoElement.play()">
+                        Play
+                      </button>
+                      <button
+                      (click)="nextVideo()"
+                      [disabled]="currentVideoIndex === videos.length - 1"
+                      >
+                      Next
+                    </button>
+                  </div> -->
+                  <!-- <button (click)="this.videoElement.pause()">
+                    Stop
+                  </button> -->
+                    <button class="btn custom-button2 m-1 px-3 py-1" style="width:fit-content" *ngIf="toolsDisabled" (click)="previousImage()">السابق</button>
+                    <button class="btn custom-button2 m-1 p-3 py-1" (click)="nextImage()" *ngIf="toolsDisabled" style="width:fit-content">التالي</button>
                     <img
                       src="../../../../assets/images/cross.png"
-                      width="25px;"
+                      width="20px;"
                       style="margin: 4px"
                     />
                   </div>
 
                   <div class="c_btnr justify-content-center">
                     <img
-                      src="../../../../assets/images/check.png"
-                      width="25px;"
-                      style="margin: 4px"
+                    src="../../../../assets/images/check.png"
+                    width="20px;"
+                    style="margin: 4px"
                     />
                   </div>
-
+                  
                   <div class="c_btnr justify-content-center">
                     <button
-                      class="btn custom-button"
-                      [ngClass]="{ active: isInteractionActive }"
-                      (click)="showBehavior('s2'); toggleButton('interaction')"
+                    class="btn custom-button"
+                    [ngClass]="{ active: isInteractionActive }"
+                    (click)="showBehavior('s2'); toggleButton('interaction')"
                     >
-                      سلوكيات
-                    </button>
-                  </div>
-                  <div class="c_btnr justify-content-center">
-                    <button
-                      class="btn custom-button"
+                    سلوكيات
+                  </button>
+                </div>
+                <div class="c_btnr justify-content-center">
+                  <button
+                  class="btn custom-button"
                       [ngClass]="{ active: isBehaviorActive }"
                       (click)="showBehavior('s3'); toggleButton('behavior')"
                     >
@@ -325,7 +342,7 @@
                         />
                         <img
                           src="../../../../assets/images/search.png"
-                          width="30px"
+                          width="25px"
                           class="search-icon"
                         />
                       </div>
@@ -342,7 +359,7 @@
                       >
                         <img
                           src="../../../../assets/images/settingsBlue.png "
-                          width="30px"
+                          width="25px"
                         />
                         <!-- <i class="fa-solid fa-gear" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> -->
                       </div>
@@ -363,7 +380,7 @@
       <div class="container">
         <div
           class="row justify-content-center align-items-center"
-          style="padding: 0 px; background-color: #fff; border-radius: 10px"
+          style="padding: 0 px; background-color: #fff; border-radius: 10px;height: 50vh;"
         >
           <!-- Left Tool Panel -->
           <div class="tools-panel justify-content-center align-items-center">
@@ -390,6 +407,7 @@
                 <div class="col-12 justify-content-center align-items-center">
                   <button
                     class="c_btn"
+                    [disabled]="toolsDisabled"
                     (click)="togglePen()"
                     style="width: 100%; display: flex; justify-content: center"
                     src="https://i.ibb.co/9q6ZxqX/pencil.png"
@@ -409,6 +427,7 @@
                 <div class="col-12 justify-content-center align-items-center">
                   <button
                     class="c_btn"
+                    [disabled]="toolsDisabled"
                     (click)="fileInput.click()"
                     style="width: 100%; display: flex; justify-content: center"
                   >
@@ -433,6 +452,7 @@
                 <div class="col-12 justify-content-center align-items-center">
                   <button
                     class="c_btn"
+                    [disabled]="toolsDisabled"
                     (click)="togglePen()"
                     style="width: 100%; display: flex; justify-content: center"
                     src="https://i.ibb.co/9q6ZxqX/pencil.png"
@@ -451,6 +471,7 @@
                 <div class="col-12 justify-content-center align-items-center">
                   <button
                     class="c_btn"
+                    [disabled]="toolsDisabled"
                     (click)="redo()"
                     style="width: 100%; display: flex; justify-content: center"
                   >
@@ -467,6 +488,7 @@
                   <button
                     class="c_btn"
                     (click)="undo()"
+                    [disabled]="toolsDisabled"
                     style="width: 100%; display: flex; justify-content: center"
                   >
                     <img
@@ -482,6 +504,7 @@
                   <button
                     class="c_btn"
                     (click)="toggleEraser()"
+                    [disabled]="toolsDisabled"
                     style="width: 100%; display: flex; justify-content: center"
                   >
                     <img
@@ -503,21 +526,32 @@
                   </button>
                 </div>
               </div>
-
+              
               <div class="row justify-content-center align-items-center">
                 <div class="col-12justify-content-center align-items-center">
                   <input
-                    class="c_btn"
-                    type="color"
-                    [(ngModel)]="color"
-                    title="Color"
-                    style="width: 100%; display: flex; justify-content: center"
+                  class="c_btn"
+                  type="color"
+                  [(ngModel)]="color"
+                  title="Color"
+                  style="width: 100%; display: flex; justify-content: center"
                   />
+                </div>
+              </div>
+              <div class="row justify-content-center align-items-center" *ngIf="videoElement">
+                <div class="col-12 justify-content-center align-items-center">
+                  <button
+                    class="c_btn"
+                    (click)="removeBoard(activeBoard)"
+                    style="width: 100%; display: flex; justify-content: center;color:red;"
+                  >
+                    <span>X</span>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-
+          
           <div class="" style="width: 95%">
             <div class="container">
               <canvas
@@ -533,7 +567,7 @@
                 style="
                   background-color: #fff;
                   width: 100%;
-                  height: auto;
+                  height: 50vh;
                   padding: 0px;
                 "
               ></canvas>
@@ -666,7 +700,7 @@
     class="row content-wrapper justify-content-center align-items-center footer-line"
   >
     <div
-      class="footer-container d-flex align-items-center justify-content-between"
+      class="footer-container d-flex col-md-12 align-items-center justify-content-between"
     >
       <!-- <div class="icon-container" routerLink="/main">
         <div class="icon-bg2" >
@@ -675,7 +709,7 @@
       </div> -->
 
       <!-- Icon Slider Section -->
-      <div class="icon-slider d-flex align-items-center">
+      <div class="icon-slider col-md-6 d-flex align-items-center">
         <div class="icon-wrapper d-flex align-items-center">
           <div class="icon-container">
             <div class="icon-bg2">
@@ -700,9 +734,11 @@
 
           <div
             class="icon-container"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop2"
+            
+            (click)="drawImageOnCanvas()"
           >
+          <!-- data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop2" -->
             <div class="icon-bg">
               <img
                 src="../../../../assets/images/dash.png"
@@ -725,9 +761,7 @@
           </div>
 
           <div
-            class="icon-container"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop3"
+            class="icon-container" (click)="displayVideo();"
           >
             <div class="icon-bg">
               <img
@@ -761,29 +795,29 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Button Section -->
-      <div class="button-group d-flex align-items-center">
         <button class="btn custom-button4 mx-1">
           <i class="fa-solid fa-arrow-left"></i> ( o / o )
           <i class="fa-solid fa-arrow-right"></i>
         </button>
+      </div>
 
-        <button class="btn custom-button3 mx-1" (click)="chooseRandomStudent()">
-          إختر
-        </button>
-
-        <button class="btn custom-button2 mx-1" (click)="toggleStudentList()">
-          <i
-            class="fa-solid"
-            [ngClass]="{
-              'fa-arrow-up': !isStudentListVisible,
-              'fa-arrow-down': isStudentListVisible
-            }"
-          ></i>
-          الطلاب
-        </button>
+      <!-- Button Section -->
+      <div class="button-group d-flex col-md-4 justify-content-center align-items-center">
+        <div class="button-container">
+          <button class="btn custom-button3" (click)="chooseRandomStudent()">
+            إختر
+          </button>
+          <button class="btn custom-button2" (click)="toggleStudentList()">
+            <i
+              class="fa-solid"
+              [ngClass]="{
+                'fa-arrow-up': !isStudentListVisible,
+                'fa-arrow-down': isStudentListVisible
+              }"
+            ></i>
+            الطلاب
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1490,12 +1524,10 @@
 <div
   class="modal fade"
   id="staticBackdrop3"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
->
+>  
+<!-- data-bs-backdrop="static"
+  data-bs-keyboard="false" -->
   <div class="modal-dialog" style="max-width: 60%">
     <div class="modal-content">
       <div class="modal-header">

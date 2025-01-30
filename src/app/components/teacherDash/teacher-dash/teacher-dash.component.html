@@ -1,5 +1,5 @@
 <!-- Main Container -->
-<div class="container-fluid">
+<div class="container-fluid full-screen">
   <div class="row justify-content-between user-navbar">
     <!-- Left Box -->
     <div class="col-2 box left-box justify-content-center align-items-center">
@@ -184,8 +184,13 @@
       </div>
     </div>
   </div>
-  <div class="row toolsbar justify-content-between">
-    <div class="col-12">
+  <div [ngClass]="{ 'workspace-show': showNav, 'workspace': !showNav }">
+    <div class="row toolsbar justify-content-between">
+      <button (click)="toggleNavbar()" class="arrow">
+        <i class="fa-solid fa-angles-up" *ngIf="showNav"></i>
+        <i class="fa-solid fa-angles-down" *ngIf="!showNav"></i>
+      </button>
+      <div class="col-12">
       <div class="container-fluid toolbarin">
         <div class="row justify-content-between">
           <div class="col_c1">
@@ -207,8 +212,8 @@
                   </div>
                   <!-- <div class="c_btnl justify-content-center">
                     <button
-                      class="btn custom-button"
-                      [ngClass]="{ active: activeBoard === 1 }"
+                    class="btn custom-button"
+                    [ngClass]="{ active: activeBoard === 1 }"
                       (click)="switchBoard(1)"
                     >
                       1
@@ -249,8 +254,8 @@
                   <!-- <button (click)="this.videoElement.pause()">
                     Stop
                   </button> -->
-                    <button class="btn custom-button2 m-1 px-3 py-1" style="width:fit-content" *ngIf="toolsDisabled" (click)="previousImage()">السابق</button>
-                    <button class="btn custom-button2 m-1 p-3 py-1" (click)="nextImage()" *ngIf="toolsDisabled" style="width:fit-content">التالي</button>
+                    <!-- <button class="btn custom-button2 m-1 px-3 py-1" style="width:fit-content" *ngIf="toolsDisabled" (click)="previousImage()">السابق</button>
+                    <button class="btn custom-button2 m-1 p-3 py-1" (click)="nextImage()" *ngIf="toolsDisabled" style="width:fit-content">التالي</button> -->
                     <img
                       src="../../../../assets/images/cross.png"
                       width="20px;"
@@ -380,7 +385,7 @@
       <div class="container">
         <div
           class="row justify-content-center align-items-center"
-          style="padding: 0 px; background-color: #fff; border-radius: 10px;height: 50vh;"
+          style="padding: 0 px; background-color: #fff; border-radius: 10px;height: 70vh;"
         >
           <!-- Left Tool Panel -->
           <div class="tools-panel justify-content-center align-items-center">
@@ -552,7 +557,14 @@
             </div>
           </div>
           
-          <div class="" style="width: 95%">
+          <div class="" style="width: 95%;position: relative;">
+            <div class="image-resources d-flex justify-content-center" *ngIf="isImagesLoaded">
+              <img class="image-resource" [src]="images[currentIndex]" alt="image">
+            </div>
+            <div class="image-resources d-flex justify-content-center" *ngIf="isVideoPlaying">
+              <video class="image-resource" [src]="videos[currentVideoIndex]" alt="image" controls>
+              </video>
+            </div>
             <div class="container">
               <canvas
                 #canvas
@@ -567,7 +579,7 @@
                 style="
                   background-color: #fff;
                   width: 100%;
-                  height: 50vh;
+                  height: 70vh;
                   padding: 0px;
                 "
               ></canvas>
@@ -625,7 +637,7 @@
                     <div
                       class="row"
                       *ngFor="let students of studentData; let i = index"
-                    >
+                      >
                       <div
                         class="student-item"
                         *ngFor="let student of displayedStudents; let i = index"
@@ -695,7 +707,7 @@
       </div>
     </div>
   </div>
-
+  
   <div
     class="row content-wrapper justify-content-center align-items-center footer-line"
   >
@@ -734,10 +746,10 @@
 
           <div
             class="icon-container"
-            
-            (click)="drawImageOnCanvas()"
-          >
-          <!-- data-bs-toggle="modal"
+            (click)="imagesToggle()"
+            >
+            <!--(click)="drawImageOnCanvas()"
+          data-bs-toggle="modal"
           data-bs-target="#staticBackdrop2" -->
             <div class="icon-bg">
               <img
@@ -761,7 +773,7 @@
           </div>
 
           <div
-            class="icon-container" (click)="displayVideo();"
+          class="icon-container" (click)="videosToggle();"
           >
             <div class="icon-bg">
               <img
@@ -795,9 +807,13 @@
             </div>
           </div>
         </div>
-        <button class="btn custom-button4 mx-1">
-          <i class="fa-solid fa-arrow-left"></i> ( o / o )
-          <i class="fa-solid fa-arrow-right"></i>
+        <button class="btn custom-button4 mx-1" *ngIf="isImagesLoaded">
+          <i class="fa-solid fa-arrow-left" (click)="previousImage()"></i> ( {{ this.currentIndex+1 }} / {{ this.images.length}} )
+          <i class="fa-solid fa-arrow-right" (click)="nextImage()"></i>
+        </button>
+        <button class="btn custom-button4 mx-1" *ngIf="isVideoPlaying">
+          <i class="fa-solid fa-arrow-left" (click)="previousVideo()"></i> ( {{ this.currentVideoIndex+1 }} / {{ this.videos.length}} )
+          <i class="fa-solid fa-arrow-right" (click)="nextVideo()"></i>
         </button>
       </div>
 
@@ -822,6 +838,8 @@
     </div>
   </div>
 </div>
+
+  </div>
 <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Launch static backdrop modal

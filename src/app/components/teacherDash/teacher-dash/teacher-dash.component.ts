@@ -583,7 +583,7 @@ export class TeacherDashComponent implements AfterViewInit {
     const canvas = this.canvasRef.nativeElement;
     const parentWidth = canvas.parentElement?.clientWidth || 0;
     this.canvasWidth = parentWidth;
-    this.canvasHeight = this.canvasWidth * (280 / 700);
+    this.canvasHeight = this.canvasWidth * (380 / 700);
     canvas.width = this.canvasWidth;
     canvas.height = this.canvasHeight;
     this.ctx = canvas.getContext('2d');
@@ -822,87 +822,107 @@ export class TeacherDashComponent implements AfterViewInit {
   currentIndex: number = 0; // Track the current image index
   toolsDisabled = false; // State to disable tools
   isImagesLoaded = false;
-  drawImageOnCanvas() {
-    this.toolsDisabled = true;
-    this.togglenotdraw();
-    if (this.images.length === 0 || !this.ctx) return;
-  
-    const imageUrl = this.images[this.currentIndex];
-    const img = new Image();
-    img.src = imageUrl; // Directly using the image URL
-    this.isImagesLoaded = true;
-    img.onload = () => {
-      const canvas = this.canvasRef.nativeElement;
-      this.ctx!.clearRect(0, 0, canvas.width, canvas.height);
-      this.ctx!.drawImage(img, 0, 0, canvas.width, canvas.height); // Draw the image
-    };
-    img.onerror = () => {
-      console.error('Error loading the image.');
-    };
+  imagesToggle(){
+    this.isImagesLoaded = !this.isImagesLoaded;
+    this.toolsDisabled = !this.toolsDisabled;
+    this.isVideoPlaying = false;
   }
+  // drawImageOnCanvas() {
+  //   this.toolsDisabled = true;
+  //   this.togglenotdraw();
+  //   if (this.images.length === 0 || !this.ctx) return;
+  
+  //   const imageUrl = this.images[this.currentIndex];
+  //   const img = new Image();
+  //   img.src = imageUrl; // Directly using the image URL
+  //   this.isImagesLoaded = true;
+  //   img.onload = () => {
+  //     const canvas = this.canvasRef.nativeElement;
+  //     this.ctx!.clearRect(0, 0, canvas.width, canvas.height);
+  //     this.ctx!.drawImage(img, 0, 0, canvas.width, canvas.height); // Draw the image
+  //   };
+  //   img.onerror = () => {
+  //     console.error('Error loading the image.');
+  //   };
+  // }
     
   nextImage() {
     if (this.images.length === 0) return;
     this.currentIndex = (this.currentIndex + 1) % this.images.length; // Wrap around to the first image
-    this.drawImageOnCanvas();
+    // this.drawImageOnCanvas();
   }
 
   // Navigate to the previous image
   previousImage() {
     if (this.images.length === 0) return;
     this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length; // Wrap around to the last image
-    this.drawImageOnCanvas();
+    // this.drawImageOnCanvas();
   }
 
   currentVideoIndex: number = 0;
   isVideoPlaying: boolean = false;
   videoElement:any;
   // Videos 
-  displayVideo(index: number = 0) {
-    const videoUrl = this.videos[index];
-    
-    this.addNewBoard();
-    
-    // Create and configure the video element
-    this.videoElement = document.createElement('video');
-    this.videoElement.src = videoUrl;
-    this.videoElement.autoplay = true;
-    this.videoElement.loop = false;
-    this.videoElement.muted = false;
-    this.videoElement.controls = true;
-  
-    this.videoElement.onplay = () => {
-      this.isVideoPlaying = true;
-      this.drawVideoOnCanvas(this.videoElement);
-    };
-  
-    this.videoElement.onpause = () => {
-      this.isVideoPlaying = false;
-    };
-  
-    this.videoElement.onerror = () => {
-      console.error('Error loading video:', videoUrl);
-    };
+  videosToggle(){
+    this.isVideoPlaying = !this.isVideoPlaying;
+    this.toolsDisabled = !this.toolsDisabled;
+    this.isImagesLoaded = false;
   }
+  nextVideo() {
+    if (this.videos.length === 0) return;
+    this.currentVideoIndex = (this.currentVideoIndex + 1) % this.videos.length; // Wrap around to the first video
+  }
+
+  // Navigate to the previous Video
+  previousVideo() {
+    if (this.videos.length === 0) return;
+    this.currentVideoIndex = (this.currentVideoIndex - 1+ this.images.length) % this.videos.length; // Wrap around to the first video
+  }
+  // displayVideo(index: number = 0) {
+  //   const videoUrl = this.videos[index];
+    
+  //   this.addNewBoard();
+    
+  //   // Create and configure the video element
+  //   this.videoElement = document.createElement('video');
+  //   this.videoElement.src = videoUrl;
+  //   this.videoElement.autoplay = true;
+  //   this.videoElement.loop = false;
+  //   this.videoElement.muted = false;
+  //   this.videoElement.controls = true;
+  
+  //   this.videoElement.onplay = () => {
+  //     this.isVideoPlaying = true;
+  //     this.drawVideoOnCanvas(this.videoElement);
+  //   };
+  
+  //   this.videoElement.onpause = () => {
+  //     this.isVideoPlaying = false;
+  //   };
+  
+  //   this.videoElement.onerror = () => {
+  //     console.error('Error loading video:', videoUrl);
+  //   };
+  // }
   
 
   // Draw the video frame-by-frame onto the canvas
-  drawVideoOnCanvas(video: HTMLVideoElement) {
-    const canvas = this.canvasRef.nativeElement;
-    if (!this.ctx) {
-      this.ctx = canvas.getContext('2d')!;
-    }
+  // drawVideoOnCanvas(video: HTMLVideoElement) {
+  //   const canvas = this.canvasRef.nativeElement;
+  //   if (!this.ctx) {
+  //     this.ctx = canvas.getContext('2d')!;
+  //   }
   
-    const drawFrame = () => {
-      if (!this.isVideoPlaying) return;
+  //   const drawFrame = () => {
+  //     if (!this.isVideoPlaying) return;
   
-      this.ctx?.clearRect(0, 0, canvas.width, canvas.height);
-      this.ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
-      requestAnimationFrame(drawFrame);
-    };
+  //     this.ctx?.clearRect(0, 0, canvas.width, canvas.height);
+  //     this.ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
+  //     requestAnimationFrame(drawFrame);
+  //   };
   
-    drawFrame();
-  }
+  //   drawFrame();
+  // }
   
   removeBoard(boardId: number) {
     const boardIndex = this.boards.findIndex(board => board.id === boardId);
@@ -974,6 +994,10 @@ export class TeacherDashComponent implements AfterViewInit {
         },
       });
     }
+  }
+  showNav:boolean=true;
+  toggleNavbar(){
+    this.showNav = !this.showNav;
   }
 }
 

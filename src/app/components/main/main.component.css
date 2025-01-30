@@ -95,9 +95,8 @@
   }
   
   .custom-form{
-    width: 65%;
-    margin-top: 20px;
-    
+    width: 75%;
+    margin-top: 15px;
   }
 
   .custom-box{
@@ -133,7 +132,7 @@
   }
   .custom-box-text{
     background-color: #fff;
-    padding: 20px;
+    padding: 15px;
     border-radius: 15px;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
     color:#001A72;
@@ -182,7 +181,7 @@
   .header {
     text-align: center;
     color:#6C6355;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     margin-top: 10px;
   }
  
@@ -439,9 +438,13 @@
       font-weight: 700 !important; 
       margin: 0; 
     }
-     
 
-
+    .modal-display{
+      background-color: #00000099;
+    }
+    .modal-dialog{
+      max-width: 60%;
+    }
     /* Modal Close Button Styles */
 .modal .close {
 position: absolute;
@@ -1048,3 +1051,8 @@ display: flex;
   cursor: pointer;
 }
 
+
+
+.padding-center{
+  padding-right:10%;
+}

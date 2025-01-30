@@ -1,4 +1,7 @@
 /* Container */
+.full-screen{
+  height: 100vh;
+}
 .teacher-board-container {
   /* padding: 15px; */
   height: auto; /* Adjust the height so the page is not full-screen */
@@ -259,6 +262,9 @@
     transform: translateY(0); /* Move to original position */
     opacity: 1; /* Fully visible */
   }
+}
+.list-group{
+  min-height: 350px;
 }
 .list-group-item {
   animation: slideUp 1s ease-in-out; /* Apply the animation */
@@ -524,7 +530,7 @@ input[type="radio"] {
   background-color: white;
   border-radius: 10px;
   min-height: 300px;
-  height: 50vh;
+  height: 70vh;
   margin-bottom: 5px;
 }
 
@@ -809,4 +815,35 @@ input[type="radio"] {
 
 .time{
   font-size: 11px;
+}
+
+.arrow{
+  color: #ccc;
+  background: none;
+  outline: none;
+  border: none;
+  margin: 5px;
+}
+.workspace{
+  transform: translateY(-150px);
+  transition: all 0.5s ease-in-out;
+}
+.workspace-show{
+  transform: translateY(0px);
+  transition: all 0.5s ease-in-out;
+}
+
+
+/* Resources */
+.image-resources{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+  z-index: 22;
+}
+.image-resource{
+  height: 95%;
 }

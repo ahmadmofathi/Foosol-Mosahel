@@ -280,6 +280,8 @@ export class MainComponent {
 
   onLessonClick(lessonId: string): void {
     this.selectedLessonName = lessonId;
+    this.selectedLessonId = lessonId;
+    this.fetchLessonResources();
     localStorage.setItem('selectedLessonId', lessonId);
     this.updateVisibleLessons();
     console.log('Selected Lesson Id:', lessonId);
@@ -455,25 +457,38 @@ export class MainComponent {
   lessonResources: any;
 
   fetchLessonResources(): void {
-    this.lessonService.getLessonResources().subscribe({
-      next: (response) => {
-        this.lessonResources = response;
-        // Ensure the lessonResources array has 9 elements, filling gaps with empty objects
-        while (this.lessonResources.length < 9) {
-          this.lessonResources.push({
-            id: '',
-            resource: '',
-            resourceType: '',
-            fileName: '',
-            isTeacherSet: false,
-          });
+    if(!this.selectedLessonId){
+      this.lessonService.getLessonResources().subscribe({
+        next: (response) => {
+          this.lessonResources = response;
+          // Ensure the lessonResources array has 9 elements, filling gaps with empty objects
+          while (this.lessonResources.length < 9) {
+            this.lessonResources.push({
+              id: '',
+              resource: '',
+              resourceType: '',
+              fileName: '',
+              isTeacherSet: false,
+            });
+          }
+          console.log('Lesson resources:', this.lessonResources);
+        },
+        error: (error) => {
+          console.error('Error fetching lesson resources:', error);
+        },
+      });
+    }
+    else{
+      this.lessonService.getSelectedLessonResources(this.selectedLessonId).subscribe({
+        next: (response) => {
+          this.lessonResources = response;
+          console.log(this.lessonResources)
+        },
+        error: (error) =>{
+          console.error('Error fetching lesson resources:', error);
         }
-        console.log('Lesson resources:', this.lessonResources);
-      },
-      error: (error) => {
-        console.error('Error fetching lesson resources:', error);
-      },
-    });
+      })
+    }
   }
 
   // Handle file and image display based on resource type

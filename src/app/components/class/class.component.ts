@@ -88,9 +88,8 @@ onSubmit() {
           });
 
           this.classForm.reset;
+          this.loadClasses();
           this.closeModalById('class');
-          
-
         } else {
           console.error('Unexpected response:', response);
         }

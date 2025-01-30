@@ -5,8 +5,8 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-10">
-                <div class="wrap d-md-flex" style="background-color: #fff;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);">
+                <div  class="wrap d-md-flex"
+                      style="background-color: #fff;box-shadow: 3px 2px 10px rgba(0, 0, 0, 0.7)">
                     <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
                         <!-- <div class="text w-100">
                             <h2>Welcome to login</h2>
@@ -19,7 +19,6 @@
                     <div class="w-100 ">
                         <h3 class="mb-4 text-end ">تسجيل دخول</h3>
                     </div>
-                           
                   </div>
 
                   <div class="row">
@@ -43,25 +42,40 @@
 
 
 
-                        <form class="signin-form" (ngSubmit)="login()" [formGroup]="loginForm">
+                  <form class="signin-form" (ngSubmit)="login()" [formGroup]="loginForm">
+                    <div class="alert alert-danger m-2" *ngIf="errorMessage">{{ errorMessage }}</div>
                       <div class="form-group mb-3 text-md-right">
                           <label class="label" for="name">رقم الهاتف</label>
                           <input type="phone" 
                           class="form-control text-md-right" 
                           placeholder="+966 0000" 
                           formControlName="phone" 
-                          required />                      </div>
-                <div class="form-group mb-3 text-md-right">
-                    <label class="label" for="password">كلمه السر</label>
-                  <input type="password" class="form-control text-md-right" formControlName="password" placeholder="********" required>
-                </div>
+                          required />
+                      </div>
 
-                <div class="form-check float-end mb-4">
-                    <label class="form-check-label pe-4" for="flexCheckChecked" >
-                      تذكرني
-                    </label>
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                  </div>
+                      <div class="form-group mb-3 text-md-right">
+                          <label class="label" for="password">كلمه السر</label>
+                          <input  [type]="isPasswordVisible ? 'text' : 'password'"
+                                  style="position: relative;"
+                                  class="form-control text-md-right" 
+                                  formControlName="password" 
+                                  placeholder="********" 
+                                  required>
+                          <button
+                          type="button"
+                          (click)="togglePasswordVisibility()"
+                          class="toggle-eye-button"
+                          >
+                            <i [class]="isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                          </button>
+                      </div>
+
+                      <div class="form-check float-end mb-4">
+                          <label class="form-check-label pe-4" for="flexCheckChecked" >
+                            تذكرني
+                          </label>
+                          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                      </div>
 
 
                 <div class="form-group">

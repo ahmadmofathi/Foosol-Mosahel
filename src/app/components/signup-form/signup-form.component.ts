@@ -40,8 +40,14 @@ export class SignupFormComponent {
     this.selectedRole = role;
   }
 
-  
+  isPasswordVisible: boolean = false;
+  togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
+  errorMessage: string = '';
   login() {
+    this.errorMessage = '';
     console.log(this.loginForm.value); // Debugging
     this.authService.login(this.loginForm.value).subscribe(
       (response) => {
@@ -53,6 +59,7 @@ export class SignupFormComponent {
       },
       (error) => {
         console.error('Login failed', error);
+        this.errorMessage = error.error;
       }
     );
   }

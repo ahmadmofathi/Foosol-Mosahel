@@ -104,17 +104,18 @@
     
           <!-- Other Navigation Icons -->
           <div class="nav-items">
-                <div class="nav-item " routerLink="/home">
-                <i class="">
-                  <img
-                    src="../../../assets/images/home-black.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>الرئيسية</span>
-              </div>
-            <div class="nav-item first-item" >
+            <!-- <div class="nav-item" routerLink="/home"> -->
+            <div class="nav-item">
+              <i class="">
+                <img
+                  src="../../../assets/images/home-black.png"
+                  height="30px"
+                  width="30px"
+                />
+              </i>
+              <span>الرئيسية</span>
+            </div>
+            <div class="nav-item first-item">
               <i class="">
                 <img
                   src="../../../assets/images/calendar-link.png"
@@ -124,7 +125,8 @@
               </i>
               <span>الجدول</span>
             </div>
-            <div class="nav-item" routerLink="/student">
+            <!-- <div class="nav-item" routerLink="/student"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../../assets/images/users-more.png"
@@ -134,7 +136,8 @@
               </i>
               <span>الطلاب</span>
             </div>
-            <div class="nav-item" routerLink="/studentPro">
+            <!-- <div class="nav-item" routerLink="/studentPro"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../../assets/images/users-more.png"
@@ -144,7 +147,8 @@
               </i>
               <span>ملف الطالب</span>
             </div>
-            <div class="nav-item" routerLink="/listDegree">
+            <!-- <div class="nav-item" routerLink="/package"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../../assets/images/chart-vertical.png"
@@ -154,7 +158,8 @@
               </i>
               <span>الكشوف</span>
             </div>
-            <div class="nav-item" routerLink="/paper">
+            <!-- <div class="nav-item" routerLink="/paper"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../assets/images/document-filled.png"
@@ -164,7 +169,8 @@
               </i>
               <span>اوراق العمل</span>
             </div>
-            <div class="nav-item" routerLink="/exam">
+            <!-- <div class="nav-item" routerLink="/exam"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../assets/images/document-filled.png"
@@ -174,7 +180,8 @@
               </i>
               <span>الاختبارات</span>
             </div>
-            <div class="nav-item" routerLink="/certificate">
+            <!-- <div class="nav-item" routerLink="/certificate"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../../assets/images/crown-1.png"
@@ -184,7 +191,8 @@
               </i>
               <span>الشهادات</span>
             </div>
-            <div class="nav-item" routerLink="/reason">
+            <!-- <div class="nav-item" routerLink="/reason"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../../assets/images/user-warning.png"
@@ -194,7 +202,8 @@
               </i>
               <span>تحويل طالب</span>
             </div>
-            <div class="nav-item" routerLink="/skills">
+            <!-- <div class="nav-item" routerLink="/skills"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../../assets/images/calendar-user.png"
@@ -214,7 +223,8 @@
               </i>
               <span> البنك</span>
             </div>
-            <div class="nav-item" routerLink="/curriculum">
+            <!-- <div class="nav-item" routerLink="/curriculum"> -->
+            <div class="nav-item">
               <i class="">
                 <img
                   src="../../../assets/images/document-plus.png"
@@ -224,10 +234,9 @@
               </i>
               <span> توزيع المنهج</span>
             </div>
-
           </div>
         </div>
-      </div>    
+      </div>
     </div>
 
     <div class="row container">
@@ -301,8 +310,66 @@
     <div class="my-form">
       <div class="form-group">
         <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="box add-class">
+          <div class="d-flex row align-items-center">
+            <div class="outline col-lg-3 col-md-4 col-sm-5 col-10" *ngFor="let class of classes" >
+              <div
+              class="box2 class-details classes-container"
+              
+              >
+              <div>
+                <div class="header-container">
+                  <div (click)="toggleNav()" class="icon-container2">
+                    <img
+                    src="../../../assets/images/settings.svg"
+                    alt="Settings"
+                    width="30px"
+                    height="20px"
+                    />
+                  </div>
+                  <p class="header-text">فصل : {{ class.classsName }}</p>
+                </div>
+                
+                <div class="small-nav" *ngIf="navOpen">
+                  <!-- Edit Icon and Text -->
+                  <div class="nav-item2">
+                    <img src="../../../assets/images/edit-4.png" alt="Edit" />
+                    <span>تعديل الفصل</span>
+                    <!-- Arabic text for "Edit class" -->
+                  </div>
+                  
+                  <!-- Delete Icon and Text -->
+                  <div class="nav-item2">
+                    <img
+                    src="../../../assets/images/trash-2.png"
+                    alt="Delete"
+                    />
+                    <span>حذف الفصل</span>
+                    <!-- Arabic text for "Delete class" -->
+                  </div>
+                </div>
+                
+                <div class="student-info-container">
+                  <div class="text-container">
+                      <p class="student-text">عدد الطلاب</p>
+                      <p class="student-number">35</p>
+                    </div>
+                    <div class="image-container">
+                      <img
+                      src="../../../assets/images/class.png"
+                        alt="students"
+                        width="50px"
+                        height="50px"
+                      />
+                    </div>
+                  </div>
+                  
+                  <button class="students-button" routerLink="/points">
+                    الطلاب
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="box add-class col-lg-3 col-md-4 col-sm-5 col-10">
               <div style="margin:20%"> 
               <img
                 src="../../../assets/images/plus-circle2.png"
@@ -310,64 +377,6 @@
                 data-bs-toggle="modal" data-bs-target="#class"
               />
               <p>إضافة فصل جديد</p>
-            </div>
-            </div>
-            <div class="outline" *ngFor="let class of classes" >
-              <div
-                class="box2 class-details classes-container"
-               
-              >
-                <div>
-                  <div class="header-container">
-                    <div (click)="toggleNav()" class="icon-container2">
-                      <img
-                        src="../../../assets/images/settings.svg"
-                        alt="Settings"
-                        width="30px"
-                        height="20px"
-                      />
-                    </div>
-                    <p class="header-text">فصل : {{ class.classsName }}</p>
-                  </div>
-  
-                  <div class="small-nav" *ngIf="navOpen">
-                    <!-- Edit Icon and Text -->
-                    <div class="nav-item2">
-                      <img src="../../../assets/images/edit-4.png" alt="Edit" />
-                      <span>تعديل الفصل</span>
-                      <!-- Arabic text for "Edit class" -->
-                    </div>
-  
-                    <!-- Delete Icon and Text -->
-                    <div class="nav-item2">
-                      <img
-                        src="../../../assets/images/trash-2.png"
-                        alt="Delete"
-                      />
-                      <span>حذف الفصل</span>
-                      <!-- Arabic text for "Delete class" -->
-                    </div>
-                  </div>
-  
-                  <div class="student-info-container">
-                    <div class="text-container">
-                      <p class="student-text">عدد الطلاب</p>
-                      <p class="student-number">35</p>
-                    </div>
-                    <div class="image-container">
-                      <img
-                        src="../../../assets/images/class.png"
-                        alt="students"
-                        width="50px"
-                        height="50px"
-                      />
-                    </div>
-                  </div>
-  
-                  <button class="students-button" routerLink="/points">
-                    الطلاب
-                  </button>
-                </div>
               </div>
             </div>
           </div>

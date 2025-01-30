@@ -74,7 +74,7 @@ export class LessonService {
     const authToken = localStorage.getItem('authToken');
     const teacherId = authToken ? this.getTeacherIdFromToken(authToken) : null;
     const lessonId = localStorage.getItem('selectedLessonId');
-
+    console.log(teacherId,lessonId);
     if (!teacherId || !lessonId) {
       console.error('Teacher ID or Lesson ID is missing');
       return new Observable();
@@ -89,7 +89,25 @@ export class LessonService {
 
     return this.http.get(url, { headers });
   }
+  getSelectedLessonResources(lessonId:string): Observable<any> {
+    const authToken = localStorage.getItem('authToken');
+    const teacherId = authToken ? this.getTeacherIdFromToken(authToken) : null;
+    // const lessonId = localStorage.getItem('selectedLessonId');
+    console.log(teacherId,lessonId);
+    if (!teacherId || !lessonId) {
+      console.error('Teacher ID or Lesson ID is missing');
+      return new Observable();
+    }
 
+    const url = `${this.apiUrl}Lesson/GetTeacherResources/${teacherId}/${lessonId}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+      // Authorization: `Bearer ${environment.authToken}`,
+    });
+
+    return this.http.get(url, { headers });
+  }
   deleteResource(resourceId: string): Observable<HttpResponse<string>> {
     const authToken = localStorage.getItem('authToken');
     const teacherId = authToken ? this.getTeacherIdFromToken(authToken) : null;

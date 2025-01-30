@@ -104,11 +104,9 @@
   background-color: #fff;
   border-radius: 12px;
   padding: 20px;
-  width: 23%; /* Set fixed width */
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-
+  margin: 4%;
 }
 
 .box2 {
@@ -127,8 +125,7 @@
 .outline{
   background-color: #001A72;
   border-radius: 15px;
-  width:23%;
-  margin: 10px;
+  margin: 4%;
   padding: 10px 0px;
 }
 

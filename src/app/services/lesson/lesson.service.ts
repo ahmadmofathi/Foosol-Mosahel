@@ -99,7 +99,7 @@ export class LessonService {
       return new Observable();
     }
 
-    const url = `${this.apiUrl}Lesson/GetTeacherResources/${teacherId}/${lessonId}`;
+    const url = `${this.apiUrl}Lesson/GetLessonResources${lessonId}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`,

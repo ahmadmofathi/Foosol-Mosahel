@@ -600,48 +600,40 @@
         <!-- Modal Body -->
         <div class="modal-body">
           <div class="full-width-box custom-full-width-grid">
-            <div
-              class="custom-card-wrapper"
-              *ngFor="let card of cards; let index = index"
-            >
-              <div
-                class="custom-card"
-                [ngClass]="{ 'hide-card': hiddenCards[index] }"
-              >
-                <i
-                  class="fa-solid fa-times custom-close-icon"
-                  (click)="removeFile(index)"
-                ></i>
-                <div
-                  class="custom-card-body"
-                  (click)="openEditFileInput(index)"
-                >
-                  <h5 class="custom-card-title">{{ card.title }}</h5>
-                  <img
-                    *ngIf="editUploadedImages[index]"
-                    [src]="editUploadedImages[index]"
-                    alt="Uploaded Image"
-                    class="thumbnail-image"
+            <div class="custom-card-wrapper" *ngFor="let card of cards; let index = index">
+              <div class="custom-card" [ngClass]="{ 'hide-card': hiddenCards[index] }" >
+                <div class="custom-card-body">
+                  <h5 class="custom-card-title" (click)="openEditFileInput(index)">{{ card.title }}</h5>
+        
+                  <!-- Display Multiple Images -->
+                  <div *ngFor="let img of editUploadedImages[index]; let fileIndex = index">
+                    <img [src]="img" alt="Uploaded Image" class="thumbnail-image" />
+                    <button class="btn btn-danger px-2 py-1" (click)="removeFile(index, fileIndex, 'image')">x</button>
+                  </div>
+        
+                  <!-- Display Multiple Files -->
+                  <ul *ngIf="editUploadedFiles[index] && editUploadedFiles[index].length > 0">
+                    <li *ngFor="let file of editUploadedFiles[index]; let fileIndex = index">
+                      {{ file.name }}
+                      <button class="btn btn-danger px-2 py-1" (click)="removeFile(index, fileIndex, 'file')">x</button>
+                    </li>
+                  </ul>
+        
+                  <!-- Hidden File Input -->
+                  <input
+                    type="file"
+                    #fileInput
+                    multiple
+                    style="display: none"
+                    (change)="onEditFileSelected($event, index)"
                   />
-                  <p
-                    *ngIf="
-                      editUploadedFiles[index] && !editUploadedImages[index]
-                    "
-                  >
-                    File Attached: {{ editUploadedFiles[index]?.name }}
-                  </p>
                 </div>
-                <input
-                  type="file"
-                  #editFileInput
-                  style="display: none"
-                  (change)="onEditFileSelected($event, index)"
-                />
               </div>
             </div>
           </div>
         </div>
-
+        
+        
         <!-- Modal Footer -->
         <div class="modal-footer">
           <button

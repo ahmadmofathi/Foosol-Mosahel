@@ -87,8 +87,8 @@ export class MainComponent {
   lessonForm: FormGroup;
 
   // Separate state for Edit modal
-  editUploadedFiles: (File | null)[] = Array(9).fill(null);
-  editUploadedImages: (string | null)[] = Array(9).fill(null);
+  // editUploadedFiles: (File | null)[] = Array(9).fill(null);
+  // editUploadedImages: (string | null)[] = Array(9).fill(null);
 
   // Separate state for Edit2 modal
   edit2UploadedFiles: (File | null)[] = Array(9).fill(null);
@@ -177,30 +177,34 @@ export class MainComponent {
   lessonName: string = '';
 
   onSubmitLesson() {
-    const lessonResources = this.editUploadedFiles
-      .filter((file) => file !== null)
-      .map((file) => file as File);
+    // Flatten `editUploadedFiles` object to get all files in a single array
+    const lessonResources: File[] = Object.values(this.editUploadedFiles)
+      .flat() // Merge all file arrays into one
+      .filter((file) => file !== null); // Remove any null values
+  
     console.log(lessonResources);
-
+  
     this.lessonService.uploadLesson(this.lessonName, lessonResources).subscribe(
       (response) => {
         this.toastr.success('لقد تم اضافه الدرس بنجاح !', 'نجاح', {
           timeOut: 2000,
         });
-
+  
         // Reset the form and variables
         this.lessonForm.reset();
         this.lessonName = '';
-        this.uploadedFiles = [];
-        this.uploadedImages = [];
+  
+        // Reset uploaded files for multiple files per card
+        this.editUploadedFiles = {};
+        this.editUploadedImages = {};
         this.hiddenCards = [];
-
+  
         // Close the modal
         this.closeModalById('Edit');
-
+  
         // Refresh lessons
         this.getAllLessons();
-
+  
         console.log('Lesson saved successfully:', response);
       },
       (error) => {
@@ -208,6 +212,7 @@ export class MainComponent {
       }
     );
   }
+  
 
   openEditModal() {
     this.lessonForm.reset(); // Reset the form
@@ -417,6 +422,9 @@ export class MainComponent {
       levelIds: [localStorage.getItem('selectedLevelId')],
       gradeIds: [localStorage.getItem('selectedGradeId')],
       subjectIds: [localStorage.getItem('selectedSubjectId')],
+      academicTermIds:[
+        'd64d8031-ba43-4442-b700-9b5853384e8a'
+      ]
     };
 
     this.supscriptionService.addSelection(payload).subscribe(
@@ -590,7 +598,7 @@ export class MainComponent {
   }
 
   getResourcePath(resource: string): string {
-    const baseUrl = 'https://teeefa-001-site1.ntempurl.com/api/'; // Replace with your actual base URL
+    const baseUrl = 'https://teeefa-001-site1.ntempurl.com/'; // Replace with your actual base URL
     return `${baseUrl}${resource.replace(/\\/g, '/')}`;
   }
 
@@ -600,13 +608,12 @@ export class MainComponent {
   //   this.addResource();
   // }
 
+  @ViewChildren('fileInput') fileInputs!: QueryList<ElementRef>;
+
   openEditFileInput(index: number): void {
-    this.cdr.detectChanges(); // Ensure QueryList is updated
-    const fileInputArray = this.editFileInputs.toArray();
-    if (fileInputArray[index]) {
-      fileInputArray[index].nativeElement.click();
-    } else {
-      console.error('File input is undefined at index', index);
+    const fileInput = this.fileInputs.toArray()[index]?.nativeElement;
+    if (fileInput) {
+      fileInput.click();
     }
   }
 
@@ -643,17 +650,78 @@ export class MainComponent {
   //     console.error('No file selected');
   //   }
   // }
-  onEditFileSelected(event: any, index: number): void {
-    const file = event.target.files[0];
-    console.log('file', file);
-    if (file) {
-      this.newResourceFile = file;
-      this.editUploadedFiles[index] = this.newResourceFile; // Store the file at the given index
-      this.addResource(index, 'edit');
+  editUploadedFiles: { [key: number]: File[] } = {}; // Store only non-image files
+editUploadedImages: { [key: number]: string[] } = {}; // Store image previews
+editUploadedImageFiles: { [key: number]: File[] } = {}; // Store image files for proper removal
+
+onEditFileSelected(event: any, index: number): void {
+  const files: FileList = event.target.files;
+  if (!files || files.length === 0) {
+    console.error('No files selected');
+    return;
+  }
+
+  if (!this.editUploadedFiles[index]) {
+    this.editUploadedFiles[index] = [];
+    this.editUploadedImages[index] = [];
+    this.editUploadedImageFiles[index] = [];
+  }
+
+  // Convert FileList to an array and process each file
+  Array.from(files).forEach((file: File) => {
+    if (file.type.startsWith('image')) {
+      // Store image file separately for removal
+      this.editUploadedImageFiles[index].push(file);
+
+      // Generate image preview
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.editUploadedImages[index].push(e.target.result);
+      };
+      reader.readAsDataURL(file);
     } else {
-      console.error('No file selected');
+      // Store only non-image files
+      this.editUploadedFiles[index].push(file);
+    }
+  });
+
+  this.addResource(index, 'edit'); // Process files
+}
+
+// Remove both the image preview and its corresponding file
+// removeFile(cardIndex: number, fileIndex: number): void {
+//   if (this.editUploadedFiles[cardIndex]?.[fileIndex]) {
+//     this.editUploadedFiles[cardIndex].splice(fileIndex, 1);
+//   }
+//   if (this.editUploadedImages[cardIndex]?.[fileIndex]) {
+//     this.editUploadedImages[cardIndex].splice(fileIndex, 1);
+//     this.editUploadedImageFiles[cardIndex].splice(fileIndex, 1);
+//   }
+// }
+  
+  
+  
+removeFile(cardIndex: number, fileIndex: number, type: 'file' | 'image') {
+  if (type === 'file' && this.editUploadedFiles[cardIndex]) {
+    this.editUploadedFiles[cardIndex].splice(fileIndex, 1);
+  } else if (type === 'image' && this.editUploadedImages[cardIndex]) {
+    this.editUploadedImages[cardIndex].splice(fileIndex, 1);
+    if (this.editUploadedImageFiles[cardIndex]) {
+      this.editUploadedImageFiles[cardIndex].splice(fileIndex, 1);
     }
   }
+
+  // If the arrays become empty, clean up the object to prevent empty lists
+  if (this.editUploadedFiles[cardIndex]?.length === 0) {
+    delete this.editUploadedFiles[cardIndex];
+  }
+  if (this.editUploadedImages[cardIndex]?.length === 0) {
+    delete this.editUploadedImages[cardIndex];
+  }
+  if (this.editUploadedImageFiles[cardIndex]?.length === 0) {
+    delete this.editUploadedImageFiles[cardIndex];
+  }
+}
 
   // openEditFileInput(index: number): void {
   //   const fileInputArray = this.editFileInputs.toArray();
@@ -869,10 +937,10 @@ export class MainComponent {
   //   );
   // }
 
-  removeFile(cardIndex: number) {
-    this.uploadedFiles[cardIndex] = null;
-    this.uploadedImages[cardIndex] = null;
-  }
+  // removeFile(cardIndex: number) {
+  //   this.uploadedFiles[cardIndex] = null;
+  //   this.uploadedImages[cardIndex] = null;
+  // }
 
   openNav() {
     this.isNavbarOpen = !this.isNavbarOpen;

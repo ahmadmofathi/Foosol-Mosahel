@@ -14,6 +14,7 @@ import { LessonService } from 'src/app/services/lesson/lesson.service';
 import { SubjectService } from 'src/app/services/subject/subject.service';
 import { SupscriptionService } from 'src/app/services/supscription/supscription.service';
 import { Modal } from 'bootstrap';
+import { WhiteboardService } from 'src/app/services/whiteboard/whiteboard.service';
 
 export interface LessonResource {
   id: string;
@@ -158,6 +159,7 @@ export class MainComponent {
     private lessonService: LessonService,
     private cdr: ChangeDetectorRef,
     private classService: ClassesService,
+    private whiteboardService:WhiteboardService,
     private fb: FormBuilder,
     private supscriptionService: SupscriptionService,
     private router: Router,
@@ -421,16 +423,24 @@ export class MainComponent {
     const payload = {
       levelIds: [localStorage.getItem('selectedLevelId')],
       gradeIds: [localStorage.getItem('selectedGradeId')],
-      subjectIds: [localStorage.getItem('selectedSubjectId')],
-      academicTermIds:[
-        'd64d8031-ba43-4442-b700-9b5853384e8a'
-      ]
+      subjectIds: [localStorage.getItem('selectedSubjectId')]
     };
-
-    this.supscriptionService.addSelection(payload).subscribe(
+    console.log(payload)
+    
+    // this.supscriptionService.addSelection(payload).subscribe(
+    //   (response) => {
+    //     console.log('Selection added successfully:', response);
+    //     // Navigate to the teacher dashboard after submission
+    //     this.router.navigate(['/teacherDash']);
+    //   },
+    //   (error) => {
+    //     console.error('Error adding selection:', error);
+    //     alert('Failed to submit selection. Please try again.');
+    //   }
+    // );
+    this.whiteboardService.createLecture(this.selectedClassId!, this.selectedLessonId!            ).subscribe(
       (response) => {
         console.log('Selection added successfully:', response);
-
         // Navigate to the teacher dashboard after submission
         this.router.navigate(['/teacherDash']);
       },

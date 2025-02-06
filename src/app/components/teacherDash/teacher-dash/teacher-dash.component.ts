@@ -41,7 +41,8 @@ export class TeacherDashComponent implements AfterViewInit {
     private lectureService: WhiteboardService,
     private toastr: ToastrService,
     private studentService: StudentsService,
-    private lessonDataService: LessonDataService
+    private lessonDataService: LessonDataService,
+    private whiteboardService: WhiteboardService
   ) {}
 
   saveStudentId(studentId: string) {
@@ -150,18 +151,17 @@ export class TeacherDashComponent implements AfterViewInit {
     const periodInMinutes = this.remainingMinutes; // Store the time entered
 
     // Call the service to create the lecture
-    this.lectureService
-      .createLecture(classId, lessonId, periodInMinutes)
+    this.whiteboardService
+      .setSetting(periodInMinutes)
       .subscribe(
         (response) => {
           console.log('Lecture created successfully:', response);
-
           // Assuming the response contains the created lecture ID, save it in localStorage
-          const lectureId = response.lectureId; // Adjust this based on your API's response structure
-          if (lectureId) {
-            localStorage.setItem('createdLectureId', lectureId);
-            console.log('Lecture ID saved to localStorage:', lectureId);
-          }
+          // const lectureId = response.lectureId; // Adjust this based on your API's response structure
+          // if (lectureId) {
+          //   localStorage.setItem('createdLectureId', lectureId);
+          //   console.log('Lecture ID saved to localStorage:', lectureId);
+          // }
 
           this.toastr.success('تم بدء الحصة بنجاح!', 'نجاح', {
             timeOut: 1000,

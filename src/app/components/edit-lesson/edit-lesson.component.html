@@ -1,0 +1,91 @@
+<div class="modal-dialog">
+    <div class="modal-content outer-container">
+    <div class="inner-container">
+    <div class="modal-header">
+        <input
+        type="text"
+        [(ngModel)]="lessonName"
+        class="lesson-title"
+        placeholder="الدرس الاول : الدوله الامويه"
+        disabled
+        />
+        <button
+        type="button"
+        class="close closebtn"
+        aria-label="Close"
+        (click)="onDismiss()"
+        >
+        <img src="../../../assets/images/close.png" width="40px" />
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="full-width-box custom-full-width-grid">
+        <div
+            class="custom-card-wrapper"
+            *ngFor="let resource of lessonResources; let index = index"
+        >
+            <div
+            class="custom-card"
+            [ngClass]="{ 'hide-card': !resource.id }"
+            >
+            <i
+                class="fa-solid fa-times custom-close-icon"
+                *ngIf="resource.id"
+            ></i>
+                <!-- (click)="
+                deleteResource(resource.id); $event.stopPropagation()
+                " -->
+            <div
+                class="custom-card-body"
+                (click)="openEdit2FileInput(index)"
+            >
+                <!-- *ngIf="
+                    resource.resourceType.includes('.jpeg') ||
+                    resource.resourceType.includes('.jpg') ||
+                    resource.resourceType.includes('.png')
+                " -->
+                <img
+                [src]="getResourcePath(resource.resourcePath)"
+                alt="Uploaded Image"
+                class="thumbnail-image"
+                />
+                <!-- <i
+                *ngIf="
+                    !resource.resourceType.includes('.jpeg') &&
+                    !resource.resourceType.includes('.jpg') &&
+                    !resource.resourceType.includes('.png')
+                "
+                class="fa {{
+                    getFileTypeIcon(resource.resourceType)
+                }} fa-2x"
+                ></i>
+                <p
+                *ngIf="
+                    !resource.resourceType.includes('.jpeg') &&
+                    !resource.resourceType.includes('.jpg') &&
+                    !resource.resourceType.includes('.png')
+                "
+                >
+                File: {{ resource.fileName }}
+                </p> -->
+            </div>
+            <input
+                type="file"
+                #edit2FileInput
+                style="display: none"
+                (change)="onEdit2FileSelected($event, index)"
+            />
+            </div>
+        </div>
+        </div>
+    <div class="modal-footer">
+        <button
+        type="submit"
+        class="btn custombtn ms-4"
+        (click)="onSubmitLesson()"
+        >
+        حفظ
+        </button>
+    </div>
+    </div>
+</div>

@@ -920,3 +920,23 @@ display: flex;
   top: 4%;
   transform: translateY(-50%);
 }
+
+.header h3{
+  padding-right: 10%;
+}
+
+
+
+
+
+
+
+.selected {
+  background-color: #001A72;
+  color: #fff;
+  /* border-radius: 5px; */
+  /* padding: 5px; */
+}
+.custom-box{
+  cursor: pointer;
+}

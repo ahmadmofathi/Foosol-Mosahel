@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.development';
 export class SubjectService {
   private apiUrl = environment.apiUrl;
   private PrivateUrl =
-    'https://teeefa-001-site1.ntempurl.com/api/Subject/AddSubject';
+    environment.apiUrl+'api/Subject/AddSubject';
 
   // private PrivateUrl = 'https://threeclix.runasp.net/api/Subject/AddSubject';
 

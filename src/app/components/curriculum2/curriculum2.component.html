@@ -1,30 +1,10 @@
 <div class="background-container">
-  <div class="overlay"></div>
-
-  <div class="icon-container left-icons align-items-center">
-    <img src="../../../assets/images/human.png" width="60px" height="60px" />
-    <div class="nav_icon">
-      <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
-    </div>
-  </div>
+    <app-navbar></app-navbar>
 
   <div class="icon-container center-icons align-items-center">
     <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
       توزيع المنهج
     </h1>
-  </div>
-
-  <div class="icon-container right-icons align-items-center">
-    <div class="nav_icon">
-      <img
-        src="../../../assets/images/settings.svg"
-        width="30px"
-        height="30px"
-      />
-    </div>
-    <div class="nav_icon">
-      <img src="../../../assets/images/home.svg" width="30px" height="30px" />
-    </div>
   </div>
 
   <div class="custom-form">
@@ -223,8 +203,8 @@
             <input type="date" class="date-input" placeholder="تاريخ البداية" />
             <input type="date" class="date-input" placeholder="تاريخ النهاية" />
           </div>
-          <span style="font-size: 20px; color: black"
-            >الأسبوع {{ selectedWeek.index + 1 }}</span
+          <!-- <span style="font-size: 20px; color: black"
+            >الأسبوع {{ selectedWeek.index + 1 }}</span -->
           >
         </div>
         <!-- Tasks -->

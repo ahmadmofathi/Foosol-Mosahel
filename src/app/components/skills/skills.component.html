@@ -1,12 +1,5 @@
 <div class="background-container">
-  <div class="overlay"></div>
-
-  <div class="icon-container left-icons align-items-center">
-    <img src="../../../assets/images/human.png" width="60px" height="60px" />
-    <div class="nav_icon">
-      <img src="../../../assets/images/bell.svg" width="30px" height="30px" />
-    </div>
-  </div>
+  <app-navbar></app-navbar>
 
   <div class="icon-container center-icons align-items-center">
     <h1 class="myPop" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -14,25 +7,7 @@
     </h1>
   </div>
 
-  <!-- Icons on the right side -->
-  <div class="icon-container right-icons align-items-center">
-    <div class="nav_icon">
-      <img
-        src="../../../assets/images/settings.svg"
-        width="30px"
-        height="30px"
-        class="nav_icon"
-      />
-    </div>
-    <div class="nav_icon">
-      <img
-        src="../../../assets/images/home.svg"
-        width="30px"
-        height="30px"
-        class="nav_icon"
-      />
-    </div>
-  </div>
+
 
   <div class="custom-form" *ngIf="isTableView">
     <div class="my-form">
@@ -82,7 +57,11 @@
                 </td>
 
                 <td>{{ skill.subjectName }}</td>
-                <td>{{ skill.className }}</td>
+                <td>
+                  <span>
+                    {{ skill.className }}
+                  </span>
+                </td>
                 <td>
                   <input
                     *ngIf="skill.isNew"

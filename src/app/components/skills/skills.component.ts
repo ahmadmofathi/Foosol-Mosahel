@@ -12,7 +12,7 @@ export class SkillsComponent {
     { id: 2, description: 'معرفة عاصمة السعودية', className: 'الثاني متوسط', subjectName: 'احياء' }
   ];
 
-  isTableView = false;
+  isTableView = true;
   toggleTable(){
     this.isTableView = !this.isTableView;
   }

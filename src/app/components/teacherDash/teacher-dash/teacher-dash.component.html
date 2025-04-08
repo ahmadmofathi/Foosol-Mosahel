@@ -1,56 +1,283 @@
+
 <!-- Main Container -->
-<div class="container-fluid full-screen">
+<div class="container-fluid full-screen" [ngClass]="showNav?'':'y-hidden'">
+  <app-navbar></app-navbar>
   <div class="row justify-content-between user-navbar">
-    <!-- Left Box -->
-    <div class="col-2 box left-box justify-content-center align-items-center">
-      <div
-        class="container-fluid justify-content-center align-items-center"
-        *ngIf="isTeacherPhotoVisible"
-      >
-        <div class="row justify-content-between align-items-center">
-          <div class="col-6">
-            <p class="align-items-center">----- : المعلم</p>
+    <div class="d-flex pt-5 flex-wrap flex-row-reverse align-items-center box">
+      <!-- Grade box -->
+      <div class="container-fluid col-3 justify-content-center align-items-center">
+        <div class="container">
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
+            <div class="col-md-1">
+              <i
+                class="fa-solid fa-bag-shopping"
+                style="
+                  padding: 5px;
+                  color: #fff;
+                  background-color: #001a72;
+                  border-radius: 50%;
+                  font-size: xx-small;
+                "
+              ></i>
+            </div>
+            <h3 class="col-md-11 padding-center">الصف</h3>
           </div>
-          <div class="col-6 justify-content-between">
-            <img
-              src="../../../../assets/images/human.png"
-              class="c_img"
-              style="width: 45%"
-            />
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2">
+            <div class="container" (click)="prevItemsGrades()">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+          <!-- (click)="getSubjectByGradeId(grad.id); toggleStyleGeneric($event, grad.id, 'grade')" -->
+          <!-- Dynamic Subject Cards -->
+          <div
+            class="col-md-2 custom-box grade-box"
+            *ngFor="let grade of visibleGrades"
+            (click)="
+              toggleStyleGeneric($event, grade.id, 'grade');
+              getSubjectByGradeId(grade.id);
+              onGradeClick(grade)
+            "
+          >
+            <div class="container">
+              <div class="row">
+                <h6>{{ grade.gradeName }}</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-1 custom-box-2">
+            <div class="container" (click)="nextItemsGrade()">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Subject box -->
+        <div class="container-fluid col-3 justify-content-center align-items-center">
+        <div class="container">
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
+            <div class="col-md-1">
+              <i
+                class="fa-solid fa-bag-shopping"
+                style="
+                  padding: 5px;
+                  color: #fff;
+                  background-color: #001a72;
+                  border-radius: 50%;
+                  font-size: xx-small;
+                "
+              ></i>
+            </div>
+            <h3 class="col-md-11 padding-center">الماده</h3>
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2">
+            <div class="container" (click)="prevItems()">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Subject Cards -->
+          <div
+            class="col-md-2 custom-box subject-box"
+            *ngFor="let subject of visibleSubjects"
+            (click)="
+              toggleStyleGeneric($event, subject.subjectId, 'subject');
+              onSubjectClick(subject.subjectId)
+            "
+          >
+            <div class="container">
+              <div class="row">
+                <h6>{{ subject.subjectName }}</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-1 custom-box-2">
+            <div class="container" (click)="nextItems()">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Class Box -->
+        <div class="container-fluid col-3 justify-content-center align-items-center">
+        <div class="container">
+          <div
+            class="row header"
+            style="justify-content: center; align-items: center"
+          >
+            <div class="col-md-1" routerLink="/class">
+              <i
+                class="fa-solid fa-plus"
+                style="
+                  padding: 5px;
+                  color: #fff;
+                  background-color: #001a72;
+                  border-radius: 50%;
+                  font-size: xx-small;
+                "
+              ></i>
+            </div>
+            <h3 class="col-md-11 padding-center">الفصل</h3>
+          </div>
+        </div>
+
+        <div class="row payment-methods">
+          <div class="col-md-1 custom-box-2" (click)="preItemClasses()">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-2 custom-box-2"
+            *ngFor="let class of visibleClasses"
+            (click)="
+              onClassClick(class.id, class.classsName); activeClassId = class.id
+            "
+          >
+            <div class="container">
+              <div class="row">
+                <h6
+                  [ngClass]="{
+                    'custom-box-text': activeClassId !== class.id,
+                    'custom-box-text-active': activeClassId === class.id
+                  }"
+                >
+                  {{ class.classsName }}
+                </h6>
+                <!-- Display className here -->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 custom-box-2" (click)="nextItemsClasses()">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+
+
+
+          <!-- Lesson Box -->
+          <div class="container-fluid col-3 justify-content-center align-items-center">
+          
+
+        <div
+          class="row header"
+          style="justify-content: center; align-items: center"
+        >
+          <div style="display: flex; justify-content: space-between">
+            <div class="col-md-1">
+              <div>
+                <button
+                  class="own-btn2"
+                  width="100%"
+                  (click)="checkLessonId()"
+                >
+                  تعديل
+                </button>
+              </div>
+            </div>
+            <h3 class="col-md-10" >الدرس</h3>
+
+            <div class="col-md-1" (click)="openAddLesson()">
+              <i
+                class="fa-solid fa-plus"
+                style="
+                  padding: 5px;
+                  color: #fff;
+                  background-color: #001a72;
+                  border-radius: 50%;
+                  font-size: xx-small;
+                  cursor: pointer;
+                "
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="row payment-methods2">
+          <div class="col-md-1 custom-box-2" (click)="prevItemLessons()">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-2 custom-box lesson-box"
+            *ngFor="let test of visibleLessons"
+            [ngStyle]="{
+              backgroundColor: activeLessonId === test.lessonId ? '#001A72' : '#ffff',
+              color: activeLessonId === test.lessonId ? '#ffff' : '#001A72'
+            }"
+            (click)="
+              onLessonClick(test.lessonId);
+              saveLessonName(test.lessonName);
+              activeLessonId = test.lessonId
+            "
+          >
+            <div class="container">
+              <div class="row">
+                <h6
+                  class="lesson-name"
+                  [title]="test.lessonName"
+                >
+                  {{ test.lessonName }}
+                </h6>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-1 custom-box-2" (click)="nextItemsLesson()">
+            <div class="container">
+              <div class="row">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Center Box -->
+      <div class="col-12">
+        <div class="div-button">
+          <button class="display-btn" (click)="submitSelection()">عرض</button>
+        </div>
+      </div>
+    <!-- Left Box -->
+    <!-- <div class="col-2 box left-box justify-content-center align-items-center">
     <div class="box col-7 center-box">
-      <!-- Top Section -->
       <div class="d-flex justify-content-between align-items-center">
-        <!-- Clock Section: Left (Time & AM/PM) -->
-        <div class="time" *ngIf="isClockVisible">
-          <span class="current-time">7:25</span>
-          <span class="am-pm">ص</span>
-        </div>
 
-        <div class="time" *ngIf="isDateVisible">
-          <span class="current-date mx-1">11/9/2024</span>
-        </div>
-        <!-- Heading and Button: Center -->
-        <div class="text-center flex-grow-1">
-          <h3
-            *ngIf="isH3Visible"
-            style="color: #918b73; font-size: medium;margin: 0;"
-          >
-            الدرس الثاني : قيام الدولة الأموية
-          </h3>
-        </div>
-        <div class="text-center flex-grow-1 m-0">
-          <h2 *ngIf="isH2Visible" class="arabic-text">
-            بسم الله الرحمن الرحيم
-          </h2>
-        </div>
-
-        <!-- Button Section: Right -->
         <div class="timer-section text-center m-0 mx-1" *ngIf="isTimerVisible">
           <img
             src="../../../../assets/images/clock.png"
@@ -58,8 +285,8 @@
             class="clock-icon"
           />
           <input
-            type="number"
-            class="time-remaining"
+          type="number"
+          class="time-remaining"
             *ngIf="!isLectureStarted"
             [(ngModel)]="remainingMinutes"
             (blur)="onBlur()"
@@ -76,316 +303,170 @@
           />
       </div>
     </div>
+  -->
+      </div>
+  <div [ngClass]="{ 'workspace-show': showNav, 'workspace': !showNav, 'locked': isLocked }">
     
-    
-
-      <!-- Progress Bar Section -->
-      <div class="progress-container" *ngIf="isProgressVisible">
-        <div class="progress-step">
-          <div class="progress-icon" id="step2">
-            <img
-              src="../../../../assets/images/closeBox.png"
-              width="20px"
-              height="15px"
-            />
-          </div>
-        </div>
-        <div class="progress-line"></div>
-        <div class="progress-step">
-          <div class="progress-icon" id="step3">
-            <img
-              src="../../../../assets/images/closeBox.png"
-              width="20px"
-              height="15px"
-            />
-          </div>
-        </div>
-        <div class="progress-line activeLine"></div>
-        <div class="progress-step">
-          <div class="progress-icon" id="step1">
-            <img
-              src="../../../../assets/images/openBox.png"
-              width="25px"
-              height="15px"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="start-btn text-end my-2">
-        <button
-          class="btn btn-primary"
-          [ngStyle]="{
-            'background-color': '#F9EFBC',
-            color: 'black',
-            'font-weight': 'bold',
-            border: '1px solid #fa6707',
-            'border-radius': '0',
-            'font-size': '10px'
-          }"
-          (click)="isLectureStarted ? onEndLecture() : onStartLecture()"
-        >
-          {{ isLectureStarted ? "انهاء الحصة" : "ابدأ الحصة" }}
-        </button>
-      </div>
-    </div>
-
-    <!-- Right Box -->
-    <div class="col-2 box right-box justify-content-center align-items-center">
-      <div
-        class="container-fluid justify-content-center align-items-center"
-        *ngIf="isStudentPhotoVisible"
-      >
-        <div class="row justify-content-between">
-          <div class="col-12 justify-content-between" style="margin-top: 9%">
-            <img
-              src="../../../../assets/images/student.png"
-              class="c_img"
-              *ngIf="selectedStudent"
-              style="
-                border: 9px solid white;
-                margin-bottom: 9px;
-                border-radius: 14px;
-                width: 60%;
-              "
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div *ngIf="selectedStudent">
-              <p>
-                الطالب: {{ selectedStudent.firstName }}
-                {{ selectedStudent.lastName }}
-              </p>
-            </div>
-            <!-- <p class="align-items-center text-end">----- : الطالب</p> -->
-
-            <!-- <div class="timer-section text-center" >
-
-              <input
-                type="number"
-                class="time-remaining"
-                [(ngModel)]="remainingTimeSec"
-                (blur)="onBlur2()"
-
-                style="max-width: 90px;
-                border-radius: 15px;
-                padding-top: 0px;"
-
-                />
-                
-                <span *ngIf="remainingTimeSec !== null" class="countdown-timer">
-                  {{ remainingTimeSec }} ث
-                </span>
-                
-              </div> -->
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div [ngClass]="{ 'workspace-show': showNav, 'workspace': !showNav }">
     <div class="row toolsbar justify-content-between">
       <button (click)="toggleNavbar()" class="arrow">
         <i class="fa-solid fa-angles-up" *ngIf="showNav"></i>
         <i class="fa-solid fa-angles-down" *ngIf="!showNav"></i>
       </button>
+
       <div class="col-12">
-      <div class="container-fluid toolbarin">
-        <div class="row justify-content-between">
-          <div class="col_c1">
-            <!-- btn for white board -->
-            <div class="container-fluid">
-              <div class="row justify-content-between">
-                <div class="btn_r">
-                  <div
-                    class="c_btnl justify-content-center"
-                    *ngFor="let board of boards"
-                  >
-                    <button
-                      class="btn custom-button"
-                      [ngClass]="{ active: activeBoard === board.id }"
-                      (click)="switchBoard(board.id)"
-                    >
-                      {{ board.id }}
-                    </button>
-                  </div>
-                  <!-- <div class="c_btnl justify-content-center">
-                    <button
-                    class="btn custom-button"
-                    [ngClass]="{ active: activeBoard === 1 }"
-                      (click)="switchBoard(1)"
-                    >
-                      1
-                    </button>
-                  </div> -->
-                  <div class="c_btnl justify-content-center">
-                    <button class="btn custom-button" (click)="addNewBoard()">
-                      +
-                    </button>
-                  </div>
-                  <div class="c_btnl" routerLink="/main">
-                    <div class="icon-bg3" style="margin-top: -6px">
-                      <img
-                        src="../../../../assets/images/undoB.png"
-                        alt="Right Icon"
-                        width="25px"
-                      />
+        <div class="container-fluid toolbarin box p-1">
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Start Button -->
+            <div class="start-btn text-end my-2 col-1">
+              <button
+                class="btn btn-primary"
+                [ngStyle]="{
+                  'background-color': '#F9EFBC',
+                  color: 'black',
+                  'font-weight': 'bold',
+                  border: '1px solid #fa6707',
+                  'border-radius': '0',
+                  'font-size': '10px'
+                }"
+                (click)="isLectureStarted ? onEndLecture() : onStartLecture()"
+              >
+                {{ isLectureStarted ? "انهاء الحصة" : "ابدأ الحصة" }}
+              </button>
+            </div>
+
+            <!-- Progress Treasures -->
+            <div class="progress-container col-5" *ngIf="isProgressVisible">
+              <div class="d-flex align-items-center" *ngFor="let box of boxes; let i = index">
+                <div class="progress-step">
+                  <div class="progress-icon" id="step2">
+                    <img
+                      src="../../../../assets/images/closeBox.png"
+                      width="50px"
+                      height="35px"
+                    />
+                    <div class="count-btn">
+                      {{ box.title }}
+                      {{ box.time }}د
                     </div>
                   </div>
                 </div>
-
-                <div class="btn_l">
-                  <div class="c_btnr justify-content-center">
-                    <!-- <div style="margin-top: 10px; text-align: center;">
-                      <button (click)="previousVideo()" [disabled]="currentVideoIndex === 0">
-                        Previous
-                      </button>
-                      <button (click)="this.videoElement.play()">
-                        Play
-                      </button>
-                      <button
-                      (click)="nextVideo()"
-                      [disabled]="currentVideoIndex === videos.length - 1"
-                      >
-                      Next
-                    </button>
-                  </div> -->
-                  <!-- <button (click)="this.videoElement.pause()">
-                    Stop
-                  </button> -->
-                    <!-- <button class="btn custom-button2 m-1 px-3 py-1" style="width:fit-content" *ngIf="toolsDisabled" (click)="previousImage()">السابق</button>
-                    <button class="btn custom-button2 m-1 p-3 py-1" (click)="nextImage()" *ngIf="toolsDisabled" style="width:fit-content">التالي</button> -->
-                    <img
-                      src="../../../../assets/images/cross.png"
-                      width="20px;"
-                      style="margin: 4px"
-                    />
+                <div class="progress-line" *ngIf="i<boxes.length-1"></div>
+              </div>
+              </div>
+              <!-- <div class="progress-step">
+                <div class="progress-icon" id="step3">
+                  <img
+                    src="../../../../assets/images/closeBox.png"
+                    width="50px"
+                    height="35px"
+                  />
+                  <div class="count-btn">
+                    اوراق العمل
+                    30د
                   </div>
-
-                  <div class="c_btnr justify-content-center">
-                    <img
-                    src="../../../../assets/images/check.png"
-                    width="20px;"
-                    style="margin: 4px"
-                    />
-                  </div>
-                  
-                  <div class="c_btnr justify-content-center">
-                    <button
-                    class="btn custom-button"
-                    [ngClass]="{ active: isInteractionActive }"
-                    (click)="showBehavior('s2'); toggleButton('interaction')"
-                    >
-                    سلوكيات
-                  </button>
                 </div>
-                <div class="c_btnr justify-content-center">
-                  <button
-                  class="btn custom-button"
-                      [ngClass]="{ active: isBehaviorActive }"
-                      (click)="showBehavior('s3'); toggleButton('behavior')"
-                    >
-                      التفاعل
-                    </button>
+              </div>
+              <div class="progress-line"></div>
+              <div class="progress-step">
+                <div class="progress-icon" id="step3">
+                  <img
+                    src="../../../../assets/images/closeBox.png"
+                    width="50px"
+                    height="35px"
+                  />
+                  <div class="open-btn">
+                    افتح
                   </div>
-                  <div class="c_btnr justify-content-center">
-                    <button
-                      class="btn custom-button"
-                      [ngClass]="{ active: isPreparationActive }"
-                      (click)="showBehavior('s1'); toggleButton('preparation')"
-                    >
-                      التحضير
-                    </button>
-                  </div>
+                </div>
+              </div>
+              <div class="progress-line activeLine"></div>
+              <div class="progress-step">
+                <div class="progress-icon" id="step1">
+                  <img
+                    src="../../../../assets/images/openBox.png"
+                    width="50px"
+                    height="35px"
+                  />
+                </div>
+              </div>
+            </div>
+          -->
+            <!-- Date and Time -->
+            <div class="time col-1" *ngIf="isClockVisible">
+              <span class="current-time">7:25</span>
+              <span class="am-pm">ص</span>
+            </div>
+    
+            <div class="time col-1" *ngIf="isDateVisible">
+              <span class="current-date mx-1">11/9/2024</span>
+            </div>
+
+            <!-- Gear icon -->
+            <div class="col-1 justify-content-center align-items-center">
+                <div
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  <img
+                    src="../../../../assets/images/settingsBlue.png "
+                    style="cursor: pointer;"
+                    width="25px"
+                  />
+                  <!-- <i class="fa-solid fa-gear" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> -->
                 </div>
               </div>
             </div>
           </div>
-          <!-- search box -->
-          <div class="col_c2">
-            <div class="container-fluid">
-              <div class="row justify-content-center align-items-center">
-                <!-- Search Box -->
-                <div
-                  class="col-12 search-box justify-content-center align-items-center"
-                  style="position: relative; display: flex"
-                >
-                  <!-- <div class="container">
-                    <div class="row">
-                      <div class="col-9 justify-content-center align-items-center">
-                        <input
-                          type="text"
-                          placeholder="قم بالبحث عن الطالب"
-                          class="form-control"
-                        />
-                      </div>
-                      <div class="col-2 justify-content-center align-items-center" style="display: flex;">
-                        <img
-                          src="../../../../assets/images/search.png"
-                          width="30px"
-                          class="search-icon"
-                        />
-                      </div>
-                      <div class="col-1 justify-content-center align-items-center" style="display: flex; color: #001A72;">
-                        <i class="fa-solid fa-gear" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-                      </div>
-                    </div>
-                  </div> -->
-                  <div class="container">
-                    <div class="row align-items-center">
-                      <!-- Input and search icon -->
-                      <div
-                        class="col-10"
-                        style="display: flex; align-items: center; gap: 10px"
-                      >
-                        <input
-                          type="text"
-                          placeholder="قم بالبحث عن الطالب"
-                          class="form-control"
-                          style="flex-grow: 1"
-                        />
-                        <img
-                          src="../../../../assets/images/search.png"
-                          width="25px"
-                          class="search-icon"
-                        />
-                      </div>
-                      <!-- Gear icon -->
-                      <div
-                        class="col-2"
-                        style="
-                          display: flex;
-                          justify-content: flex-end;
-                          background-color: #fff;
-                        "
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
-                      >
-                        <img
-                          src="../../../../assets/images/settingsBlue.png "
-                          width="25px"
-                        />
-                        <!-- <i class="fa-solid fa-gear" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      </div>
+    </div>
+    <!-- Content Area -->
+    <div class="row content-wrapper">
+    <!-- Writing Board 1 -->
+    <!-- <div class="col_c1 element" [style.flexBasis]="leftWidth + 'px'" [ngClass]="!OnlyBoard2&&OnlyBoard1?'board-fullscreen':''" [ngClass]="OnlyBoard2&&!OnlyBoard1?'board-hide':''"> -->
+    <div class="col_c1" [ngClass]="!OnlyBoard2&&OnlyBoard1?'board-fullscreen':''" [ngClass]="OnlyBoard2&&!OnlyBoard1?'board-hide':''">
+      <div class="container">
+        <div class="btn_r justify-content-end row">
+          <div
+            class="c_btnl justify-content-center"
+            *ngFor="let board of boards"
+          >
+            <button
+              class="btn custom-button"
+              [ngClass]="{ active: activeBoard === board.id }"
+              (click)="switchBoard(board.id)"
+            >
+              {{ board.id }}
+            </button>
+          </div>
+          <!--
+          <div class="c_btnl justify-content-center">
+            <button
+            class="btn custom-button"
+            [ngClass]="{ active: activeBoard === 1 }"
+              (click)="switchBoard(1)"
+            >
+              1
+            </button>
+          </div>
+          -->
+          <div class="c_btnl justify-content-center">
+            <button class="btn custom-button" (click)="addNewBoard()">
+              +
+            </button>
+          </div>
+          <div class="c_btnl" routerLink="/main">
+            <div class="icon-bg3" style="margin-top: -6px">
+              <img
+                src="../../../../assets/images/undoB.png"
+                alt="Right Icon"
+                width="25px"
+              />
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- Content Area -->
-  <div class="row content-wrapper">
-    <!-- Writing Board 1 -->
-    <div class="col_c1">
-      <div class="container">
         <div
           class="row justify-content-center align-items-center"
-          style="padding: 0 px; background-color: #fff; border-radius: 10px;height: 70vh;"
+          style="padding: 0 px; background-color: #fff; border-radius: 0px 0px 10px 10px;height: 65vh;"
         >
           <!-- Left Tool Panel -->
           <div class="tools-panel justify-content-center align-items-center">
@@ -436,7 +517,7 @@
                     (click)="fileInput.click()"
                     style="width: 100%; display: flex; justify-content: center"
                   >
-                    <img
+                  <img
                       src="../../../../assets/images/img.png"
                       alt="Pencil Icon"
                       style="width: 20px"
@@ -579,7 +660,7 @@
                 style="
                   background-color: #fff;
                   width: 100%;
-                  height: 70vh;
+                  height: 65vh;
                   padding: 0px;
                 "
               ></canvas>
@@ -588,8 +669,13 @@
         </div>
       </div>
     </div>
+
+
+    <!-- <div class="divider" (mousedown)="startDrag($event)"></div> -->
+    
     <!-- Student List -->
-    <div class="col_c2 st_data" style="padding: 0px">
+    <!-- <div class="col_c2 st_data element" [style.flexBasis]="rightWidth + 'px'" style="padding: 0px" [ngClass]="OnlyBoard2&&!OnlyBoard1?'board-80screen':''" [ngClass]="!OnlyBoard2&&OnlyBoard1?'board-hide':''"> -->
+    <div class="col_c2 st_data" style="padding: 0px" [ngClass]="OnlyBoard2&&!OnlyBoard1?'board-80screen':''" [ngClass]="!OnlyBoard2&&OnlyBoard1?'board-hide':''">
       <div class="container-fluid" style="padding: 0px">
         <div class="row row2">
           <div class="col-12">
@@ -639,7 +725,7 @@
                       *ngFor="let students of studentData; let i = index"
                       >
                       <div
-                        class="student-item"
+                      class="student-item"
                         *ngFor="let student of displayedStudents; let i = index"
                         [ngClass]="{
                           'from-top': i % 2 === 0,
@@ -648,23 +734,31 @@
                         [ngStyle]="{ 'animation-delay': i * 0.3 + 's' }"
                       >
                         <div class="status-icons">
-                          <span
-                            *ngFor="let status of student.statusIcons"
-                            [ngClass]="status.class"
-                            (click)="logStatusValue(status.value)"
-                          >
+                          
+                          <span 
+                          *ngFor="let status of student.statusIcons"
+                          (click)="logStatusValue(status.value,students.studentId)"
+                          [ngClass]="status.class">
+                          <span >
                             {{ status.label }}
                           </span>
+                        </span>
                         </div>
                         <div
-                          class="student-info"
-                          (click)="saveStudentId(students.id)"
+                        class="student-info"
+                        data-bs-toggle="modal"
+                        data-bs-target="#studentRandom"
+                        (click)="saveStudentId(students.studentId);"
                         >
-                          <span class="student-name"
-                            >{{ students.firstName }}
-                            {{ students.lastName }}</span
-                          >
-                          <!-- <img
+                        <span class="student-name"
+                        >{{ students.studentName }}
+                        <span class="selected-std-status" *ngIf="pointsCategory!='b'" [ngClass]="getClassForStatus(students.studentId)">
+                          {{ getLabelForStatus(students.studentId) }}
+                        </span>
+                        <!-- {{ students.lastName }} -->
+                        </span
+                        >
+                        <!-- <img
                             [src]="student.image"
                             alt="student"
                             class="student-image"
@@ -693,8 +787,8 @@
                   <div class="row">
                     <div class="f_c">
                       <span
-                        [ngClass]="getTextColorClass(color.colorClass)"
-                        style="font-size: 15px; font-weight: bold"
+                      [ngClass]="getTextColorClass(color.colorClass)"
+                      style="font-size: 15px; font-weight: bold"
                         >{{ color.label }}</span
                       >
                     </div>
@@ -708,8 +802,11 @@
     </div>
   </div>
   
+
+
+
   <div
-    class="row content-wrapper justify-content-center align-items-center footer-line"
+  class="row content-wrapper justify-content-center align-items-center footer-line"
   >
     <div
       class="footer-container d-flex col-md-12 align-items-center justify-content-between"
@@ -721,94 +818,59 @@
       </div> -->
 
       <!-- Icon Slider Section -->
-      <div class="icon-slider col-md-6 d-flex align-items-center">
-        <div class="icon-wrapper d-flex align-items-center">
-          <div class="icon-container">
-            <div class="icon-bg2">
-              <img
-                src="../../../../assets/images/blue-right.png"
-                alt="Right Icon"
-                class="footer-icon"
-              />
+      <!-- 
+        <div class="custom-icon-slider-container">
+        -->
+        <div class="icon-slider col-md-6 d-flex align-items-center">
+          <button class="custom-slider-btn custom-left-btn" (click)="scrollIcons('left')">
+            <img src="../../../../assets/images/blue-right.png" alt="Left Icon" />
+          </button>
+          
+          <div class="custom-icon-slider">
+            <div class="custom-icon-wrapper">
+              <div class="custom-icon-container">
+                <div class="custom-icon-bg">
+                  <img src="../../../../assets/images/pdf.svg" alt="PDF Icon" class="custom-footer-icon" />
+                  <span class="custom-icon-label">الدرس PDF</span>
+                </div>
+              </div>
+        
+              <div class="custom-icon-container" (click)="imagesToggle()">
+                <div class="custom-icon-bg">
+                  <img src="../../../../assets/images/dash.png" alt="Dash Icon" class="custom-footer-icon" />
+                  <span class="custom-icon-label">الصور</span>
+                </div>
+              </div>
+              
+              <div class="custom-icon-container">
+                <div class="custom-icon-bg">
+                  <img src="../../../../assets/images/buisness.png" alt="Business Icon" class="custom-footer-icon" />
+                  <span class="custom-icon-label">ورقة عمل</span>
+                </div>
+              </div>
+        
+              <div class="custom-icon-container" (click)="videosToggle()">
+                <div class="custom-icon-bg">
+                  <img src="../../../../assets/images/video.svg" alt="Video Icon" class="custom-footer-icon" />
+                  <span class="custom-icon-label">شرح فيديو الدرس</span>
+                </div>
+              </div>
+        
+              <div class="custom-icon-container">
+                <div class="custom-icon-bg">
+                  <img src="../../../../assets/images/exam.png" alt="Exam Icon" class="custom-footer-icon" />
+                  <span class="custom-icon-label">اسئله داخل الحصه</span>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="icon-container">
-            <div class="icon-bg">
-              <img
-                src="../../../../assets/images/pdf.svg"
-                alt="PDF Icon"
-                class="footer-icon"
-              />
-              <span class="icon-label">الدرس PDF</span>
-            </div>
-          </div>
-
-          <div
-            class="icon-container"
-            (click)="imagesToggle()"
-            >
-            <!--(click)="drawImageOnCanvas()"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop2" -->
-            <div class="icon-bg">
-              <img
-                src="../../../../assets/images/dash.png"
-                alt="Dash Icon"
-                class="footer-icon"
-              />
-              <span class="icon-label">الصور</span>
-            </div>
-          </div>
-
-          <div class="icon-container">
-            <div class="icon-bg">
-              <img
-                src="../../../../assets/images/buisness.png"
-                alt="Business Icon"
-                class="footer-icon"
-              />
-              <span class="icon-label">ورقة عمل</span>
-            </div>
-          </div>
-
-          <div
-          class="icon-container" (click)="videosToggle();"
-          >
-            <div class="icon-bg">
-              <img
-                src="../../../../assets/images/video.svg"
-                alt="Video Icon"
-                class="footer-icon"
-              />
-              <span class="icon-label">شرح فيديو الدرس</span>
-            </div>
-          </div>
-
-          <div class="icon-container">
-            <div class="icon-bg">
-              <img
-                src="../../../../assets/images/exam.png"
-                alt="Exam Icon"
-                class="footer-icon"
-              />
-              <span class="icon-label">اساله داخل الحصه</span>
-            </div>
-          </div>
-
-          <!-- Add more icons as needed -->
-          <div class="icon-container">
-            <div class="icon-bg2">
-              <img
-                src="../../../../assets/images/blue-left.png"
-                alt="Left Icon"
-                class="footer-icon"
-              />
-            </div>
-          </div>
-        </div>
-        <button class="btn custom-button4 mx-1" *ngIf="isImagesLoaded">
-          <i class="fa-solid fa-arrow-left" (click)="previousImage()"></i> ( {{ this.currentIndex+1 }} / {{ this.images.length}} )
+          
+          <button class="custom-slider-btn custom-right-btn" (click)="scrollIcons('right')">
+            <img src="../../../../assets/images/blue-left.png" alt="Right Icon" />
+          </button>
+          
+          <button class="btn custom-button4 mx-1" *ngIf="isImagesLoaded">
+            <i class="fa-solid fa-arrow-left" (click)="previousImage()"></i> ( {{ this.currentIndex+1 }} / {{ this.images.length}} )
           <i class="fa-solid fa-arrow-right" (click)="nextImage()"></i>
         </button>
         <button class="btn custom-button4 mx-1" *ngIf="isVideoPlaying">
@@ -816,13 +878,49 @@
           <i class="fa-solid fa-arrow-right" (click)="nextVideo()"></i>
         </button>
       </div>
-
+      
+      <div class="d-flex col-md-1 justify-content-center align-items-center">
+        <button 
+        class="btn choose-btn"
+        (click)="chooseRandomStudent()"
+        data-bs-toggle="modal"
+          data-bs-target="#studentRandom">
+          إختر
+        </button>
+      </div>
+      
       <!-- Button Section -->
-      <div class="button-group d-flex col-md-4 justify-content-center align-items-center">
-        <div class="button-container">
-          <button class="btn custom-button3" (click)="chooseRandomStudent()">
-            إختر
+      <div class="button-group d-flex flex-column col-md-3 justify-content-center align-items-center">
+        <div class="my-2">
+          <div class="c_btnr justify-content-center">
+            <button
+            class="btn custom-button"
+            [ngClass]="{ active: isInteractionActive }"
+            (click)="showBehavior('s2'); toggleButton('interaction')"
+            >
+            سلوكيات
           </button>
+        </div>
+        <div class="c_btnr justify-content-center">
+          <button
+          class="btn custom-button"
+              [ngClass]="{ active: isBehaviorActive }"
+              (click)="showBehavior('s3'); toggleButton('behavior')"
+            >
+            التفاعل
+          </button>
+          </div>
+          <div class="c_btnr justify-content-center">
+            <button
+              class="btn custom-button"
+              [ngClass]="{ active: isPreparationActive }"
+              (click)="showBehavior('s1'); toggleButton('preparation')"
+            >
+              التحضير
+            </button>
+          </div>
+        </div>
+        <div class="button-container">
           <button class="btn custom-button2" (click)="toggleStudentList()">
             <i
               class="fa-solid"
@@ -839,6 +937,7 @@
   </div>
 </div>
 
+</div>
   </div>
 <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -864,7 +963,7 @@
       </div>
       <div class="modal-body">
         <div class="container">
-          <div class="row tab-row">
+          <!-- <div class="row tab-row">
             <div class="col-md-4">
               <div class="switcher">
                 <div class="form-check form-switch">
@@ -891,7 +990,7 @@
                 بسم الله الرحمن الرحيم
               </h5>
             </div>
-          </div>
+          </div> -->
           <div class="row tab-row">
             <div class="col-md-4">
               <div class="switcher">
@@ -918,7 +1017,7 @@
               <h5>الساعة</h5>
             </div>
           </div>
-          <div class="row tab-row">
+          <!-- <div class="row tab-row">
             <div class="col-md-4">
               <div class="switcher">
                 <div class="form-check form-switch">
@@ -943,8 +1042,8 @@
             >
               <h5>العد التنازلي</h5>
             </div>
-          </div>
-          <div class="row tab-row">
+          </div> -->
+          <!-- <div class="row tab-row">
             <div class="col-md-4">
               <div class="switcher">
                 <div class="form-check form-switch">
@@ -969,8 +1068,8 @@
             >
               <h5>صور المعلم</h5>
             </div>
-          </div>
-          <div class="row tab-row">
+          </div> -->
+          <!-- <div class="row tab-row">
             <div class="col-md-4">
               <div class="switcher">
                 <div class="form-check form-switch">
@@ -995,8 +1094,8 @@
             >
               <h5>صورة الطالب</h5>
             </div>
-          </div>
-          <div class="row tab-row">
+          </div> -->
+          <!-- <div class="row tab-row">
             <div class="col-md-4">
               <div class="switcher">
                 <div class="form-check form-switch">
@@ -1021,7 +1120,7 @@
             >
               <h5>عنوان الدرس</h5>
             </div>
-          </div>
+          </div> -->
           <div class="row tab-row">
             <div class="col-md-4">
               <div class="switcher">
@@ -1089,7 +1188,8 @@
                           type="checkbox"
                           role="switch"
                           id="flexSwitchCheckChecked"
-                          checked
+                          [(ngModel)]="OnlyBoard1"
+                          (click)="toggleOnlyBoard1()"
                         />
                       </div>
                     </div>
@@ -1115,7 +1215,7 @@
                   <!-- Radio Button Group -->
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="option1"
                       name="options1"
                       value="option1"
@@ -1124,7 +1224,7 @@
                   </div>
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="option2"
                       name="options1"
                       value="option2"
@@ -1133,7 +1233,7 @@
                   </div>
                   <div class="radio-container col-3">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="option3"
                       name="options1"
                       value="option3"
@@ -1142,7 +1242,7 @@
                   </div>
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="option4"
                       name="options1"
                       value="option4"
@@ -1152,7 +1252,7 @@
                   <!-- Checkbox -->
                   <div class="check-container col-3 d-flex align-items-center">
                     <label for="checkbox1" class="me-2">ثابتة</label>
-                    <input type="checkbox" id="checkbox1" />
+                    <input type="radio" name="mode" id="checkbox1" checked/>
                   </div>
                 </div>
 
@@ -1160,7 +1260,7 @@
                   <!-- Radio Button Group -->
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="option5"
                       name="options2"
                       value="option5"
@@ -1169,7 +1269,7 @@
                   </div>
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="option6"
                       name="options2"
                       value="option6"
@@ -1178,7 +1278,7 @@
                   </div>
                   <div class="radio-container col-3">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="option7"
                       name="options2"
                       value="option7"
@@ -1187,7 +1287,7 @@
                   </div>
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
+                      type="checkbox"
                       id="option8"
                       name="options2"
                       value="option8"
@@ -1197,94 +1297,13 @@
                   <!-- Checkbox -->
                   <div class="check-container col-3 d-flex align-items-center">
                     <label for="checkbox2" class="me-2">متغيرة</label>
-                    <input type="checkbox" id="checkbox2" />
+                    <input type="radio" name="mode" id="checkbox2" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="row">
-            <div class="col-12">
-              <div class="container-fluid">
-                <div class="row sc-set">
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option4"
-                      name="options"
-                      value="option4"
-                    />
-                    <label for="option4">خيــار 3</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option5"
-                      name="options"
-                      value="option5"
-                    />
-                    <label for="option5">خيــار 2</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option6"
-                      name="options"
-                      value="option6"
-                    />
-                    <label for="option6">خيــار 1</label>
-                  </div>
-                  <div class="check-container col-3">
-                    <label for="option8">متغيرة</label>
-                    <input
-                      type="checkbox"
-                      id="option8"
-                      name="options"
-                      value="option8"
-                    />
-                  </div>
-                </div>
-                <div class="row sc-set">
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option4"
-                      name="options"
-                      value="option4"
-                    />
-                    <label for="option4">خيــار 4</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option5"
-                      name="options"
-                      value="option5"
-                    />
-                    <label for="option5">خيــار 5</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option6"
-                      name="options"
-                      value="option6"
-                    />
-                    <label for="option6">خيــار 6</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option7"
-                      name="options"
-                      value="option7"
-                    />
-                    <label for="option7">خيــار 7</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
+
           <div class="row tab-row2">
             <div class="col-md-12">
               <div class="container">
@@ -1300,7 +1319,8 @@
                           type="checkbox"
                           role="switch"
                           id="flexSwitchCheckChecked"
-                          checked
+                          [(ngModel)]="OnlyBoard2"
+                          (click)="toggleOnlyBoard2()"
                         />
                       </div>
                     </div>
@@ -1326,44 +1346,44 @@
                   <!-- Radio Button Group -->
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
-                      id="option1"
-                      name="options1"
-                      value="option1"
+                      type="checkbox"
+                      id="option11"
+                      name="options11"
+                      value="option11"
                     />
-                    <label for="option1">بوربــوينت</label>
+                    <label for="option11">بوربــوينت</label>
                   </div>
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
-                      id="option2"
-                      name="options1"
-                      value="option2"
+                      type="checkbox"
+                      id="option22"
+                      name="options11"
+                      value="option22"
                     />
-                    <label for="option2">فيــديو</label>
+                    <label for="option22">فيــديو</label>
                   </div>
                   <div class="radio-container col-3">
                     <input
-                      type="radio"
-                      id="option3"
-                      name="options1"
-                      value="option3"
+                      type="checkbox"
+                      id="option33"
+                      name="options11"
+                      value="option33"
                     />
-                    <label for="option3">اوراق عمل</label>
+                    <label for="option33">اوراق عمل</label>
                   </div>
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
-                      id="option4"
-                      name="options1"
-                      value="option4"
+                      type="checkbox"
+                      id="option44"
+                      name="options11"
+                      value="option44"
                     />
-                    <label for="option4">الصور</label>
+                    <label for="option44">الصور</label>
                   </div>
                   <!-- Checkbox -->
                   <div class="check-container col-3 d-flex align-items-center">
-                    <label for="checkbox1" class="me-2">ثابتة</label>
-                    <input type="checkbox" id="checkbox1" />
+                    <label for="var1" class="me-2">ثابتة</label>
+                    <input type="radio" name="mode2" id="var1" checked/>
                   </div>
                 </div>
 
@@ -1371,131 +1391,49 @@
                   <!-- Radio Button Group -->
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
-                      id="option5"
-                      name="options2"
-                      value="option5"
+                      type="checkbox"
+                      id="option55"
+                      name="options22"
+                      value="option55"
                     />
-                    <label for="option5">بوربــوينت</label>
+                    <label for="option55">بوربــوينت</label>
                   </div>
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
-                      id="option6"
-                      name="options2"
-                      value="option6"
+                      type="checkbox"
+                      id="option66"
+                      name="options22"
+                      value="option66"
                     />
-                    <label for="option6">فيــديو</label>
+                    <label for="option66">فيــديو</label>
                   </div>
                   <div class="radio-container col-3">
                     <input
-                      type="radio"
-                      id="option7"
-                      name="options2"
-                      value="option7"
+                      type="checkbox"
+                      id="option77"
+                      name="options22"
+                      value="option77"
                     />
-                    <label for="option7">اوراق عمل</label>
+                    <label for="option77">اوراق عمل</label>
                   </div>
                   <div class="radio-container col-2">
                     <input
-                      type="radio"
-                      id="option8"
-                      name="options2"
-                      value="option8"
+                      type="checkbox"
+                      id="option88"
+                      name="options22"
+                      value="option88"
                     />
-                    <label for="option8">الصور</label>
+                    <label for="option88">الصور</label>
                   </div>
                   <!-- Checkbox -->
                   <div class="check-container col-3 d-flex align-items-center">
-                    <label for="checkbox2" class="me-2">متغيرة</label>
-                    <input type="checkbox" id="checkbox2" />
+                    <label for="var2" class="me-2">متغيرة</label>
+                    <input type="radio" name="mode2" id="var2" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="row">
-            <div class="col-12">
-              <div class="container-fluid">
-                <div class="row sc-set">
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option4"
-                      name="options"
-                      value="option4"
-                    />
-                    <label for="option4">خيــار 3</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option5"
-                      name="options"
-                      value="option5"
-                    />
-                    <label for="option5">خيــار 2</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option6"
-                      name="options"
-                      value="option6"
-                    />
-                    <label for="option6">خيــار 1</label>
-                  </div>
-                  <div class="check-container col-3">
-                    <label for="option8">متغيرة</label>
-                    <input
-                      type="checkbox"
-                      id="option8"
-                      name="options"
-                      value="option8"
-                    />
-                  </div>
-                </div>
-                <div class="row sc-set">
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option4"
-                      name="options"
-                      value="option4"
-                    />
-                    <label for="option4">خيــار 4</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option5"
-                      name="options"
-                      value="option5"
-                    />
-                    <label for="option5">خيــار 5</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option6"
-                      name="options"
-                      value="option6"
-                    />
-                    <label for="option6">خيــار 6</label>
-                  </div>
-                  <div class="radio-container col-2">
-                    <input
-                      type="radio"
-                      id="option7"
-                      name="options"
-                      value="option7"
-                    />
-                    <label for="option7">خيــار 7</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
         </div>
         <div class="modal-footer">
           <button
@@ -1510,6 +1448,7 @@
     </div>
   </div>
 </div>
+
 <div
   class="modal fade"
   id="staticBackdrop2"
@@ -1539,30 +1478,62 @@
     </div>
   </div>
 </div>
-<div
+
+<!-- student random modal -->
+  <div
   class="modal fade"
-  id="staticBackdrop3"
+  id="studentRandom"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
->  
-<!-- data-bs-backdrop="static"
-  data-bs-keyboard="false" -->
-  <div class="modal-dialog" style="max-width: 60%">
-    <div class="modal-content">
+  >
+  <div class="modal-dialog" style="max-width: 60%;">
+    <div class="modal-content" style="background-color: transparent;">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">صور الدرس</h1>
+        <div class="modal-title fs-5" id="statitcBackdropLabel">سؤال للطالب</div>
       </div>
-      <div class="modal-body p-0">
-        <app-videos-viewer [videos]="videos" />
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
+      <div class="modal-body p-0 d-flex flex-column justify-content-center align-items-center">
+        <div class="col-2 box right-box justify-content-center align-items-center">
+          <div
+            class="container-fluid justify-content-center align-items-center"
+            *ngIf="isStudentPhotoVisible"
           >
-            حفظ
-          </button>
+            <div class="row justify-content-between">
+              <div class="col-12 justify-content-between" style="margin-top: 9%">
+                <img
+                  src="../../../../assets/images/student.png"
+                  class="c_img"
+                  *ngIf="selectedStudent"
+                  style="
+                    border: 9px solid white;
+                    margin-bottom: 9px;
+                    border-radius: 14px;
+                    width: 100%;
+                  "
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div *ngIf="selectedStudent">
+                  <p>
+                    الطالب: {{ selectedStudent.firstName ||selectedStudent.studentName }}
+                    {{ selectedStudent.lastName }}
+                  </p>
+                </div>
+                </div>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="question m-4">
+          هل الكرة الارضية مسطحة او مستطيلة؟
+        </div>
+        <div class="answer d-flex">
+          <div class="false m-2" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i></div>
+          <div class="true m-2" data-bs-dismiss="modal"><i class="fa-regular fa-circle-check"></i></div>
+        </div>
     </div>
-  </div>
-</div>
+
+

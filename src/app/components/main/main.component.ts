@@ -15,6 +15,8 @@ import { SubjectService } from 'src/app/services/subject/subject.service';
 import { SupscriptionService } from 'src/app/services/supscription/supscription.service';
 import { Modal } from 'bootstrap';
 import { WhiteboardService } from 'src/app/services/whiteboard/whiteboard.service';
+import { environment } from 'src/environments/environment.development';
+declare var bootstrap: any;
 
 export interface LessonResource {
   id: string;
@@ -122,6 +124,7 @@ export class MainComponent {
     settings: '../../../assets/images/settings.svg',
     home: '../../../assets/images/home.svg',
   };
+
 
   // Track hover state
   isHovered = {
@@ -608,7 +611,7 @@ export class MainComponent {
   }
 
   getResourcePath(resource: string): string {
-    const baseUrl = 'https://teeefa-001-site1.ntempurl.com/'; // Replace with your actual base URL
+    const baseUrl = environment.apiUrl; // Replace with your actual base URL
     return `${baseUrl}${resource.replace(/\\/g, '/')}`;
   }
 
@@ -631,6 +634,7 @@ export class MainComponent {
 
   onEdit2FileSelected(event: any, index: number): void {
     const file = event.target.files[0];
+    console.log(event.target.files);
     if (file) {
       this.newResourceFile = file;
       this.edit2UploadedFiles[index] = this.newResourceFile; // Store the file at the given index
@@ -753,6 +757,21 @@ removeFile(cardIndex: number, fileIndex: number, type: 'file' | 'image') {
   //   }
   // }
 
+  checkLessonId(): void {
+    if (!this.selectedLessonId) {
+      this.toastr.error('!لابد من اختيار الدرس اولا', 'خطأ', {
+        timeOut: 2000,
+      });
+    } else {
+      // Get the modal element by its ID
+      const modalElement = document.getElementById('Edit2');
+      if (modalElement) {
+        // Create a new instance of the modal and show it
+        const modalInstance = new bootstrap.Modal(modalElement);
+        modalInstance.show();
+      }
+    }
+  }
   addLesson(): void {
     // if (this.lessonForm.invalid) {
     //   console.error('Form is invalid. Please provide valid data.');

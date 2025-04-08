@@ -54,6 +54,9 @@ loadClasses(): void {
   }
 }
 
+updateLocalStorage(classId:any) {
+  localStorage.setItem('selectedClassId', classId);
+}
 
 onSubmit() {
   if (this.classForm.valid) {
@@ -82,7 +85,7 @@ onSubmit() {
       next: (response) => {
         // Handle the plain text response
         console.log('Response:', response);
-        if (response === 'Class Added Successfully') {
+        // if (response === 'Class Added Successfully') {
           this.toastr.success('تم إضافة الفصل بنجاح!', 'نجاح', {
             timeOut: 1000,
           });
@@ -90,13 +93,12 @@ onSubmit() {
           this.classForm.reset;
           this.loadClasses();
           this.closeModalById('class');
-        } else {
-          console.error('Unexpected response:', response);
-        }
+        // } else {
+          // console.error('Unexpected response:', response);
+        // }
       },
       error: (error) => {
         console.error('Error adding class:', error);
-
         // Log the error response
         if (error.error) {
           console.error('Response details:', error.error);
@@ -105,7 +107,6 @@ onSubmit() {
         }
       },
     });
-    
   } else {
     console.error('Form is invalid');
   }
@@ -164,11 +165,10 @@ closeModalById(modalId: string): void {
   removeSkill(skill: string) {
     this.selectedSkills = this.selectedSkills.filter(s => s !== skill);
   }
+  navOpenStates: { [key: string]: boolean } = {}; // Object to track open state per class
 
-  navOpen = false;
-
-  toggleNav() {
-    this.navOpen = !this.navOpen; // Toggle navigation visibility
+  toggleNav(classId: string) {
+    this.navOpenStates[classId] = !this.navOpenStates[classId] || false;
   }
 
   isMenuVisible: boolean = false; // Initially hidden

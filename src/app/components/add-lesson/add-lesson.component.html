@@ -1,0 +1,65 @@
+
+<div class="modal-dialog">
+    <div class="modal-content outer-container">
+    <div class="inner-container">
+    <div class="modal-header">
+        <input
+        type="text"
+        [(ngModel)]="lessonName"
+        class="lesson-title"
+        placeholder="الدرس الاول : الدوله الامويه"
+        />
+        <button
+        type="button"
+        class="close closebtn"
+        aria-label="Close"
+        (click)="onDismiss()"
+        >
+        <img src="../../../assets/images/close.png" width="40px" />
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="full-width-box custom-full-width-grid">
+        <div class="custom-card-wrapper" *ngFor="let card of cards; let index = index" (click)="openEditFileInput(index)">
+            <div class="custom-card"  [ngClass]="{ 'hide-card': hiddenCards[index] }">
+            <div class="custom-card-body">
+                <h5 class="custom-card-title" >{{ card.title }}</h5>
+    
+                <div *ngFor="let img of editUploadedImages[index]; let fileIndex = index">
+                <img [src]="img" alt="Uploaded Image" class="thumbnail-image" />
+                <button class="btn btn-danger px-2 py-1" (click)="removeFile(index, fileIndex, 'image')">x</button>
+                </div>
+    
+                <ul *ngIf="editUploadedFiles[index] && editUploadedFiles[index].length > 0">
+                <li *ngFor="let file of editUploadedFiles[index]; let fileIndex = index">
+                    {{ file.name }}
+                    <button class="btn btn-danger px-2 py-1" (click)="removeFile(index, fileIndex, 'file')">x</button>
+                </li>
+                </ul>
+    
+                <input
+                type="file"
+                #fileInput
+                multiple
+                style="display: none"
+                (change)="onEditFileSelected($event, index)"
+                />
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button
+        type="submit"
+        class="btn custombtn ms-4"
+        (click)="onSubmitLesson()"
+        >
+        حفظ
+        </button>
+    </div>
+    </div>
+
+
+

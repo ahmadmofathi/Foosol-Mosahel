@@ -133,6 +133,7 @@ export class PointsComponent {
           this.studentForm.reset();
           this.closeModalById('studentProfile');
           this.getStudentInClass();
+          this.getClassData(classId);
         },
         error: (error) => {
           console.error('Error adding student:', error);
@@ -155,19 +156,14 @@ export class PointsComponent {
         return; // or handle the error appropriately
       }
 
-      const body = {
-        studentPhoneNumber: studentPhoneNumber,
-        classId: classId,
-        subjectIds: subjectIds.split(','), // Convert string to array
-      };
-
-      this.studentService.addExitStudent(body).subscribe({
+      this.classService.addExistingStudentToClass(classId, studentPhoneNumber).subscribe({
         next: (response) => {
           console.log('Student assigned to class successfully:', response);
           this.toastr.success('تم اضافه الطالب الي الفصل!');
           this.existForm.reset(); // Optionally reset the form after submission
           this.closeModalById('studentProfile');
           this.getStudentInClass();
+          this.getClassData(classId);
         },
         error: (error) => {
           console.error('Error assigning student to class:', error);
@@ -240,9 +236,21 @@ export class PointsComponent {
   ngOnInit(): void {
     this.getAllSubjects();
     this.getStudentInClass();
-
     this.className = localStorage.getItem('selectedClassName');
     this.gradeName = localStorage.getItem('selectedGradeName');
+    const classId = localStorage.getItem('selectedClassId');
+    this.getClassData(classId);
+  }
+
+  classData: any = [];
+  getClassData(classId:any){
+    this.classService.getStudentsInClass(classId,1,10).subscribe(
+      (data) => {
+        console.log(data)
+        this.classData = data;
+        console.log('Class Data:', this.classData);
+      }
+    )
   }
 
   currentIcons = {

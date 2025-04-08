@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment.development';
 export class AuthService {
   private apiUrl = environment.apiUrl;
   private apiUrl2 =
-    'https://teeefa-001-site1.ntempurl.com/api/Auth/RegisterTeacher';
+    environment.apiUrl+'api/Auth/RegisterTeacher';
 
   constructor(private http: HttpClient) {}
 

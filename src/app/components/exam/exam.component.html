@@ -1,306 +1,5 @@
 <div class="background-container">
-    <!-- <div class="overlay"></div> -->
-  
-  
-    <div class="icon-container left-icons align-items-center">
-    
-      <div class="profile-container" (click)="toggleMenu()">
-        <img
-          src="../../../assets/images/human.png"
-          alt="Profile"
-          width="60px"
-          height="60px"
-        />
-      </div>
-    
-      <div 
-      class="nav_icon" 
-      [ngClass]="{ 'hovered': isHovered.bell }"
-      (mouseover)="changeIcon('bell', true)" 
-      (mouseout)="changeIcon('bell', false)"
-    >
-      <img 
-        [src]="currentIcons.bell" 
-        width="30px" 
-        height="30px"
-      />
-    </div>
-  
-  
-    
-      <!-- Dropdown Menu -->
-      <div
-        *ngIf="menuOpen"
-        class="dropdown-menu"
-      >
-        <div class="menu-item" routerLink="/profile">
-          ملف الشخصي <img src="../../../assets/images/user-check.png" height="30px" width="30px">
-        </div>
-        <div class="menu-item">
-           توقيع المعلم <img src="../../../assets/images/edit-2.png" height="30px" width="30px">
-        </div>
-        <hr />
-        <div class="menu-item logout">
-         <img src="../../../assets/images/logout.png" height="30px" width="30px"> تسجيل خروج 
-        </div>
-      </div>
-  
-    
-    </div>
-  
-    <!-- Icons on the right side -->
-    <div class="icon-container right-icons align-items-center">
-    
-      <div 
-      class="nav_icon"
-      (click)="openSetting()"
-      [ngClass]="{ 'hovered': isHovered.settings }"
-      (mouseover)="changeIcon('settings', true)" 
-      (mouseout)="changeIcon('settings', false)"
-    >
-      <img 
-        [src]="currentIcons.settings" 
-        width="30px" 
-        height="30px"
-      />
-    </div>
-  
-    <!-- (click)="openNav()" -->
-  
-    <div 
-    class="nav_icon"
-    (click)="openNav()"
-    [ngClass]="{ 'hovered': isHovered.home }"
-    (mouseover)="changeIcon('home', true)" 
-    (mouseout)="changeIcon('home', false)"
-  >
-    <img 
-      [src]="currentIcons.home" 
-      width="30px" 
-      height="30px"
-    />
-  </div>
-  
-  
-      <div class="row container">
-        <div class="col-12 nav-wrapper" *ngIf="isNavbarOpen">
-          <button class="close-btn" (click)="openNav()">&times;</button>
-      
-          <div class="nav-container">
-            <!-- Close Button -->
-      
-            <!-- Home Icon Section -->
-            <!-- <div class="home-icon">
-              <div class="circle">
-                <i class="">
-                  <img
-                    src="../../assets/images/home-1.svg"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span style="color: #001A72;">الرئيسية</span>
-              </div>
-            </div> -->
-      
-            <!-- Other Navigation Icons -->
-            <div class="nav-items">
-                  <div class="nav-item " routerLink="/home">
-                  <i class="">
-                    <img
-                      src="../../../assets/images/home-black.png"
-                      height="30px"
-                      width="30px"
-                    />
-                  </i>
-                  <span>الرئيسية</span>
-                </div>
-              <div class="nav-item first-item" >
-                <i class="">
-                  <img
-                    src="../../../assets/images/calendar-link.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>الجدول</span>
-              </div>
-              <div class="nav-item" routerLink="/student">
-                <i class="">
-                  <img
-                    src="../../../assets/images/users-more.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>الطلاب</span>
-              </div>
-              <div class="nav-item" routerLink="/studentPro">
-                <i class="">
-                  <img
-                    src="../../../assets/images/users-more.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>ملف الطالب</span>
-              </div>
-              <div class="nav-item" routerLink="/listDegree">
-                <i class="">
-                  <img
-                    src="../../../assets/images/chart-vertical.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>الكشوف</span>
-              </div>
-              <div class="nav-item" routerLink="/paper">
-                <i class="">
-                  <img
-                    src="../../assets/images/document-filled.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>اوراق العمل</span>
-              </div>
-              <div class="nav-item" routerLink="/exam">
-                <i class="">
-                  <img
-                    src="../../assets/images/document-filled.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>الاختبارات</span>
-              </div>
-              <div class="nav-item" routerLink="/certificate">
-                <i class="">
-                  <img
-                    src="../../../assets/images/crown-1.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>الشهادات</span>
-              </div>
-              <div class="nav-item" routerLink="/reason">
-                <i class="">
-                  <img
-                    src="../../../assets/images/user-warning.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>تحويل طالب</span>
-              </div>
-              <div class="nav-item" routerLink="/skills">
-                <i class="">
-                  <img
-                    src="../../../assets/images/calendar-user.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>المهارات الاساسية</span>
-              </div>
-              <div class="nav-item">
-                <i class="">
-                  <img
-                    src="../../../assets/images/suitcase.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span> البنك</span>
-              </div>
-              <div class="nav-item" routerLink="/curriculum">
-                <i class="">
-                  <img
-                    src="../../../assets/images/document-plus.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span> توزيع المنهج</span>
-              </div>
-  
-            </div>
-          </div>
-        </div>    
-      </div>
-  
-      <div class="row container">
-        <div class="col-12 nav-wrapper" style="left: 70px; top:24px" *ngIf="isSettingBarOpen" > 
-          <button class="closeSetting-btn" (click)="openSetting()">&times;</button>
-  
-          <div class="settingNav-container">
-            <!-- <div class="setting-icon">
-              <div class="circle">
-                <i class="">
-                  <img
-                    src="../../../assets/images/document-plusBlue.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span style="font-size: small; color:#001A72">اعداد النقاط</span>
-              </div>
-            </div> -->
-  
-             <div class="nav-items">
-  
-              <div class="nav-item first-item" routerLink="/points">
-                <i class="">
-                  <img
-                  src="../../../assets/images/document-plus.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span> اعداد النقاط</span>
-              </div>
-  
-              <div class="nav-item first-item" routerLink="/technical">
-                <i class="">
-                  <img
-                  src="../../../assets/images/document-plus.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span> اعداد الدرجات</span>
-              </div>
-  
-              <div class="nav-item" routerLink="/permission">
-                <i class="">
-                  <img
-                    src="../../../assets/images/headphones.png"
-                    height="30px"
-                    width="30px"
-                  />
-                </i>
-                <span>الدعم الفني</span>
-              </div>
-  
-  
-  
-  
-              </div>
-          </div>
-        </div>
-      </div>
-  
-  </div>
-  
-
-
-  
-   
-
-
-  
+    <app-navbar></app-navbar>
     <div class="custom-form">
       <div class="my-form">
         <div class="form-group">
@@ -310,7 +9,6 @@
                 <i class="fa-solid fa-bag-shopping" style="padding:10px; color: #fff;background-color: #001A72;border-radius: 50%;"></i>
               </div>
               <h3 class="col-md-11">الماده</h3>
-              
             </div>
           </div>
   
@@ -322,35 +20,17 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3 custom-box">
+            <div class="col-md-3 custom-box" [ngClass]="{'selected': selectedSubject === subject}" *ngFor="let subject of subjects" (click)="selectSubject(subject)">
               <div class="container">
                 <div class="row">
-                  <h6>
-                    احياء
+                  <h6 >
+                    {{ subject }}
                   </h6>
                 </div>
               </div>
             </div>
+
   
-            <div class="col-md-3 custom-box">
-              <div class="container">
-                <div class="row">
-                  <h6>
-                    اللغة العربية
-                  </h6>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-md-3 custom-box">
-              <div class="container">
-                <div class="row">
-                  <h6>
-                    توحيد
-                  </h6>
-                </div>
-              </div>
-            </div>
             <div class="col-md-1 custom-box-2">
               <div class="container">
                 <div class="row">
@@ -378,31 +58,11 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3 custom-box">
+            <div class="col-md-3 custom-box" [ngClass]="{'selected': selectedClass === cls}" *ngFor="let cls of classes" (click)="selectClass(cls)">
               <div class="container">
                 <div class="row">
-                  <h6>
-                    ثالثة متوسط
-                  </h6>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-md-3 custom-box">
-              <div class="container">
-                <div class="row">
-                  <h6>
-                    أولي متوسط
-                  </h6>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-md-3 custom-box">
-              <div class="container">
-                <div class="row">
-                  <h6>
-                  ثانية متوسط
+                  <h6 >
+                    {{ cls }}
                   </h6>
                 </div>
               </div>

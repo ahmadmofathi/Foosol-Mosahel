@@ -92,6 +92,12 @@ import { InteractionTableComponent } from './components/interaction-table/intera
 import { PdfViewerComponent } from './components/pdf-viewer/pdf-viewer.component';
 import { ImagesViewerComponent } from './components/images-viewer/images-viewer.component';
 import { VideosViewerComponent } from './videos-viewer/videos-viewer.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { AddLessonComponent } from './components/add-lesson/add-lesson.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditLessonComponent } from './components/edit-lesson/edit-lesson.component';
+
+
 
 @NgModule({
   declarations: [
@@ -169,6 +175,9 @@ import { VideosViewerComponent } from './videos-viewer/videos-viewer.component';
     PdfViewerComponent,
     ImagesViewerComponent,
     VideosViewerComponent,
+    NavbarComponent,
+    AddLessonComponent,
+    EditLessonComponent,
   ],
   imports: [
     BrowserModule,
@@ -190,6 +199,7 @@ import { VideosViewerComponent } from './videos-viewer/videos-viewer.component';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    MatDialogModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

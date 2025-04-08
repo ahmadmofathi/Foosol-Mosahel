@@ -15,11 +15,6 @@
   }
   
 
-  .navbar {
-    position: relative;
-    z-index: 2; /* Ensure the navbar is above the overlay */
-    background: transparent; /* Transparent navbar background */
-  }
   .top-left {
     position: absolute; /* Position it at the top left */
     top: 20px; /* Adjust as necessary */
@@ -73,11 +68,11 @@
    /* Fixed height */
   }
   
-  .custom-form {
+  .custom-form{
     width: 65%;
     margin-top: 3%;
-
-}
+    
+  }
 
   .custom-box{
     background-color: #fff;
@@ -555,7 +550,6 @@ margin: 0;               /* Remove default margin */
 .comment-box {
   direction: rtl;
 }
-
 .form-check-input {
   display: none;
 }
@@ -653,10 +647,9 @@ h3{
   font-style:normal;
   font-size: 30px;
 }
-
 .dropdown-menu {
   position: absolute;
-  top: 60px; /* Adjust based on your profile image height */
+  top: 70px; /* Adjust based on your profile image height */
   right: 0;
   background-color: #ffffff;
   border: 1px solid #ddd;
@@ -736,8 +729,8 @@ hr {
 .close-btn {
   z-index: 2;
   position: absolute;
-  top: -5%;
-  right: -14px;
+  top: -2%;
+  right: -15px;
   background-color: red;
   color: white;
   border: none;
@@ -823,9 +816,6 @@ display: flex;
     white-space: nowrap;
 }
 
-/* .nav-item.first-item {
-  padding-right: 60px;
-} */
 
 .nav-item i {
   font-size: 24px;
@@ -887,7 +877,7 @@ display: flex;
   padding: 10px 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   direction: rtl;
-  margin-right: 137px;
+  margin-right: 138px;
   margin-top: -39px;
 
 }
@@ -895,8 +885,8 @@ display: flex;
 .closeSetting-btn {
   z-index: 2;
   position: absolute;
-  top: -65%;
-  right: 107px;
+  top: -63%;
+  right: 109px;
   background-color: red;
   color: white;
   border: none;
@@ -927,19 +917,7 @@ display: flex;
   top: 4%;
   transform: translateY(-50%);
 }
+
 .header h3{
   padding-right: 10%;
-}
-
-
-
-
-.selected {
-  background-color: #001A72;
-  color: #fff;
-  /* border-radius: 5px; */
-  /* padding: 5px; */
-}
-.custom-box{
-  cursor: pointer;
 }

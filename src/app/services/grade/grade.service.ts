@@ -12,7 +12,7 @@ export class GradeService {
   // private baseUrl = 'https://localhost:7271/api/Grade/GetByLevelId';
 
   private PrivateUrl =
-    'https://teeefa-001-site1.ntempurl.com/api/Grade/AddGrade';
+  environment.apiUrl+'api/Grade/AddGrade';
 
   constructor(private http: HttpClient) {}
 

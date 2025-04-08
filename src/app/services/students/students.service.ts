@@ -24,7 +24,7 @@ export class StudentsService {
   addStudent(formData: FormData): Observable<any> {
     console.log('formData', formData);
 
-    const url = `${this.apiUrl}Auth/AddStudent`; // Adjust the endpoint as needed
+    const url = `${this.apiUrl}Auth/AddStudentNewStudentToClass`; // Adjust the endpoint as needed
     const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Retrieve token from localStorage
       // Authorization: `Bearer ${environment.authToken}`,

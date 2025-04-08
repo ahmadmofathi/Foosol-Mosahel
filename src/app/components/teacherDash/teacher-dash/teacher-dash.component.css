@@ -2,6 +2,9 @@
 .full-screen{
   height: 100vh;
 }
+.y-hidden{
+  overflow-y: hidden;
+}
 .teacher-board-container {
   /* padding: 15px; */
   height: auto; /* Adjust the height so the page is not full-screen */
@@ -117,13 +120,15 @@
 
 .progress-icon {
   display: flex;
+  flex-direction: column;
   justify-content: center; /* Center the icon */
   align-items: center; /* Center vertically */
 }
 
 .progress-line {
-  height: 4px; /* Line height */
-  background-color: #ccc; /* Default line color */
+  height: 8px; /* Line height */
+  width: 80px;
+  background-color:rgba(115, 26, 16, 1); /* Default line color */
   flex-grow: 1; /* Allow lines to grow and fill space */
   margin: 0 0px; /* Margin between line and icon */
   transition: background-color 0.3s ease; /* Smooth transition */
@@ -166,7 +171,11 @@
 .btn_r {
   width: auto;
   padding: 0px;
-  justify-content: right;
+  padding-left: 20px;
+  background-color: white;
+  flex-direction: row-reverse;
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: 1px solid #dddddd5a;
 }
 .btn_l {
   width: auto;
@@ -209,9 +218,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding:18px 10px 18px 30px;
   /* position: absolute; */
   /* top: 85vh;
+  padding:10px;
   right: 18%;
   margin-top: 3px; */
   /* background: none; */
@@ -248,7 +257,7 @@
   display: flex;
   align-items: center;
   background: #f9f9f9;
-  padding: 25px 0px;
+  padding: 15px 0px;
   border-radius: 15px;
   /* margin: 25px; */
 }
@@ -317,10 +326,6 @@
   justify-content: center;
 }
 
-.icon-wrapper {
-  display: inline-flex; /* Display icons inline */
-}
-
 .footer-icon {
   width: 30px;
   height: 30px;
@@ -343,9 +348,6 @@
   flex-grow: 1; /* Allows the icon slider to grow and take available space */
 }
 
-.icon-wrapper {
-  display: inline-flex; /* Display icons inline */
-}
 
 .icon-bg {
   /* Change to your desired background color */
@@ -613,6 +615,30 @@ input[type="radio"] {
 .status-icons .sleep {
   background-color: #ec2dfd;
 }
+.selected-std-status{
+  color: white;
+  padding: 1px;
+  border-radius: 20px;
+}
+.late {
+  background-color: red;
+}
+
+.present {
+  background-color: #25d408;
+}
+
+.excused {
+  background-color: #d89e09;
+}
+
+.absent {
+  background-color: #147cdc;
+}
+
+.sleep {
+  background-color: #ec2dfd;
+}
 
 /* Student info and image */
 .student-info {
@@ -630,6 +656,7 @@ input[type="radio"] {
 .student-name {
   font-weight: bold;
   font-size: 15px;
+  color: #000;
 }
 
 .student-image {
@@ -825,7 +852,7 @@ input[type="radio"] {
   margin: 5px;
 }
 .workspace{
-  transform: translateY(-150px);
+  transform: translateY(-195px);
   transition: all 0.5s ease-in-out;
 }
 .workspace-show{
@@ -833,7 +860,15 @@ input[type="radio"] {
   transition: all 0.5s ease-in-out;
 }
 
-
+.board-fullscreen{
+  width: 100%;
+}
+.board-80screen{
+  width: 80%;
+}
+.board-hide{
+  display: none;
+}
 /* Resources */
 .image-resources{
   position: absolute;
@@ -846,4 +881,1298 @@ input[type="radio"] {
 }
 .image-resource{
   height: 95%;
+}
+
+
+.question{
+  font-size: xx-large;
+  color: white;
+  font-weight: 900;
+}
+.answer div{
+  font-size: xxx-large;
+  cursor: pointer;
+}
+.true{
+  color: green;
+}
+.false{
+  color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+.background-container {
+  position: relative; /* Position context for child elements */
+  min-height: 100vh; /* Set a smaller height */
+  display: flex; /* For centering the form */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  overflow: hidden; /* Prevent scrolling within this container */
+  /* background-image: url('../../../assets/images/back.jpg'); */
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size:contain;
+  padding: 50px;
+    background-color: #F2F2F2;
+}
+
+.lesson-title {
+  /* font-size: 1.5rem; */
+  color: black;
+  background-color: #FCF2BD;
+  padding: 13px 70px;
+  border-radius: 15px;
+  text-align: end;
+
+}
+
+.top-left {
+  position: absolute; /* Position it at the top left */
+  top: 20px; /* Adjust as necessary */
+  left: 20px; /* Adjust as necessary */
+  z-index: 2; /* Ensure it's above the overlay */
+}
+
+.circle-image-container {
+  position: relative; /* Position context for the icon */
+  width: 50px; /* Set the size for the circle */
+  height: 50px; /* Set the size for the circle */
+}
+
+.circle-image {
+  width: 100%; /* Full width of the container */
+  height: 100%; /* Full height of the container */
+  border-radius: 50%; /* Make it circular */
+}
+
+.your-icon-class {
+  position: absolute; /* Position it over the circle image */
+  top: 50%; /* Center it vertically */
+  left: 50%; /* Center it horizontally */
+  transform: translate(-50%, -50%); /* Center the icon */
+  font-size: 20px; /* Adjust size as needed */
+  color: white; /* Adjust color as needed */
+}
+
+.top-right {
+  position: absolute; /* Position it at the top right */
+  top: 20px; /* Adjust as necessary */
+  right: 20px; /* Adjust as necessary */
+  z-index: 2; /* Ensure it's above the overlay */
+}
+
+.icon-container {
+  padding: 10px; /* Add padding */
+  border-radius: 5px; /* Rounded corners */
+  display: flex; /* Display icons in a row */
+  gap: 10px; /* Space between icons */
+  margin-top: 10px;
+}
+.nav_icon{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #001a72;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.nav_icon.hovered {
+  background-color: white;
+  border: 1px solid #001a72;
+}
+
+.icon-class-1, .icon-class-2 {
+  font-size: 24px; /* Adjust size as needed */
+  color: white; /* Adjust color as needed */
+}
+
+.my-form {
+  position: relative; /* This makes the form above the overlay */
+  z-index: 2; /* Ensure the form is above the overlay */
+  background-color: rgba(223, 206, 178, 0.7); /* Semi-transparent background */
+  padding: 20px; /* Adds some padding to the form */
+  border-radius: 30px; /* Optional: rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for form */
+  height: auto;
+ /* Fixed height */
+}
+
+.custom-form{
+  width: 75%;
+  margin-top: 15px;
+}
+
+.custom-box{
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+  color:#001A72;
+  font-weight: bold;
+  display: flex; /* Apply Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.row h6{
+  font-size: xx-small;
+}
+.custom-box-2{
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+  width:auto;
+  margin-bottom: 10px;
+  
+}
+.custom-box-2 .fa-solid{
+  cursor: pointer;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+  width:auto;
+  color: #001A72;
+  font-size: 12px;
+}
+.custom-box-text{
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+  color:#001A72;
+  font-size: xx-small;
+  font-weight: bold;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+  width: auto;
+}
+.custom-box-text-active{
+  background-color: #001A72;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+  color:#fff;
+  font-size: xx-small;
+  font-weight: bold;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+  width: auto;
+}
+.custom-box-selected{
+  background-color:#001A72;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: xx-small;
+  font-weight: bold;
+  display: flex; /* Apply Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+  margin-bottom: 30px;
+}
+.payment-methods{
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+  text-align: center;
+}
+
+.header {
+  text-align: center;
+  color:#6C6355;
+}
+.header h3{
+  font-size: small;
+}
+.payment-methods2{
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+  text-align: center;
+
+}
+
+.own-btn{
+background-color:#001A72 ;
+color: white;
+border-radius: 15px;
+padding: 5px 50px 5px 50px;
+text-align: center;
+justify-content: center;
+align-items: center;
+border: none;
+}
+
+.own-btn2{
+background-color:#001A72 ;
+color: white;
+border-radius: 15px;
+padding: 2px 5px;
+text-align: center;
+font-size: 6px;
+border: none;
+
+}
+.div-button2{
+justify-content: left;
+align-items: center; 
+text-align: center;
+}
+
+.div-button{
+justify-content: center;
+align-items: center; 
+text-align: center;
+}
+
+.icon-container {
+position: absolute;
+z-index: 3;
+display: flex;
+gap: 10px; 
+}
+
+.left-icons {
+left: 4%;
+top: 4%;
+transform: translateY(-50%);
+}
+
+.right-icons {
+right: 4%;
+top: 4%;
+transform: translateY(-50%);
+}
+
+.icon-class {
+font-size: 24px; /* Adjust size as needed */
+color: white; /* Adjust color as needed */
+padding: 10px;
+border-radius: 50%;
+}
+
+.icon-container {
+padding: 10px;
+border-radius: 5px;
+display: flex;
+cursor: pointer;
+}
+
+/* Horizontal menu */
+.horizontal-menu {
+background-color: #F1E8BF; /* Your desired background color */
+position: absolute;
+top: 50px;
+right: 0; /* Align to the right */
+z-index: 3;
+border-radius: 5px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+display: block;
+direction: rtl; /* Ensure right-to-left layout */
+}
+
+
+.horizontal-menu ul {
+list-style: none;
+padding: 0;
+display: flex;
+flex-direction: row-reverse; /* Reverse the order of list items */
+margin: 0;
+}
+
+.horizontal-menu ul li {
+padding: 10px 20px;
+color: black;
+font-weight: bold;
+cursor: pointer;
+}
+
+.horizontal-menu ul li:hover {
+background-color: #ccc;
+}
+
+.outer-container {
+background-color: #F5B104; /* Outer background */
+border-radius: 40px;
+border: 5px solid #E45C00; /* Border around the modal */
+padding: 15px; /* Padding around inner container */
+}
+
+/* Inner container to give the effect of margin and background color #03556B */
+.inner-container {
+background-color: #03556B; /* Inner background */
+border-radius: 30px; /* Inner corner radius */
+/* padding: 20px;  */
+position: relative; /* To allow the close button positioning */
+}
+
+/* Close button with red background and white X */
+.closebtn {
+background-color: red; /* Red background */
+color: white; /* White "X" icon */
+font-weight: bold;
+border-radius: 50%;
+position: absolute;
+top: 25px;
+right: 15px;
+padding: 5px 10px;
+border: none; /* Remove default borders */
+cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Change background and text color on hover */
+.closebtn:hover {
+background-color: red; /* White background on hover */
+color: white; /* Red "X" on hover */
+}
+
+
+.custom-table {
+width: 100%;
+border-collapse: collapse;
+background-color: #FCF2BD; /* Table background color */
+color: rgb(233, 200, 200); /* Text color */
+direction: rtl; /* RTL alignment for the table */
+text-align: right; /* Left align the text */
+border: 2px solid black; /* Outer border for the whole table */
+border-radius: 15px; /* Rounded corners for the table */
+}
+
+.custom-table th, .custom-table td {
+padding: 10px;
+border: none; /* No borders between the cells */
+}
+
+.custom-table th:first-child {
+border-top-right-radius: 15px; /* Top-right corner */
+}
+
+.custom-table th:last-child {
+border-top-left-radius: 15px; /* Top-left corner */
+}
+
+.custom-table tr:last-child td:first-child {
+border-bottom-right-radius: 15px; /* Bottom-right corner */
+}
+
+.custom-table tr:last-child td:last-child {
+border-bottom-left-radius: 15px; /* Bottom-left corner */
+}
+
+.custom-table, .custom-table th, .custom-table td {
+border: 3px solid black; /* Black border for table, rows, and columns */
+border-radius: 5px;
+align-items: end;
+font-weight: bold;
+
+}
+
+.custom-table th, .custom-table td {
+padding: 10px;
+align-items: end;
+
+}
+
+.custom-table th {
+background-color: #FCF2BD  }
+
+.form-input {
+    width: 100%;
+    padding: 5px;
+    border: none; /* Removes the default border */
+    border-radius: 5px;
+    background-color: #FCF2BD;
+    color: black;
+    font-size: 16px;
+    box-sizing: border-box; 
+  }
+
+  .form-input:focus {
+    outline: none; /* Removes the outline */
+    border: none; /* Ensures no border appears on focus */
+    box-shadow: none; /* Removes any shadow effect, if applicable */
+  }
+.ck.ck-editor__editable {
+    background-color: #FCF2BD;
+}
+.custom-ckeditor {
+    background-color: #FCF2BD;
+}
+
+.full-width-box {
+    min-width: 100%; /* Take full width of modal body */
+    background-color: #FCF2BD; /* Background color */
+    border-radius: 6px;
+    border: 3px solid black; /* Black border */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    padding:100px 10px;
+    align-items: center;
+
+  }
+  
+  .full-width-box h4{
+    color:#817B60;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .modal-body ,.modal-footer ,.modal-header {
+    border: none; /* Removes the border */
+  }
+
+
+
+
+  .modal-header {
+    display: flex; /* Enable flexbox for the header */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+     /* Add padding if necessary */
+  }
+  
+  .modal-header h1 {
+    text-align: center !important; 
+    font-size: 30px; 
+    color: #ffff; 
+    font-weight: 700 !important; 
+    margin: 0; 
+  }
+
+  .modal-display{
+    background-color: #00000099;
+  }
+  .modal-dialog{
+    max-width: 60%;
+  }
+  /* Modal Close Button Styles */
+.modal .close {
+position: absolute;
+top: 10px; /* Adjust as needed */
+right: 10px; /* Adjust as needed */
+background-color: #BC1010;  /* Red background */
+border-radius: 50%;      /* Make it circular */
+color: white;            /* White color for the icon */
+font-size: 40px;  
+font-weight: bolder;       /* Adjust size as needed */
+width: 32px;             /* Width of the circle */
+height: 32px;            /* Height of the circle */
+display: flex;
+justify-content: center;
+align-items: center;
+border: none;            /* Remove any default border */
+outline: none;           /* Remove outline on focus */
+}
+
+.modal .close span {
+margin: 0;               /* Remove default margin */
+}
+.modal-footer {
+display: flex; /* Use flexbox layout */
+justify-content: flex-start; /* Align items to the left */
+padding: 5px 15px; /* Adjust padding to make it smaller (top/bottom reduced) */
+margin-top: 0; /* Ensure no top margin */
+}
+
+.custombtn {
+background-color: #F1E8BF; /* Button background color */
+color: black; /* Button text color */
+border-radius: 10px; /* Rounded corners */
+min-width: 150px; /* Minimum width */
+font-weight: bold; /* Bold text */
+padding:3px;
+}
+
+.full-width-box {
+min-width: 100%; /* Take full width of modal body */
+background-color: #F1E8BF; /* Background color */
+border-radius: 20px;
+padding:20px 30px;
+align-items: center;
+border: none;
+
+}
+
+.full-width-box h4{
+color:#817B60;
+align-items: center;
+text-align: center;
+font-size: 20px;
+}
+
+
+.custom-full-width-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+gap: 20px; /* Space between the cards */
+}
+
+.custom-card-wrapper {
+position: relative;
+}
+
+/* .custom-card {
+background-color: #cec7b7;
+border-radius: 10px;
+padding: 15px;
+min-height: 90px;
+position: relative;
+} */
+
+.custom-close-icon {
+position: absolute;
+top: 5px;
+left: 5px;
+cursor: pointer;
+font-size: 1.2rem;
+color: #817B60;
+}
+
+.custom-card-body {
+text-align: center;
+}
+
+/* Hidden card style */
+.hide-card {
+display: none;
+}
+
+.custom-card-title{
+color:#817B60
+}
+
+.modal-body {
+margin-top: 0; /* Remove margin to decrease distance to footer */
+padding: 10px; /* Optional: add some padding for content spacing */
+}
+
+
+.comment-box {
+background-color: white;
+border-radius: 20px;
+padding: 10px;
+max-width: 700px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+display: flex
+;
+flex-direction: column;
+gap: 10px;
+font-family: Arial, sans-serif;
+}
+
+.comment-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-direction: row-reverse; 
+}
+
+.add-comment-btn {
+background-color: #0e1e5b;
+color: white;
+padding: 5px 15px;
+border: none;
+border-radius: 5px;
+font-size: 14px;
+cursor: pointer;
+}
+
+.stars-rating {
+display: flex;
+align-items: center;
+}
+
+.rating-text {
+margin-right: 10px;
+font-size: 16px;
+color: #000;
+}
+
+.stars i {
+color: #000;
+font-size: 18px;
+margin-right: 3px;
+}
+
+.comment-textarea {
+background-color: #d3d3d3;
+border: none;
+border-radius: 10px;
+padding: 10px;
+width: 100%;
+resize: none;
+font-size: 14px;
+color: #666;
+text-align: right;
+}
+
+.comment-textarea::placeholder {
+color: #999;
+font-size: 14px;
+}
+
+.comment-box {
+direction: rtl;
+}
+
+.custom-card {
+width: 100%;
+height: 120px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 8px;
+position: relative;
+overflow: hidden;
+overflow-y: scroll;
+background-color: #cec7b7;
+border-radius: 10px;
+padding: 5px;
+min-height: 90px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+border: 1px solid #CEC7B7;
+
+}
+
+.card-image {
+width: 100%; /* Make the image take the full width of the card */
+height: 100%; /* Make the image take the full height of the card */
+object-fit: cover; /* Ensures the image covers the card area, cropping as necessary */
+border-radius: 8px; /* Match the card's border-radius for consistent design */
+position: absolute;
+top: 0;
+left: 0;
+z-index: -1; /* Places the image behind other content */
+}
+
+.custom-card-title {
+z-index: 1; /* Ensures the title is visible on top of the image */
+color: #656565;
+font-size: 1rem;
+font-weight: bold;
+text-align: center;
+}
+
+.thumbnail-image {
+width: 80px; /* Set the desired width of the thumbnail */
+height: 80px; /* Set the desired height of the thumbnail */
+object-fit: cover; /* Ensures the image fits within the dimensions, cropping as necessary */
+border-radius: 4px; /* Slightly rounded corners for a polished look */
+margin-top: 10px; /* Add spacing from the card title */
+}
+
+.expanded-menu {
+position: absolute;
+top: 1%;
+right: 25%;
+background-color: #f0e6d3;
+padding: 10px;
+border-radius: 10px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+display: flex;
+flex-direction: row;
+gap: 20px;
+transition: transform 0.3s ease;
+z-index: 10;
+}
+
+.menu-item {
+display: flex;
+align-items: center;
+gap: 10px;
+color: #333;
+}
+
+.almarai-regular {
+font-family: "Almarai", serif;
+font-weight: 400;
+font-style: normal;
+}
+
+span,h6,button{
+font-family: "Almarai", serif;
+font-weight: bolder;
+font-style:normal;
+font-size: medium;
+}
+
+h6{
+margin: 0px;
+ padding: 0px;
+}
+
+h3{
+font-family: "Almarai", serif;
+font-weight: bolder;
+font-style:normal;
+font-size: 30px;
+}
+
+/* Dropdown Menu Styling */
+.horizontal-dropdown-menu {
+position: absolute;
+top: 10px; /* Adjust based on where you want it to open */
+right: 0;
+background-color: #F8E9C6;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+padding: 10px;
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+z-index: 1000;
+width: auto; /* Dynamic width to fit the items horizontally */
+}
+
+/* Show the dropdown menu when it’s open */
+.horizontal-dropdown-menu.show {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+
+/* Menu Header with Close Button */
+.menu-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 5px 10px;
+border-bottom: 1px solid #ddd;
+font-weight: bold;
+color: #333;
+}
+
+/* Close Button */
+.close-btn {
+background: none;
+border: none;
+color: red;
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+line-height: 1;
+}
+
+/* Horizontal List for Menu Items */
+.menu-items {
+list-style: none;
+padding: 0;
+margin: 0;
+display: flex; /* Align items in a row */
+gap: 20px; /* Space between items */
+align-items: center;
+max-width: 600px;
+overflow-x: scroll;
+overflow-y: hidden;
+}
+
+/* List Items */
+.menu-items li {
+display: flex;
+align-items: center;
+color: #333;
+cursor: pointer;
+padding: 8px;
+border-radius: 5px;
+transition: background-color 0.2s ease;
+white-space: nowrap; /* Prevent text from wrapping */
+/* background-color: #001A72;  */
+color: #001A72; /* White text color */
+padding: 10px 15px; /* Add padding for a button-like appearance */
+}
+
+.menu-items li:hover {
+background-color: #d6c9ac; /* Darker color on hover */
+}
+
+/* Icon Styling */
+.menu-items li i {
+margin-right: 8px; /* Space between icon and label */
+font-size: 18px;
+}
+
+.dropdown-menu {
+position: absolute;
+top: 70px; /* Adjust based on your profile image height */
+right: 0;
+background-color: #ffffff;
+border: 1px solid #ddd;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+padding: 10px 0;
+/* width: 200px; */
+text-align: right;
+z-index: 1000;
+display: block;
+}
+
+.menu-item {
+padding: 10px 15px;
+font-size: 16px;
+font-weight: bold;
+color: #333;
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.menu-item:hover {
+background-color: #f0f0f0;
+}
+
+.logout {
+color: #980101;
+}
+
+hr {
+margin: 10px 0;
+border: none;
+border-top: 2px solid #000;
+}
+.nav-wrapper {
+position: fixed;
+top: -10px;
+left: 0;
+width: 100%;
+z-index: 999;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+overflow-x: visible;
+background: transparent;
+padding: 10px 0;
+}
+
+/* Navigation Container */
+.nav-container {
+position: relative;
+background-color: #fcf2bd;
+border-radius: 15px;
+width: auto;
+/* max-width: 40%; */
+min-width: 400px;
+height: auto;
+display: flex;
+align-items: center;
+overflow-x: auto;
+white-space: nowrap;
+-webkit-overflow-scrolling: touch;
+scroll-behavior: smooth;
+padding: 10px 20px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+direction: rtl;
+margin-right: 27px;
+margin-top: 7px;
+}
+
+/* Hide the scrollbar */
+.nav-container::-webkit-scrollbar {
+display: none; /* Hide the scrollbar */
+}
+/* Close Button */
+.close-btn {
+z-index: 2;
+position: absolute;
+top: 7%;
+right: -1px;
+background-color: red;
+color: white;
+border: none;
+border-radius: 50%;
+width: 30px;
+height: 30px;
+font-size: 22px;
+font-weight: bold;
+display: flex;
+justify-content: center;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+}
+
+.close-btn:hover {
+background-color: #ff0000; /* Darker red on hover */
+}
+
+/* Home Icon Section */
+.home-icon {
+position: absolute;
+top: -35%;
+right: 22px;
+display: flex;
+flex-direction: column;
+align-items: center;
+z-index: 10; /* Ensure it's above the navigation */
+}
+
+/* Circle Styling */
+.home-icon .circle,
+.setting-icon .circle {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background-color: #fcf2bd;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.6),
+  0px 4px 6px rgba(0, 0, 0, 0.1);
+border-bottom: 1px solid white;
+z-index: 11; /* Keep it above other elements */
+}
+
+.home-icon i,
+.setting-icon i {
+font-size: 32px;
+color: #224273;
+}
+
+.home-icon span {
+margin-top: 5px; /* Adjust to position the text under the icon */
+font-size: 14px;
+font-family: 'AGA Mashq Bold', Arial, sans-serif;
+color: #000;
+}
+
+/* Navigation Items */
+.nav-items {
+display: flex;
+align-items: center;
+flex-grow: 1;
+/* padding-right: 60px; */
+flex-wrap: nowrap;
+}
+
+/* .nav-item.first-item {
+padding-right: 60px; 
+} */
+
+.nav-item {
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  font-family: 'AGA Mashq Bold', Arial, sans-serif;
+  text-align: center;
+  color: #000;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* .nav-item.first-item {
+padding-right: 60px;
+} */
+
+.nav-item i {
+font-size: 24px;
+margin-bottom: 5px;
+color: #000;
+}
+
+.nav-item span {
+font-size: 12px;
+}
+
+.nav-item:hover {
+cursor: pointer;
+color: #224273; /* Highlight color */
+}
+
+.active-nav-item {
+border: 2px solid black; /* Blue border */
+border-radius: 10px; /* Rounded edges */
+box-shadow: 0 4px 10px rgba(34, 66, 115, 0.3); /* Subtle shadow */
+background-color: #fcf2bd; /* Optional: Highlight background */
+padding: 10px; /* Adjust spacing for better visuals */
+color: black; /* Active color */
+}
+
+
+/* Optional: Active Icon Styling */
+.active-nav-item i img {
+transform: scale(1.1); /* Slightly enlarge the icon */
+transition: transform 0.2s ease; /* Smooth scaling effect */
+}
+
+/* Optional: Active Span Styling */
+.active-nav-item span {
+font-weight: bold; /* Highlight text */
+}
+
+/* // Setting NAv */
+
+.setting-icon {
+position: absolute;
+top: -43%;
+right: 14px;
+display: flex;
+flex-direction: column;
+align-items: center;
+z-index: 10;
+}
+
+.settingNav-container{
+position: relative;
+background-color: #fcf2bd;
+border-radius: 15px;
+width: auto;
+/* max-width: 40%; */
+height: auto;
+display: flex;
+align-items: center;
+overflow: visible;
+padding: 10px 10px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+direction: rtl;
+margin-right: 148px;
+margin-top: -26px;
+
+}
+
+.closeSetting-btn {
+z-index: 2;
+position: absolute;
+top: -41%;
+right: 119px;
+background-color: red;
+color: white;
+border: none;
+border-radius: 50%;
+width: 30px;
+height: 30px;
+font-size: 18px;
+font-weight: bold;
+display: flex;
+justify-content: center;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+}
+
+
+
+.padding-center{
+padding-right:10%;
+}
+
+
+
+
+.display-btn{
+  background-color: #001A72;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 2px 25px;
+  cursor: pointer;
+  font-size: 8px;
+  font-weight: bold;
+}
+.choose-btn{
+  background-color: #fff;
+  color: #001A72;
+  border: none;
+  border-radius: 50%;
+  padding: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+.choose-btn:hover{
+  background-color: #001A72;
+  color: #fff;
+}
+
+
+/* 🚀 Unique class prefix: .custom-icon-slider- to avoid conflicts */
+
+/* Full container including arrows */
+.custom-icon-slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 750px;
+  margin: auto;
+}
+
+/* Scrollable icon row */
+.custom-icon-slider {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 600px;
+  padding: 10px;
+}
+
+/* Wrapper to ensure icons are in a row */
+.custom-icon-wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  min-width: max-content;
+}
+
+/* Individual icon container */
+.custom-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Icon background with hover effect */
+.custom-icon-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100px;
+  height: 80px;
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.custom-icon-bg:hover {
+  transform: scale(1.1);
+}
+
+/* Icon Images */
+.custom-footer-icon {
+  width: 25px;
+  height: auto;
+}
+
+/* Icon Labels */
+.custom-icon-label {
+  font-size: 10px;
+  margin-top: 5px;
+  color: #001A72;
+}
+
+/* Scroll buttons */
+.custom-slider-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-slider-btn img {
+  width: 30px;
+  height: 30px;
+}
+
+
+/* 
+.splitter {
+  width: 10px;
+  background-color: #ccc;
+  cursor: ew-resize;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.col_c1, .col_c2 {
+  flex-grow: 1;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.board-fullscreen {
+  flex-grow: 1 !important;
+}
+
+.board-hide {
+  display: none;
+} */
+
+
+
+
+
+
+
+.locked {
+  pointer-events: none;  /* Prevent interaction */
+  opacity: 0.3;
+}
+
+
+
+
+.open-btn{
+  background-color: #25d408;
+  color: white;
+  padding: 0px 8px;
+  font-size: 10px;
+  border-radius: 3px;
+}
+.count-btn{
+  background-color: rgba(115, 26, 16, 1);
+  color: white;
+  padding: 0px 5px;
+  font-size: 6px;
+  border-radius: 3px;
+}
+
+
+
+.lesson-name {
+  max-height: 40px;          /* Set the maximum height */
+  overflow: hidden;      /* Hide any text that exceeds the height */
+  text-overflow: ellipsis; /* Add "..." for overflow text */
+  white-space: nowrap;   /* Prevent text from wrapping to the next line */
+  display: block;
+}
+
+
+
+.selected-status {
+  border: 2px solid #007bff;  /* Blue outline for selected status */
+  border-radius: 5px;
+  padding: 2px 8px;
+  background-color: rgba(0, 123, 255, 0.1);  /* Optional light blue background */
+}
+
+
+
+
+
+
+.element {
+  transition: flexBasis 0.2s ease;  /* Smooth width transition */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.divider {
+  width: 5px;
+  background-color: #333;
+  cursor: ew-resize;  /* Cursor to indicate horizontal resize */
 }

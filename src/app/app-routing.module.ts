@@ -68,6 +68,7 @@ import { PrepPaperComponent } from './components/prep-paper/prep-paper.component
 import { ActionsComponent } from './components/actions/actions/actions.component';
 import { BehaiveComponent } from './components/behaive/behaive/behaive.component';
 import { InteractionTableComponent } from './components/interaction-table/interaction-table.component';
+import { AddLessonComponent } from './components/add-lesson/add-lesson.component';
 
 const routes: Routes = [
   { path: 'login', component: SignupFormComponent },
@@ -139,6 +140,7 @@ const routes: Routes = [
   { path: 'points', component: PointsComponent },
   { path: 'examinig', component: PrepExamComponent },
   { path: 'prepPaper', component: PrepPaperComponent },
+  { path: 'add-lesson', component: AddLessonComponent },
   { path: '', component: SignupFormComponent },
   { path: '**', component: SignupFormComponent },
 ];

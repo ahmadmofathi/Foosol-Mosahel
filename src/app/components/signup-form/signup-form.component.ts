@@ -55,7 +55,7 @@ export class SignupFormComponent {
         console.log('Login successful', response);
         localStorage.setItem(this.authToken, response.token);
         this.loginForm.reset()
-        this.router.navigate(['/main']);
+        this.router.navigate(['/teacherDash']);
       },
       (error) => {
         console.error('Login failed', error);

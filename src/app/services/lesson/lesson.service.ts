@@ -70,17 +70,17 @@ export class LessonService {
   }
 
   // Method to get lesson resources
-  getLessonResources(): Observable<any> {
+  getLessonResources(lessonId: string = ''): Observable<any> {
     const authToken = localStorage.getItem('authToken');
-    const teacherId = authToken ? this.getTeacherIdFromToken(authToken) : null;
-    const lessonId = localStorage.getItem('selectedLessonId');
-    console.log(teacherId,lessonId);
-    if (!teacherId || !lessonId) {
+    const storedlessonId = localStorage.getItem('selectedLessonId');
+    console.log(lessonId);
+
+    if ( !lessonId && !storedlessonId) {
       console.error('Teacher ID or Lesson ID is missing');
       return new Observable();
     }
 
-    const url = `${this.apiUrl}Lesson/GetTeacherResources/${teacherId}/${lessonId}`;
+    const url = `${this.apiUrl}Lesson/GetTeacherResources/${lessonId||storedlessonId}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`,
@@ -141,7 +141,7 @@ export class LessonService {
       return new Observable<any>();
     }
 
-    const url = `${this.apiUrl}Lesson/AddTeacherResource/${teacherId}/${lessonId}`;
+    const url = `${this.apiUrl}Lesson/AddTeacherResource/${lessonId}`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${authToken}`,
       // Authorization: `Bearer ${environment.authToken}`,
